@@ -1,0 +1,34 @@
+site_name: IIoT – Industrielles Internet der Dinge
+site_url: https://wildle.github.io/MCI-AUT-IIoT/
+site_author: Lenard Wild
+
+# Navigation menu
+nav:
+  - 'Industrial IoT':
+    - 'Theorie & MQTT-Grundlagen' : 6_Datenverarbeitung_in_der_industriellen_Produktion.md
+    - 'Datenspeicherung' : 7_Datenspeicherung.md
+  - 'Machine Learning':
+    - 'Regressionsmodelle' : 8_Regression.md
+    - 'Regressionsmodelle mit Python' : 8_Regression_Python.ipynb
+    - 'Klassifikationsmodelle' : 9_Klassifizierung.md
+    - 'Klassifikationsmodelle mit Python' : 9_Classification_Python.ipynb
+
+
+theme:
+  name: readthedocs
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - attr_list
+
+plugins:
+  - mkdocs-jupyter
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML
+
+dev_addr: '127.0.0.1:7000'

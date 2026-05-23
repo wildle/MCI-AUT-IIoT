@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="AblaufFunktionsplan.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="348.63189"
+     inkscape:cy="584.93666"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.4967882;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect815"
+       width="21.503212"
+       height="21.503212"
+       x="68.764221"
+       y="87.335274" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56453204;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect815-1"
+       width="24.435469"
+       height="24.435469"
+       x="67.307495"
+       y="85.884071" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56453204;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect815-1-7"
+       width="24.435469"
+       height="24.435469"
+       x="67.294952"
+       y="124.95509" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 79.646319,110.5795 v 14.29892"
+       id="path849"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 79.646319,149.4004 v 14.29892"
+       id="path849-9"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56453204;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect815-1-7-9"
+       width="24.435469"
+       height="24.435469"
+       x="67.428581"
+       y="163.57553" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 76.328377,118.27496 h 6.280836"
+       id="path881"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 76.445176,157.08441 h 6.280836"
+       id="path881-4"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 91.848214,137.49405 h 8.882436"
+       id="path898"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.54704374;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect900"
+       width="62.159203"
+       height="16.772898"
+       x="100.92905"
+       y="129.03209" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2676422px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 117.79819,129.00856 v 16.63096"
+       id="path902"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot904"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,40.491334,3.6027663)"><flowRegion
+         id="flowRegion906"><rect
+           id="rect908"
+           width="96.469566"
+           height="99.500023"
+           x="126.77415"
+           y="337.63116" /></flowRegion><flowPara
+         id="flowPara912"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333206px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">S1</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot904-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,40.205247,43.530338)"><flowRegion
+         id="flowRegion906-8"><rect
+           id="rect908-8"
+           width="96.469566"
+           height="99.500023"
+           x="126.77415"
+           y="337.63116" /></flowRegion><flowPara
+         id="flowPara912-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333206px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">S2</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot904-3-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,40.150489,81.8975)"><flowRegion
+         id="flowRegion906-8-4"><rect
+           id="rect908-8-0"
+           width="96.469566"
+           height="99.500023"
+           x="126.77415"
+           y="337.63116" /></flowRegion><flowPara
+         id="flowPara912-8-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333206px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">S3</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot964"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-10.690781,28.998744)"><flowRegion
+         id="flowRegion966"><rect
+           id="rect968"
+           width="93.43911"
+           height="50.002552"
+           x="445.47726"
+           y="394.70477" /></flowRegion><flowPara
+         id="flowPara970">S</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot972"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-3.8754081,29.533283)"><flowRegion
+         id="flowRegion974"><rect
+           id="rect976"
+           width="173.24118"
+           height="55.558395"
+           x="464.67017"
+           y="392.17938" /></flowRegion><flowPara
+         id="flowPara978">Heizung Ein</flowPara></flowRoot>    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.54704374;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect900-6"
+       width="62.159203"
+       height="16.772898"
+       x="100.68427"
+       y="168.07498" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2676422px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 117.55342,168.05146 v 16.63096"
+       id="path902-2"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot964-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-10.935556,68.041646)"><flowRegion
+         id="flowRegion966-1"><rect
+           id="rect968-7"
+           width="93.43911"
+           height="50.002552"
+           x="445.47726"
+           y="394.70477" /></flowRegion><flowPara
+         id="flowPara970-4">R</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot972-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.1201864,68.576187)"><flowRegion
+         id="flowRegion974-5"><rect
+           id="rect976-9"
+           width="173.24118"
+           height="55.558395"
+           x="464.67017"
+           y="392.17938" /></flowRegion><flowPara
+         id="flowPara978-6">Heizung Ein</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 91.642177,176.72871 h 8.882443"
+       id="path898-9"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 79.913587,188.08766 0,6.43414 H 9.621703 V 77.620832 l 71.093694,-0.188988 0,8.425228"
+       id="path1037"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1039"
+       width="15.308036"
+       height="19.087799"
+       x="45.546131"
+       y="108.57887" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1041"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,11.150298,0.37797619)"><flowRegion
+         id="flowRegion1043"><rect
+           id="rect1045"
+           width="79.285713"
+           height="93.571434"
+           x="135"
+           y="406.80539" /></flowRegion><flowPara
+         id="flowPara1047" /></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 45.357141,113.30357 H 38.175596"
+       id="path1049"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 45.168155,122.375 H 38.364582"
+       id="path1051"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 74.434561,118.46395 H 61.137902"
+       id="path1053"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1055"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="scale(0.26458333)"><flowRegion
+         id="flowRegion1057"><rect
+           id="rect1059"
+           width="53.57143"
+           height="80"
+           x="84.285713"
+           y="407.51968" /></flowRegion><flowPara
+         id="flowPara1061">20</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1063"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,1.7008929,0.1889881)"><flowRegion
+         id="flowRegion1065"><rect
+           id="rect1067"
+           width="82.85714"
+           height="83.571411"
+           x="172.14285"
+           y="410.37683" /></flowRegion><flowPara
+         id="flowPara1069">&gt;</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1071"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-13.418155,-14.363095)"><flowRegion
+         id="flowRegion1073"><rect
+           id="rect1075"
+           width="139.28572"
+           height="75.714279"
+           x="100.71429"
+           y="500.37683" /></flowRegion><flowPara
+         id="flowPara1077">TempS</flowPara></flowRoot>    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1039-9"
+       width="15.308036"
+       height="19.087799"
+       x="45.440083"
+       y="147.19933" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 45.251092,151.92403 H 38.069546"
+       id="path1049-8"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 45.062105,160.99546 H 38.258532"
+       id="path1051-0"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 74.328508,157.08441 H 61.031852"
+       id="path1053-1"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,-0.10604871,38.620459)"
+       xml:space="preserve"
+       id="flowRoot1055-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion1057-7"><rect
+           id="rect1059-1"
+           width="53.57143"
+           height="80"
+           x="84.285713"
+           y="407.51968" /></flowRegion><flowPara
+         id="flowPara1061-5">22</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1063-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,1.5948442,38.809439)"><flowRegion
+         id="flowRegion1065-5"><rect
+           id="rect1067-7"
+           width="82.85714"
+           height="83.571411"
+           x="172.14285"
+           y="410.37683" /></flowRegion><flowPara
+         id="flowPara1069-4">&lt;</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1071-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-13.524204,24.257359)"><flowRegion
+         id="flowRegion1073-5"><rect
+           id="rect1075-3"
+           width="139.28572"
+           height="75.714279"
+           x="100.71429"
+           y="500.37683" /></flowRegion><flowPara
+         id="flowPara1077-6">TempS</flowPara></flowRoot>  </g>
+</svg>

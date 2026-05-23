@@ -1,0 +1,36 @@
+---
+marp: true
+author: Serafin Kollegger & Julian Huber
+size: 16:9
+footer: Automatisierungstechnik
+class: invert
+header: 
+theme: lemon
+
+
+# Strg+[ ] for Options 
+
+---
+
+<!-- paginate: true -->
+
+
+# Prozessdesign und SPS-Programmieren - Basics
+
+<!-- paginate: true -->
+
+**WiSe 20XX/20XX**
+Serafin Kollegger & Julian Huber
+
+![bg right:30%](images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg)
+
+---
+
+## Beispiel 1 - Vereinzelung 
+
+![bg right 90%](images/Vereinzelung/Schemata_Vereinzelung.png)
+
+---
+
+## Prozessbeschreibung
+
