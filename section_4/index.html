@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/section_4/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Section 4 - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Section 4";
+        var mkdocs_page_input_path = "section_4.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/section_4/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Section 4</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="automatisierungstechnik">Automatisierungstechnik</h1>
+<p><strong>Motorsteuerung</strong>
+<strong>TwinCAT Motion Baukasten</strong>
+<strong>Tc2_Mc2 Motion-Bibliothek</strong>
+<strong>Beispiel Förderband</strong></p>
+<hr />
+<h1 id="motorsteuerung">Motorsteuerung</h1>
+<h2 id="grundlagen-zur-motorsteuerung">Grundlagen zur Motorsteuerung</h2>
+<hr />
+<h3 id="ebenenansicht-der-motorsteuerung">Ebenenansicht der Motorsteuerung</h3>
+<p><img alt="bg right:60% h:600" src="../images/EbenenMotorSteuerung.PNG" /></p>
+<hr />
+<ul>
+<li>Die Motorsteuerung für Beckhoff TwinCAT SPS gliedert sich grundsätzlich in drei Ebenen:</li>
+<li>Steuerungslogik: Hier wird eine Motorapplikation programmiert, was die Applikationsebene darstellt.</li>
+<li>NC-Achsen: Diese fungieren als virtuelle Abbildungen von Motorachsen und transformieren die Applikationswerte in Motordaten und umgekehrt.</li>
+<li>Hardwareebene: Diese umfasst den Motordriver oder Verstärker, der die Motorsignale basierend auf den Eingabewerten der Motordaten regelt, um sicherzustellen, dass die Istwerte den Sollwerten entsprechen.</li>
+<li>Die Art des Motors und des E/A-Geräts bestimmen, wie die Applikationsdaten in Motorsignale umgewandelt werden.</li>
+<li>Beispielsweise erfordert ein Servomotor andere Signale als ein Steppermotor.</li>
+<li>Die Motordaten werden über den Feldbus an das E/A-Gerät gesendet und gelangen somit zur Hardwareebene.</li>
+</ul>
+<hr />
+<h2 id="twincat-motion-baukasten">TwinCAT Motion Baukasten</h2>
+<p><img alt="" src="../images/MotionBaukasten.PNG" /></p>
+<p><a href="https://www.youtube.com/watch?v=IYw8fy9VQ24">Video Link XPlanar</a></p>
+<hr />
+<ul>
+<li>TwinCAT Motion ist eine Komponente des TwinCAT-Automatisierungssystems von Beckhoff, speziell entwickelt für die Steuerung von Bewegungsachsen und Antrieben in Maschinen und Produktionsanlagen.</li>
+<li>Der TF50x0 | NC PTP Baukasten wird in dieser Vorlesung verwendet und kann mithilfe verschiedener Bibliotheken genutzt werden.</li>
+<li>Die Tc2_Mc2-Bibliothek ist ein integraler Bestandteil der TwinCAT Motion-Umgebung und dient der Konfiguration der angeschlossenen Achsen und Antriebe.</li>
+<li>Konfiguration umfasst die Definition von Achsentypen, Regelungsparametern, Verfahrbereichen und anderen relevanten Einstellungen.</li>
+<li>Eine Auswahl verschiedener Regelungsalgorithmen, darunter P-PI-D-Regler und erweiterte Regelungen wie Zustandsregelungen, steht für die Achsensteuerung zur Verfügung.</li>
+<li>Weitere Motion-Bibliotheken mit ähnlichen, aber meist leistungsschwächeren, Funktionalitäten sind ebenfalls verfügbar.</li>
+</ul>
+<hr />
+<h2 id="applikationsebene">Applikationsebene</h2>
+<p>Die Bewegungsarten der Tc2_Mc2 sind gemäß den Spezifikationen von PLCopen-motion-control gestaltet und umfassen drei Kategorien:</p>
+<ul>
+<li>Kontinuierliche Bewegung: Diese wird durch Geschwindigkeitseingaben definiert.</li>
+<li>Diskrete Bewegung: Diese wird durch Positions- oder Zeitangaben definiert.</li>
+<li>Synchronisierte Bewegung: Diese wird durch die Bewegung der Master-Achse definiert.</li>
+</ul>
+<p>Die Unterschiede zwischen diesen Kategorien liegen in ihren erforderlichen Steuereingängen. Zusätzliche Eingaben wie maximale Geschwindigkeiten, Beschleunigungen und Bewegungsrichtung ergänzen die Definition der Bewegung.</p>
+<hr />
+<h2 id="kontinuierliche-bewegung">Kontinuierliche Bewegung</h2>
+<h3 id="mc_movevelocity">MC_MoveVelocity</h3>
+<p><img alt="bg right h:600" src="../images/MC_MoveVelocity.PNG" /></p>
+<hr />
+<ul>
+<li>Das Verhalten von <em>MC_MoveVelocity</em> kann in einem PVA-Zeit (Position, Velocity, Acceleration) Diagramm beschrieben werden.</li>
+<li>Da es sich um eine kontinuierliche Bewegung handelt, wird lediglich eine Geschwindigkeit vorgegeben.</li>
+<li>Die Achse beschleunigt bzw. verlangsamt sich mit <span class="arithmatex">\(a_{\text{in}}\)</span> von der Ausgangsgeschwindigkeit <span class="arithmatex">\(v_0\)</span> zum Zeitpunkt <span class="arithmatex">\(t_0\)</span> (Erstaufruf des Funktionsblocks) bis die eingestellte Geschwindigkeit <span class="arithmatex">\(v_{\text{in}}\)</span> zum Zeitpunkt <span class="arithmatex">\(t_1\)</span> erreicht ist, wie durch den Ausgang des FBs <em>.InVelocity</em> gekennzeichnet.</li>
+<li>Ab diesem Zeitpunkt wird die Geschwindigkeit gehalten, bis eine Abbruchbedingung erreicht wird (Zeitpunkt <span class="arithmatex">\(t_2\)</span>), wie in diesem Beispiel durch <em>MC_Halt</em>, welches die Achse mit definierter Verzögerung <span class="arithmatex">\(a_{\text{halt}}\)</span> zum Anhalten bringt (Zeitpunkt <span class="arithmatex">\(t_3\)</span>).</li>
+<li>Alternativ kann auch ein neuer <em>MC_MoveVelocity</em> Befehl mit neuer Geschwindigkeit aufgerufen werden.</li>
+</ul>
+<hr />
+<p>&emsp; &emsp; &emsp; &emsp; <img alt="" src="../images/Blockschaltbild_MCMoveVelocity.PNG" /></p>
+<hr />
+<h2 id="diskrete-bewegung">Diskrete Bewegung</h2>
+<h3 id="mc_moveabsolute">MC_MoveAbsolute</h3>
+<p><img alt="bg right h:600" src="../images/MC_MoveAbsolute.PNG" /></p>
+<hr />
+<ul>
+<li>Bei dieser Bewegung wird die Achse auf eine absolute Position gefahren, was eine diskrete Bewegung darstellt.</li>
+<li>Eine Nullposition ist definiert, die sich durch einen Neustart der Anlage nicht verändert. Diese Eigenschaft kann durch einen Absolutencoder oder durch Referenzierungsfahrten (Homing) erzeugt werden. Erklärungen zu beiden Implementierungsarten folgen in weiteren Kapiteln.</li>
+<li>Der notwendige Eingang für diesen Funktionsblock ist die Zielposition <span class="arithmatex">\(p_1\)</span>.</li>
+<li>Zusätzlich können maximale Geschwindigkeiten <span class="arithmatex">\(v_{\text{max}}\)</span>, Beschleunigungen <span class="arithmatex">\(a_{\text{max}}\)</span> und Verzögerungen <span class="arithmatex">\(a_{\text{min}}\)</span> angegeben werden. Andernfalls werden die voreingestellten Werte verwendet, wie im Kapitel zur Parametrisierung des Motors näher erläutert.</li>
+<li>Nach Erreichen der angegebenen Zielposition wird der Ausgang des Funktionsblocks <em>.Done</em> auf <em>True</em> gesetzt. Dieser Wert bleibt bestehen, bis die Achse einen neuen Bewegungsbefehl ausführen soll.</li>
+<li>Die Berechnung der aktuellen Geschwindigkeiten und die Zeitpunkte der Phasenwechsel der Bewegung (<span class="arithmatex">\(t_1\)</span> und <span class="arithmatex">\(t_2\)</span>) werden von <em>MC_MoveAbsolute</em> durchgeführt.</li>
+</ul>
+<hr />
+<p>&emsp; &emsp; &emsp; &emsp; <img alt="h:350" src="../images/Blockschaltbild_MC_MoveAbsolute.PNG" /></p>
+<hr />
+<h2 id="diskrete-bewegung_1">Diskrete Bewegung</h2>
+<h3 id="mc_moverelative">MC_MoveRelative</h3>
+<p><img alt="bg right h:600" src="../images/MC_MoveRelative.PNG" /></p>
+<hr />
+<ul>
+<li>Diese Bewegung ist ähnlich wie <em>MC_MoveAbsolute</em> eine diskrete Bewegungsart, jedoch soll hier ein relativer Weg zurückgelegt werden.</li>
+<li>Das bedeutet, dass die Position vor Start des Funktionsblocks gedanklich auf Null gesetzt wird und der Positionseingang <span class="arithmatex">\(\Delta p\)</span> angefahren wird.</li>
+<li>Somit kann die Zielposition der Achse durch <span class="arithmatex">\(p_0 + \Delta p\)</span> berechnet werden.</li>
+<li>Wie bei <em>MC_MoveAbsolute</em> können auch hier die Geschwindigkeitswerte <span class="arithmatex">\(v_{\text{max}}\)</span> und die Beschleunigungswerte <span class="arithmatex">\(a_{\text{max}}\)</span> und <span class="arithmatex">\(a_{\text{min}}\)</span> vorgegeben werden.</li>
+<li>Sobald der relative Weg zurückgelegt wurde, wird der Ausgang <em>Done</em> auf <em>True</em> gesetzt, bis ein neuer Befehl erfolgt.</li>
+</ul>
+<hr />
+<p>&emsp; &emsp; &emsp; &emsp; <img alt="h:350" src="../images/Blockschaltbild_MC_MoveRelative.PNG" /></p>
+<hr />
+<h2 id="achsen-referenz-axis_ref">Achsen Referenz (Axis_Ref)</h2>
+<ul>
+<li>Der Datentyp AXIS_REF enthält Information zu einer Achse. AXIS_REF ist eine Schnittstelle zwischen der SPS und der NC und wird den MC-Funktionsbausteinen als Referenz auf eine Achse mitgegeben.</li>
+<li>Jeder Funktionsblock besitzt einen Eingang <em>Axis</em> mit einem zweiseitigen Pfeilsymbol.</li>
+<li>Dieser Eingang ist keine gewöhnliche Variable, sondern eine <em>In_Out</em>-Variable.</li>
+<li>Dadurch werden Daten des Datentyps <em>Axis_Ref</em> empfangen und ausgegeben.</li>
+<li>Dies ermöglicht eine bidirektionale Kommunikation mit der NC-Achse, wie in oben stehender Abbildung des Ebenenmodells zwischen SPS-Task und NC-Task dargestellt.</li>
+<li>Jede Achse in der Anlage erhält eine individuelle Achsenreferenz.
+Dadurch kann jede Achse eindeutig durch den Aufruf eines Bewegungsbausteins angesteuert werden</li>
+</ul>
+<hr />
+<h2 id="zustandsdiagramm-der-tc2_mc2">Zustandsdiagramm der Tc2_Mc2</h2>
+<p><img alt="bg right:60% h:600" src="../images/StateGraphTc2Mc2.PNG" /></p>
+<hr />
+<h3 id="organisationsbausteine-der-tc2_mc2">Organisationsbausteine der Tc2_Mc2</h3>
+<p><strong>MC_Power</strong>
+<strong>MC_Reset</strong></p>
+<hr />
+<h4 id="motorfreigabe-mc_power">Motorfreigabe (MC_Power)</h4>
+<ul>
+<li>Organisationsbausteine wie MC_Power und MC_Reset sind notwendig, um die Zustände einer Achse zu steuern.</li>
+<li>MC_Power steuert die allgemeine Reglerfreigabe, während MC_Reset zur Quittierung von Fehlern genutzt wird.</li>
+<li>Durch Setzen von <em>.Enable</em> wird die allgemeine Reglerfreigabe erteilt.</li>
+<li>Zusätzlich müssen der Steuerung die Richtungen mitgeteilt werden, in denen sich die Achse bewegen darf. Dies wird durch die Eingänge <em>.Enable_Positive</em> für Vorwärtsbewegungen und <em>.Enable_Negative</em> für Rückwärtsbewegungen ermöglicht.</li>
+<li>Wie für alle Funktionsbausteine der Tc2_Mc2, muss auch hier eine Achsenreferenz angegeben werden, um die jeweilige Achse freizugeben.</li>
+<li>Durch den Ausgang <em>.Status</em> wird der freigegebene Betriebsstatus übermittelt.</li>
+</ul>
+<hr />
+<p><img alt="" src="../images/Blockschaltbild_MC_Power.PNG" /></p>
+<hr />
+<h4 id="motorreset-mc_reset">Motorreset (MC_Reset)</h4>
+<ul>
+<li>Durch das Setzen von <em>.bExecute</em> wird der Reset ausgeführt. Sobald dieser abgeschlossen ist, wird der Ausgang <em>.Done</em> gesetzt.</li>
+<li>Solange der Funktionsblock aktiv ist, wird <em>.Busy</em> ausgegeben.</li>
+<li>Falls während der Ausführung ein Fehler auftritt, wird das Signal <em>.Error</em> gesetzt und eine Fehlernummer durch <em>.ErrorID</em> ausgegeben.</li>
+<li>Dieser Befehl muss nach jedem Fehler einer Achse ausgeführt werden, um die Achse danach durch MC_Power freizugeben.</li>
+</ul>
+<hr />
+<p><img alt="" src="../images/Blockschaltbild_MC_Reset.PNG" /></p>
+<hr />
+<h2 id="nc-achsenebene">NC-Achsenebene</h2>
+<hr />
+<h3 id="allgemeine-konfiguration">Allgemeine Konfiguration</h3>
+<p><img alt="bg right:60% h:500" src="../images/AllgemeineNC_Konfiguration.PNG" /></p>
+<hr />
+<h3 id="allgemeine-parameter">Allgemeine Parameter</h3>
+<hr />
+<h3 id="encoder-konfiguration">Encoder Konfiguration</h3>
+<p><img alt="" src="../images/AllgemeineEnc_Konfiguration.PNG" /></p>
+<hr />
+<h3 id="encoder-parameter">Encoder Parameter</h3>
+<hr />
+<h3 id="reglerimplementierung">Reglerimplementierung</h3>
+<p><img alt="h:400" src="../images/AllgemeineCtrl_Konfiguration.PNG" /></p>
+<hr />
+<h3 id="reglerparameter">Reglerparameter</h3>
+<hr />
+<h3 id="online-betrieb-jogging-mode">Online-Betrieb (Jogging Mode)</h3>
+<p><img alt="bg right:70% h:450" src="../images/Online_Betrieb.PNG" /></p>
+<hr />
+<h2 id="hardware-ebene">Hardware Ebene</h2>
+<hr />
+<h3 id="inkremetalencoder">Inkremetalencoder</h3>
+<p><img alt="bg right:60% h:500" src="../images/InkrementalEncoder.PNG" /></p>
+<hr />
+<h3 id="absolute-encoder">Absolute Encoder</h3>
+<p><img alt="bg right:70% h:200" src="../images/Bin%C3%A4rGrayCode.PNG" /></p>
+<hr />
+<h3 id="multiturn-encoder-hall-effekt">Multiturn Encoder (Hall Effekt)</h3>
+<p><img alt="" src="../images/AbsoluteEncoder.PNG" /></p>
+<hr />
+<h1 id="basisaufgaben">Basisaufgaben</h1>
+<hr />
+<h3 id="forderband-5-punkte">Förderband - 5 Punkte</h3>
+<p><img alt="bg right:60% h:550" src="../images/Ablaufdiagramm_Forderband.PNG" /></p>
+<hr />
+<h4 id="blockschaltbild-der-forderbandsteuerung">Blockschaltbild der Förderbandsteuerung</h4>
+<p><img alt="h:400" src="../images/Blockschaltbild_Forderband.PNG" /></p>
+<hr />
+<h3 id="implementierung-in-der-realen-anlage">Implementierung in der realen Anlage</h3>
+<hr />
+<h3 id="dispenser-5-punkte">Dispenser - 5 Punkte</h3>
+<p><img alt="bg right:60% h:550" src="../images/Ablaufdiagramm_Dispenser.PNG" /></p>
+<hr />
+<h4 id="blockschaltbild-der-dispenser-steuerung">Blockschaltbild der Dispenser-Steuerung</h4>
+<p><img alt="h:400" src="../images/Blockschaltbild_Dispenser.PNG" /></p>
+<hr />
+<h3 id="manipulatorachsen-5-punkte">Manipulatorachsen - 5 Punkte</h3>
+<p><img alt="bg right:60% h:550" src="../images/Ablaufdiagramm_ManAchse.PNG" /></p>
+<p>Langsame Referenziergeschwindigkeit = 15 mm/s</p>
+<hr />
+<h4 id="blockschaltbild-manipulatorachsen-steuerung">Blockschaltbild Manipulatorachsen-Steuerung</h4>
+<p><img alt="h:400" src="../images/Blockschaltbild_ManAchse.PNG" /></p>
+<hr />
+<h1 id="hardware-inbetriebnahme">Hardware Inbetriebnahme</h1>
+<hr />
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

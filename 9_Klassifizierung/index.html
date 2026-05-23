@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/9_Klassifizierung/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Klassifikationsmodelle - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Klassifikationsmodelle";
+        var mkdocs_page_input_path = "9_Klassifizierung.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/9_Klassifizierung/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Klassifikationsmodelle</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#klassifizierung">Klassifizierung</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fehlermae">Fehlermaße</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#confusion-matrix">Confusion Matrix</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#precision-recall-f1-score">Precision, Recall, F1-Score</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unbalanced-classes">Unbalanced Classes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#beispiel-verschiedene-schwellenwerte">Beispiel verschiedene Schwellenwerte</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modelle">Modelle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#entscheidungsbaume-decision-trees">Entscheidungsbäume / Decision Trees</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logistische-regression">Logistische Regression</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#knearest-neighbors">kNearest Neighbors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#feature-engineering">Feature Engineering</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#normalisierung">Normalisierung</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dummy-und-one-hot-encoding">Dummy und One-Hot-Encoding</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#dummy-encoding">Dummy Encoding</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#one-hot-encoding">One-Hot-Encoding</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#features-aus-zeitreihen">Features aus Zeitreihen</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#transformation-in-frequenzraum">Transformation in Frequenzraum</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-124-20-klassifikationsmodell-fur-defekte-flaschen">🏆 Aufgabe 12.4 (20%): Klassifikationsmodell für defekte Flaschen</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Machine Learning</li>
+      <li class="breadcrumb-item active">Klassifikationsmodelle</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<h1 id="machine-learning-in-der-produktion-klassifizierung">Machine Learning in der Produktion - Klassifizierung</h1>
+<p>Serafin Kollegger &amp; Julian Huber</p>
+<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
+<hr />
+<h2 id="klassifizierung">Klassifizierung</h2>
+<ul>
+<li>Anstelle von numerischen Werten wird eine Klassifikation durchgeführt</li>
+<li>Meist wird eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse berechnet</li>
+<li>Häufig sind die Klassen binär</li>
+<li>z.B. <span class="arithmatex">\(f(X) = P(y=1|X)=1-P(y=0|X)\)</span><ul>
+<li>Klassenzuordnung erfolgt durch einen Schwellenwert <span class="arithmatex">\(\theta\)</span></li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+\hat{y} = \begin{cases} 1 &amp; \text{wenn } f(X) &gt; \theta \\ 0 &amp; \text{sonst} \end{cases}
+\]</div>
+<hr />
+<h3 id="fehlermae">Fehlermaße</h3>
+<p><img alt="" src="../images/CFMeme.png" /></p>
+<hr />
+<h3 id="confusion-matrix">Confusion Matrix</h3>
+<p><span class="arithmatex">\(\begin{array}{|c|c|c|}
+\hline
+&amp; \text{Predicted: 0} &amp; \text{Predicted: 1} \\
+\hline
+\text{Actual: 0} &amp; TN &amp; FP \\
+\hline
+\text{Actual: 1} &amp; FN &amp; TP \\
+\hline
+\end{array}\)</span></p>
+<ul>
+<li>True Positive (<span class="arithmatex">\(\text{TP}\)</span>): Die Instanz wurde korrekt als positiv (<span class="arithmatex">\(1\)</span>) vorhergesagt</li>
+<li>True Negative (<span class="arithmatex">\(\text{TN}\)</span>): Die Instanz wurde korrekt als negativ (<span class="arithmatex">\(0\)</span>) vorhergesagt</li>
+<li>False Positive (<span class="arithmatex">\(\text{FP}\)</span>): Die Instanz wurde fälschlicherweise als positiv (<span class="arithmatex">\(1\)</span>) vorhergesagt</li>
+<li>False Negative (<span class="arithmatex">\(\text{FN}\)</span>): Die Instanz wurde fälschlicherweise als negativ (<span class="arithmatex">\(0\)</span>) vorhergesagt</li>
+</ul>
+<hr />
+<h3 id="precision-recall-f1-score">Precision, Recall, F1-Score</h3>
+<ul>
+<li><span class="arithmatex">\(\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\)</span><ul>
+<li>Wie viele der vorhergesagten Instanzen sind korrekt?</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{Precision} = \frac{TP}{TP + FP}\)</span><ul>
+<li>Wie viele der als positiv (<span class="arithmatex">\(1\)</span>) vorhergesagten Instanzen sind tatsächlich positiv?</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{Recall} =\frac{TP}{TP + FN}\)</span><ul>
+<li>Wie viele der tatsächlich positiven Instanzen wurden als positiv vorhergesagt?</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{F1-Score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}\)</span></li>
+</ul>
+<p><img alt="bg right:33% h:720" src="../images/Precisionrecall.svg.png" /></p>
+<hr />
+<h3 id="unbalanced-classes">Unbalanced Classes</h3>
+<ul>
+<li>Bei ungleich verteilten Klassen kann die <span class="arithmatex">\(\text{Accuracy}\)</span> irreführend sein</li>
+</ul>
+<p><span class="arithmatex">\(\begin{array}{|c|c|c|}
+\hline
+&amp; \text{Predicted: 0} &amp; \text{Predicted: 1} \\
+\hline
+\text{Actual: 0} &amp; \text{TN}=900 &amp; \text{FP}=100 \\
+\hline
+\text{Actual: 1} &amp; \text{FN}=10 &amp; \text{TP}=10 \\
+\hline
+\end{array}\)</span></p>
+<ul>
+<li>
+<p>Gegeben das Modell: <span class="arithmatex">\(\hat{y}=0\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}} = \frac{900 + 10}{900 + 100 + 10 + 10} = 0.91\)</span></p>
+</li>
+<li><span class="arithmatex">\(\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} = \frac{10}{10 + 100} = 0.09\)</span></li>
+<li><span class="arithmatex">\(\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}} = \frac{10}{10 + 10} = 0.5\)</span></li>
+</ul>
+<hr />
+<h3 id="receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</h3>
+<ul>
+<li>Vergleicht die True Positive Rate (Recall) mit der False Positive Rate</li>
+<li>AUC (Area Under the Curve) gibt die Fläche unter der ROC-Kurve an</li>
+<li>Ein AUC von <span class="arithmatex">\(1\)</span> bedeutet ein perfektes Modell, ein AUC von <span class="arithmatex">\(0.5\)</span> bedeutet ein zufälliges Modell</li>
+<li>Die meisten Modelle geben eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse zurück</li>
+<li>Wenn die Wahrscheinlichkeit über einem Schwellenwert  <span class="arithmatex">\(\theta\)</span> liegt, wird die Instanz als positiv vorhergesagt</li>
+<li>Entsprechen kann man über den Schwellenwert die True Positive Rate und die False Positive Rate variieren und die ROC-Kurve erstellen</li>
+</ul>
+<p><img alt="bg left:45% h:450" src="../images/Roc_curve.svg.png" /></p>
+<hr />
+<h4 id="beispiel-verschiedene-schwellenwerte">Beispiel verschiedene Schwellenwerte</h4>
+<ul>
+<li>krank : Positiv</li>
+<li>gesund : Negativ</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\hat{f}(X)\)</span> Wahrscheinkeit für krank</th>
+<th><span class="arithmatex">\(\theta\)</span> Schwellenwert</th>
+<th><span class="arithmatex">\(\hat{y}\)</span> Vorhersage</th>
+<th><span class="arithmatex">\(y\)</span> Wahrheit</th>
+<th>Gruppe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.9</td>
+<td>0.8</td>
+<td>krank</td>
+<td>krank</td>
+<td>TP</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.8</td>
+<td>gesund</td>
+<td>gesund</td>
+<td>TN</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.8</td>
+<td>gesund</td>
+<td>krank</td>
+<td>FN</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\hat{f}(X)\)</span> Wahrscheinkeit für krank</th>
+<th><span class="arithmatex">\(\theta\)</span> Schwellenwert</th>
+<th><span class="arithmatex">\(\hat{y}\)</span> Vorhersage</th>
+<th><span class="arithmatex">\(y\)</span> Wahrheit</th>
+<th>Gruppe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.9</td>
+<td>0.5</td>
+<td>krank</td>
+<td>krank</td>
+<td>TP</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.5</td>
+<td>gesund</td>
+<td>gesund</td>
+<td>TN</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.5</td>
+<td>krank</td>
+<td>krank</td>
+<td>TP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modelle">Modelle</h2>
+<ul>
+<li><strong>Logistische Regression</strong>: Abwandlung der linearen Regression für Klassifikation</li>
+<li><strong>kNearest Neighbors</strong>: Klassifiziert anhand der k nächsten Nachbarn</li>
+<li><strong>Decision Trees</strong>: Organisiert die Daten in einem Baum und trifft Entscheidungen anhand von Regeln</li>
+</ul>
+<hr />
+<h3 id="entscheidungsbaume-decision-trees">Entscheidungsbäume / Decision Trees</h3>
+<p><img alt="h:400" src="../images/1_6RMrFGwU-qH4nHW89xc0Xw.jpeg" /></p>
+<ul>
+<li>Jeder Knoten entspricht einer Entscheidung</li>
+<li>Jeder Blattknoten entspricht einer Klasse</li>
+<li>Der Baum wird anhand von Informations-Entropie oder Gini-Index erstellt</li>
+<li>Hyperparameter: Tiefe des Baumes, minimale Anzahl an Instanzen pro Blattknoten</li>
+<li>Erweiterungen: Random Forest, Gradient Boosting</li>
+</ul>
+<hr />
+<h3 id="logistische-regression">Logistische Regression</h3>
+<p><img alt="h:400" src="../images/LogRegvdLinReg.png" /></p>
+<div class="arithmatex">\[f(X) = \frac{1}{1+e^{-\beta_0-\beta_1X_1-\beta_2X_2-\ldots-\beta_nX_n}}\]</div>
+<ul>
+<li>Transformation der linearen Regression in den Bereich <span class="arithmatex">\([0,1]\)</span></li>
+<li>mittels der Sigmoid-Funktion</li>
+<li><span class="arithmatex">\(f(X)\)</span> ist die Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse</li>
+</ul>
+<hr />
+<h3 id="knearest-neighbors">kNearest Neighbors</h3>
+<p><img alt="h:400" src="../images/1_cv2iLcBwCNrHFGHQkk6h1w.webp" /></p>
+<ul>
+<li>Klassifiziert anhand der k nächsten Nachbarn</li>
+<li>Hyperparameter: Anzahl der Nachbarn, Distanzmaß</li>
+</ul>
+<hr />
+<h2 id="feature-engineering">Feature Engineering</h2>
+<ul>
+<li>Bei vielen Algorithmen ist es wichtig, die Daten entsprechend aufzubereiten</li>
+<li>Dies ermöglicht ein schnelleres Training und bessere Ergebnisse</li>
+</ul>
+<hr />
+<h3 id="normalisierung">Normalisierung</h3>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th><span class="arithmatex">\(y\)</span></th>
+<th>Klasse</th>
+<th>Schnabellänge mm <span class="arithmatex">\(X_0\)</span></th>
+<th>Schnabeltiefe in mm g <span class="arithmatex">\(X_1\)</span></th>
+<th>Gewicht in kg <span class="arithmatex">\(X_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>40</td>
+<td>19</td>
+<td>0.534</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>39</td>
+<td>21</td>
+<td>0.638</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>42</td>
+<td>23</td>
+<td>0.540</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>Adélie</td>
+<td>20</td>
+<td>18</td>
+<td>0.453</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>Adélie</td>
+<td>25</td>
+<td>17</td>
+<td>0.501</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="arithmatex">\(?\)</span></td>
+<td><span class="arithmatex">\(?\)</span></td>
+<td>26</td>
+<td>19</td>
+<td>0.359</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>Normalisierung einer Variable <span class="arithmatex">\(X\)</span> bedeutet, alles zwischen <span class="arithmatex">\(0\)</span> und <span class="arithmatex">\(1\)</span> zu setzen.</li>
+</ul>
+<div class="arithmatex">\[X_n=\frac{X−X_{\text{min}}}{X_{\text{max}}−X_{\text{min}}}\]</div>
+<ul>
+<li>Standardisierung einer Variable <span class="arithmatex">\(X\)</span> bedeutet, den Mittelwert (<span class="arithmatex">\(\mu\)</span>) zu entfernen und durch die Abweichung (<span class="arithmatex">\(\sigma\)</span>) zu teilen.</li>
+</ul>
+<div class="arithmatex">\[X_s=\frac{X−\mu}{\sigma}\]</div>
+<hr />
+<div class="arithmatex">\[\mu=\frac{1}{n}\sum_{j=1}^n x_j\]</div>
+<div class="arithmatex">\[\sigma=\sqrt{\frac{\sum_{j=1}^n (x_j-\mu)^2}{n-1}}\]</div>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th><span class="arithmatex">\(y\)</span></th>
+<th>Klasse</th>
+<th>Schnabellänge mm <span class="arithmatex">\(X_0\)</span></th>
+<th>Schnabeltiefe in mm <span class="arithmatex">\(X_1\)</span></th>
+<th>Gewicht in kg <span class="arithmatex">\(X_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>0.952</td>
+<td>0.826</td>
+<td>0.837</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>0.929</td>
+<td>0.913</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>0.846</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>Adélie</td>
+<td>0.476</td>
+<td>0.783</td>
+<td>0.710</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>Adélie</td>
+<td>0.595</td>
+<td>0.739</td>
+<td>0.785</td>
+</tr>
+<tr>
+<td>6</td>
+<td>?</td>
+<td>?</td>
+<td>0.619</td>
+<td>0.826</td>
+<td>0.563</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dummy-und-one-hot-encoding">Dummy und One-Hot-Encoding</h3>
+<ul>
+<li>Da nicht alle Modelle mit kategorischen Variablen (z.B. Gender) umgehen können, müssen diese umgewandelt werden</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th><span class="arithmatex">\(y\)</span></th>
+<th>Klasse</th>
+<th>Schnabellänge mm <span class="arithmatex">\(X_0\)</span></th>
+<th>Schnabeltiefe in mm <span class="arithmatex">\(X_1\)</span></th>
+<th>Gewicht in kg <span class="arithmatex">\(X_2\)</span></th>
+<th>Gender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>40</td>
+<td>19</td>
+<td>0.534</td>
+<td>Male</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>39</td>
+<td>21</td>
+<td>0.638</td>
+<td>Female</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>Gentoo</td>
+<td>42</td>
+<td>23</td>
+<td>0.540</td>
+<td>Female</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>Adélie</td>
+<td>20</td>
+<td>18</td>
+<td>0.453</td>
+<td>Male</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>Adélie</td>
+<td>25</td>
+<td>17</td>
+<td>0.501</td>
+<td>Female</td>
+</tr>
+<tr>
+<td>6</td>
+<td>?</td>
+<td>?</td>
+<td>26</td>
+<td>19</td>
+<td>0.359</td>
+<td>Male</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="dummy-encoding">Dummy Encoding</h4>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th><span class="arithmatex">\(y\)</span></th>
+<th>Schnabellänge mm <span class="arithmatex">\(X_0\)</span></th>
+<th>Schnabeltiefe in mm <span class="arithmatex">\(X_1\)</span></th>
+<th>Gewicht in kg <span class="arithmatex">\(X_2\)</span></th>
+<th>Gender_Male</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>40</td>
+<td>19</td>
+<td>0.534</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>39</td>
+<td>21</td>
+<td>0.638</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>42</td>
+<td>23</td>
+<td>0.540</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>20</td>
+<td>18</td>
+<td>0.453</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>25</td>
+<td>17</td>
+<td>0.501</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>?</td>
+<td>26</td>
+<td>19</td>
+<td>0.359</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="one-hot-encoding">One-Hot-Encoding</h4>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th><span class="arithmatex">\(y\)</span></th>
+<th>Schnabellänge mm <span class="arithmatex">\(X_0\)</span></th>
+<th>Schnabeltiefe in mm <span class="arithmatex">\(X_1\)</span></th>
+<th>Gewicht in kg <span class="arithmatex">\(X_2\)</span></th>
+<th>Gender_Male</th>
+<th>Gender_Female</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>40</td>
+<td>19</td>
+<td>0.534</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>39</td>
+<td>21</td>
+<td>0.638</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>42</td>
+<td>23</td>
+<td>0.540</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>20</td>
+<td>18</td>
+<td>0.453</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>25</td>
+<td>17</td>
+<td>0.501</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>?</td>
+<td>26</td>
+<td>19</td>
+<td>0.359</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="features-aus-zeitreihen">Features aus Zeitreihen</h3>
+<ul>
+<li>Zeitreihen können in verschiedene Features umgewandelt werden</li>
+<li>z.B. Lags, Mittelwert, Standardabweichung, Quantile, etc.</li>
+<li>Hierfür gibt es Bibliotheken wie <a href="https://tsfresh.readthedocs.io/en/latest/text/quick_start.html">TS Fresh</a> und <a href="https://facebook.github.io/prophet/">Prophet</a> für Prognosen</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(t\)</span> Date</th>
+<th><span class="arithmatex">\(y_t\)</span> Temperatur</th>
+<th><span class="arithmatex">\(y_{t-1}\)</span></th>
+<th><span class="arithmatex">\(\max(y_{t-1},y_{t-2},y_{t-3})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022-01-01</td>
+<td>20</td>
+<td>19</td>
+<td>19</td>
+</tr>
+<tr>
+<td>2022-01-02</td>
+<td>21</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2022-01-03</td>
+<td>22</td>
+<td>21</td>
+<td>21</td>
+</tr>
+<tr>
+<td>2022-01-04</td>
+<td>23</td>
+<td>22</td>
+<td>22</td>
+</tr>
+<tr>
+<td>2022-01-05</td>
+<td>24</td>
+<td>23</td>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Bei Zeitreihen werden häufig autorergressive Modelle verwendet, welche die Vorhersage aus den vorherigen Werten berechnen, z.B.:</li>
+<li>Auf diese Weise kann die Zahl an Datenpunkten reduziert werden</li>
+</ul>
+<div class="arithmatex">\[\hat{y_t} = f(y_{t-1},\max(y_{t-1},y_{t-2},y_{t-3}))\]</div>
+<hr />
+<h3 id="transformation-in-frequenzraum">Transformation in Frequenzraum</h3>
+<ul>
+<li>Bei einer Klassifikation von zeitabhängigen Daten kann es sinnvoll sein, die Daten in den Frequenzraum zu transformieren</li>
+<li>Hierfür gibt es verschiedene Methoden, z.B. die Fourier-Transformation</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(y\)</span> Vogel</th>
+<th><span class="arithmatex">\(X\)</span> Wellenform</th>
+<th><span class="arithmatex">\(X_{\text{Fourier, 50Hz}}\)</span></th>
+<th><span class="arithmatex">\(X_{\text{Fourier, 100Hz}}\)</span></th>
+<th><span class="arithmatex">\(X_{\text{Fourier, 150Hz}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Amsel</td>
+<td><code>[123, 124, 125, 126, ...]</code></td>
+<td><code>0.1</code></td>
+<td><code>0.2</code></td>
+<td><code>0.3</code></td>
+</tr>
+<tr>
+<td>Rotkehlchen</td>
+<td><code>[124, 123, 122, 121, ...]</code></td>
+<td><code>0.2</code></td>
+<td><code>0.1</code></td>
+<td><code>0.3</code></td>
+</tr>
+<tr>
+<td>Star</td>
+<td><code>[125, 126, 127, 128, ...]</code></td>
+<td><code>0.3</code></td>
+<td><code>0.2</code></td>
+<td><code>0.1</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="aufgabe-124-20-klassifikationsmodell-fur-defekte-flaschen">🏆 Aufgabe 12.4 (20%): Klassifikationsmodell für defekte Flaschen</h2>
+<ul>
+<li><strong>Abgabeformalien:</strong> Fügen sie ein Kapitel in ihrer Dokumentation hinzu, in dem Sie die Ergebnisse der Klasisfikation mittels Confusion Matrix und unten gezeigter Tabelle dokumentieren</li>
+<li>Erstellen Sie ein Klassifikationsmodell zur Vorhersage von defekten Flaschen anhand der Daten aus der <code>Drop Vibration</code>. Diese repräsentieren eine Zeitreihe der Vibrationen von Flaschen bei der Vereinzelung.</li>
+<li>Erstellen Sie eine Tabelle, welche die genuzten Spalten für die Vorhersage enthält und den F1-Score für die jeweiligen Spalten</li>
+<li>Als Orientierung kann folgendes Notebook dienen <a href="9_Classification_Python.ipynb" download>9_Classification_Python.ipynb</a>, welches auch im nächsten Abschnitt vorgestellt wird</li>
+</ul>
+<p>z.B.: </p>
+<table>
+<thead>
+<tr>
+<th>Genutzte Features</th>
+<th>Modell-Typ</th>
+<th>F1-Score (Training)</th>
+<th>F1-Score (Test)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\text{mean}()\)</span></td>
+<td>kNN</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{mean}(), y_{t-1}\)</span></td>
+<td>Log. Regression</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../8_Regression_Python/" class="btn btn-neutral float-left" title="Lineare Regression mit Python und Scikit-Learn"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../9_Classification_Python/" class="btn btn-neutral float-right" title="Klassifikation und Feature Engineering mit Python und Scikit-Learn">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../8_Regression_Python/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../9_Classification_Python/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

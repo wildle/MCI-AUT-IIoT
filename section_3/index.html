@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/section_3/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Section 3 - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Section 3";
+        var mkdocs_page_input_path = "section_3.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/section_3/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Section 3</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="automatisierungstechnik">Automatisierungstechnik</h1>
+<p><strong>Grundlagen Automatisierungstechnik</strong>
+<strong>SPS &amp; SPS-Norm</strong>
+<strong>Digitale E/A-Geräte</strong>
+<strong>Einführung TwinCAT</strong>
+<strong>Prozesszustandsbeschreibung</strong></p>
+<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
+<hr />
+<h1 id="grundlagen-automatisierungstechnik">Grundlagen Automatisierungstechnik</h1>
+<ul>
+<li>Automatisierungstechnik ist ein interdisziplinäres Fachgebiet, in welchem Produktionsarbeiten durch Maschinen und Anlagen automatisiert werden. </li>
+<li>Die Automatisierung erfolgt durch den Einsatz von prozessorbasierten Steuerungen in Kombination mit Ein-/Ausgangsmodulensowie Sensoren und Aktoren.</li>
+<li>Prozessorbasierte Steuerung:<ul>
+<li>Microcontroller</li>
+<li>CNC-Steuerung</li>
+<li>Roboter Steuerung </li>
+<li>Speicherprogrammierbare Steuerung  </li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>Eine Echtzeitfähigkeit der Steuerung ist notwendig. Echtzeitfähige Systeme werden häufig als oparative Technologies (OT) Systeme bezeichnet.</li>
+<li>Im gegensatz können die übergeordneten Produktionssysteme durch IT-Technologie umgesetzt werden. </li>
+<li>Die hierarchische Darstellung der Unternehmensebenen zeigt, welche Systeme für eine Produktionsbetrieb benötigt werden und wie diese zusammenwirken . Dieses Schaubild wird auch Automatisierungspyramide genannt.</li>
+</ul>
+<hr />
+<h2 id="automatisierungspyramide">Automatisierungspyramide</h2>
+<p><img alt="w:1200" src="../images/Automatisierungspyramide.png" /></p>
+<hr />
+<h3 id="was-ist-echtzeit">Was ist Echtzeit?</h3>
+<hr />
+<h3 id="echtzeit">Echtzeit</h3>
+<p>.
+- <strong>weiche Echtzeitanforderungen:</strong></p>
+<p>Echtzeitaufgaben haben eine vorgegebene Reaktionszeit, deren Verletzung aber noch nicht sofort katastrophale Auswirkungen hat. Beispiel: Medienwiedergabe</p>
+<p>.
+- <strong>harte Echtzeitanforderungen:</strong></p>
+<p>Eine Verletzung der vorgegebenen Reaktionszeit führt unmittelbar zum maximalen Schaden. Die Einhaltung der Zeitvorgabe ist noch wichtiger als bei der weichen Echtzeitanforderung. 
+Beispiele: Brennen einer Blu-ray, Achsenansteuerung einer CNC Fräse.</p>
+<hr />
+<h3 id="echtzeit_1">Echtzeit</h3>
+<p><img alt="h:260" src="../images/weicheEchtzeit.png" />
+<img alt="h:260" src="../images/harteEchtzeit.png" /></p>
+<hr />
+<h3 id="echtzeit_2">Echtzeit</h3>
+<p><img alt="h:500" src="../images/Echtzeitanforderungen.png" /></p>
+<hr />
+<h1 id="grundlagen-zur-automatisierung">Grundlagen zur Automatisierung</h1>
+<h2 id="begriffsdefinitionen">Begriffsdefinitionen</h2>
+<p>Die Automatisierungstechnik ist das technische Fachgebiet, das sich mit Technologien und Methoden beschäftigt, um einzelne Arbeitsschritte,  zusammenhängende Arbeitsschritte oder den gesamten Umfang von Arbeitsschritten eines Prozesses mit Hilfe von Anlagen, Maschinen und Geräten ohne menschliches Zutun auszuführen.</p>
+<p>Ein Prozess wird nach ANSI/EIA-632-1998 als eine Reihe miteinander verbundener Aufgaben, die gemeinsam Inputs in Outputs umwandeln definiert.</p>
+<hr />
+<h2 id="darstellung-eines-prozesses-als-blackbox">Darstellung eines Prozesses als Blackbox</h2>
+<p><img alt="h:300" src="../images/Prozess.png" /></p>
+<hr />
+<h2 id="technische-prozessumsetzung">Technische Prozessumsetzung</h2>
+<p>Damit der Prozess technisch umsetzbar ist, bedarf es einem System
+(Anlage, Maschine oder Gerät), welches mit Hilfe der Prozessleittechnik
+entwickelt wird.</p>
+<p>Die Prozessleittechnik ist die Ingenieursdisziplin, welche sich mit den Architekturen, Mechanismen und Algorithmen zur Aufrechterhaltung des Outputs eines bestimmten Prozesses, innerhalb eines gewünschten Bereichs befasst. </p>
+<hr />
+<h2 id="darstellung-eines-technischen-systems-zur-prozessumsetzung">Darstellung eines Technischen Systems zur Prozessumsetzung</h2>
+<p><img alt="" src="../images/ProzessIneinemTechnischenSystem.png" /></p>
+<hr />
+<h2 id="technischen-systems">Technischen Systems</h2>
+<ul>
+<li>Das technische System übernimmt Grundfunktionalitäten für Steuerungs-, Regelungs- und Visualisierungsvorgänge.</li>
+<li>Diese Funktionen werden unter dem Begriff "Automatisierung" zusammengefasst.</li>
+<li>Als Steuerungen haben sich Speicherprogrammierbare Steuerungen (SPS) und Industrie-PCs (IPC) als Standard etabliert.</li>
+<li>Diese nutzt vorgefertigte Programme aus internen Speichern des Systems und bestimmen durch logische und mathematische Zusammenhänge neue Stellgrößen.</li>
+<li>Diese Stellgrößen werden durch die Komponenten des technischen Systems in physikalische Größen umgewandelt und greifen so in den technischen Prozess ein. </li>
+</ul>
+<hr />
+<h2 id="unterscheidung-steuern-und-regeln">Unterscheidung Steuern und Regeln</h2>
+<ul>
+<li><strong>Steuern:</strong></li>
+<li>System bestimmt Ausgangsgrößen aufgrund vordefinierter Systemverhalten.</li>
+<li>Zielgrößen werden nicht erfasst, und Störeinflüsse sind nicht kompensierbar.</li>
+<li>Steuerungen verwenden oft digitale Messgrößen wie Näherungsschalter.</li>
+<li>Ablaufsteuerung ist eine häufig implementierte Form des Steuerns von sequentiellen Prozessen.</li>
+<li>Ablaufsteuerungen verwenden meist digitale Messgrößen als Feedback, um weitere Prozessschritte einzuleiten.</li>
+</ul>
+<hr />
+<ul>
+<li><strong>Regeln:</strong></li>
+<li>Durch kontinuierliche Messungen der Prozessparameter wird die Abweichung zu den Vorgabeparametern verglichen.</li>
+<li>Der entstehende Fehler wird durch einen Regler ausgeglichen, der die Stellgröße im System vorgibt.</li>
+<li>Störeinflüsse können kompensiert werden.</li>
+<li>Bei komplexen Automatisierungssystemen sind prozessschrittspezifische Vorgabeparameter erforderlich.</li>
+<li>Diese Parameter werden in der Regel durch eine Ablaufsteuerung an die Regler übergeben.</li>
+</ul>
+<hr />
+<h3 id="vergleich-steuern-und-regeln">Vergleich Steuern und Regeln?</h3>
+<hr />
+<h3 id="ziele-der-automatisierung">Ziele der Automatisierung</h3>
+<p>Mit einer Automation von Prozessen bzw. Produktionsanlagen werden
+unterschiedliche Ziele verfolgt. Teilweise können diese Ziele im
+Widerspruch stehen, sodass eine Priorisierung auf anlagen- und
+unternehmensspezifische Eigenschaften erfolgen muss. Die Ziele sind:</p>
+<ul>
+<li>
+<p>Steigerung der Qualität,</p>
+</li>
+<li>
+<p>Humanisierung,</p>
+</li>
+<li>
+<p>Steigerung der Sicherheit und</p>
+</li>
+<li>
+<p>Rationalisierung.</p>
+</li>
+</ul>
+<hr />
+<h3 id="wie-konnen-die-ziele-der-automatisierung-im-wiederspruch-stehen">Wie können die Ziele der Automatisierung im Wiederspruch stehen?</h3>
+<hr />
+<h2 id="klassifizierung-von-prozessen">Klassifizierung von Prozessen</h2>
+<ul>
+<li>Prozesse sind unterteilbar in verschiedene Klassen, daraus folgt:<ul>
+<li>unterschiedliche Anforderungen an das Automatisierungssystem </li>
+<li>technologisches Fachwissen</li>
+<li>anwendbare Entwicklungsmethoden</li>
+</ul>
+</li>
+<li>Die Klassifizierung von Prozessen erfolgt anhand verschiedener Kriterien, siehe Abbildung.</li>
+</ul>
+<p><img alt="bg right h:80%" src="../images/Klassifizierung.PNG" /></p>
+<hr />
+<h3 id="fragen-zur-klassifizierung-von-prozessen">Fragen zur Klassifizierung von Prozessen</h3>
+<p>Welche Prozessklassen kommen in einer Getriebefertigung vor?</p>
+<p>Welche Prozessklassen werden in der Herstellung von Medikamenten benötigt?</p>
+<hr />
+<h3 id="antwort">Antwort</h3>
+<p><strong>Getriebe</strong> 
+- Medienart: Materialprozesse mit Fertigungs- und Verfahrensschritten
+- Einwirkungen: Verteilungsprozesse und Aufbewahrungsprozesse
+- Prozessgrößen: Sequentielle Vorgänge 
+- Zeitlicher Ablauf: diskontinuierlich </p>
+<p><strong>Medikamenten Herstellung</strong></p>
+<ul>
+<li>Medium und Stoffliche Umwandlung: verfahrenstechnischer Materialprozess</li>
+<li>Einwirkung: Erzeugungsprozess</li>
+<li>Prozessgrößen: kontinuierliche und sequentielle Vorgänge </li>
+<li>Zeitlicher Ablauf: kontinuierliche Prozesse </li>
+</ul>
+<hr />
+<h2 id="wann-ist-automatisierung-sinnvoll">Wann ist Automatisierung sinnvoll?</h2>
+<hr />
+<h1 id="speicherprogrammierbare-steuerung-sps">Speicherprogrammierbare Steuerung - SPS</h1>
+<ul>
+<li>Speicherprogrammierbare Steuerungen (SPS) sind aktuell die weitverbreitetste Hardware für die Automatisierung von Maschinen und Anlagen.</li>
+<li>Es existieren zwei etablierte Varianten: Hard-SPS mit speziell entwickelter Hardware und Soft-SPS mit Standardkomponenten aus PC-Systemen und herkömmlichem Betriebssystem (z.B., Windows).</li>
+<li>Hard-SPS besteht aus Stromversorgung, Steuerungsprozessor CPU, digitalen Ein- und Ausgangsbaugruppen sowie einem internen Bussystem.</li>
+<li>Soft-SPS ermöglicht die Ausführung anderer Software wie C++ Programme auf dem Industrie-PC.</li>
+</ul>
+<hr />
+<ul>
+<li>Zur Vermeidung von Blockaden zwischen rechnerinternen Prozessen ist eine spezielle Softwarearchitektur erforderlich, um den SPS-Code echtzeitfähig abzuarbeiten.</li>
+<li>Die Laufzeit (Runtime) ersetzt die speziell entwickelte Hardware CPU der Hard-SPS.</li>
+<li>Als Kommunikationsschnittstelle zu den Busklemmen dient ein Feldbussystem wie EtherCAT, ProfiNet usw.</li>
+<li>Moderne standard Netzwerkkarten können als Master des Feldbussystems konfiguriert werden.</li>
+<li>Beide SPS-Varianten unterliegen der SPS-Norm, die im folgenden Kapitel behandelt wird.</li>
+</ul>
+<hr />
+<h2 id="sps-norm-din-en-61131-3-iec-61131-3">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h2>
+<ul>
+<li>Programmierung von automatisierten Systemen ist üblicherweise anwendungsspezifisch.</li>
+<li>Ziel der SPS-Norm: Rationelleres und herstellerunabhängiges Programmerstellungskonzept.</li>
+<li>Die Norm führt vier Grundkonzepte ein, um allgemeine und wiederverwendbare Programmbausteine zu entwickeln.</li>
+<li>In diesen Bausteinen sollten anwendungsspezifische SPS-Operanden, Eingänge, Ausgänge, Zähler und Zeitglieder sowie Merker nicht eingesetzt werden.</li>
+<li>Anlagenspezifische Zuweisungen, Zähler und Merker sollen erst bei der Erstellung des übergeordneten Anlagenprogramms berücksichtigt werden.</li>
+<li>Die vier Konzepte sind detaillierter in den nachfolgenden Punkten beschrieben.</li>
+</ul>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_1">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li>
+<p><strong>Datentypen</strong></p>
+<p>Eine einheitliche Definition für Datentypen, Konstanten und Variable
+sind verbindlich vorgeschrieben. Für symbolische und absolute
+Adressierungen sind die definierten Datentypen Grundlage der
+expliziten Ausführung der Variablendeklaration. Beispiele einiger Datentypen: </p>
+<p><code>bSensor AT%I* : BOOL;</code> &emsp; &ensp; Boolsche Variable, adressiert auf einen DI
+ <code>iCount : INT := 100;</code>  &emsp; &emsp;  Ganzzahlige Zählervariable
+ <code>nNumber : BYTE;</code> &emsp; &emsp; &emsp; &emsp;Bitfolge entsprechend einer Zahl
+<code>sText : STRING := 'AUT'</code> &ensp;Textsymbole mit 4 Byte Speichergröße;
+<code>rTemp : REAL;</code> &emsp; &emsp; &emsp; &emsp; Gleitkommazahl einer Temperatur 32 Bit Auflösung</p>
+</li>
+</ul>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_2">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li>
+<p><strong>Programmorganisationseinheiten (POU's)</strong></p>
+<p>Programmorganisationseinheiten sind hierarchisch gegliederte
+Programmeinheiten, welche aus einem Hauptprogrammtypen (<em>Program</em>)
+mit Zugriff auf E/A-Operanden und zwei Unterprogrammtypen mit und
+ohne Speichermöglichkeit (mit <em>Function_Block</em> und ohne <em>Function</em>)
+besteht. 
+Aus dieser Organisationsform heraus, lassen sich verallgemeinerte
+Programmbausteine erstellen, welche beliebig oft in einer oder
+mehreren Anlagen eingesetzt werden können. Dadurch wird
+sichergestellt, dass bei immer wachsendem Automatisierungsaufwand
+von komplexer werdenden Anlagen, die Steuerungsentwicklung nicht im
+gleichen Maße ansteigt. Aus den entwickelten Bausteinen können dafür
+auch Bibliotheken angelegt werden.</p>
+<hr />
+</li>
+</ul>
+<h4 id="hierarchie-von-programm-organisationseinheiten-pou">Hierarchie von Programm Organisationseinheiten (POU)</h4>
+<p><img alt="bg right w:100%" src="../images/POUs.png" /></p>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_3">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li>
+<p><strong>Programmiersprachen</strong></p>
+<p>Um die Varianz der Anwendungsfälle und der Programmierkenntnisse der    Steuerungsentwickler abzudecken sind fünf Programmiersprachen zur    Programmentwicklung zur Verfügung gestellt. Diese ermöglichen eine    grafische bzw. textuelle Programmerstellung und können z.B.Relaissteuerungen mittels dem Kontaktplan (KOP) oder Abläufe durch
+die Ablaufsprache (AS) einfach realisieren. Eine weitere grafische Programmsprache liegt mit der Funktionsbausteinsprache (FBS/FUP)    vor.</p>
+<p>Textuelle Programmiersprachen sind die Anweisungsliste (AWL), für die Programmierung von lineare Prozesse, oder der Sturkturierte Text (ST), mit hochsprachenähnlichen Funktionalitäten. Während  dieser Lehrveranstalltung wird ausschließlich mit ST gearbeitet.    Einige SPS-Systeme bieten auch die Möglichkeit UML-Graphen zur   erstellen. </p>
+</li>
+</ul>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_4">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li><strong>Programmiersprachen</strong></li>
+</ul>
+<p><img alt="w:900" src="../images/CODESYS-IEC-61131-3-01.jpg" /></p>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_5">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li>
+<p><strong>Programmablauf</strong></p>
+<p>Der Programmablauf basiert auf dem Taskkonzept, welches die
+Ausführung der Programmorganisationseinheiten priorisiert und
+zeitzyklisch oder ereignisorientiert abarbeitet. Bei der Entwicklung
+des Steuerungsprogramms muss der Code nach den zeitzyklischen oder
+ereignisorientierten Anforderungen entworfen werden.  </p>
+</li>
+</ul>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_6">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li><strong>Programmablauf</strong></li>
+</ul>
+<p><img alt="w:1000" src="../images/Programmablauf.png" /></p>
+<hr />
+<h3 id="sps-norm-din-en-61131-3-iec-61131-3_7">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h3>
+<ul>
+<li>
+<p>Zusätzlich Funktionalitäten in TwinCAT 3 </p>
+<ul>
+<li>
+<p><strong>Data Unit Type (DUT)- Anwenderspezifische Datentypen</strong></p>
+<p>Zusätzlich zu den Standard-Datentypen können Sie eigene Datentypen
+    wie Strukturen, Aufzählungen/Enumeration, Referenzen und Unions
+    definieren.</p>
+</li>
+<li>
+<p><strong>Globale Variablen Listen (GVL)</strong></p>
+<p>Der Inhalt von Globalen Variablen Listen ist innerhalb des
+    SPS-Projektes für alle POU's zugreifbar. Deswegen
+    eignen sie sich für die Verwendung von Hardware oder HMI
+    Schnittstellen.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>SPS-Programmierkonventionen</p>
+<p>In der Welt der Programmiersprachen gibt es verschiedene Konventionen, die abhängig vom Tooling, Fokus und Ursprung der Programmiersprache sowie von der Branche, in der die Anwendung verwendet wird, Beachtung finden.</p>
+<p>In Anlehnung an allgemein anerkannte Programmierrichtlinien (zum Beispiel die MISRA C++ 2008 – Guidelines[…], die Java Code Conventions, den C# Programming Guide oder PLCopen) finden Sie im Folgenden Programmierhinweise, die die Erstellung von optimalem und funktionstüchtigem SPS-Programmcode erleichtern.</p>
+<hr />
+<p>Beachten Sie die SPS-Programmierkonventionen, um die folgenden Vorteile zu erreichen:</p>
+<pre><code>einheitlicher Aufbau der SPS-Programme
+konsistente Benennung von Objekten, Variablen und Instanzen
+leichte Lesbarkeit und intuitive Verständlichkeit von Code und insbesondere von den Schnittstellen von Funktionsbausteinen, Methoden und Funktionen
+vereinfachte Entwicklung, Nutzung und Wartung der Programme
+erhöhte Codequalität durch die systematische und frühzeitige Vermeidung von Fehlerquellen
+</code></pre>
+<hr />
+<p>Neue Beckhoff TwinCAT 3 SPS Bibliotheken, Programmbeispiele und Applikationen richten sich nach diesen „TwinCAT 3 SPS-Programmierkonventionen“.</p>
+<p>Ausnahmen:</p>
+<pre><code>Tc2_MC2_xxx Bibliotheken entsprechen der PLCopen-Programmierkonvention.
+Tc2_xxx Bibliotheken entsprechen den ursprünglichen TwinCAT-2-Bibliotheken.
+Branchenspezifische Bibliotheken richten sich im Einzelfall nach dem Standard der Branche.
+Bausteine aus der IEC 61131-Norm, die Bestandteil der Bibliothek Tc2_Standard sind.
+</code></pre>
+<p>...</p>
+<hr />
+<h3 id="twincat-einfuhrung-i">TwinCAT Einführung I</h3>
+<hr />
+<h1 id="ea-gerate">E/A-Geräte</h1>
+<ul>
+<li>Alle Prozesssignale müssen durch E/A-Geräte erfasst bzw. gesetzt werden.</li>
+<li>Zur Reduzierung des Verkabelungsaufwands kommunizieren E/A-Geräte mit der SPS über Feldbussysteme.</li>
+<li>Bei Soft-SPS ist dieses Konzept immer erforderlich, während Hard-SPS in vielen Fällen auf das Feldbussystem verzichten kann, indem die Klemmen direkt an die SPS angeschlossen werden.</li>
+<li>Der Feldbus wird durch Buskoppler auf einen lokalen Klemmenbus übersetzt und galvanisch getrennt.</li>
+<li>Eingangsgeräte schreiben ihre Werte aus den Prozesssignalen auf den Klemmenbus, während Ausgangsgeräte die Klemmenbussignale lesen und die Prozesssignale setzen.</li>
+<li>Sowohl die Prozesssignale als auch der Klemmenbus sind galvanisch getrennt, was bei Störungen die Unversehrtheit der Bussysteme gewährleistet.</li>
+</ul>
+<hr />
+<h2 id="hardwarekomponenten">Hardwarekomponenten</h2>
+<p><img alt="" src="../images/SPS_Hardware.png" /></p>
+<hr />
+<h3 id="adressierung-von-prozesssignalen">Adressierung von Prozesssignalen</h3>
+<ul>
+<li>Die Prozesssignale werden durch Adressen angesprochen, die flexibel oder explizit vergeben werden können.</li>
+</ul>
+<p><strong>Flexible Adressierung</strong></p>
+<ul>
+<li>Flexible Adressbits bzw. -bytes, -words oder -doublewords können mit AT%I<em> oder AT%Q</em> vergeben werden. </li>
+<li>Die Größe der zu übertragenden Daten wird automatisch festgelegt. </li>
+<li>Die endgültige Zuweisung auf einen Klemmenkanal erfolgt durch manuelle Verknüpfung zu den E/A-Geräten. </li>
+<li>Neben den Ein- und Ausgangsspeicherpräfixen I und Q gibt es einen Merkerspeicher mit Präfix M. </li>
+</ul>
+<hr />
+<p><strong>Explixite Adressierung</strong>
+<img alt="h:550" src="../images/Adressierung.PNG" /></p>
+<hr />
+<h2 id="digitale-ein-ausgangsklemmen">Digitale Ein- / Ausgangsklemmen</h2>
+<ul>
+<li>Digitale Signale, auch als binäre Signale bekannt, haben Wertezuweisungen von logischer 0 oder 1 in der Steuerung.</li>
+<li>Es ist wichtig, das Spannungsniveau zu definieren, welches die logische 0 und 1 für physikalische Signale aus dem Prozess darstellt.</li>
+<li>Gängige Nennspannungen für digitale Signale sind 3 V, 4 V, 12 V oder 24 V, wobei es hierbei nicht um die Schaltniveaus, sondern nur um die Nennspannung geht.</li>
+<li>Da reale Signale niemals den genauen Spannungswert annehmen, werden Schaltniveaus aufgrund von Störungen und Leitungswiderständen festgelegt.</li>
+<li>Diese Schaltniveaus lassen sich in einer Hysteresiskurve darstellen.</li>
+</ul>
+<hr />
+<h3 id="hysteresiskurve-von-digitalen-signalen">Hysteresiskurve von Digitalen Signalen</h3>
+<p><img alt="h:550" src="../images/Hysteresis.png" /></p>
+<hr />
+<h2 id="digitale-eingangsklemmen">Digitale Eingangsklemmen</h2>
+<ul>
+<li>Bei der Auswahl von digitalen E/A-Klemmen ist es entscheidend, die Art des Sensors zu berücksichtigen.</li>
+<li>Es gibt eine grundlegende Unterscheidung zwischen 2-Leiter- und 3-Leiter-Sensoren.</li>
+<li>3-Leiter-Sensoren benötigen im nicht ausgelösten Zustand weniger Leistung als 2-Leiter-Sensoren, da kein Reststrom für die Leistungsversorgung erforderlich ist.</li>
+</ul>
+<hr />
+<h3 id="pnp-npn-konzept-sourcing-sinking">PNP | NPN Konzept (Sourcing | Sinking)</h3>
+<ul>
+<li>Ein weiterer wichtiger Faktor bei der Auswahl ist die Bestimmung, ob der Sensor als Stromquelle oder als Stromsenke ausgeführt ist.</li>
+<li>Sensoren, die als Stromquelle agieren, werden als PNP (Positive-Negative-Positive) bezeichnet, und in diesem Fall muss das Eingangsgerät als Stromsenke fungieren.</li>
+<li>Digitale Eingangsgeräte mit einer Senkenfunktion sind beispielsweise die Modelle EL100x &amp; EL101x.</li>
+<li>Falls der Sensor jedoch als NPN (Negative-Positive-Negative) Sensor konfiguriert ist, ändert sich die Richtung des Stromflusses.</li>
+<li>In diesem Fall sollte ein passendes Eingangsgerät mit Quellfunktionalität am Eingang ausgewählt werden, wie beispielsweise die Modelle EL108x &amp; EL109x.</li>
+</ul>
+<hr />
+<h3 id="2-3-leitersensoren-sinking-device">2- &amp; 3-Leitersensoren (Sinking Device)</h3>
+<p><img alt="bg right h:550" src="../images/SchaltbildDigitaleSensoren.png" /></p>
+<hr />
+<h3 id="no-nc-konzept-offner-schlieer">NO | NC Konzept (Öffner | Schließer)</h3>
+<ul>
+<li>Die Schaltzustände der Sensoren werden häufig mit "normally open" (NO) und "normally closed" (NC) bezeichnet.</li>
+<li>Dies bezieht sich auf das Verhalten der Sensoren im nicht aktiven Zustand.</li>
+<li>Bei NO liegt kein Signal am Eingangsgerät an, und innerhalb der SPS wird der Wert 0 <em>[FALSE]</em> angezeigt.</li>
+<li>Bei NC liegt ein Signal an, und der Wert 1 <em>[TRUE]</em> wird angezeigt.</li>
+</ul>
+<hr />
+<h3 id="schaltzustande-no-nc">Schaltzustände NO &amp; NC</h3>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; <img alt="" src="../images/Schaltzust%C3%A4nde.png" /></p>
+<hr />
+<h2 id="prellung-von-mechanischen-tastern">Prellung von mechanischen Tastern</h2>
+<ul>
+<li>Mechanische Taster zeigen Tendenz zum Prellen, dabei entsteht wiederholtes Öffnen und Schließen des Kontakts durch elastische Materialverformungen.</li>
+<li>Das Prellen kann zu undefinierten Flanken führen, was Fehler im Steuerungsprogramm verursachen kann.</li>
+<li>Durch Eingangsfilter mit längeren Schaltzeiten, z.B. 3 ms, kann das Signal geglättet werden.</li>
+<li>Die Glättung des Signals stellt sicher, dass bei der Änderung der Schalterstellung eine klare Flanke erzeugt wird.</li>
+</ul>
+<hr />
+<h3 id="eingangsfilter-notwendig-fur-mechanische-taster">Eingangsfilter (notwendig für mechanische Taster)</h3>
+<p><img alt="h:450 " src="../images/Prellfilter.png" /></p>
+<hr />
+<h2 id="digitale-ausgangsklemmen">Digitale Ausgangsklemmen</h2>
+<ul>
+<li>Digitale Ausgangsklemmen bei SPS dienen dem Senden von digitalen (binären) Signalen an externe Geräte oder Aktoren.</li>
+<li>Sie ermöglichen das Schalten elektrischer Signale zur Steuerung von Prozessen in der realen Welt.</li>
+<li>Die Signalsteuerung kann durch Relais oder Halbleiterschalter realisiert werden.</li>
+<li>Es gibt interne (Typ 2) oder externe (Typ 1) Spannungsversorgungsmöglichkeiten.</li>
+<li>Externe Versorgung ermöglicht es in einigen Fällen das Schalten größerer Leistungen zu realisieren.</li>
+<li>Binärausgänge schalten oft induktive Lasten, was zu hohen Spannungsspitzen beim Trennen des Stromkreises führen kann.</li>
+<li>Eine Freilaufdiode verhindert das Auftreten dieser Spitzen. </li>
+</ul>
+<hr />
+<h3 id="schaltbild-von-do-geraten-mit-externen-oder-interen-spannungsversorgung">Schaltbild von DO-Geräten mit externen oder interen Spannungsversorgung</h3>
+<p><img alt="bg right h:550" src="../images/DOTypen.png" /></p>
+<hr />
+<h3 id="digitale-ausgangsklemmen_1">Digitale Ausgangsklemmen</h3>
+<ul>
+<li>Standartklemmen für digitale Ausgänge (DO) variieren im Nennstrom. Beispielsweise haben EL200x-Modelle mit 24 Vdc zwei, vier oder acht Kanäle mit 0.5 A, während EL202x-Modelle zwei oder vier Kanäle mit 2 A bieten.</li>
+<li>Einige Klemmen verfügen über zusätzliche Diagnosefunktionen wie Drahtbrucherkennung.</li>
+<li>Digitale Ausgänge können nach dem PNP- oder NPN-Prinzip arbeiten. Bei externer Spannungsversorgung kann die Masse (0 V) als Ausgang durchgeschaltet werden, wie bei der Klemme EL208x.</li>
+<li>Weiters gibt es verschiedene Ausführungsvarianten von digitalen Ausgängen, darunter Push-Pull-Outputs mit Tristate, pulsweitenmodulierte (PWM) Ausgänge für Aktoren oder LED-Steuerung, sowie PWM-Lichtwellenleiter-Ausgangssignale für spezielle Anwendungsfälle.</li>
+<li>siehe Beckhoff Infosys: Feldbuskomponenten/EL2xxx</li>
+</ul>
+<hr />
+<h2 id="twincat-einfuhrung-ii">TwinCAT Einführung II</h2>
+<ul>
+<li>Diese Abschnitte bieten lediglich einen allgemeinen Überblick über die TwinCAT-Entwicklungsumgebung und nicht eine umfassende Einführung.</li>
+<li>Die vollständige Dokumentation der Benutzeroberfläche und der TwinCAT-Projektstruktur ist im Beckhoff-Infosys verfügbar.</li>
+<li>Die Vorlesung behandelt die ersten Schritte in der TwinCAT 3 Entwicklungsumgebung, und es stehen Tutorial-Videos wie <a href="https://www.youtube.com/watch?v=GOFUsWc61Hk&amp;t=21s">https://www.youtube.com/watch?v=GOFUsWc61Hk&amp;t=21s</a> von Christian Stöcker zur Verfügung.</li>
+</ul>
+<hr />
+<p><strong>Projekterstellung und Lizenzierung I</strong></p>
+<ul>
+<li>TwinCAT 3, die Entwicklungsumgebung für Automatisierungsaufgaben, ist in Visual Studio integriert bzw. in der VS-Shell eingebettet.</li>
+<li>Jede Automatisierungsaufgabe wird in einem eigenen Projekt bearbeitet.</li>
+<li>Der Projektspeicherordner kann idealerweise denselben Namen wie das Projekt haben.</li>
+<li>Standardmäßig werden alle TwinCAT-Projekte im Pfad (C:\ Users\ [Ihr Benutzer]\ Documents\ TcXaeShell) gespeichert.</li>
+<li>Aufgrund unterschiedlicher Bibliothekspfade auf verschiedenen PCs gibt es ein Austauschformat namens .tnzip.</li>
+<li>Projekte können unter <em>[Datei/Save Project as Archive]</em> als .tnzip-Archiv gespeichert und durch <em>[Datei/Öffnen/Open Solution from Archive]</em> geöffnet werden.</li>
+<li>Beim Öffnen muss das extrahierte Projekt lokal in einen neuen Ordner gespeichert werden.</li>
+</ul>
+<hr />
+<p><strong>Projekterstellung und Lizenzierung II</strong>
+- Um eine Soft-SPS-Instanz zu erstellen, wird innerhalb eines TwinCAT-Projektes ein SPS-Projekt aus einer vorgefertigte Vorlage erstellt.
+- Mehrere SPS-Projekte können innerhalb eines Projekts entwickelt und auf einem IPC (Industrie-PC) ausgeführt werden.
+- Vordefinierte Templates stehen zur Verfügung und beinhalten eine standardisierte Projektstruktur gemäß IEC 61131-3.
+- Die Erstellung erfolgt durch einen Rechtsklick auf den SPS-Baustein am linken Bildrand mit <em>[Neues Element hinzufügen/Standard PLC Project]</em>.
+- Die SPS-Instanz kann beispielsweise den Namen SPS haben, oder bei mehreren Instanzen SPS1 und SPS2.
+- Eine Taskreferenz zum Programm <em>[Main]</em> ist bereits angelegt und mit einer Zykluszeit von 10 ms im System hinterlegt.</p>
+<hr />
+<p><strong>Projekterstellung und Lizenzierung III</strong></p>
+<ul>
+<li>Die erstmalige Programmausführung ist nun möglich, selbst wenn noch kein Code vorhanden ist.</li>
+<li>Das Projekt muss durch Klicken auf die Schaltfläche <em>[Konfiguration aktivieren]</em> <img alt="h:30" src="../images/IconKA.PNG" /> in die Laufzeit geladen werden.</li>
+<li>Nach dem Aktivieren kann das Zielsystem (die Soft-SPS) in den <em>Run Mode</em> <img alt="h:30" src="../images/Runmode.png" /> versetzt werden.</li>
+<li>Lizenzen werden abgefragt und können durch Eingabe eines Codes für Entwickler für sieben Tage freigegeben werden.</li>
+</ul>
+<p>&emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img alt="h:200" src="../images/Lizenzschluessel.PNG" /></p>
+<ul>
+<li>Dieser Schritt kann beliebig oft wiederholt werden.</li>
+</ul>
+<hr />
+<h3 id="laufzeitmodi-runtimemode">Laufzeitmodi (Runtimemode)</h3>
+<ul>
+<li>Der oben genannte <em>Run Mode</em> ist einer von drei Modi, die die
+Laufzeit (Runtime) der SPS annehmen kann, die Symbole sind </li>
+</ul>
+<p><img alt="h:180" src="../images/Betriebsmodi.PNG" /></p>
+<hr />
+<p><strong>Konfig Mode</strong>
+- Grundsätzlich ist beim Entwickeln die Laufzeit im <em>Konfig Mode</em>. Wie der Name schon vermuten lässt, kann in diesem Modus die SPS konfiguriert werden. D.h. die Zykluszeiten und Priorisierung der Tasks kann eingestellt werde, neue Programme und Programmsegmente können erzeugt werden u.v.m..</p>
+<p><strong>Free Run Mode</strong>
+- Der zweite Modus ist der <em>Free Run Mode</em>. Mit diesem ist es möglich Peripheriegeräte und E/A-Geräte einzulesen und zu parametrisieren. D.h. im <em>Free Run Mode</em> ist eine aufrechte Verbindung über den Feldbus und andere Schnittstellen vorhanden.</p>
+<p><strong>Run Mode</strong>
+- Im <em>Run Mode</em> ist die SPS einsatzbereit und kann gestartet werden. Ab diesem Zeitpunkt sind die Kerne der CPU für die Rechenzeit des Programms blockiert und somit ein echtzeitfähiger Betrieb möglich.</p>
+<hr />
+<h3 id="bibliotheken-und-standard-fbs">Bibliotheken und Standard FB's</h3>
+<ul>
+<li>In TwinCAT sind standardmäßig drei Bibliotheken (References) hinterlegt, die POU's nach IEC 61131-3 enthalten. Beispiele hierfür sind Timer, Stringfunktionen, Zähler und Trigger.</li>
+<li>Diese Bibliotheken ermöglichen zusätzlich den Zugriff auf systemeigene Parameter aus dem Programm heraus.</li>
+<li>Ein Beispiel für einen Bibliotheksfunktionsblock ist der <em>TON</em>, der eine Einschaltverzögerung umsetzt.</li>
+<li>Der Funktionsblock hat zwei Eingänge, <em>.In</em> vom Datentyp Bool und <em>.PT</em> vom Datentyp Time und zwei Ausgänge, <em>.Q</em> vom Datentyp Bool und <em>.ET</em> vom Datentyp Time.</li>
+</ul>
+<hr />
+<h3 id="blockschaltbild-ton">Blockschaltbild TON</h3>
+<p><img alt="bg right h:200" src="../images/BlockschaltbildTON.PNG" /></p>
+<hr />
+<h3 id="ton-funktionsweise">TON Funktionsweise</h3>
+<ul>
+<li>Der Eingang <em>.IN</em> fungiert als Startsignal. Nach Ablauf der vorgegebenen Zeit <em>.PT</em> (Periodtime) wird der Ausgang <em>.Q</em> auf TRUE bzw. 1 gesetzt.</li>
+<li>Der zweite Ausgang <em>.ET</em> gibt die verstrichene Zeit (Elapsed Time) seit dem Startsignal an und behält den Wert der voreingestellten Zeit <em>.PT</em> nach Erreichen der Periodendauer.</li>
+<li>Sobald <em>.IN</em> auf FALSE gesetzt wird, wird die verstrichene Zeit <em>.ET</em> zurückgesetzt.</li>
+<li>Dieses Verhalten ist im Zeit-Signal Diagramm dargestellt.</li>
+</ul>
+<p><img alt="bg right:40%  w:400" src="../images/ZeitSignalDiagramm.PNG" /></p>
+<hr />
+<h3 id="fb-aufruf-in-einem-programm">FB Aufruf in einem Programm</h3>
+<p>Aufgerufen wird ein Bibliotheksfunktionsblock, wie jeder Funktionsblock
+durch Deklarierung im Deklarationsteil und Funktionsaufruf im
+Programmteil.</p>
+<div class="highlight"><pre><span></span><code>PROGRAM MAIN                // Deklarationsteil
+VAR
+    fbTon       : TON;
+    bIn         : BOOL;
+    bOut        : BOOL;
+    tPt     : TIME;
+    tEt     : TIME;
+END_VAR     
+-----------------------------------------------------------------------------------------------
+fbTon(  IN := bIn,                  // Programmteil
+    PT := tPt,
+    Q  =&gt; bOut,
+    ET =&gt; tEt); 
+</code></pre></div>
+<hr />
+<h1 id="einfuhrungsaufgabe-blinklicht">Einführungsaufgabe - Blinklicht</h1>
+<ul>
+<li>Einführungsaufgabe: Entwurf eines Blinklichts als Einstieg in die SPS-Programmierung.</li>
+<li>Das Licht wird durch eine steigende Flanke eines Eingangs gestartet und bei erneuter Flanke ausgeschaltet.</li>
+<li>Die Flankenerkennung erfolgt durch einen Trigger-Funktionsbaustein (FB) <em>R_TRIG</em>.</li>
+<li>Die Blinklichtsteuerung wird durch einen TON Timerbaustein erstellt.</li>
+<li>Eine Probeinbetriebnahme soll anhand der virtuellen Teaching Factory durchgeführt werden.  </li>
+</ul>
+<hr />
+<h3 id="blockschaltbild-flankenerkennung-r_trig">Blockschaltbild Flankenerkennung R_TRIG</h3>
+<p><img alt="h:150" src="../images/R_Trig.PNG" />
+- Wenn der Eingang <em>.CLK</em> = TRUE wird, wird der Ausgang <em>.Q</em> = TRUE.
+- Jede weitere Ausführung des FB gibt <em>Q = FALSE</em> zurück, bis eine fallende und erneut eine steigende Flanke auftreten.
+<img alt="bg right h:350" src="../images/R_TRIG_Verhalten.PNG" />  </p>
+<hr />
+<h3 id="start-und-stopsignal-durch-einen-nicht-rastenden-schalter">Start- und Stopsignal durch einen nicht rastenden Schalter</h3>
+<div class="highlight"><pre><span></span><code>fbTrigOn(CLK:= bIN , Q=&gt; );
+
+// Flankenabfrage
+IF fbTrigOn.Q AND NOT bBlink THEN
+    bBlink := TRUE;
+ELSIF fbTrigOn.Q AND bBlink THEN
+    bBlink := FALSE;
+END_IF 
+</code></pre></div>
+<hr />
+<h2 id="blincklichtsteuerung">Blincklichtsteuerung</h2>
+<ul>
+<li>Das Blinklicht kann mithilfe eines <em>TON</em> FB erzeugt werden.</li>
+<li>Der negierte Ausgang <em>.Q</em> wird mit dem Startsignal <em>bBlink</em> durch ein logisches UND-Verknüpfung auf den Eingang <em>.IN</em> des FB <em>TON</em> geschrieben.</li>
+<li>Dies führt zu einem periodischen Sägezahnsignal von <em>.ET</em>, wie im Zeit-Signal-Diagramm dargestellt ist.</li>
+</ul>
+<hr />
+<h3 id="zeit-signal-diagramm-des-zyklischen-ton">Zeit-Signal-Diagramm des zyklischen TON</h3>
+<p>&emsp; &emsp; &emsp; &emsp;  <img alt="h:500" src="../images/Blinklicht_Zeit_Signal_Diagramm.png" /></p>
+<hr />
+<h3 id="erstellung-des-periodischen-blinksignals">Erstellung des Periodischen Blinksignals</h3>
+<ul>
+<li>Das eigentliche Blinksignal kann durch eine Abfrage, ob die erstrichene Zeit kleiner oder größer als die halbe Periodendauer ist, erstellt werden.</li>
+<li><em>bOut</em> ist der Ausgang des Blinksignals </li>
+</ul>
+<div class="highlight"><pre><span></span><code>fbTON(IN:=bBlink AND NOT fbTON.Q, PT:=T#1S);
+
+IF bBlink AND fbTON.ET &lt; T#1S/2 THEN
+    bOUT := TRUE;
+ELSE
+    bOUT := FALSE;
+END_IF
+</code></pre></div>
+<hr />
+<h2 id="fb-implementierung">FB Implementierung</h2>
+<ul>
+<li>Die Start- und Stopfunktion kann zusammen mit der Blinklichtsteuerung in einem Funktionsbaustein <em>FB_BlinkBsp</em> implementiert werden.</li>
+</ul>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; <img alt="h:300" src="../images/FB_BlinkBsp.PNG" /></p>
+<hr />
+<h2 id="fb-verwendung-im-main">FB Verwendung im MAIN</h2>
+<ul>
+<li>Um den Funktionsbaustein [FB_BlinkBsp]{.roman} auszuführen, muss dieser
+im Programm [MAIN]{.roman} aufgerufen werden und mit den richtigen
+Signalen der [IFC_HW]{.roman} verknüpft werden.</li>
+<li>Die GVL <em>IFC_HW</em> ist das Hardware Interface der Teaching Factory, in ihr werden alle Prozesssignale zusammengefasst, um sowohl die reale als auch virtuelle Anlage steuern zu können. </li>
+<li>Download von Sakai <em>Ressourcen/Source Code Files/IFC_HW.TcGVL</em> möglich   </li>
+</ul>
+<div class="highlight"><pre><span></span><code>PROGRAM MAIN
+VAR 
+    fbBlink     : FB_BlinkBsp;
+
+END_VAR
+------------------------------------------------------------------------------------------------
+fbBlink(bIN:=IFC_HW.bExecute , bOUT=&gt;IFC_HW.bAmpelGelb );
+</code></pre></div>
+<hr />
+<h1 id="prozesszustandsbeschreibung">Prozesszustandsbeschreibung</h1>
+<ul>
+<li>Die beiden hier besprochenen Prozessbeschreibungsvarianten dienen der grafischen Darstellung von ansonsten verbal beschriebenen Prozessen.</li>
+<li>Einsatz finden diese Beschreibungen bei der Programmerstellung, Inbetriebnahmen und Fehlersuche. </li>
+<li>Mit Hilfe einer richtig erstellten Prozessbeschreibung, ist die Lösung der entsprechenden Steueraufgabe quasi gefunden.</li>
+</ul>
+<hr />
+<h2 id="ablauf-funktionsplan">Ablauf-Funktionsplan</h2>
+<ul>
+<li>Der Ablauf-Funktionsplan eignet sich für Prozesse mit unterscheidbaren Aktionen, die ereignis- oder zeitgesteuert in Reihen- oder Parallelfolge ablaufen.</li>
+<li>Er bietet grafische Elemente für eine Ablaufbeschreibung, die Steuerzustände mit entsprechenden Aktionen und Übergangsstellen mit entsprechenden Bedingungen darstellen.</li>
+<li>Die Herausforderung bei der Anwendung dieser Methode liegt in der Einteilung der Steuerzustände und Übergangsstellen, was Übung und Erfahrung erfordert.</li>
+<li>Der Ablauf-Funktionsplan dient dazu, das Denken während der Entwurfsphase der Anlage zu unterstützen.</li>
+</ul>
+<hr />
+<h2 id="ablauf-funktionsplan_1">Ablauf-Funktionsplan</h2>
+<p>Beispiel 2-Punkt Temperaturregelung
+<img alt="bg right h:400" src="../images/AblaufFunktionsplan.png" /></p>
+<hr />
+<h2 id="zustandsubergangsdiagramm">Zustandsübergangsdiagramm</h2>
+<ul>
+<li>Wenn Prozessabfolgen keinen zwangsläufigen schrittweisen Ablauf mehr haben, wird die Anwendung des Ablauf-Funktionsplans schwierig.</li>
+<li>Eine alternative Beschreibungsmethode in solchen Fällen ist das Zustandsübergangsdiagramms.</li>
+<li>Ein Zustandsübergangsdiagramm beschreibt eine Zustandsmaschine (State Machine), die es ermöglicht, aus jedem Zustand in jeden anderen Zustand zu wechseln, sofern dies für den Ablauf des Prozesses erforderlich ist.</li>
+<li>Jeder Zustand wird als Kreis mit einer eindeutigen Nummer dargestellt.</li>
+<li>Die Übergänge zwischen den Zuständen werden im Diagramm durch Pfeile dargestellt, wobei aus einem Zustand mehrere Übergänge wegführen bzw. hinführen können.</li>
+<li>Ähnlich wie bei Ablauf-Funktionsdiagrammen können in den Zuständen und Übergängen Aktionen durchgeführt werden, bis der Zustand verlassen oder die Transition vollendet ist.</li>
+</ul>
+<hr />
+<h2 id="zustandsubergangsdiagramm_1">Zustandsübergangsdiagramm</h2>
+<p>Beispiel einer Maschinentürsteuerung
+<img alt="bg right h:550" src="../images/Zustandsuebergangsdiagramm.png" /></p>
+<hr />
+<h4 id="info">Info</h4>
+<p>Da es in dieser Prozessbeschreibung mehrere Transitionen pro Zustand
+geben kann und diese auch gleichzeitig zutreffen können ist eine
+Priorisierung der Übergänge notwendig. Dies kann durch aufsteigende
+Nummerierung der Pfeile festgelegt werden. Wobei 1 die höchste Priorität
+ist.</p>
+<p>Um beim Start der State Machine aus einem definierten Zustand zu
+starten, wird dieser durch einen gestrichelten Pfeil aus dem Nichts
+gekennzeichnet. Dieser Zustand wird normalerweise mit der Zustandsnummer
+0 nummeriert.</p>
+<hr />
+<h4 id="info_1">Info</h4>
+<p>Bei Störungen oder ähnlichem kann es notwendig sein, Sprunghaft den
+Zustand zu wechseln. Der Zielzustand, z.B. Fehlerzustand, muss von allen
+Zuständen aus erreichbar sein. Diese Art der Transition wird als
+Any-Transition bezeichnet und mit einem durchgehenden Pfeil aus dem
+Nichts in den Zustand markiert. Diese Transition sollte immer mit
+höherer Priorität als die Transitionen zwischen den Zuständen versehen
+sein. Um nach Aufhebung der Störung wieder mit dem Prozess fortfahren zu
+können, gibt es Return-Transitionen, welche durch einen Merker den
+Zustand vor der Any-Transition gespeichert haben. Die Priorität dieser
+Transition muss nicht zwangsläufig höherer ausfallen wie die der
+allgemeinen Schrittkette. </p>
+<hr />
+<h2 id="virtuelle-inbetriebnahme">Virtuelle Inbetriebnahme</h2>
+<ul>
+<li>Die virtuelle Inbetriebnahme (VIB) ermöglicht den virtuellen Durchlauf des Inbetriebnahmeprozesses, noch bevor physische Anlagenkomponenten vorhanden sind.</li>
+<li>Diese Methode bezieht sich auf die Simulation und Überprüfung von Anlagenprozessen und -steuerungen in einer virtuellen Umgebung.</li>
+<li>Software-Tools bilden alle relevanten Aspekte einer Produktionsanlage virtuell nach, einschließlich Steuerungen, Sensoren, Aktoren und mechanischer Komponenten.</li>
+<li>Früherkennung von Fehlern und Problemen im Steuerungs- und Automatisierungssystem vor der physischen Installation hilft, teure Nachbesserungen zu vermeiden.</li>
+<li>Die Simulation ermöglicht die Optimierung und den Test von Steuerungsprogrammen, um eine effiziente und fehlerfreie Funktionalität sicherzustellen.</li>
+<li>Die Methode ermöglicht Schulungen und Training für das Bedienpersonal vor der physischen Anwesenheit der Anlage.</li>
+</ul>
+<hr />
+<h3 id="einsatzbereich-der-vib">Einsatzbereich der VIB</h3>
+<ul>
+<li>Die virtuelle Inbetriebnahme wird in verschiedenen Branchen wie der Automobilindustrie, Luft- und Raumfahrt, Prozessindustrie und Fertigung eingesetzt.</li>
+<li>Integration von Product Lifecycle Management (PLM)-Systemen für eine nahtlose Verbindung zwischen virtueller und realer Umgebung.</li>
+<li>Früherkennung und Behebung von Fehlern sowie Optimierung von Steuerungsprogrammen durch diese Methode.</li>
+<li>Effiziente und risikoarme Entwicklung, Validierung und Inbetriebnahme von Produktionsanlagen.</li>
+</ul>
+<hr />
+<h3 id="xil-x-in-the-loop">XiL (X in the Loop)</h3>
+<ul>
+<li>Abkürzungen MiL, SiL, HiL und AT configuration sind mit verschiedenen Phasen der virtuellen Inbetriebnahme verbunden und repräsentieren unterschiedliche Testebenen.</li>
+</ul>
+<p>&emsp;&emsp; &emsp; &emsp; <img alt="h:400" src="../images/VirtuelleInbetriebnahme.JPG" /></p>
+<hr />
+<p><strong>MiL - Model-in-the-Loop</strong></p>
+<p>MiL bezieht sich auf die Testebene, bei der das Modell der
+Steuerungssoftware in einer Simulationsumgebung getestet wird, noch
+bevor die reale Hardware verfügbar ist. Hier wird das Simulationsmodell
+des Steuerungssystems verwendet, um die Funktionalität und das Verhalten
+der Software zu überprüfen.</p>
+<hr />
+<p><strong>SiL - Software-in-the-Loop</strong></p>
+<p>Bei SiL wird die Testebene erreicht, wenn die Software in einer
+Simulationsumgebung auf ihre Funktionalität überprüft wird. Hierbei wird
+das reale Steuergerät oder die Hardware-Schnittstelle simuliert, um die
+Wechselwirkung zwischen der Software und der Hardware zu testen.</p>
+<hr />
+<p><strong>HiL - Hardware-in-the-Loop</strong></p>
+<p>HiL bezieht sich auf die Testebene, bei der die reale Hardware in einer
+physikalischen Simulation integriert wird. Hier wird die
+Steuerungssoftware mit der Simulierten Hardware verbunden, um das
+Zusammenspiel in einer realistischen Umgebung zu überprüfen. Dies
+ermöglicht eine detaillierte Verifikation der Steuerungssoftware in
+Bezug auf die physischen Hardwarekomponenten.</p>
+<hr />
+<p><strong>AT configuration - Acceptance Test Configuration</strong></p>
+<p>AT configuration bezieht sich auf die Konfiguration der Akzeptanztests.
+In dieser Phase wird die virtuelle Inbetriebnahme genutzt, um
+sicherzustellen, dass das Gesamtsystem, bestehend aus Hard- und
+Software, die gestellten Anforderungen erfüllt. Dies ist die letzte
+Stufe vor der physischen Inbetriebnahme der Anlage.</p>
+<p>Zusammengefasst spiegeln diese Abkürzungen die schrittweise Entwicklung
+und Verfeinerung der virtuellen Inbetriebnahme wider, beginnend mit dem
+Modelltest (MiL), über den Softwaretest (SiL), den Hardwaretest (HiL)
+bis hin zur Akzeptanzprüfung (AT configuration) des Gesamtsystems. Diese
+Schritte helfen dabei, Fehler frühzeitig zu erkennen, die Software zu
+optimieren und die Gesamtzuverlässigkeit der Anlage sicherzustellen,
+bevor diese physisch aufgebaut wird.</p>
+<hr />
+<h1 id="basisaufgaben-10-punkte-mech-wing">Basisaufgaben - 10 Punkte (MECH &amp; WING)</h1>
+<p>Diese Beispiele dienen zur Erhöhung des Verständnisses der bisherigen
+Inhalte und sollen direkt Einblicke in eine praktische Umsetzung geben.
+Im ersten Beispiel wird die Vereinzelung der Teaching Factory
+beschrieben. Das zweite Beispiel dient der Erstellung einer
+Betriebszustandsanzeige in Form einer Ampelleuchte. Bitte beachten Sie,
+dass eine zeitnahe Umsetzung von großem Vorteil ist, da die hier
+besprochenen Inhalte in den nächsten Kapiteln verstanden werden müssen.</p>
+<hr />
+<h2 id="vereinzelung">Vereinzelung</h2>
+<p>Die Vereinzelung ist der erste Arbeitsschritt im Abfüllprozess der
+Teaching Factory. Die hier gezeigte Implementierung und das zu Grunde
+liegende Konzept können mit wenigen Anpassungen für alle
+Vereinzelungsprozesse verwendet werden. Zur Umsetzung dieses Beispiel
+wird der Automatisierungsprozess in sechs Schritte unterteilt. Durch
+diese Vorgangsweise können auch alle weiteren Prozesse automatisiert
+werden. Die einzelnen Schritte sind:</p>
+<hr />
+<ul>
+<li>
+<p><strong>Prozessschema erstellen (Anlagendesign)</strong>, dabei soll die allgemeine
+    Funktionsweise bildlich dargestellt und alle Komponenten mit Namen
+    versehen werden. Der Prozess kann wörtlich beschrieben werden.</p>
+</li>
+<li>
+<p><strong>Ablaufdiagramm erstellen (Anlagenablauf)</strong>, aus dem Prozessschema soll
+    ein Ablauf definiert werden. Hier ist speziell auf die Reihenfolge
+    und Prozessverzweigungen Rücksicht zu nehmen. Durch die
+    Namensvergebung der Komponenten ist eine eindeutige Zuordnung
+    zwischen Prozessschema und Ablaufdiagramm vorhanden.</p>
+</li>
+<li>
+<p><strong>Sensor- und Aktuatorauswahl (Anlagenauslegung)</strong>, durch die Auswahl
+    der Sensoren und Aktuatoren sind die notwendigen Elektrischen
+    Signale bekannt.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>Auswahl der E/A-Geräte (Anlagensteuerung)</strong>, mit der Signalliste der
+    Sensoren und Aktuatoren können passende E/A-Geräte definiert werden.</p>
+</li>
+<li>
+<p><strong>SPS-Programmierung (Anlagenprogrammierung)</strong>, mit Hilfe des
+    Ablaufdiagramms und der Signalliste kann jeder Schritt im Prozess
+    mit den dazugehörenden Signalzuständen beschrieben und in ein
+    Zustandsübergangsdiagramm überführt werden. Dieses Diagramm dient zu
+    Programmierunterstützung.</p>
+</li>
+<li>
+<p><strong>Prozess und Programmoptimierung (Anlagenoptimierung)</strong>, der Prozess
+    und das Programm können validiert und optimiert werden nachdem der
+    Prozess automatisiert wurde.</p>
+</li>
+</ul>
+<hr />
+<p><strong>1. Prozessschema erstellen (Anlagendesign)</strong></p>
+<ul>
+<li>Das Schema der Vereinzelung, dargestellt in nachstehender Abbildung, umfasst:</li>
+<li>Den vertikalen Speicherbereich, der die Teileförderung durch Gravitation ermöglicht.</li>
+<li>Die Vereinzelungskammer, die durch zwei Schleusen begrenzt ist.</li>
+<li>Notwendige Sensoren für die Teileerkennung.</li>
+<li>Ein Abtransportsystem, dargestellt als Förderband, das in anderen Anlagen durch unterschiedliche Komponenten wie z.B. eine Rutsche ersetzt werden kann.</li>
+</ul>
+<hr />
+<h3 id="schema-der-vereinzelung">Schema der Vereinzelung</h3>
+<p><img alt="bg right:70% w:550" src="../images/Schemata_Vereinzelung.png" /></p>
+<hr />
+<h3 id="ablaufbeschreibung">Ablaufbeschreibung</h3>
+<ul>
+<li>Ausgangszustand: Der Speicher wird manuell mit Flaschen befüllt, und beide Schleusen befinden sich in geschlossener Position.</li>
+<li>Die Sensoren "Flaschenkopf" und "Flasche in Speicher" detektieren eine korrekt positionierte Flasche durch die Signalkombination "Flaschenkopf" = FALSE und "Flasche in Speicher" = TRUE.</li>
+<li>Die erste Schleuse kann geöffnet werden, bis der Sensor "Flasche in Kammer" eine Flasche erkennt.</li>
+<li>Nach dem Erkennen wird die obere Schleuse wieder geschlossen.</li>
+<li>Sobald die obere Schleuse geschlossen ist, kann die untere Schleuse geöffnet werden und wird wieder geschlossen, wenn die Flasche die Kammer verlassen hat.</li>
+<li>Damit ist der Ausgangszustand wieder erreicht, und der Prozess kann erneut beginnen.</li>
+</ul>
+<hr />
+<p><strong>2. Ablaufdiagramm erstellen (Anlagenablauf)</strong></p>
+<ul>
+<li>Um den Prozess von menschlicher Sprache in Maschinensprache zu überführen, bietet sich die Erstellung eines Ablaufdiagramms an.</li>
+<li>Das Ablaufdiagramm ist in nachstehender Abbildung dargestellt und umfasst drei Symboltypen:</li>
+</ul>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; <img alt="h:200" src="../images/Ablaufdiagramm_Symbole.PNG" /></p>
+<h2 id="-fur-die-meisten-ablaufdiagramme-sind-diese-symbole-ausreichend-zusatzliche-symbole-fur-zum-beispiel-datenspeicherung-oder-meldungen-konnen-bei-bedarf-erganzt-werden">- Für die meisten Ablaufdiagramme sind diese Symbole ausreichend. Zusätzliche Symbole, für zum Beispiel Datenspeicherung oder Meldungen, können bei bedarf ergänzt werden.</h2>
+<h3 id="ablaufdiagramm-vereinzelung">Ablaufdiagramm Vereinzelung</h3>
+<p><img alt="bg right:50% h:550" src="../images/Ablaufdiagramm_Vereinzelung.PNG" /></p>
+<hr />
+<ul>
+<li>Der Vereinzelungsprozess besteht aus vier Arbeitsschritten, da jede Schleuse einmal geöffnet und geschlossen werden muss.</li>
+<li>Es gibt drei Zustandsabfragen, wobei die letzten beiden in den vorherigen Arbeitsschritt zurückkehren. Somit gibt es keine Prozessverzweigung, sondern ein Arbeitsschritt wird so lange ausgeführt, bis eine Änderung der Abfrage erfolgt.</li>
+<li>Bei der ersten Abfrage erfolgt eine Art Prozessabzweigung, bei der eine Fehlermeldung für nicht vorhandene Flaschen angezeigt wird.</li>
+<li>Diese Fehlerbehandlung wird vorerst vernachlässigt und später im Kapitel zur Fehlerbehandlung wieder aufgenommen.</li>
+<li>Eine Mischung von Prozessprogramm und Fehlerbehandlungsprogrammen führt zu einem unübersichtlichen Code und erfordert daher eine andere Vorgehensweise.</li>
+</ul>
+<hr />
+<p><strong>3. Sensor- und Aktuatorauswahl (Anlagenauslegung)</strong></p>
+<ul>
+<li>Die Flaschenförderung im Speicher wird durch Gravitation realisiert, wobei alternative Methoden wie die Verwendung von Förderbändern möglich sind.</li>
+<li>Es ist wichtig, zwischen aktiven und passiven Fördersystemen zu unterscheiden, da dies einen Einfluss auf die erforderlichen E/A-Geräte hat.</li>
+<li>Die Separation der Flaschen erfolgt durch zwei Schleusen, aber auch ein Drehtisch mit einer Ausnehmung für eine Flasche könnte genutzt werden.</li>
+<li>Sowohl lineare als auch rotierende Antriebe können als Aktuatoren für die Separation dienen, wobei es zahlreiche Ausführungsvarianten für beide Kategorien gibt.</li>
+<li>Die Flaschenförderung nach der Vereinzelung kann entweder durch eine rutschfähige Bahn als passives Element oder durch ein Förderband mit einem entsprechenden Aktor als aktives Element implementiert werden.</li>
+</ul>
+<hr />
+<ul>
+<li>Die Detektion von Flaschen bietet diverse Möglichkeiten, bei denen unterschiedliche Sensoren einsetzbar sind oder sogar auf Sensoren verzichtet werden könnte, was jedoch die Steuerbarkeit der Anlage einschränken würde.</li>
+<li>Die Umsetzung des Prozesses durch die Auswahl verschiedener Wirkprinzipien, Aktuatoren und Energieversorgungsformen ermöglicht eine facettenreiche Gestaltung der Anlage.</li>
+<li>In nachstehender Tabelle sind die gewählten Sensoren und Aktoren für die Vereinzelung nach dem Schema der Vereinzelung, aus vorherigen Abschnitt, aufgelistet.</li>
+</ul>
+<hr />
+<h4 id="sensor-aktor-liste">Sensor / Aktor - Liste</h4>
+<p><img alt="" src="../images/SensorAktorListe.PNG" /></p>
+<hr />
+<p><strong>4. Auswahl der E/A-Geräte (Anlagensteuerung)</strong></p>
+<ul>
+<li>Für die im technischen System vorhandenen digitale Ein- und Ausgänge können passende E/A-Geräte ausgewählt werden.</li>
+<li>Sensor-Signale können mit einer digitalen Eingangsklemme in die Steuerung integriert werden, wobei auf den Prellschutz in der Eingangsklemme verzichtet werden kann, da es sich um nichtmechanische Sensoren handelt.</li>
+<li>In diesem Beispiel wird eine 8-Kanal Klemme verwendet, da es in den weiteren Komponenten der Teaching Factory zusätzliche digitale Eingangssignale gibt, die auf der selben Klemme angeschlossen werden.</li>
+<li>Bei den bipolaren 24 V Signalen ist die Auswahl etwas komplexer. Während des Ausfahrens der Zylinder muss Leitung A mit 24 V versorgt und Leitung B an 0 V angeschlossen sein. Um den Zylinder wieder einfahren zu können, muss eine Umpolung in den Leitungen A und B erfolgen.</li>
+<li>Dieses Verhalten kann durch eine Relaisschaltung mit vier Relais umgesetzt werden, wie in folgender Abbildung dargestellt.</li>
+</ul>
+<hr />
+<h3 id="relaisschaltung-fur-2-e-zylinder">Relaisschaltung für 2 E-Zylinder</h3>
+<p><img alt="bg right h:600" src="../images/Relaisschaltung.PNG" /></p>
+<hr />
+<h4 id="klemmen-variablen-verknupfung">Klemmen-Variablen Verknüpfung</h4>
+<ul>
+<li>Die Kanäle 1 und 2 der beiden Klemmen EL 2652 müssen mit den Aktuatorenanschlüssen verdrahtet werden.</li>
+<li>Dadurch wird Kanal 1 der Klemme 11 (K11) die Funktion zugewiesen, den zweiten Aktor zu öffnen, wenn das Relais geschaltet wird. Voraussetzung dafür ist, dass Kanal 1 der Klemme 12 (K12) nicht betätigt wird und somit das Relais auf 0 V durchschaltet.</li>
+<li>Gleiches gilt für Aktor 1 und Kanal 2 an der Klemme 11 und 12.</li>
+<li>Die Zuweisung aller Kanäle der Klemmen ist in nachstehender Tabelle ersichtlich.</li>
+<li>Auch die DI's für die Klemme EL1018 werden dort aufgelistet.</li>
+<li>Diese Prozesssignale und alle weiteren Prozesssignale der Teaching Factory werden innerhalb der SPS-Steuerung in einer Globalen Variablen Liste <em>IFC_HW</em> zusammengefasst, was das Hardware Interface bildet und die Signale der Anlage mit den Variablen des Steuerungsprogramms verknüpft.</li>
+</ul>
+<hr />
+<h4 id="klemmen-variablen-verknupfung_1">Klemmen-Variablen Verknüpfung</h4>
+<p><img alt="" src="../images/KlemmenVariablenVerkn%C3%BCpfung.PNG" /></p>
+<hr />
+<p><strong>5. SPS-Programmierung (Anlagenprogrammierung)</strong></p>
+<ul>
+<li>Der Prozess der Vereinzelung wird durch einen Funktionsblock implementiert, der für mehrere Vereinzelungen einsetzbar ist.</li>
+<li>Die E/A-Signale aus obiger Tabelle (Klemmen-Variablen Verknüpfung) werden nicht Eins zu Eins als E/A-Variablen für diesen Funktionsblock verwendet.</li>
+<li>Stattdessen werden die Schaltzustände der Ezylinder durch zwei bool'sche Variablen <em>bGate1</em> und <em>bGate2</em> ersetzt.</li>
+<li>Somit wird der Funktionsblock hardwareseitig abgegrenzt, um für andere Aktuatortypen einsetzbar zu bleiben. </li>
+<li>Die Schleusen sind im Zustand <em>False</em> von <em>bGate1</em> oder <em>bGate2</em> geschlossen und im Zustand <em>True</em> für <em>bGate1</em> oder <em>bGate2</em>  geöffnet.</li>
+</ul>
+<hr />
+<ul>
+<li>Die Zuordnung zu den globalen Variablen aus der <em>IFC_HW</em> und somit den tatsächlichen Relaiszuständen erfolgt nach Aufruf des Funktionsblocks durch eine weitere Funktion im übergeordneten, anwendungsspezifischen Hauptprogramm.</li>
+<li>Um sicherzustellen, dass der Prozess gemäß dem Ablaufdiagramm funktioniert, müssen die Ausgangszustände für jeden Arbeitsschritt definiert werden.</li>
+<li>Die Signale müssen den Abfragen entsprechend zugeordnet werden, damit der Zustand im richtigen Moment wechselt.</li>
+<li>Diese Zuordnung der Zustände und Signale wird in Abbildung nachstehender Abbildung dargestellt, wobei auch eine Durchnummerierung nach Zustandswechsel erfolgt.</li>
+</ul>
+<hr />
+<h4 id="zustandssignalliste-ohne-signale">Zustandssignalliste (ohne Signale)</h4>
+<p><img alt="bg right:70% h:600" src="../images/Zustandssignalliste1.PNG" /></p>
+<hr />
+<h4 id="zustandssignalliste">Zustandssignalliste</h4>
+<p><img alt="bg  h:600" src="../images/Zustandssignalliste.PNG" /></p>
+<hr />
+<p><img alt="bgleft  h:600" src="../images/Zustandssignalliste.PNG" />
+<img alt="bg right:50% h:550" src="../images/Ablaufdiagramm_Vereinzelung.PNG" /></p>
+<hr />
+<h3 id="erstellung-des-zustandsubergangsdiagramms">Erstellung des Zustandsübergangsdiagramms</h3>
+<ul>
+<li>Die Implementierung der Prozessschrittkette in Strukturierten Text (ST) wird durch das Zustandsübergangsdiagramm erleichtert.</li>
+<li>Da es sich um ein einfaches Beispiel handelt und die Zustandsvariablen auf zwei bool'sche Werte beschränkt sind, können diese in die Zustände S1 bis S5 eingetragen werden.</li>
+<li>Bei komplexeren Systemen ist es oft übersichtlicher, die Zustandsvariablen nur in der Zustandsliste anzuführen.</li>
+</ul>
+<hr />
+<h4 id="zustandsubergangsdiagramm-der-vereinzelung">Zustandsübergangsdiagramm der Vereinzelung</h4>
+<p><strong>Ausgänge:</strong>
+<code>bGate1(2) := False;</code> &#8594; Schleuse zu
+<code>bGate1(2) := True;</code> &#8594; Schleuse offen
+<strong>Eingänge:</strong>
+<code>bSens1 := True;</code> &#8594; Flasche in Kammer
+<code>bSens2 := True;</code> &#8594; Flasche in Speicher
+<strong>Interne Variablen:</strong>
+<code>fbTimer : TON</code>
+<code>nState : INT</code></p>
+<p><img alt="bg right h:580" src="../images/Zustandsuebergangsdiagramm_Vereinzelung.PNG" /></p>
+<hr />
+<h4 id="programmuberfuhrung">Programmüberführung</h4>
+<ul>
+<li>Die Programmüberführung aus dem Zustandsübergangsdiagramm in Strukturierten Text (ST) erfolgt durch die Verwendung einer CASE-Anweisung.</li>
+<li>Die CASE-Anweisung dient der Auswahl von 1-n unterschiedlichen Programmteilen basierend auf einer INTEGER Variable.</li>
+<li>Für das Programmieren einer State Machine kann die Zustandsnummer S1-Sn als Auswahlvariable verwendet werden.</li>
+<li>Im Programmteil werden die Signalzustände entsprechend gesetzt.</li>
+<li>Zum Verlassen eines Zustands wird eine einfache IF-Anweisung verwendet, die die Eingangsvariablen der Übergangsbedingung abfragt.</li>
+<li>Sobald die Übergangsbedingung erfüllt ist, werden die Aktionen der IF-Abfrage ausgeführt, wie beispielsweise "on exit" Aktionen und das setzen der Auswahlvariable auf die neue Zustandsnummer.</li>
+<li>Ein Beispiel hierfür ist der Zustand S1 mit der Auswahlvariable nState: INT := 1.</li>
+</ul>
+<hr />
+<h4 id="programmuberfuhrung-mit-case-anweisung">Programmüberführung mit CASE-Anweisung</h4>
+<p><div class="highlight"><pre><span></span><code> CASE nState OF
+ 1: // Start
+    // Zustand
+    bGate1 := FALSE;
+    bGate2 := FALSE
+
+    IF bSens2 THEN
+        nState := 2; // oeffnen Schleuse oben
+    END_IF
+
+ 2: // oeffnen Schleuse oben    
+    ...
+
+ n: // n-ter State 
+ END_CASE
+ ```
+
+---
+
+#### CASE-Anweisung mit Enumerationsinstanzen
+</code></pre></div>
+ CASE State OF
+ State.Start: 
+    // Zustand
+    bGate1 := FALSE;
+    bGate2 := FALSE</p>
+<pre><code>IF bSens2 THEN
+    State := State.OpenGate1; 
+END_IF
+</code></pre>
+<p>State.OpenGate1: <br />
+    ...</p>
+<p>n: // n-ter State 
+ END_CASE
+ ```</p>
+<hr />
+<h3 id="hardware-schnittstelle">Hardware Schnittstelle</h3>
+<ul>
+<li>Aufgrund unzureichender Ausgänge dieses Funktionsblocks zur Ansteuerung der Relais muss ein weiterer Funktionsbaustein erstellt werden.</li>
+<li>Dieser Funktionsbaustein soll die Relaissignale gemäß der Tabelle "Signalliste" ausgeben.</li>
+<li>Die Wahrheitstabelle für einen Aktor ergibt sich aus dieser Tabelle.</li>
+<li>Da zwei Ausgangswerte benötigt werden, kann keine einfache Funktion verwendet werden.</li>
+<li>Ziel des Funktionsbausteins ist es, die Ablaufsteuerung für allgemeine Vereinzelungen zu ermöglichen und die anwendungsspezifischen Signale in der übergeordneten Steuerung zu setzen.</li>
+</ul>
+<hr />
+<h4 id="wahrheitstabelle-relaissteuerung">Wahrheitstabelle Relaissteuerung</h4>
+<p><img alt="h:250" src="../images/WahrheitstabelleRelaisteuerung.PNG" /></p>
+<hr />
+<h4 id="relaissteuerung-fb">Relaissteuerung FB</h4>
+<div class="highlight"><pre><span></span><code>FUNCTION_BLOCK FB_RCrtl
+VAR_INPUT
+    bIN : BOOL;
+END_VAR
+VAR_OUTPUT
+    bQ1 : BOOL;
+    bQ2 : BOOL;
+END_VAR
+-------------------------------------------------
+
+IF bIn THEN
+    bQ1 := TRUE;
+    bQ2 := FALSE;
+ELSIF NOT bIn Then
+    bQ1 := FALSE;
+    bQ2 := TRUE;
+END_IF
+</code></pre></div>
+<hr />
+<p><strong>6. Prozess- und Programmoptimierung (Anlagenoptimierung)</strong></p>
+<ul>
+<li>Im aktuellen Steuerprogramm der Vereinzelung zeigen sich zwei ungünstige Verhaltensweisen.</li>
+<li>Erstens erfolgt die zyklische Vereinzelung der Flaschen ohne externe Kontrolle.</li>
+<li>Zweitens besteht die Möglichkeit, dass eine Flasche bei einer Fehlfunktion des Förderbandes in der unteren Schleuse stecken bleibt, was zu Beschädigungen führen kann.</li>
+<li>Um diese Probleme zu adressieren, wird in Abbildung 26 eine optimierte Ablaufsteuerung vorgeschlagen.</li>
+<li>Diese Optimierung beinhaltet zwei zusätzliche Eingangssignale, um die Vereinzelung zu initiieren und den eigentlichen Vereinzelungsprozess zu starten.</li>
+</ul>
+<hr />
+<ul>
+<li>Zur Minimierung des Risikos von Flaschenklemmungen wird die Ablaufsteuerung um einen Sensor erweitert.</li>
+<li>Ideal wäre ein Näherungssensor am ersten Abfüllplatz, der die Flasche außerhalb der Kammer detektieren kann.</li>
+<li>Sobald die Flasche diese Stelle erreicht, kann der Vereinzelungsprozess abgeschlossen werden.</li>
+<li>Eine zusätzliche Erweiterung des Zustandsgraphen betrifft die Betriebszustandsvariablen.</li>
+<li>Jeder Prozesszustand befindet sich in einem der definierten Betriebszustände.</li>
+<li>Diese Betriebszustände können beispielsweise als Off, Init, Ready, Production, Done, Error, Stop oder Setup festgelegt werden.</li>
+</ul>
+<hr />
+<ul>
+<li>Sie sind einheitlich für die gesamte Anlage, einschließlich einzelner Komponenten, Aktoren und Sensoren.</li>
+<li>Die Betriebszustände dienen als standardisierte Schnittstelle zwischen übergeordneten und untergeordneten Steuereinheiten.</li>
+<li>Sie werden als Ausgang an eine übergeordnete Steuereinheit zurückgemeldet, um den Gesamtprozess der Anlage zu steuern.</li>
+<li>Wenn die Produktion gestoppt werden soll, kann das bEnable Signal entzogen werden.</li>
+<li>Dadurch wird der Prozesszustand "Off" aktiviert, mit dem die Produktion beendet wird.</li>
+</ul>
+<hr />
+<h3 id="zustandubergangsdiagramm-optimiert">Zustandübergangsdiagramm Optimiert</h3>
+<p><img alt="bg  right:60%  h:500" src="../images/Zustandsuebergangsdiagramm_VereinzelungOpt.PNG" /></p>
+<hr />
+<h3 id="optimierung-des-steuerungscodes">Optimierung des Steuerungscodes</h3>
+<ul>
+<li>Die vorgestellten Erweiterungen der Ablaufsteuerung können als ein allgemeines Framework für Funktionsbausteine auf den Ebenen Modul-, Prozess- und Hardware betrachtet werden.</li>
+<li>In einem späteren Kapitel wird detailliert aufzeigen, wie das Ebenenkonzept aufgebaut ist und welche Unterschiede zwischen den einzelnen Ebenen bestehen.</li>
+<li>Als Ergebnis dieser Erweiterungen ist festzustellen, dass alle Funktionsbausteine gleichartig angesteuert werden können und ein einheitliches Feedback liefern, wenn ein Prozess startbereit oder abgeschlossen ist.</li>
+<li>Diese Harmonisierung führt zu einem reduzierten Programmieraufwand.</li>
+<li>Die Verwendung eines definierten Frameworks ermöglicht zudem die Aufteilung der Programmierung auf mehrere Entwickler, ohne dass ein erheblicher Abstimmungsaufwand erforderlich ist.</li>
+</ul>
+<hr />
+<h1 id="betriebszustandsampel">Betriebszustandsampel</h1>
+<h2 id="teil-von-basisaufgabe-1">Teil von Basisaufgabe 1</h2>
+<ul>
+<li>Zweck: Die Betriebszustandsampel soll den allgemeinen Anlagenzustand veranschaulichen und den Bedienern der Anlage einen direkten Überblick über den Betriebszustand ermöglichen.</li>
+<li>Funktion: Ein spezieller Funktionsbaustein wird benötigt, um definierte Leuchtsignale zu generieren, die den Betriebszustand anzeigen.</li>
+<li>Normative Grundlage: Die Definition der Zusammenhänge zwischen den Leuchtsignalen und dem Betriebszustand orientiert sich an der Norm EN ISO 13849-1.</li>
+<li>Signalvielfalt: Da acht verschiedene Betriebszustände durch nur drei Leuchtfarben dargestellt werden müssen, sind Leucht- und Blinksignale sowie zweifarbige Signale erforderlich.</li>
+<li>Tabelle: Die genauen Zusammenhänge zwischen den Leuchtsignalen und den Betriebszuständen sind in nachstehender Tabelle aufgeführt.</li>
+</ul>
+<hr />
+<h2 id="leuchtsignaltabelle">Leuchtsignaltabelle</h2>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; <img alt="h:550" src="../images/Leuchtsignale.PNG" /></p>
+<hr />
+<h2 id="implementierung-der-betriebszustandsampel">Implementierung der Betriebszustandsampel</h2>
+<ul>
+<li>DUT-Typ (Data Unit Type): Ein benutzerdefinierter Datentyp vom Typ Enumeration wird für die Implementierung der Zustandsampel erzeugt.</li>
+<li>Funktionsbaustein-Eingang: Der erstellte DUT-Typ repräsentiert die Betriebszustände und wird als Eingang in den Funktionsbaustein verwendet, wie in Abbildung unten dargestellt.</li>
+<li>Zuweisung der Leuchtsignale: Die Ausgänge des Funktionsbausteins werden gemäß der oben genannten Tabelle über eine Case-Anweisung den entsprechenden Leuchtsignalen zugeordnet.</li>
+<li>Das Blinksignal kann als Funktionsbaustein ähnlich wie im Einführungsbeispiel ohen Starttrigger verwendet werden.</li>
+</ul>
+<hr />
+<h2 id="blockschaltbild-betriebszustandsampel">Blockschaltbild Betriebszustandsampel</h2>
+<p><img alt="" src="../images/BlockschaltbildStatusLampe.PNG" /></p>
+<hr />
+<h3 id="enumeration">Enumeration</h3>
+<ul>
+<li>Definition einer Enumeration: Eine Enumeration ist eine Liste von aussagekräftigen Elementen, die für den Programmierer leicht lesbar sind, da sie textuelle Elementnamen aufweisen. Jedes Element wird entweder automatisch eine Ganzzahl zugewiesen, beginnend bei null und inkrementell um eins ansteigend, oder kann manuell zugewiesen werden. Diese Zahl dient als eindeutige ID der Enumeration.</li>
+<li>Konfiguration durch erweiterte Attribute: Enumerationen können durch erweiterte Attribute wie 'strict', 'qualified only' oder 'to string' konfiguriert werden.</li>
+</ul>
+<hr />
+<h3 id="enumeration_1">Enumeration</h3>
+<ul>
+<li>'qualified only'-Attribut: Wenn das 'qualified only'-Attribut gesetzt ist, kann ein Element aus einer Enumeration nur zusammen mit dem Geltungsbereich aufgerufen werden. Dadurch wird der Programmierer gezwungen, den Geltungsbereich beim Aufruf des Elements anzugeben, um Zweideutigkeiten mit anderen Variablen zu vermeiden.</li>
+<li>'strict'-Attribut: Durch das 'strict'-Attribut wird festgelegt, dass nur Enum-Elemente zugewiesen werden dürfen. Dadurch können Fehler vermieden werden, die durch die Zuweisung von beliebigen Ganzzahlen entstehen können, auch wenn kein Bezeichner dafür vergeben ist.</li>
+<li>'to string'-Attribut: Das 'to string'-Attribut ermöglicht eine direkte Stringausgabe der Bezeichner der Enumeration, was beim Debugging hilfreich ist. Dadurch wird die Integration in eine HMI erleichtert und das Lesen der Enumeration im Online-Modus während der Programmausführung erleichtert.</li>
+</ul>
+<hr />
+<h3 id="beispiel-einer-enumeration">Beispiel einer Enumeration</h3>
+<div class="highlight"><pre><span></span><code>{attribute &#39;qualified_only&#39;}
+{attribute &#39;strict&#39;}
+TYPE E_ColorBasic :
+(
+    eRed, 
+    eYellow,
+    eGreen := 10,
+    eBlue,
+    eBlack
+) // Basic data type is INT, default initialization for all E_ColorBasic  variables is eYellow
+;
+END_TYPE
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

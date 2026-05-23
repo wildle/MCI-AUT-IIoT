@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/section_8/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Section 8 - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Section 8";
+        var mkdocs_page_input_path = "section_8.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/section_8/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Section 8</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="automatisierungstechnik">Automatisierungstechnik</h1>
+<p><strong>Fehlerbehandlung Allgemein</strong>
+<strong>Fehlertypen</strong>
+<strong>Fehleranalyse</strong>
+<strong>Fehlerdetektionsbausteine</strong></p>
+<hr />
+<h1 id="fehlerbehandlung">Fehlerbehandlung</h1>
+<hr />
+<h2 id="kategorisierung-der-fehler">Kategorisierung der Fehler</h2>
+<p><img alt="h:500" src="../images/Kategorisierung_Fehlerbehandlung.PNG" /></p>
+<hr />
+<h3 id="betriebsuberwachung">Betriebsüberwachung</h3>
+<ul>
+<li>Betriebsdauer </li>
+<li>Wartungsplanung</li>
+<li>Instandsetzung und Komponenten Historie </li>
+</ul>
+<hr />
+<h3 id="systemuberwachung">Systemüberwachung</h3>
+<ul>
+<li>Komponentenlaufzeiten</li>
+<li>Fehleranalyse von Sensoren und Aktoren</li>
+<li>Systemfehler der Steuerung</li>
+</ul>
+<hr />
+<h3 id="prozessuberwachung">Prozessüberwachung</h3>
+<ul>
+<li>Prozessfehler identifikation</li>
+<li>Anlage gezielt in stillstand setzen</li>
+<li>Produktionswiederherstellungsmaßnahmen</li>
+</ul>
+<hr />
+<h1 id="fehleranalyse">Fehleranalyse</h1>
+<p><strong>FMEA - Failure Mode and Effect Analysis</strong>
+<strong>Fehler Ursachen-Wirkungs-Diagramm</strong>
+<strong>FTA - Fault Tree Analysis</strong></p>
+<hr />
+<h2 id="fmea">FMEA</h2>
+<p>Die Anwendung einer FMEA (Fehlermöglichkeits- und -einflussanalyse) erfolgt in mehreren Schritten und dient dazu, potenzielle Fehler in einem Prozess oder System zu identifizieren, deren Auswirkungen zu bewerten und Maßnahmen zur Fehlervermeidung oder -minimierung zu entwickeln. Hier ist eine Zusammenfassung der wichtigsten Schritte:</p>
+<p><img alt="h:300" src="../images/FMEA-Nadezhda-Kozhedub-AdobeStock-1.jpg" /></p>
+<hr />
+<ol>
+<li><strong>System- oder Prozessanalyse:</strong></li>
+<li>Identifizierung des zu analysierenden Systems oder Prozesses.</li>
+<li>
+<p>Aufteilen in kleinere, handhabbare Teile oder Komponenten.</p>
+</li>
+<li>
+<p><strong>Fehleridentifikation:</strong></p>
+</li>
+<li>Ermitteln potenzieller Fehlerquellen für jede Komponente oder jeden Prozessschritt.</li>
+<li>
+<p>Beschreibung der Fehlerarten, z.B. Ausfall, Fehlfunktion, Abweichung von Spezifikationen.</p>
+</li>
+<li>
+<p><strong>Bewertung der Fehlerfolgen:</strong></p>
+</li>
+<li>Analyse der möglichen Auswirkungen jedes identifizierten Fehlers auf das Gesamtsystem oder den Prozess.</li>
+<li>
+<p>Einstufung der Schwere der Auswirkungen (z.B. auf einer Skala von 1 bis 10).</p>
+</li>
+<li>
+<p><strong>Ursachenanalyse:</strong></p>
+</li>
+<li>Bestimmung der möglichen Ursachen für jeden Fehler.</li>
+<li>Bewertung der Wahrscheinlichkeit des Auftretens der Ursachen (z.B. auf einer Skala von 1 bis 10).</li>
+</ol>
+<hr />
+<ol>
+<li><strong>Entdeckung und Prävention:</strong></li>
+<li>Analyse, wie gut der Fehler durch aktuelle Maßnahmen oder Kontrollen entdeckt werden kann.</li>
+<li>
+<p>Bewertung der Wahrscheinlichkeit, dass der Fehler entdeckt wird, bevor er den Endnutzer erreicht (z.B. auf einer Skala von 1 bis 10).</p>
+</li>
+<li>
+<p><strong>Risikobewertung:</strong></p>
+</li>
+<li>Berechnung des Risikoprioritätszahl (RPZ) durch Multiplikation der Bewertungen für Schwere (S), Auftretenswahrscheinlichkeit (O) und Entdeckungswahrscheinlichkeit (D).</li>
+<li>
+<p>RPZ = S × O × D</p>
+</li>
+<li>
+<p><strong>Maßnahmenplanung:</strong></p>
+</li>
+<li>Identifizierung und Implementierung von Maßnahmen zur Reduktion von Risiken mit hohen RPZ-Werten.</li>
+<li>Maßnahmen können technische Änderungen, Prozessverbesserungen, zusätzliche Tests oder Kontrollen umfassen.</li>
+</ol>
+<hr />
+<ol>
+<li><strong>Überprüfung und Nachverfolgung:</strong></li>
+<li>Überwachung der Wirksamkeit der umgesetzten Maßnahmen.</li>
+<li>Regelmäßige Überprüfung und Aktualisierung der FMEA, um sicherzustellen, dass sie relevant bleibt und neue potenzielle Fehler identifiziert werden.</li>
+</ol>
+<p>Durch die Anwendung der FMEA können Unternehmen proaktiv Risiken managen, die Qualität ihrer Produkte oder Prozesse verbessern und letztendlich Ausfälle und Kosten minimieren.</p>
+<hr />
+<h2 id="fehler-ursache-wirkungs-diagramm">Fehler Ursache-Wirkungs-Diagramm</h2>
+<p><img alt="" src="../images/Ursachen_Wirkungs-Diagramm.jpg" /></p>
+<hr />
+<h3 id="fehler-ursachen-wirkungs-diagramm">Fehler Ursachen-Wirkungs-Diagramm</h3>
+<p>Ermöglicht es die Ursachen zu identifizieren die eine Fehlerauswirkung erzeugen. Hilfreich in der Entwicklung, um gezielt fehlerponteniale einzudämen und während des Betriebs, um schnelle Ursachenerhebungen zu erhalten damit der Fehler ausgebessert werden kann. Speziell wenn menschliches Fehlverhalten die Ursache des Fehlers ist. </p>
+<hr />
+<h2 id="fta">FTA</h2>
+<p><img alt="h:500" src="../images/FTA_Beispiel.PNG" /></p>
+<hr />
+<h3 id="fta-failure-tree-analysis">FTA - Failure Tree Analysis</h3>
+<p>Fehlerzusammenhänge können hier genauer betrachtet werden. Fehlerketten erleichtern die Suche von Fehlerursachen und erhöhen das Verständnis, wie mehrer Fehler in Subsystemen zu einem Fehler im gesamt System führen. </p>
+<hr />
+<h1 id="fehleridentifikation-im-sps-programm">Fehleridentifikation im SPS-Programm</h1>
+<hr />
+<h2 id="separation-des-steuercodes-von-fehlercodes">Separation des Steuercodes von Fehlercodes</h2>
+<p><img alt="bg right:70% h:600 " src="../images/CodeSeparation.PNG" /></p>
+<hr />
+<h2 id="maschineneben">Maschineneben</h2>
+<ul>
+<li>Koordiniert die Betriebszustände durch Bedienereingaben.</li>
+<li>Stellt den Gesamtanlagenzustand dar.</li>
+<li>Fungiert als Zentraler Steuerungsknoten zwischen den unterschiedlichen Steuerungskomponenten. </li>
+</ul>
+<hr />
+<h2 id="zustandsmaschine-des-main-programms">Zustandsmaschine des MAIN-Programms</h2>
+<p><img alt="h:500" src="../images/Maschinenebene_Zustandsmaschine.PNG" /></p>
+<hr />
+<h2 id="error-code-programm">Error Code Programm</h2>
+<ul>
+<li>Wird parallel zum Steuerungscode ausgeführt. </li>
+<li>Beinhaltet alle Überwachungsbausteine der Module und Funktionseinheiten. </li>
+<li>Löst bei bedarf das Stopsignal IFC_HW.bStop aus. </li>
+<li>Managed Fehlercodes und bildet die Schnittstelle zur Fehlermeldung an HMI ab. </li>
+</ul>
+<hr />
+<h2 id="factory-stop-ifc_hwbstop">Factory Stop (IFC_HW.bStop)</h2>
+<ul>
+<li>Mittels der IFC_HW.bStop Variable, soll es möglich sein die Anlage in einen gezielten Stopzustand zu versetzten.</li>
+<li>Notwendig für Fehler mit gefährdung für Anlagen- oder Menschenschäden. </li>
+<li>Auch bei Sicherheitsstops kann der Steuerungscode in den Stopzustand gesetzt werden, um einen Neuanlauf der Anlage zu ermöglichen. </li>
+<li>Zwei unterschiedliche Konzepte werden für das Anhalten durch bStop benötigt. </li>
+</ul>
+<hr />
+<h3 id="prozessebene-modulebenen-stopkonzept">Prozessebene, Modulebenen Stopkonzept</h3>
+<ul>
+<li>In der Prozess- bzw. Modulebene ist der Stop der Anlage relativ einfach umzusetzen. </li>
+<li>
+<p>Ziel ist des den Zustand zu speichern, bei welchem der Stop befehl aufgerufen wurde. Dafür kann die Übergangsbedingung von Zuständen, welche nicht erreicht werden dürfen während eines Aktiven Stopsignals, mit <code>AND NOT IFC_HW.bStop</code> erweitert werden.</p>
+</li>
+<li>
+<p>Somit verhart der Steuerungscode in diesem zustand bis <code>IFC_HW.bStop = False</code> ist und startet im richtigen zustand bei Wiederanlauf der Anlage.</p>
+</li>
+</ul>
+<hr />
+<h3 id="hardwareebnen-stopkonzept">Hardwareebnen Stopkonzept</h3>
+<ul>
+<li>In der Hardwareebene, vorallem bei Motorsteuerungen, kann obiges Konzept nicht eingesetzt werden. Weshalb eine alternative Stragegie notwendig wird. </li>
+<li>Da die Klemmen bei Sicherheitsstops stromfrei geschalten werden ist eine neue Initialisierung notwedig. Zusätzlich müssen die Daten (Position, etc) der Achsen zu Zeitpunkt des Stops gespeichert werden. </li>
+<li>Die Übergangsbedindung wird erweitert durch den Übergang in den Zustand <code>800: // Stop</code> durch z.B.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    IF mcRelative.done THEN
+        nState := nState + 1;
+    ELSIF IFC_HW.bStop then
+        nState := 800; // Stop
+    END_IF 
+</code></pre></div>
+<hr />
+<h3 id="beispiel-neuinitialisierung-manipulator-achse">Beispiel Neuinitialisierung Manipulator Achse</h3>
+<div class="highlight"><pre><span></span><code>800 : // Stop
+    eState := State.Stop;
+    bAxMovAbs := FALSE;
+    bAxHalt := FALSE;
+    bAxReset := FALSE;
+    bAxPower := FALSE;
+
+    IF NOT bStop THEN
+        nState := nState +1; // ReInit
+    END_IF
+
+801 : // ReInit
+    eState := State.Stop;
+    bAxReset := TRUE;
+
+    IF fbReset.Done THEN
+        nState := nState + 1 ; // RePower
+    END_IF
+
+802 : // Repower
+    eState := State.Stop;
+    bAxReset := FALSE;
+    bAxPower := TRUE;
+
+    IF fbPower.Status THEN
+        nState := nState + 1; // Direct Homing
+    END_IF
+
+803 : // Direct Homing
+    eState := State.Stop;
+    bAxHome := TRUE;
+    fbHome.HomingMode := MC_HomingMode.MC_Direct;
+    fbHome.Position := fStopHome;
+
+    IF fbHome.Done THEN
+        nState := nStateMem; // jump back to last running State
+        nStateMem := 0;
+        bAxHome := FALSE;
+    END_IF
+</code></pre></div>
+<hr />
+<h3 id="beispiel-neuinitialisierung-dispenserachsen">Beispiel Neuinitialisierung Dispenserachsen</h3>
+<div class="highlight"><pre><span></span><code>800 : // Stop
+
+    eState := State.Stop;
+    bAxReset := FALSE;
+    bAxMove  := FALSE;
+    bAxPower := FALSE;
+
+        IF NOT bStop THEN
+        nState := nState +1; // ReInit
+    END_IF
+
+801 : // ReInit
+    eState := State.Stop;
+    bAxReset := TRUE;
+
+    IF fbReset.Done THEN
+        nState := nState + 1 ; // RePower
+    END_IF
+
+802 : // Repower
+    eState := State.Stop;
+    bAxReset := FALSE;
+    bAxPower := TRUE;
+
+    IF fbPower.Status THEN
+        nState := nStateMem; // jump back to last running State
+        nStateMem := 0;
+    END_IF
+</code></pre></div>
+<hr />
+<h2 id="factory-stop-reset">Factory Stop Reset</h2>
+<div class="highlight"><pre><span></span><code>IF NOT bEnable THEN 
+    nState := 0; // Not bEnable überschreibt den Stop zustand und setzt ihn auf False
+END_IF
+
+CASE nState OF
+    0: // No Stop Signal
+    bStop := FALSE;
+
+    IF bStopsignal THEN  // kommt von IFC_HW.bStop
+        nState := nState + 1;
+    END_IF
+
+    1: // Factory Stop
+    bStop := TRUE;    // IFC_HW.bStop wird am Ausgang überschrieben
+
+    IF bReset THEN // Reset Schalter am Bedienpanel
+        nState := nState + 1; 
+    END_IF
+
+    2: // Reset Stop Signal
+    bStop := TRUE;
+
+    IF bRestart THEN // Start Knopf am Bedienpanel
+        nState := 0;
+    END_IF
+END_CASE
+</code></pre></div>
+<hr />
+<h2 id="error-interface">Error Interface</h2>
+<ul>
+<li>Das Error Interface dient des Informationsaustausches zwischen den Steuerungsfunktionsblöcken und den Überwachungsfunktionsblöcken. (eState, Zähler, usw.)</li>
+<li>Damit auf den tatsächlichen Speicher der zu übertragenden Variable zugeriffen wird, können Pointer verwedet werden. </li>
+<li>Somit kann das Error Interface als GVL von Pointervariablen ausgeführt werden. </li>
+<li><code>GVL_ErrorInt.eStateVereinzelung := ADR(fbVereinzelung.eState)</code> kann im Modul oder im FB ausgeführt werden, nur so ist die Pointervariable definiert. </li>
+<li>Im Überwachungsbaustein kann nun auf die eState Variable der Vereinzelung durch <code>GVL_Error.eStateVereinzelung^</code> zugegriffen werden. ^ ist dabei der Dereferenzierungsoperator.</li>
+</ul>
+<hr />
+<h2 id="uberwachungsbausteine">Überwachungsbausteine</h2>
+<ul>
+<li>Eingabefehler </li>
+<li>Zustandsfehler</li>
+<li>Ausgabefehler</li>
+<li>Zeitabhängigefehler</li>
+</ul>
+<hr />
+<h3 id="zustandsfehler">Zustandsfehler</h3>
+<p>Flasche am Kopf -&gt; Kann nur in statischen Zuständen überprüft werden</p>
+<p>*) bStop wird gesetzt bei schweren Fehlern.
+Ist dies ein schwerer Fehler mit potentiel katastrophalen Auswirkungen?</p>
+<p><img alt="bg right h:500" src="../images/FlascheAmKopf.PNG" /></p>
+<hr />
+<h3 id="zeitabhangigerfehler">Zeitabhängigerfehler</h3>
+<p><img alt="bg right h:550" src="../images/Zeitabh%C3%A4ngigerfehler.PNG" /></p>
+<hr />
+<h1 id="basisaufgabe">Basisaufgabe</h1>
+<h3 id="fehlerdetektion-fbs-10-punkte">Fehlerdetektion FB's - 10 Punkte</h3>
+<ul>
+<li>Fehleranalyse des Abfüllmoduls.</li>
+<li>Überwachungsbausteine für das Abfüllmodul.</li>
+<li>Keine Stopfunktionalität notwendig.</li>
+</ul>
+<h1 id="optionale-aufgabe">Optionale Aufgabe</h1>
+<h3 id="fehlerbehandlung-20-punkte">Fehlerbehandlung - 20 Punkte</h3>
+<ul>
+<li>Testen der Fehleridentifikation an realer Anlage</li>
+<li>Stopfunktionalität Integriert.</li>
+<li>Testen des Neuanlaufes nach Fehlerquittierung.  </li>
+</ul>
+<hr />
+<h1 id="beispiele-fehleranalyse">Beispiele Fehleranalyse</h1>
+<p><img alt="h:400" src="../images/Bsp1_Fehleranalyse.PNG" /></p>
+<hr />
+<p><img alt="h:550" src="../images/Bsp2_Fehleranalyse.PNG" /></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

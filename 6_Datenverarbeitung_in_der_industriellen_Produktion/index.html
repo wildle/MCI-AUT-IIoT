@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/6_Datenverarbeitung_in_der_industriellen_Produktion/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Theorie & MQTT-Grundlagen - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Theorie \u0026 MQTT-Grundlagen";
+        var mkdocs_page_input_path = "6_Datenverarbeitung_in_der_industriellen_Produktion.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/6_Datenverarbeitung_in_der_industriellen_Produktion/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Theorie & MQTT-Grundlagen</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#projekt">Projekt</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#leistungsbewertung">Leistungsbewertung</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#industrial-internet-of-things">Industrial Internet of Things</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#httpswwwien-dachdeartikelnetzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40">https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#klassische-automatisierungspyramide">Klassische Automatisierungspyramide</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#httpswwwien-dachdeartikelnetzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40_1">https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fragenstellungen">Fragenstellungen</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#intelligence-in-der-produktion">Intelligence in der Produktion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#effizienzsteigerung-durch-automatisierung">Effizienzsteigerung durch Automatisierung</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#steigerung-der-verfugbarkeit">Steigerung der Verfügbarkeit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flexibilisierung-der-produktion">Flexibilisierung der Produktion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anwendungsfall">Anwendungsfall</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#open-systems-interconnection-model">Open Systems Interconnection Model</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anwendungsbezogene-schichten-topologie">Anwendungsbezogene Schichten (Topologie)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anwendungsbezogene-schichten-flexibilitat-vs-standardisierung">Anwendungsbezogene Schichten (Flexibilität vs. Standardisierung)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#folge">Folge</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#mqtt-message-queuing-telemetry-transport">MQTT - Message Queuing Telemetry Transport</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rest-representational-state-transfer">REST - Representational State Transfer</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#message-broker-fur-publish-subscribe-modell">Message Broker für Publish-Subscribe-Modell</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mqtt-message-queuing-telemetry-transport_1">MQTT - Message Queuing Telemetry Transport</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mqtt-broker">MQTT-Broker</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c_1">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#httpsconsolehivemqcloud">https://console.hivemq.cloud/</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#beispiel-fur-nachrichten">Beispiel für Nachrichten</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#producer-zb-eine-soft-sps">Producer (z.B. eine Soft-SPS)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#consumer">Consumer</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mqtt-wildcards">MQTT-Wildcards</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quality-of-service-qos">Quality of Service (QoS)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#httpswwwtechtargetcomiotagendadefinitionmqtt-mq-telemetry-transport">https://www.techtarget.com/iotagenda/definition/MQTT-MQ-Telemetry-Transport</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#retain-flag">Retain Flag</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#httpsemqxmediumcommqtt-5-0-features-retain-message-104698b070d1">https://emqx.medium.com/mqtt-5-0-features-retain-message-104698b070d1</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#praxisbeispiel-und-ubung">🔧🦾👩‍💻 Praxisbeispiel und Übung</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#iot-library-einbinden">IoT-Library Einbinden</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sps-als-client-konfigurieren">SPS als Client Konfigurieren</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rest-representational-state-transfer_1">REST - Representational State Transfer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#client-server-architektur">Client-Server-Architektur</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hypertext-transfer-protocol-fur-rest-services">Hypertext Transfer Protocol für REST-Services</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adressierung-uber-uniform-resource-locator-url">Adressierung über Uniform Resource Locator (URL)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#antwort-auf-http-request">Antwort auf HTTP-Request</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-mit-python-requests">HTTP mit Python - Requests</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-mit-python-server">HTTP mit Python - Server</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-methoden">HTTP-Methoden</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get">GET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stuktur-einer-http-anfrage">Stuktur einer HTTP-Anfrage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#weiteres">🤓 Weiteres</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ausgewahlte-connectoren-tf6xxx-connectivity">🤓 Ausgewählte Connectoren TF6xxx - Connectivity</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Industrial IoT</li>
+      <li class="breadcrumb-item active">Theorie & MQTT-Grundlagen</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<h1 id="datenverarbeitung-in-der-industriellen-produktion">Datenverarbeitung in der industriellen Produktion</h1>
+<p>Serafin Kollegger, Julian Huber &amp; Lenard Wild</p>
+<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
+<hr />
+<!-- _class: white -->
+
+<p><img alt="" src="../images/1573184945568.png" /></p>
+<hr />
+<h2 id="projekt">Projekt</h2>
+<!-- _class : white -->
+
+<p><img alt="h:400" src="../images/Architecture.svg" /></p>
+<hr />
+<h2 id="leistungsbewertung">Leistungsbewertung</h2>
+<ul>
+<li>Das Projekt wird in den bestehenden Gruppen bearbeitet</li>
+<li>Der Teil Datenverarbeitung (Lenard Wild) wird mit 1/4 gewichtet, der allgemeine Teil (Serafin Kollegger) mit 3/4 gewichtet</li>
+<li><em>Basisaufgaben für 100%</em></li>
+<li>🏆 Aufgabe 12.1 (20% Punkte): MQTT-Client für SPS</li>
+<li>🏆 Aufgabe 12.2 (40% Punkte): Datenspeicherung und Visualisierung</li>
+<li>🏆 Aufgabe 12.3 (20% Punkte): Regressionsmodell für Endgewicht</li>
+<li>🏆 Aufgabe 12.4 (20% Punkte): Klassifikationsmodell für defekte Flaschen</li>
+<li>Abgabe als git-Repository mit allen Quellcodes und Dokumentation in Form einer Markdown-Datei</li>
+<li>Abgabe bis 03.07.2026</li>
+</ul>
+<hr />
+<h2 id="industrial-internet-of-things">Industrial Internet of Things</h2>
+<!-- _class: white -->
+
+<p><img alt="" src="../images/csm_Indu-Sol_Fachpressetage_2017_Bild_2_b15566fced.jpg" /></p>
+<h6 id="httpswwwien-dachdeartikelnetzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40">https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/</h6>
+<hr />
+<h3 id="klassische-automatisierungspyramide">Klassische Automatisierungspyramide</h3>
+<ul>
+<li><strong>Feldebene</strong>: Sensoren und Aktoren, welche über analoge Ein- und Ausgänge an die Steuerung angeschlossen sind</li>
+<li><strong>Steuerungsebenen</strong>: SPS, die die Steuerung einzelner Anlagen </li>
+<li><strong>Prozessleitebene</strong>: Supervisory Control and Data Acquisition (SCADA) Systeme, die die Steuerung mehrerer Anlagen übernehmen</li>
+<li><strong>Betriebsleitebene</strong>: Manufacturing Execution Systems (MES), die den gesamten Produktionsprozess überwachen und steuern</li>
+</ul>
+<hr />
+<!-- _class: white -->
+
+<p><img alt="" src="../images/csm_Indu-Sol_Fachpressetage_2017_Bild_2_b15566fced.jpg" /></p>
+<ul>
+<li>Datenmenge nimmt von unten nach oben ab</li>
+<li>nur die <strong>relevantesten</strong> Daten werden nach oben weitergegeben</li>
+<li>Zugriff und Steuerungsverantwortung klar definiert</li>
+</ul>
+<h6 id="httpswwwien-dachdeartikelnetzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40_1">https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/</h6>
+<hr />
+<h3 id="fragenstellungen">Fragenstellungen</h3>
+<ul>
+<li><strong>Intelligence in der Produktion</strong>: Wie werden aus den Daten ein Mehrwert generiert?</li>
+<li><strong>Security und Savety</strong>: Wie wird die Sicherheit und Verfügbarkeit der Systeme gewährleistet?</li>
+<li><strong>Architektur</strong>: Wie werden die zusätzlichen Daten übertragen und gesammelt?</li>
+</ul>
+<hr />
+<h2 id="intelligence-in-der-produktion">Intelligence in der Produktion</h2>
+<h3 id="effizienzsteigerung-durch-automatisierung">Effizienzsteigerung durch Automatisierung</h3>
+<iframe width="840" height="472" src="https://www.youtube.com/embed/6LmJmnT4D3c?si=yP5kpU1BGGYhFE7i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<hr />
+<h3 id="steigerung-der-verfugbarkeit">Steigerung der Verfügbarkeit</h3>
+<iframe width="840" height="472" src="https://www.youtube.com/embed/5ChEy3lIqMQ?si=85b5VqTbfMhnOBeh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<hr />
+<h3 id="flexibilisierung-der-produktion">Flexibilisierung der Produktion</h3>
+<iframe width="840" height="472" src="https://www.youtube.com/embed/IGlUyDVtT4A?si=XxxCs5NLrlED2IkF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<hr />
+<h3 id="anwendungsfall">Anwendungsfall</h3>
+<ul>
+<li>Daten von außerhalb der Automatisierungstechnik müssen integriert werden (z.B. Bilderkennung)</li>
+<li>Daten, die bisher nur innerhalb der Automatisierungstechnik genutzt wurden, müssen auch außerhalb genutzt werden (z.B. Schwingungsdaten)</li>
+<li>Daten von verschiedenen Anlagen müssen zusammengeführt werden (z.B. Planungsdaten und Produktionsdaten)</li>
+</ul>
+<p><img alt="bg right h:300" src="../images/5336265.jpg" /></p>
+<hr />
+<p><img alt="" src="../images/ThingSpeak-Server_c_MathWorks-Beckhoff.png" /></p>
+<hr />
+<h3 id="open-systems-interconnection-model">Open Systems Interconnection Model</h3>
+<p><img alt="bg w:600 right" src="../images/ISO-OSI-7-Schichten-Modell_%28in_Deutsch%29.svg.png" /></p>
+<ul>
+<li>Entscheidung für ein geeignetes Protokoll für die Vernetzung</li>
+<li>Auf den Netzwerkschichten</li>
+<li>TCP/IP-Protokollfamilie</li>
+<li>Standard für das Internet</li>
+<li>Verfügbarkeit Hardware</li>
+<li>Echtzeitfähigkeit nicht benötigt</li>
+<li>Kabelgebundene und drahtlose Kommunikation</li>
+</ul>
+<hr />
+<h3 id="anwendungsbezogene-schichten-topologie">Anwendungsbezogene Schichten (Topologie)</h3>
+<p>Auswählen einer Teilmenge (Kombinationen ohne Wiederholung)</p>
+<blockquote>
+<p><strong>Satz 1.4</strong> Die Anzahl der Möglichkeiten, <span class="arithmatex">\(k\)</span> Gegenstände aus einer vorgegebenen Menge von <span class="arithmatex">\(n\)</span> Gegenständen auszuwählen (ohne Rücksicht auf die Reihenfolge), ist</p>
+</blockquote>
+<div class="arithmatex">\[\frac{n!}{k!(n-k)!} = \binom{n}{k}\]</div>
+<p>Wie viele peer2peer-Verbindungen (<span class="arithmatex">\(k=2\)</span>) gibt es bei <span class="arithmatex">\(n\)</span> Geräten?</p>
+<div class="arithmatex">\[\binom{n}{2} = \frac{n!}{2!(n-2)!} = \frac{n(n-1)}{2}\]</div>
+<p><img alt="bg right:20% h:300" src="../images/P2P-network.svg" /></p>
+<hr />
+<h3 id="anwendungsbezogene-schichten-flexibilitat-vs-standardisierung">Anwendungsbezogene Schichten (Flexibilität vs. Standardisierung)</h3>
+<ul>
+<li>Consumer-Produkte erfordern ein hohes Maß an Standardisierung (Plug&amp;Play)</li>
+<li>Beispiel: <a href="https://csa-iot.org/all-solutions/matter/">Datenmodell einer Leuchte nach Matter</a></li>
+</ul>
+<p><img alt="" src="../images/matter_pt2_02.png" /></p>
+<ul>
+<li>Industrielle Anwendungen erfordern mehr <strong>Flexibilität und Anpassungsfähigkeit</strong></li>
+</ul>
+<hr />
+<h3 id="folge">Folge</h3>
+<ul>
+<li>Wir benötigen Protokolle, die eine <strong>hohe Flexibilität</strong> und <strong>Anpassungsfähigkeit</strong> bieten (z.B. bei der Datenmodelle)</li>
+<li>Diese sollen auf dem TCP/IP-Stack aufbauen</li>
+</ul>
+<h4 id="mqtt-message-queuing-telemetry-transport">MQTT - Message Queuing Telemetry Transport</h4>
+<ul>
+<li>Anwendungsschichtprotokoll kompatibel mit TCP/IP</li>
+<li>Sternförmige Kommunikation</li>
+<li>Publish-Subscribe-Modell</li>
+</ul>
+<h4 id="rest-representational-state-transfer">REST - Representational State Transfer</h4>
+<ul>
+<li>Anwendungsschichtprotokoll kompatibel mit TCP/IP</li>
+<li>Peer-2-Peer Kommunikation</li>
+<li>Client-Server-Modell</li>
+</ul>
+<hr />
+<h2 id="message-broker-fur-publish-subscribe-modell">Message Broker für Publish-Subscribe-Modell</h2>
+<p><img alt="" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
+<h6 id="httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</h6>
+<hr />
+<h3 id="mqtt-message-queuing-telemetry-transport_1">MQTT - Message Queuing Telemetry Transport</h3>
+<ul>
+<li>offenes Netzwerkprotokoll für Machine-to-Machine-Kommunikation </li>
+<li>leichtgewichtig und häufig für-IoT Sensoren</li>
+<li>Daten werden in Form von Nachrichten übertragen (Beliebige Bitfolgen)</li>
+<li>Nachrichten werden in <strong>Topics</strong> veröffentlicht und abonniert</li>
+<li>Viele weitere <a href="https://en.wikipedia.org/wiki/Message_broker">Alternativen</a>: Apache Kafka, etc.</li>
+</ul>
+<p><img alt="bg right:23% w:300" src="../images/mqtt-logo.png" /></p>
+<hr />
+<h3 id="mqtt-broker">MQTT-Broker</h3>
+<ul>
+<li>Zentrale Instanz (Server), welche Nachrichten verteilt</li>
+<li>IP-Adresse bzw. URL (Uniform Resource Locator)</li>
+<li>Port</li>
+<li>Sicherheitseinstellungen<ul>
+<li>Username und Passwort</li>
+<li>Verschlüsselung mittels TLS</li>
+</ul>
+</li>
+<li>Bildet Message-Queues für Topics</li>
+<li>Mehrere Akteure können sich als Clients verbinden</li>
+<li>Producer sind Clients, welche Nachrichten erzeugen</li>
+<li>Consumer sind Clients, die Nachrichten abrufen</li>
+</ul>
+<p><img alt="bg right:33% w:400" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
+<h6 id="httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c_1">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</h6>
+<hr />
+<h3 id="hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</h3>
+<ul>
+<li>Web-Service</li>
+<li>Fremd-gehostet in der Could z.B. mit <a href="https://console.hivemq.cloud/">hivemq</a></li>
+<li>Selbst gehostet z.B. mit <a href="https://mosquitto.org/">Mosquitto</a> z.B. auch lokal auf einer Soft-SPS, sofern kein Internetzugriff benötigt wird</li>
+</ul>
+<p><img alt="bg right w:600" src="../images/MQTT_hive.png" /></p>
+<h6 id="httpsconsolehivemqcloud">https://console.hivemq.cloud/</h6>
+<hr />
+<h3 id="beispiel-fur-nachrichten">Beispiel für Nachrichten</h3>
+<p><img alt="" src="../images/MQTT-Explorer.png" /></p>
+<ul>
+<li>Beliebige Bitfolgen</li>
+<li>z.B. UTF-codierte Texte im JSON-Format </li>
+<li><code>topic</code>: thematische Zuordnung (Liste der Empfänger)</li>
+<li>Struktur ähnlich Dateisystem</li>
+<li>Hierarchie-Ebenen mit <code>/</code> getrennt</li>
+<li><code>payload</code>: Inhalt der Nachricht (Text einer Email)</li>
+</ul>
+<hr />
+<h4 id="producer-zb-eine-soft-sps">Producer (z.B. eine Soft-SPS)</h4>
+<ul>
+<li>Definieren Verbindung zu einem Broker/Server über URL</li>
+<li>veröffentlichen (publishen) Nachrichten zu einem oder mehren Topics</li>
+<li><strong>Push-Prinzip</strong>: Producer legen selbst fest, wann sie eine Nachricht veröffentlichen</li>
+</ul>
+<p><img alt="bg right:33% w:400" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
+<hr />
+<p><strong>Beispiel <code>paho-mqtt 2.1.0</code> in Python</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">paho.mqtt.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mqtt</span>
+<span class="n">broker</span> <span class="o">=</span> <span class="s2">&quot;158.180.44.197&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;at/house/bulb1&quot;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;on&quot;</span>
+
+<span class="c1"># create function for callback</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_publish</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">reasonCode</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data published </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># create client object</span>
+<span class="n">mqttc</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">mqtt</span><span class="o">.</span><span class="n">CallbackAPIVersion</span><span class="o">.</span><span class="n">VERSION2</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">username_pw_set</span><span class="p">(</span><span class="s2">&quot;bobm&quot;</span><span class="p">,</span> <span class="s2">&quot;letmein&quot;</span><span class="p">)</span>              
+
+<span class="c1"># assign function to callback</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">on_publish</span> <span class="o">=</span> <span class="n">on_publish</span>                          
+
+<span class="c1"># establish connection</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span><span class="n">port</span><span class="p">)</span>                                 
+
+<span class="c1"># publish</span>
+<span class="n">return_code</span> <span class="o">=</span> <span class="n">mqttc</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="n">mqttc</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h4 id="consumer">Consumer</h4>
+<ul>
+<li>Definieren Verbindung zu einem Broker/Server über URL</li>
+<li>Empfangen alle Nachrichten zu von ihnen definierten Topics</li>
+<li>Laufen i.d.R. ein einem endlosen Loop, um Nachrichten zu empfangen</li>
+<li>Grundsätzlich werden nur die Nachrichten empfangen, die während der Laufzeit des Programms gesendet werden (Ausnahme: Nachrichten mit Retain-Flag)</li>
+</ul>
+<p><img alt="bg right:33% w:400" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
+<hr />
+<p><strong>Beispiel <code>paho-mqtt</code> in Python</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">paho.mqtt.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mqtt</span>
+<span class="n">broker</span> <span class="o">=</span> <span class="s2">&quot;158.180.44.197&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;at/house/bulb1&quot;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;on&quot;</span>
+
+<span class="c1"># create function for callback</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;message received:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;message: &quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># create client object</span>
+<span class="n">mqttc</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">mqtt</span><span class="o">.</span><span class="n">CallbackAPIVersion</span><span class="o">.</span><span class="n">VERSION2</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">username_pw_set</span><span class="p">(</span><span class="s2">&quot;bobm&quot;</span><span class="p">,</span> <span class="s2">&quot;letmein&quot;</span><span class="p">)</span>              
+
+<span class="c1"># assign function to callback</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>                          
+
+<span class="c1"># establish connection</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span><span class="n">port</span><span class="p">)</span>                                 
+
+<span class="c1"># subscribe</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Blocking call that processes network traffic, dispatches callbacks and handles reconnecting.</span>
+<span class="c1">#mqttc.loop_forever()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">mqttc</span><span class="o">.</span><span class="n">loop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h3 id="mqtt-wildcards">MQTT-Wildcards</h3>
+<ul>
+<li>Möchte man mehr als ein Topic erhalten
+  <div class="highlight"><pre><span></span><code>building_1/smart_meter/messwerte
+building_2/smart_meter/messwerte
+building_1/raum_1/temperatur
+building_1/raum_2/temperatur
+building_2/raum_1/temperatur
+building_2/raum_2/temperatur
+</code></pre></div></li>
+<li>Single Level: Temperatur in allen Räumen von Gebäude 1
+  <code>building_1/+/temperatur</code></li>
+<li>Multi Level: Alles zu Gebäude 1
+  <code>building_1/#</code></li>
+</ul>
+<hr />
+<h3 id="quality-of-service-qos">Quality of Service (QoS)</h3>
+<ul>
+<li>Gibt an, wie viel Wert auf die Zustellung der Nachrichten Wert gelegt wird</li>
+<li><strong>QoS 0:</strong> <em>'Fire and Forget'</em></li>
+<li><strong>QoS 1:</strong> Mindestens ein zweites Senden nach Time-out (Duplikate möglich!) </li>
+<li><strong>QoS 2:</strong> Sicherste Möglichkeit, jedoch hoher Overhead</li>
+</ul>
+<p><img alt="bg right w:600" src="../images/MQTT_QoS_mobile.jpg" /></p>
+<h6 id="httpswwwtechtargetcomiotagendadefinitionmqtt-mq-telemetry-transport">https://www.techtarget.com/iotagenda/definition/MQTT-MQ-Telemetry-Transport</h6>
+<hr />
+<h3 id="retain-flag">Retain Flag</h3>
+<ul>
+<li>Einzelne Topics können mit Retain Flag versehen werden</li>
+<li>Der Broker speichert die letzte Nachricht des Topics</li>
+<li>zum Überschreiben: leere Message</li>
+</ul>
+<p><img alt="h:200" src="../images/1_BGq8wqT3PeBng84v2csOkg.webp" /></p>
+<ul>
+<li>Neue Subscriber bekommen mit, wann die letzte Nachricht kam 
+(z.B. bei seltenen Ereignissen, wie Fensterkontakte)</li>
+<li>Beschreibung eines Topics soll dokumentiert werden (z.B. <code>building_1/smart_meter/messwerte/$unit</code>)</li>
+</ul>
+<h6 id="httpsemqxmediumcommqtt-5-0-features-retain-message-104698b070d1">https://emqx.medium.com/mqtt-5-0-features-retain-message-104698b070d1</h6>
+<hr />
+<h2 id="praxisbeispiel-und-ubung">🔧🦾👩‍💻 Praxisbeispiel und Übung</h2>
+<!-- _class : white -->
+
+<p><img alt="h:400" src="../images/Architecture.svg" /></p>
+<hr />
+<h2 id="aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</h2>
+<ul>
+<li>Erweitern Sie das Programm um eine Funktionalität, die Daten des Ultraschallsensors aller Dispenser der Learning Factory an den im Beispiel angegeben MQTT-Broker sendet. Die Füllstände sollen alle 10 Sekunden übertragen werden (wenn Sie die Füllhöhen noch nicht implementiert haben, senden Sie einen beliebigen anderen Wert aus ihrem Code).</li>
+<li>Stellen Sie sicher, dass alle Werte retaiend gesendet wird.</li>
+</ul>
+<hr />
+<ul>
+<li>Erstellen Sie ein Topic, das den Namen Ihres Teams enthält und folgendem Schema folgt:<ul>
+<li><code>aut/SoSe26/&lt;Name der Gruppe&gt;/$groupsname</code> : <code>&lt;Name der Gruppe&gt;</code> - Bitte <code>&lt;&gt;</code> mit eigenen Namen füllen. Wird nur einmal beim Systemstart gesendet</li>
+<li><code>aut/SoSe26/&lt;Name der Gruppe&gt;/names</code> : <code>&lt;Name der Personen&gt;</code> - String mit Nachnamen, wird nur einmal beim Systemstart gesendet</li>
+<li><code>aut/SoSe26/&lt;Name der Gruppe&gt;/&lt;Name der übertragen Größe&gt;</code> : <code>&lt;INT oder REAL&gt;</code>    </li>
+<li><code>aut/SoSe26/&lt;Name der Gruppe&gt;/&lt;Name der übertragen Größe&gt;/$unit</code> : <code>&lt;STR mit SI-konformer Einheit&gt;</code> - wird nur einmal gesendet</li>
+</ul>
+</li>
+<li>Nutzen Sie z.B. die Software <a href="https://mqtt-explorer.com/">MQTT-Explorer</a> um die Werte zu überprüfen.</li>
+<li><strong>Abgabeformalien:</strong> Die Aufgabe gilt als abgeschlossen, wenn die Werte auf dem Broker ankommen und dort durch das Retain gespeichert werden.</li>
+</ul>
+<hr />
+<h3 id="iot-library-einbinden">IoT-Library Einbinden</h3>
+<ul>
+<li>Für diese Aufgabe muss die IoT-Library <code>TC3_IotBase</code> in der Beckhoff-SPS eingebunden werden</li>
+</ul>
+<p><img alt="h:400" src="../images/IoTBaseHinzufuegen.PNG" /></p>
+<hr />
+<h3 id="sps-als-client-konfigurieren">SPS als Client Konfigurieren</h3>
+<div class="highlight"><pre><span></span><code><span class="nf">VAR</span>
+    <span class="nf">fbMqttClient:</span> <span class="nv">FB_IotMqttClient</span>; <span class="err">//</span> <span class="nc">MQTT</span> <span class="nf">client</span> <span class="nf">with</span> <span class="nf">initialization</span>
+    <span class="nf">sTopicToPublish:</span> <span class="nc">STRING</span>(<span class="m">255</span>) <span class="o">:=</span> <span class="s">&#39;Temperature&#39;</span><span class="p">;</span> <span class="nf">//</span> <span class="nc">MQTT</span> <span class="nf">topic</span> <span class="nf">for</span> <span class="nf">temperature</span>
+    <span class="nf">sMessageToPublish:</span> <span class="nc">STRING</span>(<span class="m">255</span>)<span class="p">;</span> <span class="nf">//</span> <span class="nc">Message</span> <span class="nf">buffer</span>
+    <span class="nf">tmrSendMessageInterval:</span> <span class="nc">TON</span> <span class="o">:=</span> (<span class="nc">PT</span> <span class="o">:=</span> <span class="nc">T</span><span class="err">#</span><span class="nf">1S</span>)<span class="p">;</span> <span class="nf">//</span> <span class="nc">Interval</span> <span class="nf">timer</span> <span class="nf">for</span> <span class="nf">publishing</span>
+    <span class="nf">ai_RoomTemperature:</span> <span class="nc">INT</span> <span class="o">:=</span> <span class="m">1</span><span class="p">;</span> <span class="nf">//</span> <span class="nc">Room</span> <span class="nf">temperature</span> <span class="nf">from</span> <span class="nf">thermocouple</span>
+    <span class="nf">first_cycle</span> <span class="err">:</span> <span class="nf">BOOL</span> <span class="o">:=</span> <span class="nc">TRUE</span><span class="p">;</span> <span class="nf">//</span> <span class="nc">Flag</span> <span class="nf">to</span> <span class="nf">check</span> <span class="nf">if</span> <span class="nf">it</span><span class="err">&#39;</span><span class="nf">s</span> <span class="nf">the</span> <span class="nf">first</span> <span class="nf">cycle</span>
+<span class="nf">END_VAR</span>
+</code></pre></div>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nc">IF</span> <span class="nf">first_cycle</span> <span class="nf">THEN</span>
+  <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">sHostName</span> <span class="o">:=</span> <span class="s">&#39;158.180.44.197&#39;</span><span class="p">;</span>
+  <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">nHostPort</span> <span class="o">:=</span> <span class="m">1883</span><span class="p">;</span>
+  <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">sTopicPrefix</span> <span class="o">:=</span> <span class="s">&#39;aut/SoSe26/&lt;Gruppe&gt;/&#39;</span><span class="p">;</span>
+  <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">sClientId</span> <span class="o">:=</span> <span class="s">&#39;Publishing PLC&#39;</span><span class="p">;</span>
+  <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">sUserName</span> <span class="o">:=</span> <span class="s">&#39;bobm&#39;</span><span class="p">;</span>
+  <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">sUserPassword</span> <span class="o">:=</span> <span class="s">&#39;letmein&#39;</span><span class="p">;</span>
+  <span class="nf">first_cycle</span> <span class="o">:=</span> <span class="nc">FALSE</span><span class="p">;</span> <span class="nf">//</span> <span class="nc">Set</span> <span class="nf">flag</span> <span class="nf">to</span> <span class="nf">FALSE</span> <span class="nf">after</span> <span class="nf">first</span> <span class="nf">cycle</span>
+
+<span class="nf">END_IF</span>
+
+
+<span class="nf">fbMqttClient</span><span class="p">.</span><span class="nc">Execute</span>(<span class="nv">bConnect</span> <span class="o">:=</span> <span class="nc">TRUE</span>)<span class="p">;</span>
+
+<span class="nf">IF</span> <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nv">bConnected</span> <span class="nf">THEN</span>
+    <span class="nf">tmrSendMessageInterval</span>(<span class="nc">IN</span> <span class="o">:=</span> <span class="nc">TRUE</span>)<span class="p">;</span>
+    <span class="nf">IF</span> <span class="nf">tmrSendMessageInterval</span><span class="p">.</span><span class="nc">Q</span> <span class="nf">THEN</span>
+        <span class="nf">tmrSendMessageInterval</span>(<span class="nc">IN</span> <span class="o">:=</span> <span class="nc">FALSE</span>)<span class="p">;</span>
+        <span class="nf">sMessageToPublish</span> <span class="o">:=</span> <span class="nc">REAL_TO_STRING</span>(<span class="nv">ai_RoomTemperature</span> <span class="nf">/</span> <span class="m">10.0</span>)<span class="p">;</span>
+
+        <span class="nf">fbMqttClient</span><span class="p">.</span><span class="nc">Publish</span>(
+            <span class="nv">sTopic</span> <span class="o">:=</span> <span class="nv">sTopicToPublish</span><span class="nf">,</span>
+            <span class="nv">pPayload</span> <span class="o">:=</span> <span class="nc">ADR</span>(<span class="nv">sMessageToPublish</span>)<span class="nf">,</span>
+            <span class="nv">nPayloadSize</span> <span class="o">:=</span> <span class="nc">LEN</span>(<span class="nv">sMessageToPublish</span>) <span class="nf">+</span> <span class="m">1</span><span class="nf">,</span>
+            <span class="nv">eQoS</span> <span class="o">:=</span> <span class="nc">TcIotMqttQos</span><span class="p">.</span><span class="nc">AtMostOnceDelivery</span><span class="nf">,</span>
+            <span class="nv">bRetain</span> <span class="o">:=</span> <span class="nc">FALSE</span><span class="nf">,</span>
+            <span class="nv">bQueue</span> <span class="o">:=</span> <span class="nc">FALSE</span>
+        )<span class="p">;</span>
+    <span class="nf">END_IF</span>
+<span class="nf">END_IF</span>
+</code></pre></div>
+<hr />
+<ul>
+<li>legen Sie einen oder mehrere neue Funktionsbausteine an</li>
+<li>Mögliche Input-Variablen sind <code>topic</code>, <code>payload</code></li>
+<li>Überlegen Sie, wie sie die einmaligen Nachrichten (z.B. Gruppenname) von den periodischen Nachrichten trennen</li>
+<li>der MQTT-Client hat ein Attribut <code>sTopicPrefix</code>, welches den ersten Teil des Topics definiert</li>
+<li>Zudem kann der <code>publish</code>-Funktion ein <code>sTopic</code> übergeben werden, welches den zweiten Teil des Topics definiert</li>
+<li>Beachten Sie, dass es bei Zeichenketten sogenannte Escape-Sequenzen gibt, die in der Dokumentation der Beckhoff-SPS zu finden sind. Die können z.B. bei der Definition von<code>"$unit"</code> Probleme machen</li>
+</ul>
+<hr />
+<h2 id="rest-representational-state-transfer_1">REST - Representational State Transfer</h2>
+<h3 id="client-server-architektur">Client-Server-Architektur</h3>
+<!-- _class: white -->
+
+<ul>
+<li><strong>Client</strong> sendet <strong>Anfangen</strong></li>
+<li><strong>Server</strong>: Bearbeitet Anfragen und sendet <strong>Antworten</strong></li>
+</ul>
+<p><img alt="bg right width:600" src="../images/ClientServer.svg" /></p>
+<hr />
+<h3 id="hypertext-transfer-protocol-fur-rest-services">Hypertext Transfer Protocol für REST-Services</h3>
+<ul>
+<li><strong>HTTP</strong> ist ein Protokoll auf Anwendungsschicht</li>
+<li>Bekannt für die Übertragung von Webseiten</li>
+<li>Aber auch für die Übertragung aller anderen Daten geeignet (sofern Stateless)</li>
+<li>Unter den meisten Betriebssystemen verfügbar (<code>cURL</code>)</li>
+</ul>
+<p><em>Website über Power Shell</em>
+<div class="highlight"><pre><span></span><code>curl &quot;www.google.com&quot;
+</code></pre></div></p>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über Power Shell</em>
+<div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
+</code></pre></div></p>
+<p><em>Allgemeine Synthax</em></p>
+<div class="highlight"><pre><span></span><code>curl &quot;&lt;URL&gt;/?&lt;query_parameter&gt;&quot;
+</code></pre></div>
+<hr />
+<h3 id="adressierung-uber-uniform-resource-locator-url">Adressierung über Uniform Resource Locator (URL)</h3>
+<ul>
+<li>Uniform Resource Locator</li>
+<li>identifiziert und lokalisiert eine Ressource, beispielsweise eine Webseite, über die zu verwendende Zugriffsmethode (zum Beispiel das verwendete Netzwerkprotokoll wie HTTP oder FTP)</li>
+<li><code>host</code> kann auch eine IP-Adresse sein</li>
+</ul>
+<p><code>&lt;scheme&gt;:&lt;scheme-specific-part&gt;</code></p>
+<div class="highlight"><pre><span></span><code>      |-------------------- Schema-spezifischer Teil ----------------------|
+      |                                                                    |
+https://maxmuster:geheim@www.example.com:8080/index.html?p1=A&amp;p2=B#ressource
+\___/   \_______/ \____/ \_____________/ \__/\_________/ \_______/ \_______/
+  |         |       |           |         |       |          |         |
+Schema Benutzer Kennwort      Host      Port    Pfad      Query    Fragment
+</code></pre></div>
+<p><a href="https://de.wikipedia.org/wiki/Uniform_Resource_Locator#Schema-spezifischer_Teil_(scheme-specific_part)">Quelle</a></p>
+<hr />
+<h3 id="antwort-auf-http-request">Antwort auf HTTP-Request</h3>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über Power Shell</em>
+<div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>StatusCode        : 200
+StatusDescription : OK
+Content           : {&quot;latitude&quot;:47.260002,&quot;longitude&quot;:11.4,&quot;generationtime_ms...
+Forms             : {}
+Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Content-Type, application/json; charset=utf-8], [Date...
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 321
+</code></pre></div>
+<ul>
+<li>Neben den Daten (<code>Content</code>) enthält die Antwort auch Metadaten (<code>Header</code>, <code>StatusCode</code>, ...)</li>
+</ul>
+<hr />
+<h3 id="http-mit-python-requests">HTTP mit Python - Requests</h3>
+<ul>
+<li>Zur Kommunikation mit REST-Services wird das <code>requests</code>-Modul verwendet</li>
+<li>Zum Anbieten eines REST-Services wird das <code>flask</code>-Modul verwendet</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Paket mit dem Python wie ein Browser agieren kann</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Request an Server mit MCI-Website</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.mci.edu/de/&#39;</span><span class="p">)</span>
+
+<span class="c1"># HTML Status</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span> <span class="c1"># 200 - heiß alles OK</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">])</span> <span class="c1"># text/html; charset=utf-8 # Also ein HTML-Dokument</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="c1"># &lt;!doctype html&gt; &lt;html lang=&quot;de&quot; class=&quot;no-js&quot;&gt;   &lt;head&gt; ...</span>
+</code></pre></div>
+<hr />
+<h3 id="http-mit-python-server">HTTP mit Python - Server</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Hello, World!&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$env:FLASK_APP = &quot;hello.py&quot;
+python -m flask run
+ * Running on http://127.0.0.1:5000/
+</code></pre></div>
+<hr />
+<h3 id="http-methoden">HTTP-Methoden</h3>
+<h4 id="get">GET</h4>
+<ul>
+<li>Fordert die angegebene Ressource vom Server an </li>
+<li>GET weist keine Nebeneffekte auf. Der Zustand am Server wird nicht verändert, weshalb GET als sicher bezeichnet wird.</li>
+<li>Rückgabe kann eine JSON sein</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Paket mit dem Python wie ein Browser agieren kann</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Request an Server mit MCI-Website</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://api.citybik.es/v2/networks/stadtrad-innsbruck&#39;</span><span class="p">)</span>
+<span class="c1"># &gt; {&quot;network&quot;:{&quot;company&quot;:[&quot;Nextbike GmbH&quot;],&quot;href&quot;:&quot;/v2/networks/stadtrad-innsbruck&quot;,&quot;id&quot;:&quot;stadtrad-innsbruck&quot;,&quot; &lt;...&gt;</span>
+</code></pre></div>
+<hr />
+<h4 id="post">POST</h4>
+<ul>
+<li>Fügt eine neue (Sub-)Ressource unterhalb der angegebenen Ressource ein. Da die neue Ressource noch keinen URI besitzt, adressiert der URI die übergeordnete Ressource. Als Ergebnis wird der neue Ressourcenlink dem Client zurückgegeben. </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">my_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;{</span>
+<span class="s2">  &quot;contact&quot;: {</span>
+<span class="s2">      &quot;id&quot;: &quot;1&quot;,</span>
+<span class="s2">      &quot;firstName&quot;: &quot;Julian&quot;,</span>
+<span class="s2">      &quot;lastName&quot;: &quot;Huber&quot;</span>
+<span class="s2">    }</span>
+<span class="s2">}&quot;&quot;&quot;</span>
+
+<span class="c1"># Übermittlung und speichern der response Objects</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://3d3m9.mocklab.io/v1/contacts&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">my_data</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">})</span>
+
+<span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<span class="c1"># &gt; Created a new contact!</span>
+</code></pre></div>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/number_of_bottles&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">number_of_bottles</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Number of bottles changed to </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">200</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;42&quot;</span><span class="p">,</span> <span class="mi">200</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Method not allowed&quot;</span><span class="p">,</span> <span class="mi">405</span>
+</code></pre></div>
+<hr />
+<h3 id="stuktur-einer-http-anfrage">Stuktur einer HTTP-Anfrage</h3>
+<ul>
+<li><strong>Request-Line</strong>: Methode, URI und Protokollversion</li>
+<li><strong>Header</strong>: Metadaten zur Anfrage, z.B. Authentifizierung</li>
+<li><strong>Leerzeile</strong>: Trennung von Header und Body</li>
+<li><strong>Body</strong>: Daten der Anfrage</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">### Response 1</span>
+<span class="err">POST https://api.openai.com/v1/chat/completions # Anfragetyp und URI</span>
+<span class="err">Authorization: Bearer {{$dotenv SECRET_TOKEN}}  # Header - Authentifizierung über Key</span>
+<span class="err">Content-Type: application/json                  # Header - Übertragender Datentyp</span>
+
+<span class="err">{</span>
+<span class="err">     &quot;model&quot;: &quot;gpt-3.5-turbo&quot;,</span>
+<span class="err">     &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Say this is a test!&quot;}],</span>
+<span class="err">     &quot;temperature&quot;: 0.7</span>
+<span class="err">   }</span>
+</code></pre></div>
+<hr />
+<h3 id="weiteres">🤓 Weiteres</h3>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client">REST Client</a> Erweiterung für VS Code</li>
+<li>Einfache Anfragen direkt aus dem Editor heraus</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">GET https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m</span>
+</code></pre></div>
+<ul>
+<li>Weitere Informationen</li>
+<li><a href="https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP-Anfragemethoden">HTTP-Anfragemethoden</a></li>
+<li><a href="https://de.wikipedia.org/wiki/HTTP-Statuscode">HTTP-Statuscode</a></li>
+<li>OpenAPI-Spezifikationen und Swagger am Beispiel <a href="https://petstore3.swagger.io/">Petstore</a></li>
+</ul>
+<hr />
+<h3 id="ausgewahlte-connectoren-tf6xxx-connectivity">🤓 Ausgewählte Connectoren <a href="https://infosys.beckhoff.com/index.php?content=../content/1031/tf6760_tc3_iot_https_rest/7611986955.html&amp;id=">TF6xxx - Connectivity</a></h3>
+<ul>
+<li><code>TF6310 | TCP/IP</code>: Ermöglicht die Kommunikation über das Internetprotokoll mittels einfacher Socket-Verbindungen</li>
+<li><code>TF6100 | OPC UA Client</code>: Standard für den Datenaustausch als plattformunabhängige, service-orientierte Architektur (SOA)[1]. Sie führt die Fähigkeit ein, Maschinendaten (Regelgrößen, Messwerte, Parameter usw.) nicht nur zu transportieren, sondern auch maschinenlesbar semantisch zu beschreiben.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../7_Datenspeicherung/" class="btn btn-neutral float-right" title="Datenspeicherung">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../7_Datenspeicherung/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

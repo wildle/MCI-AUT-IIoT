@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/8_Regression/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Regressionsmodelle - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Regressionsmodelle";
+        var mkdocs_page_input_path = "8_Regression.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/8_Regression/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Regressionsmodelle</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lineare-regression">Lineare Regression</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#beispiel-lineare-regression-fur-das-einkommen-basierend-auf-bildung-und-berufserfahrung">Beispiel: Lineare Regression für das Einkommen basierend auf Bildung und Berufserfahrung</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#matrix-representation-linearer-modelle">Matrix Representation Linearer Modelle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#training-parametrischer-modelle">Training Parametrischer Modelle</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-und-trainingsdaten">Test- und Trainingsdaten</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nicht-parametrische-modelle">Nicht-parametrische Modelle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#overfitting">Overfitting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#aufteilung-der-stichprobe-in-trainings-und-testdaten">Aufteilung der Stichprobe in Trainings- und Testdaten</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#abwagung-zwischen-vorhersagegenauigkeit-und-modellinterpretierbarkeit">Abwägung zwischen Vorhersagegenauigkeit und Modellinterpretierbarkeit</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fehlermae">Fehlermaße</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#trainings-vs-testdatensatz">🧠 Trainings- vs. Testdatensatz</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anpassung-von-daten-mit-einem-modell-mit-geringer-flexibilitat">Anpassung von Daten mit einem Modell mit geringer Flexibilität</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anpassung-von-daten-mit-einem-modell-mit-mittlerer-flexibilitat">Anpassung von Daten mit einem Modell mit mittlerer Flexibilität</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anpassung-von-daten-mit-einem-modell-mit-hoher-flexibilitat">Anpassung von Daten mit einem Modell mit hoher Flexibilität</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lineare-regression-in-python">Lineare Regression in Python</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#alternative-regressionsmodelle">Alternative Regressionsmodelle</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-123-20-regressionsmodell-fur-endgewicht">🏆 Aufgabe 12.3 (20%): Regressionsmodell für Endgewicht</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Machine Learning</li>
+      <li class="breadcrumb-item active">Regressionsmodelle</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<h1 id="machine-learning-in-der-produktion-regression">Machine Learning in der Produktion - Regression</h1>
+<p>Serafin Kollegger &amp; Julian Huber</p>
+<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
+<hr />
+<h2 id="lineare-regression">Lineare Regression</h2>
+<ul>
+<li>Regressions-Modelle sagen eine kontinuierliche Variable <span class="arithmatex">\(y\)</span> auf Basis von <span class="arithmatex">\(p\)</span> Prädiktoren <span class="arithmatex">\(X_1, X_2, ..., X_p\)</span> vorher.</li>
+<li>Der Zusammenhang zwischen den Prädiktoren und der Zielvariablen wird durch die Regressionskoeffizienten <span class="arithmatex">\(\beta_0, \beta_1, ..., \beta_p\)</span> beschrieben, welche die Steigung der Beziehung zwischen den Prädiktoren und der Zielvariablen darstellen.</li>
+<li>Die Prädiktoren können kontinuierliche oder kategorische Variablen sein. Die Regressionskoeffizienten, werden anhand der Trainingsdaten geschätzt.</li>
+</ul>
+<p><span class="arithmatex">\(f(\vec{X}) = Y = β_0 + β_1X_1 + β_2X_2 + ... + β_pX_p.\)</span></p>
+<hr />
+<h3 id="beispiel-lineare-regression-fur-das-einkommen-basierend-auf-bildung-und-berufserfahrung">Beispiel: Lineare Regression für das Einkommen basierend auf Bildung und Berufserfahrung</h3>
+<p><img alt="bg right:27% w:350" src="../images/income_table.png" />
+<img alt="h:400" src="../images/parametricModel.png" /></p>
+<p><span class="arithmatex">\(\text{income} ≈ β_0 + β_1 \cdot \text{education}+ β_2 \cdot \text{seniority}\)</span></p>
+<hr />
+<p><span class="arithmatex">\(\text{income} ≈ β_0 + β_1 \cdot \text{education}+ β_2 \cdot \text{seniority}\)</span></p>
+<p><span class="arithmatex">\(\text{income} ≈ 20 \text{k€} + 1.5 \frac{\text{k€}}{\text{a}} \cdot \text{education}+ 1 \frac{\text{k€}}{\text{a}} \cdot \text{seniority}\)</span></p>
+<ul>
+<li><span class="arithmatex">\(\beta_0\)</span>: Ungebildete Arbeiter ohne Ausbildung erhalten ein Gehalt von 20.000 €</li>
+<li><span class="arithmatex">\(\beta_1\)</span>: Ein Jahr Ausbildung führt zu einem um 1.500 € höheren Gehalt</li>
+<li>
+<p><span class="arithmatex">\(\beta_2\)</span>: Ein Jahr Berufserfahrung führt zu einem um 1.000 € höheren Gehalt</p>
+</li>
+<li>
+<p>Lineare Regression ist ein parametrischer und relativ unflexibler Ansatz</p>
+<ul>
+<li>sie kann nur lineare Funktionen erzeugen</li>
+<li>nur zwei Faktoren (Linien) zu interpretieren</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="matrix-representation-linearer-modelle">Matrix Representation Linearer Modelle</h3>
+<ul>
+<li><span class="arithmatex">\(x_{i,j}\)</span>… Wert des Prädiktors <span class="arithmatex">\(j\)</span> der Beobachtung <span class="arithmatex">\(i\)</span></li>
+<li><span class="arithmatex">\(X_0=x_{:,0}\)</span>… sind alle <span class="arithmatex">\(1\)</span>, so dass <span class="arithmatex">\(x_{j,0} \cdot \beta_0 = \beta_0\)</span> der Bias-Term ist 
+(d.h., der Y-Achsenabschnitt / Ordinatenabschnitt / Aufpunkt des linearen Regressionsmodells)</li>
+<li><span class="arithmatex">\(\beta_j\)</span>… Gewicht des Prädiktors <span class="arithmatex">\(j\)</span></li>
+</ul>
+<hr />
+<div class="arithmatex">\[
+\begin{bmatrix}
+x_{1,0} &amp; \cdots &amp; x_{1,p} \\
+x_{2,0} &amp; \cdots &amp; x_{2,p} \\
+\vdots &amp; \ddots &amp; \vdots \\
+x_{n,0} &amp; \cdots &amp; x_{n,p} \\
+\end{bmatrix}
+\begin{bmatrix}
+\beta_0 \\
+\beta_1 \\
+\vdots \\
+\beta_p \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_{1,0} \cdot \beta_0 + x_{1,1} \cdot \beta_1 + \cdots + x_{1,p} \cdot \beta_p \\
+x_{2,0} \cdot \beta_0 + x_{2,1} \cdot \beta_1 + \cdots + x_{2,p} \cdot \beta_p \\
+\vdots \\
+x_{n,0} \cdot \beta_0 + x_{n,1} \cdot \beta_1 + \cdots + x_{n,p} \cdot \beta_p \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n \\
+\end{bmatrix}
+= Y
+\]</div>
+<hr />
+<p>Alle Werte eines Prädiktors <span class="arithmatex">\(j\)</span> für alle Beobachtungen <span class="arithmatex">\(i\)</span> sind in der Spalte <span class="arithmatex">\(j\)</span> der Matrix <span class="arithmatex">\(X\)</span> enthalten.</p>
+<div class="arithmatex">\[X_j = \begin{bmatrix}
+x_{1,j} \\
+x_{2,j} \\
+... \\
+x_{n,j} \\
+\end{bmatrix}\]</div>
+<p>Alle Prädiktoren für eine Beobachtung <span class="arithmatex">\(i\)</span> sind in der Zeile <span class="arithmatex">\(i\)</span> der Matrix <span class="arithmatex">\(X\)</span> enthalten.</p>
+<div class="arithmatex">\[x_i = \begin{bmatrix}
+x_{i,0} \\
+x_{i,1} \\
+... \\
+x_{i,p} \\
+\end{bmatrix}\]</div>
+<hr />
+<p><span class="arithmatex">\(\text{income} ≈ β_0 + β_1 \cdot \text{education}+ β_2 \cdot \text{seniority}\)</span></p>
+<div class="arithmatex">\[
+Y=\begin{bmatrix}
+y_1 \\
+y_2 \\
+y_3 \\
+y_4 \\
+y_5 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+40.000 \\
+50.000  \\
+60.000  \\
+40.000  \\
+90.000  \\
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+X = \begin{bmatrix}
+1 &amp; 10 &amp; 1  \\
+1 &amp; 13 &amp; 4  \\
+1 &amp; 16 &amp; 5  \\
+1 &amp; 20 &amp; 15  \\
+1 &amp; 13 &amp; 20 \\
+\end{bmatrix}
+\]</div>
+<p><img alt="bg right:27% w:350" src="../images/income_table.png" /></p>
+<hr />
+<div class="arithmatex">\[Y = X \cdot \beta = \begin{bmatrix}
+1 &amp; 10 &amp; 1  \\
+1 &amp; 13 &amp; 4  \\
+1 &amp; 16 &amp; 5  \\
+1 &amp; 20 &amp; 15  \\
+1 &amp; 13 &amp; 20 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\beta_0 \\
+\beta_1  \\
+\beta_2  \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+40.000 \\
+50.000  \\
+60.000  \\
+40.000  \\
+90.000  \\
+\end{bmatrix}\]</div>
+<ul>
+<li>Observation 1<ul>
+<li><span class="arithmatex">\(y_1=\beta_0 + \beta_1 \cdot x_{1,1} + \beta_2 \cdot  x_{1,2}\)</span></li>
+<li><span class="arithmatex">\(40.000=\beta_0 + \beta_1 \cdot  10 + \beta_2 \cdot  1\)</span></li>
+</ul>
+</li>
+<li>Observation 2<ul>
+<li><span class="arithmatex">\(y_2=\beta_0 + \beta_1 \cdot  x_{2,1} + \beta_2 \cdot  x_{2,2}\)</span></li>
+<li><span class="arithmatex">\(50.000= \beta_0 + \beta_1 \cdot  13 + \beta_2 \cdot  4\)</span></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="training-parametrischer-modelle">Training Parametrischer Modelle</h3>
+<p><img alt="bg left:42% h:400" src="../images/parametricModel.png" /></p>
+<ul>
+<li><span class="arithmatex">\(\text{income} ≈ β_0 + β_1 \cdot \text{education}+ β_2 \cdot \text{seniority}\)</span></li>
+<li>Die Form ist festgelegt, aber wir können drei Parameter anpassen, um die Anpassung zu verbessern (<span class="arithmatex">\(β_0, β_1, β_2\)</span>)</li>
+<li><span class="arithmatex">\(β_0\)</span> ist der Achsenabschnitt</li>
+<li>Die Parameter einer linearen Regression werden durch Minimierung der Summe der quadrierten Fehler geschätzt</li>
+<li>Die Lösung kann entweder analytisch oder numerisch erfolgen, man spricht dabei auch vom <em>"Training"</em> oder <em>"Fitten"</em> des Modells</li>
+<li>Schätzer werden mit einen Dachzeichen versehen, z.B. <span class="arithmatex">\(\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2\)</span> bzw. <span class="arithmatex">\(\hat{f}(\vec{X})\)</span> und <span class="arithmatex">\(\hat{Y}\)</span></li>
+</ul>
+<hr />
+<div class="arithmatex">\[
+\hat{f}(x_1) = \vec{\beta} \times \vec{x} 
+\]</div>
+<div class="arithmatex">\[
+= \begin{bmatrix} 1 &amp; x_1 \end{bmatrix} \times \begin{bmatrix}\hat{\beta}_0 \\ \hat{\beta_1}\end{bmatrix} = \begin{bmatrix} 1 &amp;  x_1  \end{bmatrix} \times\begin{bmatrix} 81.3 \\ 1.88  \end{bmatrix}  
+\]</div>
+<div class="arithmatex">\[
+= 81.3  + 1.88  \cdot x_1
+\]</div>
+<hr />
+<h2 id="test-und-trainingsdaten">Test- und Trainingsdaten</h2>
+<h3 id="nicht-parametrische-modelle">Nicht-parametrische Modelle</h3>
+<p><img alt="bg right h:400" src="../images/non-parametricModel.png" /></p>
+<ul>
+<li><span class="arithmatex">\(Y=f(X)\)</span></li>
+<li>keine explizite Annahme über die funktionale Form von <span class="arithmatex">\(f\)</span> (z.B. lineare Funktion)</li>
+<li>aber eine Art Algorithmus von <span class="arithmatex">\(f\)</span><ul>
+<li>nahe an den Datenpunkten</li>
+<li>ohne zu rau oder wellig zu sein</li>
+</ul>
+</li>
+<li>z.B. ist eine handgezeichnete Linie ein nicht-parametrisches Modell</li>
+</ul>
+<hr />
+<h3 id="overfitting">Overfitting</h3>
+<p><img alt="bg right h:400" src="../images/overfitting.png" /></p>
+<ul>
+<li>häufiger bei flexiblen, nicht-parametrischen Methoden</li>
+<li>perfekte Vorhersage für jeden Punkt in den Trainingsdaten</li>
+<li>wahrscheinlich keine gute Vorhersage für Punkte, die nicht in den Trainingsdaten sind</li>
+</ul>
+<hr />
+<h3 id="aufteilung-der-stichprobe-in-trainings-und-testdaten">Aufteilung der Stichprobe in Trainings- und Testdaten</h3>
+<p><img alt="bg right:40% w:400" src="../images/Train-Test-Data-Split_W640.jpg" /></p>
+<ul>
+<li><strong>Trainingsdaten</strong>: die Daten, die wir zum Aufbau des Modells verwenden (z.B. zum Finden/Anpassen der richtigen Parameter für das Modell)</li>
+<li><strong>Testdaten</strong>: Zurückgehaltene Stichprobe, die wir verwenden können, um zu testen, wie gut das Modell mit unbekannten Daten umgeht</li>
+<li>Häufige Aufteilung: 70% Trainingsdaten, 30% Testdaten zufällig ausgewählt</li>
+</ul>
+<hr />
+<h3 id="abwagung-zwischen-vorhersagegenauigkeit-und-modellinterpretierbarkeit">Abwägung zwischen Vorhersagegenauigkeit und Modellinterpretierbarkeit</h3>
+<p><img alt="bg right h:400" src="../images/parametricModel.png" /></p>
+<ul>
+<li>parametrische Modelle sind in der Regel einfacher zu interpretieren</li>
+</ul>
+<hr />
+<h2 id="fehlermae">Fehlermaße</h2>
+<ul>
+<li>Messung der Güte im Training und Performance des Modells auf Testdaten</li>
+</ul>
+<p><span class="arithmatex">\(Y = f(\vec{X}) + \epsilon\)</span></p>
+<ul>
+<li>der Fehler jeder Vorhersage <span class="arithmatex">\(e_j\)</span> zeigt uns, wie gut die Vorhersagen mit den beobachteten Daten übereinstimmen</li>
+</ul>
+<div class="arithmatex">\[e_i = y_i-\hat{f}(\vec{x}_i)=y_i-\hat{y}\]</div>
+<ul>
+<li>Der mittlere quadratische Fehler (<span class="arithmatex">\(\text{MSE}\)</span>) ist ein gängiges Genauigkeitsmaß,</li>
+</ul>
+<div class="arithmatex">\[\text{MSE} = \frac{1}{n}  \sum_{j=1}^ne_i^2 = \frac{1}{n}  \sum_{i=1}^n(y_i-\hat{f}(\vec{x}_i))^2\]</div>
+<p><img alt="bg right:35% h:400" src="../images/main-qimg-104b107465543d694b0822ef5843c65d.webp" /></p>
+<hr />
+<h4 id="trainings-vs-testdatensatz">🧠 Trainings- vs. Testdatensatz</h4>
+<p><img alt="bg right:40% w:400" src="../images/Train-Test-Data-Split_W640.jpg" /></p>
+<ul>
+<li>Viele Methoden minimieren den <span class="arithmatex">\(\text{MSE}\)</span> während des Trainings (Trainings-<span class="arithmatex">\(\text{MSE}\)</span>, In-Sample-<span class="arithmatex">\(\text{MSE}\)</span>)</li>
+<li>im Allgemeinen interessiert uns nicht wirklich, wie gut die Methode während des Trainings auf den Trainingsdaten funktioniert, </li>
+<li>sondern wie unsere Methoden auf zuvor ungesehenen Testdaten funktionieren (Out-of-Sample-<span class="arithmatex">\(\text{MSE}\)</span>)</li>
+</ul>
+<hr />
+<h4 id="anpassung-von-daten-mit-einem-modell-mit-geringer-flexibilitat">Anpassung von Daten mit einem Modell mit geringer Flexibilität</h4>
+<div class="arithmatex">\[f_{\text{low}}(x)=\hat{y}(x)=\beta_0\]</div>
+<ul>
+<li>(d.h., der Durchschnitt aller roten Punkte der Trainingsdaten)</li>
+<li>
+<p>nur ein Parameter <span class="arithmatex">\(\beta_0\)</span></p>
+</li>
+<li>
+<p>schwarz: Vorhersage</p>
+</li>
+<li>rot: Trainingsdaten (mittlere Anpassung)</li>
+<li>blau: Testdaten (gute Anpassung)</li>
+</ul>
+<p><img alt="bg right:45% w:500" src="../images/Simple_Model.png" /></p>
+<hr />
+<h4 id="anpassung-von-daten-mit-einem-modell-mit-mittlerer-flexibilitat">Anpassung von Daten mit einem Modell mit mittlerer Flexibilität</h4>
+<div class="arithmatex">\[f_{\text{med}}(x)=\hat{y}(x)=\beta_0 + \beta_1 \cdot x\]</div>
+<ul>
+<li>
+<p>zwei Parameter <span class="arithmatex">\(\beta_0\)</span> und  <span class="arithmatex">\(\beta_1\)</span></p>
+</li>
+<li>
+<p>schwarz: Vorhersage</p>
+</li>
+<li>rot: Trainingsdaten (gute Anpassung)</li>
+<li>blau: Testdaten (gute Anpassung)</li>
+</ul>
+<p><img alt="bg right:45% w:500" src="../images/middle_model.png" /></p>
+<hr />
+<h4 id="anpassung-von-daten-mit-einem-modell-mit-hoher-flexibilitat">Anpassung von Daten mit einem Modell mit hoher Flexibilität</h4>
+<div class="arithmatex">\[f_{\text{high}}(x)=\hat{y}(x)=\beta_0 + \beta_1 \cdot x + \beta_2 \cdot x^{2}\]</div>
+<ul>
+<li>
+<p>drei Parameter <span class="arithmatex">\(\beta_0\)</span>, <span class="arithmatex">\(\beta_1\)</span>, <span class="arithmatex">\(\beta_2\)</span></p>
+</li>
+<li>
+<p>schwarz: Vorhersage</p>
+</li>
+<li>rot: Trainingsdaten (sehr gute Anpassung)</li>
+<li>blau: Testdaten (schlechte Anpassung)</li>
+</ul>
+<p><img alt="bg right:45% w:500" src="../images/flexible_model.png" /></p>
+<hr />
+<h2 id="lineare-regression-in-python">Lineare Regression in Python</h2>
+<ul>
+<li>Sie Jupyter Notebook <code>Regression.ipynb</code> im nächsten Abschnitt</li>
+<li>Wir verwenden die Python-Bibliothek <code>scikit-learn</code> für die Implementierung der linearen Regression und weiterer Modelle</li>
+<li>Alternativ können Sie auch die <code>statsmodels</code>-Bibliothek verwenden, welche jedoch stärker auf statistische Tests und Hypothesentests ausgerichtet ist</li>
+</ul>
+<hr />
+<h2 id="alternative-regressionsmodelle">Alternative Regressionsmodelle</h2>
+<ul>
+<li><strong>Polynomiale Regression</strong>: Erweitert die lineare Regression, indem sie die Prädiktoren durch Polynome höherer Ordnung erweitert</li>
+<li><strong>Multi-Layer Perceptron (MLP)</strong>: Ein neuronales Netzwerk, das für Regressionsprobleme verwendet wird</li>
+<li><strong>Gradient Boosting</strong>: Eine Methode, die viele schwache Lernalgorithmen kombiniert, um ein starkes Modell zu erstellen</li>
+<li><a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/">SciKit Learn</a> bietet viele weitere Regressionsmodelle, die Sie verwenden können</li>
+</ul>
+<hr />
+<!-- _class : white --->
+
+<p><img alt="" src="https://scikit-learn.org/stable/_downloads/b82bf6cd7438a351f19fac60fbc0d927/ml_map.svg" /></p>
+<hr />
+<h2 id="aufgabe-123-20-regressionsmodell-fur-endgewicht">🏆 Aufgabe 12.3 (20%): Regressionsmodell für Endgewicht</h2>
+<ul>
+<li><strong>Abgabeformalien:</strong> Fügen sie ein Kapitel in ihrer Dokumentation hinzu, in dem Sie die Ergebnisse der Regression dokumentieren und geben Sie die Datei <code>reg_&lt;Matrikelnummer1-Matrikelnummer2-Matrikelnummer3&gt;.csv</code> mit ab</li>
+<li>Erstellen Sie ein Lineares Regressionsmodell zur Vorhersage des Endgewichts anhand aller sinnvollen Daten</li>
+<li>Erstellen Sie für Ihren Report eine Tabelle, welche die genuzten Spalten (<code>X</code>) für die Vorhersage (<code>y</code>) enthält und den MSE-Wert für die jeweiligen Spalten</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Genutzte Spalten</th>
+<th>Modell-Typ</th>
+<th>MSE-Wert (Training)</th>
+<th>MSE-Wert (Test)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[<code>Vibration_index_blue</code>]</td>
+<td>Linear</td>
+<td>0.5</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>[<code>Vibration_index_blue</code>,<code>Vibration_index_blue</code>]</td>
+<td>Logistic</td>
+<td>0.7</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>Spalte 1, Spalte 2</td>
+<td>SVM</td>
+<td>0.9</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>Schreiben Sie die Formel für das beste Lineare Regressionsmodell auf in der Form <span class="arithmatex">\(y = mx + b\)</span> incl. der Parameter</li>
+<li>Machen Sie eine Prognose für das folgende Datenset <a href="../X.csv"><code>X.csv</code></a> mit Ihrem besten Modell</li>
+<li>Als Orientierung kann folgendes Notebook dienen <a href="8_Regression_Python.ipynb" download>docs/8_Regression_Python.ipynb</a>, welches auch im nächsten Abschnitt vorgestellt wird</li>
+<li>Speichern Sie die Prognose in einer CSV-Datei <code>reg_&lt;Matrikelnummer1-Matrikelnummer2-Matrikelnummer3&gt;.csv</code> und dokumentieren Sie Ihre Ergebnisse in der Markdown-Datei</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Flaschen ID, y_hat
+1, 45.3
+2, 43.2
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../7_Datenspeicherung/" class="btn btn-neutral float-left" title="Datenspeicherung"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../8_Regression_Python/" class="btn btn-neutral float-right" title="Lineare Regression mit Python und Scikit-Learn">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../7_Datenspeicherung/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../8_Regression_Python/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

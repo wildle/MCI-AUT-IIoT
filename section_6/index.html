@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/section_6/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Section 6 - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Section 6";
+        var mkdocs_page_input_path = "section_6.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/section_6/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Section 6</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="automatisierungstechnik">Automatisierungstechnik</h1>
+<p><strong>Mess-/Steuerkette</strong>
+<strong>AD-Wandler</strong>
+<strong>PID-Regler</strong></p>
+<hr />
+<h1 id="mess-steuerkette">Mess-/Steuerkette</h1>
+<p><img alt="h:400" src="../images/Messsteuerkette.png" /></p>
+<hr />
+<h1 id="hardware-der-messsteuerkette">Hardware der Messsteuerkette</h1>
+<p><img alt="h:400" src="../images/SPS_Hardware.png" /></p>
+<hr />
+<h1 id="feldbus">Feldbus</h1>
+<h2 id="schnittstelle-ea-gerate-und-steuerung">Schnittstelle E/A-Geräte und Steuerung</h2>
+<p><img alt="h:350" src="../images/EtherCAT_Shield.PNG" /></p>
+<p>Wie funktioniert EtherCAT https://www.youtube.com/watch?v=9-s3fzGxEI4</p>
+<hr />
+<h1 id="sensoren-eingangssignale">Sensoren &amp; Eingangssignale</h1>
+<p><img alt="" src="../images/Messsteuerkette_Allgemein.PNG" /></p>
+<hr />
+<h1 id="sensoren-eingangssignale_1">Sensoren &amp; Eingangssignale</h1>
+<p>Sensoren mit Wirkungsweise:</p>
+<ul>
+<li><strong>Temperatursensoren</strong></li>
+<li>
+<p>Änderung des Widerstands oder der Spannung</p>
+</li>
+<li>
+<p><strong>Drucksensor</strong></p>
+</li>
+<li>
+<p>Änderung des Widerstands oder der Kapazität</p>
+</li>
+<li>
+<p><strong>Kraftsensor</strong></p>
+</li>
+<li>
+<p>Änderung des Widerstands oder der elektrischen Ladung</p>
+</li>
+<li>
+<p><strong>Lichtsensor</strong></p>
+</li>
+<li>
+<p>Änderung des Widerstands oder der Spannung</p>
+</li>
+<li>
+<p><strong>Positionssensor</strong></p>
+</li>
+<li>Änderung des Widerstands oder der elektrischen Impulse</li>
+</ul>
+<hr />
+<h2 id="signaltypen-analoger-sensoren">Signaltypen Analoger Sensoren</h2>
+<p><strong>Volt-Basiert:</strong>
+0...10V , -10...10V</p>
+<p><strong>Strom-Basiert:</strong>
+0...20mA , 4...20mA</p>
+<p>Wie können die oft sehr kleinen Änderungen der Messgrößen in standartisierte Signale umgewandelt werden? </p>
+<hr />
+<h2 id="verstarker">Verstärker</h2>
+<p>Sensoren zusammen mit Verstärkern werden als Transmitter bezeichnet, heutiger Standard für industrielle Sensoren. </p>
+<hr />
+<h2 id="vorteile-von-transmittern">Vorteile von Transmittern</h2>
+<p>Transmitter in einem Gehäuse kombiniert:</p>
+<ul>
+<li>Sensor</li>
+<li>Verstärker</li>
+</ul>
+<p>Vorteile:</p>
+<ul>
+<li>Der Verstärker ist nah am Sensor und in kompakter Bauform</li>
+<li>Kalibrierung wird vom Hersteller durchgeführt <strong>!!!</strong></li>
+<li>Kosteneffektiv</li>
+</ul>
+<hr />
+<h2 id="reduktion-von-storungen-bei-der-signal-ubertragung">Reduktion von Störungen bei der Signal übertragung</h2>
+<p>Zur reduktion von EMS können Transmitter in einer differential Schaltung angeordnet werden. </p>
+<p><img alt="h:400" src="../images/DiffSignaling.png" /></p>
+<hr />
+<h2 id="reduktion-von-storungen-bei-der-signal-ubertragung-ii">Reduktion von Störungen bei der Signal übertragung II</h2>
+<p>Dabei wird das Signal mit einen Positiven und Negativen Spannungsbereich übertragen. Gemessen wird die Differenz der beiben Signale. Störungen fallsen somit an beiden Leitungen gleich an und die Differenz der Signale bleibt jene, welche ohne Störung erwartet wird. </p>
+<hr />
+<h2 id="analogdigital-wandler">Analog/Digital - Wandler</h2>
+<p><img alt="" src="../images/Messsteuerkette_Allgemein.PNG" /></p>
+<h3 id="el-3xxx">EL 3xxx</h3>
+<hr />
+<h2 id="analogdigital-wandler_1">Analog/Digital - Wandler</h2>
+<ul>
+<li>Verstärker oder Transmitter geben analoge Signale (0..10V, 4..20mA) aus</li>
+<li>Signale müssen in digitale Werte umgewandelt werden</li>
+<li>Damit sie von einem Computer verarbeitet werden können</li>
+<li>Dies wird von einem Analog-Digital-Wandler (ADC) durchgeführt</li>
+<li>Heutzutage wird binäre Logik verwendet</li>
+<li>Analoge Signale werden in Binärzahlen umgewandelt. Binärzahlen bestehen aus Binärziffern. Eine Ziffer kann zwei Zustände haben, die normalerweise durch die Zeichen „0“ und „1“ dargestellt werden. Zur Darstellung einer Zahl benötigen wir mehr Ziffern</li>
+</ul>
+<hr />
+<h2 id="kontinuierliche-vs-diskrete-signale">Kontinuierliche vs. Diskrete Signale</h2>
+<p><img alt="h:400" src="../images/%C3%9Cbersicht_kontinuierliche_und_diskrete_Signale.svg.png" /></p>
+<hr />
+<h2 id="kontinuierliche-vs-diskrete-signale_1">Kontinuierliche vs. Diskrete Signale</h2>
+<ul>
+<li><strong>Auflösung und Abtastrate</strong></li>
+<li>Die Anzahl der Ziffern (Bits), die von einem ADC erzeugt werden, wird als Auflösung des ADC bezeichnet und in Bits angegeben.</li>
+<li>Die Anzahl der Umwandlungen pro Sekunde wird als Abtastrate bezeichnet.</li>
+<li>Derzeit sind folgende Auflösungen und Abtastraten üblich:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Auflösung</th>
+<th>Teilung</th>
+<th>Abtastrate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 Bit</td>
+<td>256 Schritte</td>
+<td>bis zu 10 GSamples/s</td>
+</tr>
+<tr>
+<td>12 Bit</td>
+<td>4096 Schritte</td>
+<td>bis zu 2 GSamples/s</td>
+</tr>
+<tr>
+<td>16 Bit</td>
+<td>65536 Schritte</td>
+<td>bis zu 250 MSamples/s</td>
+</tr>
+<tr>
+<td>24 Bit</td>
+<td>16 Millionen Schritte</td>
+<td>bis zu 100 kSamples/s</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-hohere-auflosung-undoder-hohere-geschwindigkeit-fuhren-zu-hoheren-kosten">- Höhere Auflösung und/oder höhere Geschwindigkeit führen zu höheren Kosten.</h2>
+<h2 id="beispiel-wertediskretisierung-auflosung">Beispiel Wertediskretisierung / Auflösung</h2>
+<div class="arithmatex">\[ \Delta u = \frac{u_{max}-u_{min}}{2^{n}} \]</div>
+<p>für dieses Signal: 
+$$ \Delta u = 1.25 V \rightarrow u_{max} = 10V; n = 3;  $$
+Damit liegt der tatsächliche Spannungswert zwischen 0 und 1,25V bei umgewandelter Zahl 0.</p>
+<p><img alt="bg right:50% h:450" src="../images/Wertdiskretes%20Signal.PNG" /></p>
+<hr />
+<h2 id="beispiel-zeitdiskretisierung-abtastrate">Beispiel Zeitdiskretisierung / Abtastrate</h2>
+<p>Abtastrate wird durch die Zykluszeit vorgegeben. In Fällen wo eine erhöhte Abtastfrequenz erforderlich ist, werden eingene Tasks eingesetzt. In Sonderfällen, wenn es die Klemmen zulassen, kann Oversampling Funktion verwendet werden. </p>
+<p><img alt="bg right:50% h:450" src="../images/WertZeitDiskretesSignal.PNG" /></p>
+<hr />
+<h1 id="nyquist-shannon-theorem">Nyquist-Shannon Theorem</h1>
+<ul>
+<li><strong>Abtasttheorem</strong></li>
+<li>Wenn die höchste Frequenz im Signal <strong>f</strong> ist, dann muss das Signal mit mindestens <strong>2 * f</strong> abgetastet werden.</li>
+<li>Wurde von Nyquist und Shannon entwickelt.</li>
+<li>Beschreibt, wie oft ein Signal abgetastet werden muss, um es reproduzieren zu können.</li>
+<li>Beispiel: Wenn Sie ein Signal mit maximal 10 Hz messen möchten, müssen Sie mindestens 20 Abtastungen pro Sekunde durchführen.</li>
+<li>Für den praktischen Gebrauch benötigen Sie eine Abtastrate, die mindestens 2,5-mal höher ist, aufgrund der Toleranzen der Komponenten.</li>
+</ul>
+<hr />
+<h3 id="abtastfrequenz-von-harmonischen-signalen">Abtastfrequenz von Harmonischen Signalen</h3>
+<p><img alt="" src="../images/NiquistShannon.PNG" /></p>
+<hr />
+<h2 id="bodediagramm-des-eingangsfilters">Bodediagramm des Eingangsfilters</h2>
+<p><img alt="h:450" src="../images/NiquistBodeplott.PNG" /></p>
+<hr />
+<h2 id="skalierung-der-eingangswerte">Skalierung der Eingangswerte</h2>
+<ul>
+<li>
+<p>Damit in der Steuerung mit geeigneten Werten gearbeitet werden kann, muss der Eingang des Feldbuses auf den gemessenen physikalischen Wert zurückgerechnet werden.</p>
+</li>
+<li>
+<p>Die dazu benötigten Größen, sind Auflösung ADC, Sensorreichweite, Sensorsensitivität und Messbereich.</p>
+</li>
+<li>
+<p>Mit diesen Werten kann bei linearen Sensor verhalten auf die gemessene Größe gerechnet werden durch eine lineare Funktion.</p>
+</li>
+<li>Beispiel Ultraschallsensor: <ul>
+<li>Messbereich : 350mm</li>
+<li>Totzone : 30mm</li>
+<li>Sensorsensitivität: 0.07 mm</li>
+<li>Sensorausgang : 0...10V</li>
+<li>ADC Auflösung : 12 Bit (16- Bit Darstellung im Feldbus)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<div class="arithmatex">\[ y = kx+d $$
+d...Totzone (30 mm aus Datenblat)
+$$ d = h_{min} $$
+k...Steigung mit 
+$$ k = \frac{ih_{max} - ih_{min}}{h_{max}-h_{min}}\]</div>
+<p>x...ADC Eingangswert über Feldbus
+y...Messgröße in Sensoreinheit (mm)</p>
+<p><img alt="bg right h:400" src="../images/Skalierungsfunktion.PNG" /></p>
+<hr />
+<h3 id="inkremetalencoder">Inkremetalencoder</h3>
+<p><img alt="bg right:60% h:500" src="../images/InkrementalEncoder.PNG" /></p>
+<hr />
+<h3 id="absolute-encoder">Absolute Encoder</h3>
+<p><img alt="bg right:70% h:200" src="../images/Bin%C3%A4rGrayCode.PNG" /></p>
+<hr />
+<h3 id="multiturn-encoder-hall-effekt">Multiturn Encoder (Hall Effekt)</h3>
+<p><img alt="" src="../images/AbsoluteEncoder.PNG" /></p>
+<hr />
+<h1 id="aktoren-ausgangssignale">Aktoren &amp; Ausgangssignale</h1>
+<p>Im Vergleich zu Sensoren sind für Aktuatoren oft keine Standartsignale definiert. Weiters handelt es sich heufig um Komponenten mit hoher Leistung, d.h. die ansteuerung kann nicht direkt erfolgen, sondern durch leistungsverstärker. </p>
+<p>Das Niquist-Shannon Theorem gilt auch für die Wiederherstellung von Analogen signalen. </p>
+<p>Feldbus übertragung der Analogwerte basiert normalerweise auf INT Daten Typ (16 Bit), d.h. 16Bit somit sind die ADC Reichweiten auf diese 16 Bit festgelegt. Ein 12 Bit DAC bekommt Zahlen von 0 bis 65536, um seine Reichweite abzubilden, kann diese aber nur in 12 Bit Auflösung, Analogwerte wiedergeben. Somit sind 16 zahlen im feldbus immer die gleichen Ausgangssignale. </p>
+<hr />
+<h2 id="datenaufzeichnung-scope-baustein">Datenaufzeichnung - Scope Baustein</h2>
+<hr />
+<h1 id="reglerimplementierung">Reglerimplementierung</h1>
+<hr />
+<h2 id="reglerstruktur">Reglerstruktur</h2>
+<p><img alt="" src="../images/SPS-Reglerstruktur.PNG" /></p>
+<hr />
+<h2 id="pid-regler-mit-direkten-parametern">PID Regler mit direkten Parametern</h2>
+<p><img alt="bg right h:500" src="../images/PID_ReglerDirekteParameter.PNG" /></p>
+<hr />
+<h2 id="pid-regler-mit-zeitlichen-parametern">PID Regler mit zeitlichen Parametern</h2>
+<p><img alt="bg right h:500" src="../images/PID_ReglerZeitlicheParameter.PNG" /></p>
+<hr />
+<h2 id="ziegler-nichols-parameter-tunning-methode">Ziegler Nichols Parameter Tunning Methode</h2>
+<p><img alt="h:450" src="../images/ZieglerNicols.PNG" /></p>
+<hr />
+<h2 id="ziegler-nichols-fur-pt1-tt-glied">Ziegler Nichols für PT1 Tt-Glied</h2>
+<p>$$ T_u = T_t; T_g = T; K_s = K $$
+<img alt="" src="../images/Tutg.svg.png" />
+<img alt="" src="../images/ZieglerNicholsPT1.PNG" /></p>
+<hr />
+<h2 id="pid-verhalten">PID-Verhalten</h2>
+<p><img alt="" src="../images/PIDVerhalten.PNG" /></p>
+<hr />
+<h2 id="anti-wind-up">Anti Wind-Up</h2>
+<p><img alt="" src="../images/AntiWindUp.PNG" /></p>
+<hr />
+<h2 id="demonstration-an-virtueller-lufterstrecke">Demonstration an virtueller Lüfterstrecke</h2>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

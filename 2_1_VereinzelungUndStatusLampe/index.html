@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/2_1_VereinzelungUndStatusLampe/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>2 1 VereinzelungUndStatusLampe - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2 1 VereinzelungUndStatusLampe";
+        var mkdocs_page_input_path = "2_1_VereinzelungUndStatusLampe.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/2_1_VereinzelungUndStatusLampe/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">2 1 VereinzelungUndStatusLampe</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="beispiel-learning-factory-vereinzelung-statusampel">Beispiel Learning Factory Vereinzelung &amp; Statusampel</h1>
+<p><strong>Entwicklungsschritte von Automatisierungsaufgaben</strong>
+<strong>Ablaufsteuerung mit Digitalen E/A's</strong></p>
+<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
+<hr />
+<!-- header: Beispiel Vereinzelung -->
+
+<h2 id="entwicklungsschritte">Entwicklungsschritte</h2>
+<ul>
+<li>
+<p><strong>1. Prozessschema erstellen (Anlagendesign)</strong>, dabei soll die allgemeine
+    Funktionsweise bildlich dargestellt und alle Komponenten mit Namen
+    versehen werden. Der Prozess kann wörtlich beschrieben werden.</p>
+</li>
+<li>
+<p><strong>2. Ablaufdiagramm erstellen (Anlagenablauf)</strong>, aus dem Prozessschema soll
+    ein Ablauf definiert werden. Hier ist speziell auf die Reihenfolge
+    und Prozessverzweigungen Rücksicht zu nehmen. Durch die
+    Namensvergebung der Komponenten ist eine eindeutige Zuordnung
+    zwischen Prozessschema und Ablaufdiagramm vorhanden.</p>
+</li>
+<li>
+<p><strong>3. Sensor- und Aktuatorauswahl (Anlagenauslegung)</strong>, durch die Auswahl
+    der Sensoren und Aktuatoren sind die notwendigen Elektrischen
+    Signale bekannt.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>4. Auswahl der E/A-Geräte (Anlagensteuerung)</strong>, mit der Signalliste der
+    Sensoren und Aktuatoren können passende E/A-Geräte definiert werden.</p>
+</li>
+<li>
+<p><strong>5. SPS-Programmierung (Anlagenprogrammierung)</strong>, mit Hilfe des
+    Ablaufdiagramms und der Signalliste kann jeder Schritt im Prozess
+    mit den dazugehörenden Signalzuständen beschrieben und in ein
+    Zustandsübergangsdiagramm überführt werden. Dieses Diagramm dient zu
+    Programmierunterstützung.</p>
+</li>
+<li>
+<p><strong>6. Prozess und Programmoptimierung (Anlagenoptimierung)</strong>, der Prozess
+    und das Programm können validiert und optimiert werden nachdem der
+    Prozess automatisiert wurde.</p>
+</li>
+</ul>
+<hr />
+<p><strong>1. Prozessschema erstellen (Anlagendesign)</strong></p>
+<ul>
+<li>Das Schema der Vereinzelung, dargestellt in nachstehender Abbildung, umfasst:</li>
+<li>Den vertikalen Speicherbereich, der die Teileförderung durch Gravitation ermöglicht.</li>
+<li>Die Vereinzelungskammer, die durch zwei Schleusen begrenzt ist.</li>
+<li>Notwendige Sensoren für die Teileerkennung.</li>
+<li>Ein Abtransportsystem, dargestellt als Förderband, das in anderen Anlagen durch unterschiedliche Komponenten wie z.B. eine Rutsche ersetzt werden kann.</li>
+</ul>
+<hr />
+<h3 id="schema-der-vereinzelung">Schema der Vereinzelung</h3>
+<p><img alt="bg right:70% w:550" src="../images/Schemata_Vereinzelung.png" /></p>
+<hr />
+<h3 id="ablaufbeschreibung">Ablaufbeschreibung</h3>
+<ul>
+<li>Ausgangszustand: Der Speicher wird manuell mit Flaschen befüllt, und beide Schleusen befinden sich in geschlossener Position.</li>
+<li>Die Sensoren "Flaschenkopf" und "Flasche in Speicher" detektieren eine korrekt positionierte Flasche durch die Signalkombination "Flaschenkopf" = FALSE und "Flasche in Speicher" = TRUE.</li>
+<li>Die erste Schleuse kann geöffnet werden, bis der Sensor "Flasche in Kammer" eine Flasche erkennt.</li>
+<li>Nach dem Erkennen wird die obere Schleuse wieder geschlossen.</li>
+<li>Sobald die obere Schleuse geschlossen ist, kann die untere Schleuse geöffnet werden und wird wieder geschlossen, wenn die Flasche die Kammer verlassen hat.</li>
+<li>Damit ist der Ausgangszustand wieder erreicht, und der Prozess kann erneut beginnen.</li>
+</ul>
+<hr />
+<p><strong>2. Ablaufdiagramm erstellen (Anlagenablauf)</strong></p>
+<ul>
+<li>Um den Prozess von menschlicher Sprache in Maschinensprache zu überführen, bietet sich die Erstellung eines Ablaufdiagramms an.</li>
+<li>Das Ablaufdiagramm ist in nachstehender Abbildung dargestellt und umfasst drei Symboltypen:</li>
+</ul>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; <img alt="h:200" src="../images/Ablaufdiagramm_Symbole.PNG" /></p>
+<h2 id="-fur-die-meisten-ablaufdiagramme-sind-diese-symbole-ausreichend-zusatzliche-symbole-fur-zum-beispiel-datenspeicherung-oder-meldungen-konnen-bei-bedarf-erganzt-werden">- Für die meisten Ablaufdiagramme sind diese Symbole ausreichend. Zusätzliche Symbole, für zum Beispiel Datenspeicherung oder Meldungen, können bei bedarf ergänzt werden.</h2>
+<h3 id="ablaufdiagramm-vereinzelung">Ablaufdiagramm Vereinzelung</h3>
+<p><img alt="bg right:50% h:550" src="../images/Ablaufdiagramm_Vereinzelung.PNG" /></p>
+<hr />
+<ul>
+<li>Der Vereinzelungsprozess besteht aus vier Arbeitsschritten, da jede Schleuse einmal geöffnet und geschlossen werden muss.</li>
+<li>Es gibt drei Zustandsabfragen, wobei die letzten beiden in den vorherigen Arbeitsschritt zurückkehren. Somit gibt es keine Prozessverzweigung, sondern ein Arbeitsschritt wird so lange ausgeführt, bis eine Änderung der Abfrage erfolgt.</li>
+<li>Bei der ersten Abfrage erfolgt eine Art Prozessabzweigung, bei der eine Fehlermeldung für nicht vorhandene Flaschen angezeigt wird.</li>
+<li>Diese Fehlerbehandlung wird vorerst vernachlässigt und später im Kapitel zur Fehlerbehandlung wieder aufgenommen.</li>
+<li>Eine Mischung von Prozessprogramm und Fehlerbehandlungsprogrammen führt zu einem unübersichtlichen Code und erfordert daher eine andere Vorgehensweise.</li>
+</ul>
+<hr />
+<p><strong>3. Sensor- und Aktuatorauswahl (Anlagenauslegung)</strong></p>
+<ul>
+<li>Die Flaschenförderung im Speicher wird durch Gravitation realisiert, wobei alternative Methoden wie die Verwendung von Förderbändern möglich sind.</li>
+<li>Es ist wichtig, zwischen aktiven und passiven Fördersystemen zu unterscheiden, da dies einen Einfluss auf die erforderlichen E/A-Geräte hat.</li>
+<li>Die Separation der Flaschen erfolgt durch zwei Schleusen, aber auch ein Drehtisch mit einer Ausnehmung für eine Flasche könnte genutzt werden.</li>
+<li>Sowohl lineare als auch rotierende Antriebe können als Aktuatoren für die Separation dienen, wobei es zahlreiche Ausführungsvarianten für beide Kategorien gibt.</li>
+<li>Die Flaschenförderung nach der Vereinzelung kann entweder durch eine rutschfähige Bahn als passives Element oder durch ein Förderband mit einem entsprechenden Aktor als aktives Element implementiert werden.</li>
+</ul>
+<hr />
+<ul>
+<li>Die Detektion von Flaschen bietet diverse Möglichkeiten, bei denen unterschiedliche Sensoren einsetzbar sind oder sogar auf Sensoren verzichtet werden könnte, was jedoch die Steuerbarkeit der Anlage einschränken würde.</li>
+<li>Die Umsetzung des Prozesses durch die Auswahl verschiedener Wirkprinzipien, Aktuatoren und Energieversorgungsformen ermöglicht eine facettenreiche Gestaltung der Anlage.</li>
+<li>In nachstehender Tabelle sind die gewählten Sensoren und Aktoren für die Vereinzelung nach dem Schema der Vereinzelung, aus vorherigen Abschnitt, aufgelistet.</li>
+</ul>
+<hr />
+<h4 id="sensor-aktor-liste">Sensor / Aktor - Liste</h4>
+<p><img alt="" src="../images/SensorAktorListe.PNG" /></p>
+<hr />
+<p><strong>4. Auswahl der E/A-Geräte (Anlagensteuerung)</strong></p>
+<ul>
+<li>Für die im technischen System vorhandenen digitale Ein- und Ausgänge können passende E/A-Geräte ausgewählt werden.</li>
+<li>Sensor-Signale können mit einer digitalen Eingangsklemme in die Steuerung integriert werden, wobei auf den Prellschutz in der Eingangsklemme verzichtet werden kann, da es sich um nichtmechanische Sensoren handelt.</li>
+<li>In diesem Beispiel wird eine 8-Kanal Klemme verwendet, da es in den weiteren Komponenten der Teaching Factory zusätzliche digitale Eingangssignale gibt, die auf der selben Klemme angeschlossen werden.</li>
+<li>Bei den bipolaren 24 V Signalen ist die Auswahl etwas komplexer. Während des Ausfahrens der Zylinder muss Leitung A mit 24 V versorgt und Leitung B an 0 V angeschlossen sein. Um den Zylinder wieder einfahren zu können, muss eine Umpolung in den Leitungen A und B erfolgen.</li>
+<li>Dieses Verhalten kann durch eine Relaisschaltung mit vier Relais umgesetzt werden, wie in folgender Abbildung dargestellt.</li>
+</ul>
+<hr />
+<h3 id="relaisschaltung-fur-2-e-zylinder">Relaisschaltung für 2 E-Zylinder</h3>
+<p><img alt="bg right h:600" src="../images/Relaisschaltung.PNG" /></p>
+<hr />
+<h4 id="klemmen-variablen-verknupfung">Klemmen-Variablen Verknüpfung</h4>
+<ul>
+<li>Die Kanäle 1 und 2 der beiden Klemmen EL 2652 müssen mit den Aktuatorenanschlüssen verdrahtet werden.</li>
+<li>Dadurch wird Kanal 1 der Klemme 11 (K11) die Funktion zugewiesen, den zweiten Aktor zu öffnen, wenn das Relais geschaltet wird. Voraussetzung dafür ist, dass Kanal 1 der Klemme 12 (K12) nicht betätigt wird und somit das Relais auf 0 V durchschaltet.</li>
+<li>Gleiches gilt für Aktor 1 und Kanal 2 an der Klemme 11 und 12.</li>
+<li>Die Zuweisung aller Kanäle der Klemmen ist in nachstehender Tabelle ersichtlich.</li>
+<li>Auch die DI's für die Klemme EL1018 werden dort aufgelistet.</li>
+<li>Diese Prozesssignale und alle weiteren Prozesssignale der Teaching Factory werden innerhalb der SPS-Steuerung in einer Globalen Variablen Liste <em>IFC_HW</em> zusammengefasst, was das Hardware Interface bildet und die Signale der Anlage mit den Variablen des Steuerungsprogramms verknüpft.</li>
+</ul>
+<hr />
+<h4 id="klemmen-variablen-verknupfung_1">Klemmen-Variablen Verknüpfung</h4>
+<p><img alt="" src="../images/KlemmenVariablenVerkn%C3%BCpfung.PNG" /></p>
+<hr />
+<p><strong>5. SPS-Programmierung (Anlagenprogrammierung)</strong></p>
+<ul>
+<li>Der Prozess der Vereinzelung wird durch einen Funktionsblock implementiert, der für mehrere Vereinzelungen einsetzbar ist.</li>
+<li>Die E/A-Signale aus obiger Tabelle (Klemmen-Variablen Verknüpfung) werden nicht Eins zu Eins als E/A-Variablen für diesen Funktionsblock verwendet.</li>
+<li>Stattdessen werden die Schaltzustände der Ezylinder durch zwei bool'sche Variablen <em>bGate1</em> und <em>bGate2</em> ersetzt.</li>
+<li>Somit wird der Funktionsblock hardwareseitig abgegrenzt, um für andere Aktuatortypen einsetzbar zu bleiben. </li>
+<li>Die Schleusen sind im Zustand <em>False</em> von <em>bGate1</em> oder <em>bGate2</em> geschlossen und im Zustand <em>True</em> für <em>bGate1</em> oder <em>bGate2</em>  geöffnet.</li>
+</ul>
+<hr />
+<ul>
+<li>Die Zuordnung zu den globalen Variablen aus der <em>IFC_HW</em> und somit den tatsächlichen Relaiszuständen erfolgt nach Aufruf des Funktionsblocks durch eine weitere Funktion im übergeordneten, anwendungsspezifischen Hauptprogramm.</li>
+<li>Um sicherzustellen, dass der Prozess gemäß dem Ablaufdiagramm funktioniert, müssen die Ausgangszustände für jeden Arbeitsschritt definiert werden.</li>
+<li>Die Signale müssen den Abfragen entsprechend zugeordnet werden, damit der Zustand im richtigen Moment wechselt.</li>
+<li>Diese Zuordnung der Zustände und Signale wird in Abbildung nachstehender Abbildung dargestellt, wobei auch eine Durchnummerierung nach Zustandswechsel erfolgt.</li>
+</ul>
+<hr />
+<h4 id="zustandssignalliste-ohne-signale">Zustandssignalliste (ohne Signale)</h4>
+<p><img alt="bg right:70% h:600" src="../images/Zustandssignalliste1.PNG" /></p>
+<hr />
+<h4 id="zustandssignalliste">Zustandssignalliste</h4>
+<p><img alt="bg  h:600" src="../images/Zustandssignalliste.PNG" /></p>
+<hr />
+<p><img alt="bgleft  h:600" src="../images/Zustandssignalliste.PNG" />
+<img alt="bg right:50% h:550" src="../images/Ablaufdiagramm_Vereinzelung.PNG" /></p>
+<hr />
+<h3 id="erstellung-des-zustandsubergangsdiagramms">Erstellung des Zustandsübergangsdiagramms</h3>
+<ul>
+<li>Die Implementierung der Prozessschrittkette in Strukturierten Text (ST) wird durch das Zustandsübergangsdiagramm erleichtert.</li>
+<li>Da es sich um ein einfaches Beispiel handelt und die Zustandsvariablen auf zwei bool'sche Werte beschränkt sind, können diese in die Zustände S1 bis S5 eingetragen werden.</li>
+<li>Bei komplexeren Systemen ist es oft übersichtlicher, die Zustandsvariablen nur in der Zustandsliste anzuführen.</li>
+</ul>
+<hr />
+<h4 id="zustandsubergangsdiagramm-der-vereinzelung">Zustandsübergangsdiagramm der Vereinzelung</h4>
+<p><strong>Ausgänge:</strong>
+<code>bGate1(2) := False;</code> &#8594; Schleuse zu
+<code>bGate1(2) := True;</code> &#8594; Schleuse offen
+<strong>Eingänge:</strong>
+<code>bSens1 := True;</code> &#8594; Flasche in Kammer
+<code>bSens2 := True;</code> &#8594; Flasche in Speicher
+<strong>Interne Variablen:</strong>
+<code>fbTimer : TON</code>
+<code>nState : INT</code></p>
+<p><img alt="bg right h:580" src="../images/Zustandsuebergangsdiagramm_Vereinzelung.PNG" /></p>
+<hr />
+<h4 id="programmuberfuhrung">Programmüberführung</h4>
+<ul>
+<li>Die Programmüberführung aus dem Zustandsübergangsdiagramm in Strukturierten Text (ST) erfolgt durch die Verwendung einer CASE-Anweisung.</li>
+<li>Die CASE-Anweisung dient der Auswahl von 1-n unterschiedlichen Programmteilen basierend auf einer INTEGER Variable.</li>
+<li>Für das Programmieren einer State Machine kann die Zustandsnummer S1-Sn als Auswahlvariable verwendet werden.</li>
+<li>Im Programmteil werden die Signalzustände entsprechend gesetzt.</li>
+<li>Zum Verlassen eines Zustands wird eine einfache IF-Anweisung verwendet, die die Eingangsvariablen der Übergangsbedingung abfragt.</li>
+<li>Sobald die Übergangsbedingung erfüllt ist, werden die Aktionen der IF-Abfrage ausgeführt, wie beispielsweise "on exit" Aktionen und das setzen der Auswahlvariable auf die neue Zustandsnummer.</li>
+<li>Ein Beispiel hierfür ist der Zustand S1 mit der Auswahlvariable nState: INT := 1.</li>
+</ul>
+<hr />
+<h4 id="programmuberfuhrung-mit-case-anweisung">Programmüberführung mit CASE-Anweisung</h4>
+<p><div class="highlight"><pre><span></span><code> CASE nState OF
+ 1: // Start
+    // Zustand
+    bGate1 := FALSE;
+    bGate2 := FALSE
+
+    IF bSens2 THEN
+        nState := 2; // oeffnen Schleuse oben
+    END_IF
+
+ 2: // oeffnen Schleuse oben    
+    ...
+
+ n: // n-ter State 
+ END_CASE
+ ```
+
+---
+
+#### CASE-Anweisung mit Enumerationsinstanzen
+</code></pre></div>
+ CASE State OF
+ State.Start: 
+    // Zustand
+    bGate1 := FALSE;
+    bGate2 := FALSE</p>
+<pre><code>IF bSens2 THEN
+    State := State.OpenGate1; 
+END_IF
+</code></pre>
+<p>State.OpenGate1: <br />
+    ...</p>
+<p>n: // n-ter State 
+ END_CASE
+ ```</p>
+<hr />
+<h3 id="hardware-schnittstelle">Hardware Schnittstelle</h3>
+<ul>
+<li>Aufgrund unzureichender Ausgänge dieses Funktionsblocks zur Ansteuerung der Relais muss ein weiterer Funktionsbaustein erstellt werden.</li>
+<li>Dieser Funktionsbaustein soll die Relaissignale gemäß der Tabelle "Signalliste" ausgeben.</li>
+<li>Die Wahrheitstabelle für einen Aktor ergibt sich aus dieser Tabelle.</li>
+<li>Da zwei Ausgangswerte benötigt werden, kann keine einfache Funktion verwendet werden.</li>
+<li>Ziel des Funktionsbausteins ist es, die Ablaufsteuerung für allgemeine Vereinzelungen zu ermöglichen und die anwendungsspezifischen Signale in der übergeordneten Steuerung zu setzen.</li>
+</ul>
+<hr />
+<h4 id="wahrheitstabelle-relaissteuerung">Wahrheitstabelle Relaissteuerung</h4>
+<p><img alt="h:250" src="../images/WahrheitstabelleRelaisteuerung.PNG" /></p>
+<hr />
+<h4 id="relaissteuerung-fb">Relaissteuerung FB</h4>
+<div class="highlight"><pre><span></span><code>FUNCTION_BLOCK FB_RCrtl
+VAR_INPUT
+    bIN : BOOL;
+END_VAR
+VAR_OUTPUT
+    bQ1 : BOOL;
+    bQ2 : BOOL;
+END_VAR
+-------------------------------------------------
+
+IF bIn THEN
+    bQ1 := TRUE;
+    bQ2 := FALSE;
+ELSIF NOT bIn Then
+    bQ1 := FALSE;
+    bQ2 := TRUE;
+END_IF
+</code></pre></div>
+<hr />
+<p><strong>6. Prozess- und Programmoptimierung (Anlagenoptimierung)</strong></p>
+<ul>
+<li>Im aktuellen Steuerprogramm der Vereinzelung zeigen sich zwei ungünstige Verhaltensweisen.</li>
+<li>Erstens erfolgt die zyklische Vereinzelung der Flaschen ohne externe Kontrolle.</li>
+<li>Zweitens besteht die Möglichkeit, dass eine Flasche bei einer Fehlfunktion des Förderbandes in der unteren Schleuse stecken bleibt, was zu Beschädigungen führen kann.</li>
+<li>Um diese Probleme zu adressieren, wird in Abbildung 26 eine optimierte Ablaufsteuerung vorgeschlagen.</li>
+<li>Diese Optimierung beinhaltet zwei zusätzliche Eingangssignale, um die Vereinzelung zu initiieren und den eigentlichen Vereinzelungsprozess zu starten.</li>
+</ul>
+<hr />
+<ul>
+<li>Zur Minimierung des Risikos von Flaschenklemmungen wird die Ablaufsteuerung um einen Sensor erweitert.</li>
+<li>Ideal wäre ein Näherungssensor am ersten Abfüllplatz, der die Flasche außerhalb der Kammer detektieren kann.</li>
+<li>Sobald die Flasche diese Stelle erreicht, kann der Vereinzelungsprozess abgeschlossen werden.</li>
+<li>Eine zusätzliche Erweiterung des Zustandsgraphen betrifft die Betriebszustandsvariablen.</li>
+<li>Jeder Prozesszustand befindet sich in einem der definierten Betriebszustände.</li>
+<li>Diese Betriebszustände können beispielsweise als Off, Init, Ready, Production, Done, Error, Stop oder Setup festgelegt werden.</li>
+</ul>
+<hr />
+<ul>
+<li>Sie sind einheitlich für die gesamte Anlage, einschließlich einzelner Komponenten, Aktoren und Sensoren.</li>
+<li>Die Betriebszustände dienen als standardisierte Schnittstelle zwischen übergeordneten und untergeordneten Steuereinheiten.</li>
+<li>Sie werden als Ausgang an eine übergeordnete Steuereinheit zurückgemeldet, um den Gesamtprozess der Anlage zu steuern.</li>
+<li>Wenn die Produktion gestoppt werden soll, kann das bEnable Signal entzogen werden.</li>
+<li>Dadurch wird der Prozesszustand "Off" aktiviert, mit dem die Produktion beendet wird.</li>
+</ul>
+<hr />
+<h3 id="zustandubergangsdiagramm-optimiert">Zustandübergangsdiagramm Optimiert</h3>
+<p><img alt="bg  right:60%  h:500" src="../images/Zustandsuebergangsdiagramm_VereinzelungOpt.PNG" /></p>
+<hr />
+<h3 id="optimierung-des-steuerungscodes">Optimierung des Steuerungscodes</h3>
+<ul>
+<li>Die vorgestellten Erweiterungen der Ablaufsteuerung können als ein allgemeines Framework für Funktionsbausteine auf den Ebenen Modul-, Prozess- und Hardware betrachtet werden.</li>
+<li>In einem späteren Kapitel wird detailliert aufzeigen, wie das Ebenenkonzept aufgebaut ist und welche Unterschiede zwischen den einzelnen Ebenen bestehen.</li>
+<li>Als Ergebnis dieser Erweiterungen ist festzustellen, dass alle Funktionsbausteine gleichartig angesteuert werden können und ein einheitliches Feedback liefern, wenn ein Prozess startbereit oder abgeschlossen ist.</li>
+<li>Diese Harmonisierung führt zu einem reduzierten Programmieraufwand.</li>
+<li>Die Verwendung eines definierten Frameworks ermöglicht zudem die Aufteilung der Programmierung auf mehrere Entwickler, ohne dass ein erheblicher Abstimmungsaufwand erforderlich ist.</li>
+</ul>
+<hr />
+<!-- header: Beispiel Betriebszustandsampel -->
+
+<h2 id="betriebszustandsampel">Betriebszustandsampel</h2>
+<ul>
+<li>Zweck: Die Betriebszustandsampel soll den allgemeinen Anlagenzustand veranschaulichen und den Bedienern der Anlage einen direkten Überblick über den Betriebszustand ermöglichen.</li>
+<li>Funktion: Ein spezieller Funktionsbaustein wird benötigt, um definierte Leuchtsignale zu generieren, die den Betriebszustand anzeigen.</li>
+<li>Normative Grundlage: Die Definition der Zusammenhänge zwischen den Leuchtsignalen und dem Betriebszustand orientiert sich an der Norm EN ISO 13849-1.</li>
+<li>Signalvielfalt: Da acht verschiedene Betriebszustände durch nur drei Leuchtfarben dargestellt werden müssen, sind Leucht- und Blinksignale sowie zweifarbige Signale erforderlich.</li>
+<li>Tabelle: Die genauen Zusammenhänge zwischen den Leuchtsignalen und den Betriebszuständen sind in nachstehender Tabelle aufgeführt.</li>
+</ul>
+<hr />
+<h3 id="leuchtsignaltabelle">Leuchtsignaltabelle</h3>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; <img alt="h:550" src="../images/Leuchtsignale.PNG" /></p>
+<hr />
+<h3 id="implementierung-der-betriebszustandsampel">Implementierung der Betriebszustandsampel</h3>
+<ul>
+<li>DUT-Typ (Data Unit Type): Ein benutzerdefinierter Datentyp vom Typ Enumeration wird für die Implementierung der Zustandsampel erzeugt.</li>
+<li>Funktionsbaustein-Eingang: Der erstellte DUT-Typ repräsentiert die Betriebszustände und wird als Eingang in den Funktionsbaustein verwendet, wie in Abbildung unten dargestellt.</li>
+<li>Zuweisung der Leuchtsignale: Die Ausgänge des Funktionsbausteins werden gemäß der oben genannten Tabelle über eine Case-Anweisung den entsprechenden Leuchtsignalen zugeordnet.</li>
+<li>Das Blinksignal kann als Funktionsbaustein ähnlich wie im Einführungsbeispiel ohen Starttrigger verwendet werden.</li>
+</ul>
+<hr />
+<h3 id="blockschaltbild-betriebszustandsampel">Blockschaltbild Betriebszustandsampel</h3>
+<p><img alt="" src="../images/BlockschaltbildStatusLampe.PNG" /></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/3_Motorsteuerung/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>3 Motorsteuerung - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3 Motorsteuerung";
+        var mkdocs_page_input_path = "3_Motorsteuerung.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/3_Motorsteuerung/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">3 Motorsteuerung</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="motorsteuerung">Motorsteuerung</h1>
+<p><strong>TwinCAT Motion Baukasten</strong>
+<strong>Tc2_Mc2 Motion-Bibliothek</strong>
+<strong>Beispiel Förderband</strong></p>
+<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
+<hr />
+<h2 id="grundlagen-zur-motorsteuerung">Grundlagen zur Motorsteuerung</h2>
+<p><img alt="h:450" src="../images/AchsenSchaubild.PNG" /></p>
+<hr />
+<h3 id="ebenenansicht-der-motorsteuerung">Ebenenansicht der Motorsteuerung</h3>
+<p><img alt="bg right:60% h:600" src="../images/EbenenMotorSteuerung.PNG" /></p>
+<hr />
+<h2 id="twincat-motion-baukasten">TwinCAT Motion Baukasten</h2>
+<p><img alt="" src="../images/MotionBaukasten.PNG" /></p>
+<p><a href="https://www.youtube.com/watch?v=IYw8fy9VQ24">Video Link XPlanar</a></p>
+<hr />
+<h2 id="applikationsebene">Applikationsebene</h2>
+<p>Die Bewegungsarten der Tc2_Mc2 sind gemäß den Spezifikationen von PLCopen-motion-control gestaltet und umfassen drei Kategorien:</p>
+<ul>
+<li>Kontinuierliche Bewegung: Diese wird durch Geschwindigkeitseingaben definiert.</li>
+<li>Diskrete Bewegung: Diese wird durch Positions- oder Zeitangaben definiert.</li>
+<li>Synchronisierte Bewegung: Diese wird durch die Bewegung der Master-Achse definiert.</li>
+</ul>
+<p>Die Unterschiede zwischen diesen Kategorien liegen in ihren erforderlichen Steuereingängen. Zusätzliche Eingaben wie maximale Geschwindigkeiten, Beschleunigungen und Bewegungsrichtung ergänzen die Definition der Bewegung.</p>
+<hr />
+<h2 id="kontinuierliche-bewegung">Kontinuierliche Bewegung</h2>
+<p><strong>MC_MoveVelocity</strong></p>
+<p><img alt="bg right h:550" src="../images/MC_MoveVelocity.PNG" /></p>
+<hr />
+<p>&emsp; &emsp; &emsp; &emsp; <img alt="" src="../images/Blockschaltbild_MCMoveVelocity.PNG" /></p>
+<hr />
+<h2 id="diskrete-bewegung">Diskrete Bewegung</h2>
+<p><strong>MC_MoveAbsolute</strong></p>
+<p><img alt="bg right h:550" src="../images/MC_MoveAbsolute.PNG" /></p>
+<hr />
+<p><img alt="bg h:400" src="../images/Blockschaltbild_MC_MoveAbsolute.PNG" /></p>
+<hr />
+<h2 id="diskrete-bewegung_1">Diskrete Bewegung</h2>
+<p><strong>MC_MoveRelative</strong></p>
+<p><img alt="bg right h:550" src="../images/MC_MoveRelative.PNG" /></p>
+<hr />
+<p><img alt="bg h:350" src="../images/Blockschaltbild_MC_MoveRelative.PNG" /></p>
+<hr />
+<h2 id="achsen-referenz-axis_ref">Achsen Referenz (Axis_Ref)</h2>
+<ul>
+<li>Der Datentyp AXIS_REF enthält Information zu einer Achse. AXIS_REF ist eine Schnittstelle zwischen der SPS und der NC und wird den MC-Funktionsbausteinen als Referenz auf eine Achse mitgegeben.</li>
+<li>Dieser Eingang ist keine gewöhnliche Variable, sondern eine <em>In_Out</em>-Variable.</li>
+<li>Dadurch werden Daten des Datentyps <em>Axis_Ref</em> empfangen und ausgegeben.</li>
+<li>Dies ermöglicht eine bidirektionale Kommunikation mit der NC-Achse, wie in oben stehender Abbildung des Ebenenmodells zwischen SPS-Task und NC-Task dargestellt.</li>
+<li>Jede Achse in der Anlage erhält eine individuelle Achsenreferenz.
+Dadurch kann jede Achse eindeutig durch den Aufruf eines Bewegungsbausteins angesteuert werden</li>
+</ul>
+<hr />
+<h2 id="zustandsdiagramm-der-tc2_mc2">Zustandsdiagramm der Tc2_Mc2</h2>
+<p><img alt="bg right:60% h:600" src="../images/StateGraphTc2Mc2.PNG" /></p>
+<hr />
+<h3 id="organisationsbausteine-der-tc2_mc2">Organisationsbausteine der Tc2_Mc2</h3>
+<p><strong>MC_Power</strong>
+<strong>MC_Reset</strong></p>
+<hr />
+<p><img alt="bg h:400" src="../images/Blockschaltbild_MC_Power.PNG" /></p>
+<hr />
+<p><img alt="bg h:300" src="../images/Blockschaltbild_MC_Reset.PNG" /></p>
+<hr />
+<h2 id="nc-achsenebene">NC-Achsenebene</h2>
+<hr />
+<h2 id="achsen-konfiguration">Achsen Konfiguration</h2>
+<p><img alt="bg right:70% h:500" src="../images/AllgemeineNC_Konfiguration.PNG" /></p>
+<hr />
+<h3 id="parameter-der-achse">Parameter der Achse</h3>
+<ul>
+<li>Bezugsgeschwindigkeit</li>
+<li>Max. Geschwindigkeit, Beschleunigung, Verzögerung</li>
+<li>Normal Beschleunigung, Verzögerung, Ruck</li>
+<li>Manuele Beweungsparameter und Homing (Referenzfahrten)</li>
+<li>Endlagenüberwachung Software</li>
+<li>Überwachungsparameter (Schleppabstand, Positionsbereichsüberwachung)</li>
+<li>Weitereparameter wie Eilgang oder Sollwert Generator u.v.m. </li>
+</ul>
+<hr />
+<h2 id="encoder-konfiguration">Encoder Konfiguration</h2>
+<p><img alt="" src="../images/AllgemeineEnc_Konfiguration.PNG" /></p>
+<hr />
+<h3 id="parameter-des-encoders">Parameter des Encoders</h3>
+<ul>
+<li>Geberrichtung</li>
+<li>Skalierfaktoren und Modulofaktor</li>
+<li>Filter</li>
+<li>Referenzfahrtparameter (Endschalter, MC_Home, usw.)</li>
+<li>Encodermode (Pos, PosVel, PosVelAcc)</li>
+</ul>
+<hr />
+<h2 id="reglerimplementierung">Reglerimplementierung</h2>
+<p><img alt="h:400" src="../images/AllgemeineCtrl_Konfiguration.PNG" /></p>
+<hr />
+<h3 id="reglerparameter">Reglerparameter</h3>
+<ul>
+<li>Reglertyp </li>
+<li>Reglerspezifische Paramter</li>
+</ul>
+<hr />
+<h3 id="online-betrieb-jogging-mode">Online-Betrieb (Jogging Mode)</h3>
+<p>SPS-Pausiert oder Achsenreferenz nicht vergeben!</p>
+<p><img alt="bg right:70% h:450" src="../images/Online_Betrieb.PNG" /></p>
+<hr />
+<h2 id="hardware-interface-ebene">Hardware Interface Ebene</h2>
+<p><img alt="bg right:60% h:500" src="../images/Hardwarekomponenten_Motorsteuerung.png" /></p>
+<hr />
+<h3 id="hardware-interface-parameter-coe-parameter">Hardware Interface Parameter (CoE-Parameter)</h3>
+<ul>
+<li>Wiklungswiderstände</li>
+<li>Wiklungsinduktivitäten</li>
+<li>Fullsteps (Schrittmotor)</li>
+<li>Nennspannung und -strom</li>
+<li>Tunningbefehle (automatisierte Systemidentifikation)</li>
+<li>Encoderparameter</li>
+<li>u.v.m. </li>
+</ul>
+<hr />
+<h2 id="hardware-motoren-und-encoder">Hardware (Motoren und Encoder)</h2>
+<p><img alt="bg right 60% h:550" src="../images/Achsenhardware.PNG" /></p>
+<hr />
+<h3 id="inkremetalencoder">Inkremetalencoder</h3>
+<p><img alt="bg right:60% h:500" src="../images/InkrementalEncoder.PNG" /></p>
+<hr />
+<h3 id="absolute-encoder">Absolute Encoder</h3>
+<p><img alt="bg right:70% h:200" src="../images/Bin%C3%A4rGrayCode.PNG" /></p>
+<hr />
+<p><img alt="bg h:450" src="../images/AbsoluteEncoderAufbau.PNG" /></p>
+<hr />
+<h3 id="multiturn-encoder-hall-effekt">Multiturn Encoder (Hall Effekt)</h3>
+<p><img alt="h:400" src="../images/AbsoluteEncoder.PNG" /></p>
+<p>https://www.youtube.com/watch?v=wpAA3qeOYiI
+https://www.youtube.com/watch?v=jkXsqwXNVlw</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

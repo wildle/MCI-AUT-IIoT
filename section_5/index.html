@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/section_5/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Section 5 - IIoT – Industrielles Internet der Dinge</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Section 5";
+        var mkdocs_page_input_path = "section_5.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/section_5/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_Datenverarbeitung_in_der_industriellen_Produktion/">Theorie & MQTT-Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Section 5</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- paginate: true -->
+
+<p><strong>SoSe 2024</strong>
+Serafin Kollegger &amp; Julian Huber</p>
+<h1 id="automatisierungstechnik">Automatisierungstechnik</h1>
+<p><strong>Steuerungsprogramme</strong>
+<strong>Hierarchischer Ansatz von Graphengruppen</strong></p>
+<hr />
+<h1 id="entwicklung-von-steuerungsprogrammen">Entwicklung von Steuerungsprogrammen</h1>
+<ul>
+<li>Funktionseinheiten können definiert werden, um die Komplexität von Zustandsgraphen zu reduzieren.</li>
+<li>Sie repräsentieren das Verhalten einzelner Komponenten.</li>
+<li>Übergeordnete Funktionsgruppen steuern diese Einheiten.</li>
+<li>Eine sorgfältige Auswahl der Komponenten ist entscheidend.</li>
+<li>Eine hierarchische Struktur kann für eine zweckmäßige Verknüpfung der Funktionseinheiten genutzt werden.</li>
+</ul>
+<hr />
+<p><img alt="h:600" src="../images/AblaufdiagrammErsterTeil.PNG" /></p>
+<p><img alt="bg right h:550" src="../images/AblaufdiagrammZweiterTeil.PNG" /></p>
+<hr />
+<h2 id="hierarchischer-ansatz">Hierarchischer Ansatz</h2>
+<p><img alt="bg right:65% h:550" src="../images/AnlagenEbenenmodel.PNG" /></p>
+<hr />
+<h2 id="hierarchischer-ansatz_1">Hierarchischer Ansatz</h2>
+<ul>
+<li>Definition von drei Hauptebenen für den hierarchischen Ansatz</li>
+<li>Oberste Ebene: Maschinen-/Anlagen-Ebene (Machine Level)</li>
+<li>Darunter: Modul-Ebene (Modul Level)</li>
+<li>Unterste Ebene: Prozess-Ebene (Process Level)</li>
+<li>Funktionseinheiten werden auf der Prozess-Ebene gesteuert</li>
+<li>Anpassung der Programmstruktur an den mechanischen Aufbau</li>
+</ul>
+<hr />
+<h3 id="maschinen-ebene">Maschinen Ebene</h3>
+<ul>
+<li>Zusammenfassung von Funktionen auf der Maschinen-/Anlagen-Ebene</li>
+<li>Enthält Zustandsgraphen für Betriebsmodus und Betriebsfreigaben</li>
+<li>Zustandsgraphen, die das Verhalten der Steuerung bei Störungen festlegen, sind ebenfalls enthalten</li>
+<li>Funktionen auf dieser Ebene sind von übergeordneter Bedeutung</li>
+</ul>
+<hr />
+<h3 id="modul-ebene">Modul Ebene</h3>
+<ul>
+<li>Implementierung von Zustandsgraphen auf der Modul-Ebene</li>
+<li>Hauptaufgabe: Koordination zwischen verschiedenen Funktionseinheiten</li>
+<li>Zusammenführung der Zustandsgraphen der Funktionseinheiten wird als Graphengruppe bezeichnet</li>
+</ul>
+<hr />
+<h3 id="prozessebene">Prozessebene</h3>
+<h2 id="-in-der-prozess-ebene-werden-die-funktionseinheiten-durch-zustandsgraphen-beschrieben">- In der Prozess Ebene werden die Funktionseinheiten durch Zustandsgraphen beschrieben</h2>
+<h3 id="erweiterungen-des-ebenenansatzes">Erweiterungen des Ebenenansatzes</h3>
+<p><strong>Submodule</strong></p>
+<ul>
+<li>Einführung zusätzlicher Submodul-Ebenen für komplexe Anlagen</li>
+<li>Die Modul-Ebene besteht aus Submodulen anstelle von Funktionseinheiten</li>
+<li>Submodule sind wiederum aus Funktionseinheiten zusammengefasst</li>
+</ul>
+<p><strong>Hardware Ebene</strong>
+- Ziel: Herstellung eines hardwareunabhängigen Steuerungscodes
+- Steuersignale in der Prozessebene werden allgemein und abstrahiert gehalten
+- Die tatsächlich angeschlossene Hardware wird durch eigene Funktionsbausteine gesteuert
+- Dadurch kann ein Großteil des Programmieraufwands bereits erledigt werden, bevor die Anlagenentwicklung abgeschlossen ist
+- Flexibilität, da sich Sensoren und Aktoren noch ändern können, ohne den Programmieraufwand zu erhöhen</p>
+<hr />
+<h2 id="graphengruppen">Graphengruppen</h2>
+<p><img alt="bg right:65% h:600" src="../images/GenerischeGraphengruppe.PNG" /></p>
+<hr />
+<h2 id="graphengruppen_1">Graphengruppen</h2>
+<p>Drei Grundgedanken sollten dabei Hilfe bieten, um eine Graphengruppe zu erstellen.
+- Globale Initialisierung
+- Sequentielle Startsignale
+- Signalaustausch der Funktionseinheiten</p>
+<hr />
+<h3 id="globale-initialisierung">Globale Initialisierung</h3>
+<ul>
+<li>Globale Initialisierung bedeutet, dass mit dem Signal der Betriebsfreigabe zur Produktion (bEnable) alle in diesem Modul verwendeten Funktionseinheiten eine Betriebsfreigabe erhalten.</li>
+<li>Alle Initialisierungsprozesse sind innerhalb der Funktionseinheiten programmiert und werden nur von der Graphengruppe ausgelöst.</li>
+<li>Ebenso ist die Graphengruppe im Betriebszustand State.Ready, sobald alle enthaltenen Funktionseinheiten in diesem Zustand sind.</li>
+</ul>
+<hr />
+<h3 id="sequentielle-startsignale">Sequentielle Startsignale</h3>
+<ul>
+<li>Sequenzielle Startsignale bedeuten, dass nicht alle Funktionseinheiten mit dem Startsignal bExecute gestartet werden können.</li>
+<li>Stattdessen soll der Prozessablauf gemäß dem Ablaufdiagramm der gesamten Anlage durchgeführt werden.</li>
+<li>Dafür ist ein Zustandsgraph für die Ablaufbeschreibung zu erstellen, in dem die Koordination der Funktionseinheiten übernommen wird.</li>
+</ul>
+<hr />
+<h3 id="signalaustausch-der-funktionseinheiten">Signalaustausch der Funktionseinheiten</h3>
+<ul>
+<li>Um den Ablauf ordnungsgemäß umzusetzen, ist ein Signalaustausch zwischen den Funktionseinheiten erforderlich.</li>
+<li>Idealerweise basiert diese Informationsweitergabe für alle Funktionseinheiten auf dem gleichen Prinzip.</li>
+<li>Das bedeutet, dass eine Funktionseinheit, die im Ablauf vorher steht und ihre Arbeitsschritte abgeschlossen hat (im Betriebszustand .eState = State.Done), die nachfolgende Funktionseinheit starten lässt.</li>
+<li>Gleichzeitig kann die vorherige Funktionseinheit durch NOT .bExecute zurückgesetzt werden.</li>
+<li>Weitere Eingangssignale für die Funktionseinheiten können ebenfalls in der Graphengruppe gesteuert werden, wie beispielsweise Zähler, Timer, Schwellwerte usw.</li>
+</ul>
+<hr />
+<h2 id="programmstruktur-abhangig-von-funktionseinheiten">Programmstruktur abhängig von Funktionseinheiten</h2>
+<p><strong>Variante 1</strong>
+<img alt="" src="../images/V1Abf%C3%BCllmodul.PNG" /></p>
+<hr />
+<p><strong>Variante 2</strong>
+<img alt="" src="../images/V2Abf%C3%BCllmodul.PNG" /></p>
+<hr />
+<p><strong>Variante 3</strong>
+<img alt="" src="../images/V3Abf%C3%BCllmodul.PNG" /></p>
+<hr />
+<h2 id="basisaufgaben">Basisaufgaben</h2>
+<hr />
+<h3 id="beschreibung-transporteinheit">Beschreibung Transporteinheit</h3>
+<p><img alt="" src="../images/SchemaTransporteinheit.PNG" /></p>
+<hr />
+<p><img alt="" src="../images/AblaufdiagrammTransporteinheit.PNG" /></p>
+<p><img alt="bg right h:300" src="../images/Blockschaltbild_Transporteinheit.PNG" /></p>
+<hr />
+<h3 id="abfullmodul-20-punkte">Abfüllmodul - 20 Punkte</h3>
+<p><img alt="" src="../images/Schema_DispenserEinheit.PNG" /></p>
+<p><img alt="bg right h:400" src="../images/Schema_Abf%C3%BCllmodul.PNG" /></p>
+<hr />
+<h3 id="manipulatoreinheit-20-punkte">Manipulatoreinheit - 20 Punkte</h3>
+<p><img alt="" src="../images/Programmstruktur_Manipulatoreinheit.PNG" /></p>
+<hr />
+<h4 id="ablaufdiagramm-robotermodul">Ablaufdiagramm Robotermodul</h4>
+<p><img alt="bg right:70% h:500" src="../images/Ablaufdiagramm_Robotermodul.PNG" /></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
