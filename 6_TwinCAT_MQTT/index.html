@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/6_TwinCAT_MQTT/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>TwinCAT MQTT-Client - IIoT – Industrial Internet of Things</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "TwinCAT MQTT-Client";
+        var mkdocs_page_input_path = "6_TwinCAT_MQTT.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/6_TwinCAT_MQTT/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrial Internet of Things
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Organisatorisches</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Organisatorisches/">Aufbau der Lehrveranstaltung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Projekt/">Projekt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../6_IIoT_Grundlagen/">Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_MQTT/">MQTT</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">TwinCAT MQTT-Client</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-schema">Topic-Schema</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#schritt-1-iot-library-einbinden">Schritt 1: IoT-Library einbinden</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#schritt-2-sps-als-client-konfigurieren">Schritt 2: SPS als Client konfigurieren</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#variablen-deklarieren">Variablen deklarieren</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verbindung-aufbauen-erster-zyklus">Verbindung aufbauen (erster Zyklus)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#startwerte-publizieren-retain-true-einmalig">Startwerte publizieren (Retain = TRUE, einmalig)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#messwerte-periodisch-publizieren-alle-10s">Messwerte periodisch publizieren (alle 10s)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hinweise-zur-implementierung">Hinweise zur Implementierung</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bekannte-stolperfallen">Bekannte Stolperfallen</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_REST/">REST</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrial Internet of Things</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Industrial Internet of Things</li>
+      <li class="breadcrumb-item active">TwinCAT MQTT-Client</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="twincat-mqtt-client">TwinCAT MQTT-Client</h1>
+<h2 id="aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</h2>
+<p>Erweitert euer TwinCAT-Programm um einen MQTT-Client, der Sensordaten der Learning Factory an den Broker sendet:</p>
+<ul>
+<li>Füllstände aller Dispenser alle <strong>10 Sekunden</strong> übertragen</li>
+<li>Falls der Füllstand noch nicht implementiert ist: beliebigen anderen Wert senden</li>
+<li><strong>Alle Werte müssen retained gesendet werden</strong></li>
+</ul>
+<h3 id="topic-schema">Topic-Schema</h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Inhalt</th>
+<th>Wann</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aut/SoSe26/&lt;Gruppe&gt;/$groupsname</code></td>
+<td>Name der Gruppe</td>
+<td>einmalig beim Start</td>
+</tr>
+<tr>
+<td><code>aut/SoSe26/&lt;Gruppe&gt;/names</code></td>
+<td>Nachnamen der Mitglieder</td>
+<td>einmalig beim Start</td>
+</tr>
+<tr>
+<td><code>aut/SoSe26/&lt;Gruppe&gt;/&lt;Größe&gt;</code></td>
+<td>Messwert (INT oder REAL)</td>
+<td>alle 10s</td>
+</tr>
+<tr>
+<td><code>aut/SoSe26/&lt;Gruppe&gt;/&lt;Größe&gt;/$unit</code></td>
+<td>SI-Einheit als String</td>
+<td>einmalig beim Start</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Abgabe gilt als bestanden:</strong> Werte kommen am Broker an und werden durch Retain gespeichert — überprüfbar mit <a href="https://mqtt-explorer.com/">MQTT-Explorer</a>.</p>
+<hr />
+<h2 id="schritt-1-iot-library-einbinden">Schritt 1: IoT-Library einbinden</h2>
+<p>Die Library <code>TC3_IotBase</code> (TF6701) muss im TwinCAT Library Manager referenziert werden:</p>
+<p><img alt="" src="../images/IoTBaseHinzufuegen.PNG" /></p>
+<hr />
+<h2 id="schritt-2-sps-als-client-konfigurieren">Schritt 2: SPS als Client konfigurieren</h2>
+<h3 id="variablen-deklarieren">Variablen deklarieren</h3>
+<div class="highlight"><pre><span></span><code><span class="k">VAR</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="n">FB_IotMqttClient</span><span class="o">;</span>
+<span class="w">    </span><span class="n">sTopicToPublish</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="k">STRING</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;Fuellstand_rot&#39;</span><span class="o">;</span>
+<span class="w">    </span><span class="n">sMessageToPublish</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="k">STRING</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="o">;</span>
+<span class="w">    </span><span class="n">tmrSendMessageInterval</span><span class="o">:</span><span class="w"> </span><span class="n">TON</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">(</span><span class="n">PT</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">T</span><span class="sc">#10</span><span class="n">S</span><span class="p">)</span><span class="o">;</span>
+<span class="w">    </span><span class="n">first_cycle</span><span class="w">           </span><span class="o">:</span><span class="w"> </span><span class="kt">BOOL</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="o">;</span>
+<span class="n">END_VAR</span>
+</code></pre></div>
+<h3 id="verbindung-aufbauen-erster-zyklus">Verbindung aufbauen (erster Zyklus)</h3>
+<div class="highlight"><pre><span></span><code><span class="k">IF</span><span class="w"> </span><span class="n">first_cycle</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">sHostName</span><span class="w">     </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;158.180.44.197&#39;</span><span class="o">;</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">nHostPort</span><span class="w">     </span><span class="o">:=</span><span class="w"> </span><span class="mi">1883</span><span class="o">;</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">sTopicPrefix</span><span class="w">  </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;aut/SoSe26/&lt;Gruppe&gt;/&#39;</span><span class="o">;</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">sClientId</span><span class="w">     </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;Publishing PLC&#39;</span><span class="o">;</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">sUserName</span><span class="w">     </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;bobm&#39;</span><span class="o">;</span>
+<span class="w">    </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">sUserPassword</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;letmein&#39;</span><span class="o">;</span>
+<span class="w">    </span><span class="n">first_cycle</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">FALSE</span><span class="o">;</span>
+<span class="n">END_IF</span>
+
+<span class="n">fbMqttClient</span><span class="o">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">bConnect</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">)</span><span class="o">;</span>
+</code></pre></div>
+<h3 id="startwerte-publizieren-retain-true-einmalig">Startwerte publizieren (Retain = TRUE, einmalig)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Gruppenname und Namen → nur einmal beim Start</span>
+<span class="n">fbMqttClient</span><span class="o">.</span><span class="n">Publish</span><span class="p">(</span><span class="n">sTopic</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;$groupsname&#39;</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">pPayload</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">ADR</span><span class="p">(</span><span class="s">&#39;MeineGruppe&#39;</span><span class="p">)</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">nPayloadSize</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">LEN</span><span class="p">(</span><span class="s">&#39;MeineGruppe&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">eQoS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">TcIotMqttQos</span><span class="o">.</span><span class="n">AtMostOnceDelivery</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">bRetain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">bQueue</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">FALSE</span><span class="p">)</span><span class="o">;</span>
+
+<span class="n">fbMqttClient</span><span class="o">.</span><span class="n">Publish</span><span class="p">(</span><span class="n">sTopic</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;Fuellstand_rot/$$unit&#39;</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">pPayload</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">ADR</span><span class="p">(</span><span class="s">&#39;g&#39;</span><span class="p">)</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">nPayloadSize</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">eQoS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">TcIotMqttQos</span><span class="o">.</span><span class="n">AtMostOnceDelivery</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">bRetain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="o">,</span>
+<span class="w">                     </span><span class="n">bQueue</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">FALSE</span><span class="p">)</span><span class="o">;</span>
+</code></pre></div>
+<h3 id="messwerte-periodisch-publizieren-alle-10s">Messwerte periodisch publizieren (alle 10s)</h3>
+<div class="highlight"><pre><span></span><code><span class="k">IF</span><span class="w"> </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">bConnected</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">    </span><span class="n">tmrSendMessageInterval</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">)</span><span class="o">;</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="n">tmrSendMessageInterval</span><span class="o">.</span><span class="n">Q</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="n">tmrSendMessageInterval</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">FALSE</span><span class="p">)</span><span class="o">;</span>
+<span class="w">        </span><span class="n">sMessageToPublish</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">INT_TO_STRING</span><span class="p">(</span><span class="n">iIn_USS1</span><span class="p">)</span><span class="o">;</span>
+
+<span class="w">        </span><span class="n">fbMqttClient</span><span class="o">.</span><span class="n">Publish</span><span class="p">(</span>
+<span class="w">            </span><span class="n">sTopic</span><span class="w">       </span><span class="o">:=</span><span class="w"> </span><span class="n">sTopicToPublish</span><span class="o">,</span>
+<span class="w">            </span><span class="n">pPayload</span><span class="w">     </span><span class="o">:=</span><span class="w"> </span><span class="n">ADR</span><span class="p">(</span><span class="n">sMessageToPublish</span><span class="p">)</span><span class="o">,</span>
+<span class="w">            </span><span class="n">nPayloadSize</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">LEN</span><span class="p">(</span><span class="n">sMessageToPublish</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span>
+<span class="w">            </span><span class="n">eQoS</span><span class="w">         </span><span class="o">:=</span><span class="w"> </span><span class="n">TcIotMqttQos</span><span class="o">.</span><span class="n">AtMostOnceDelivery</span><span class="o">,</span>
+<span class="w">            </span><span class="n">bRetain</span><span class="w">      </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="o">,</span>
+<span class="w">            </span><span class="n">bQueue</span><span class="w">       </span><span class="o">:=</span><span class="w"> </span><span class="k">FALSE</span>
+<span class="w">        </span><span class="p">)</span><span class="o">;</span>
+<span class="w">    </span><span class="n">END_IF</span>
+<span class="n">END_IF</span>
+</code></pre></div>
+<hr />
+<h2 id="hinweise-zur-implementierung">Hinweise zur Implementierung</h2>
+<ul>
+<li>Legt einen oder mehrere neue Funktionsbausteine an (z.B. <code>FB_IotMqtt</code>)</li>
+<li>Mögliche Input-Variablen: <code>topic</code>, <code>payload</code></li>
+<li>Überlegt, wie ihr <strong>einmalige Nachrichten</strong> (Gruppenname, Einheiten) von <strong>periodischen Nachrichten</strong> (Messwerte) trennt</li>
+<li>Der MQTT-Client hat ein Attribut <code>sTopicPrefix</code> für den ersten Teil des Topics — <code>Publish()</code> erhält nur den hinteren Teil als <code>sTopic</code></li>
+</ul>
+<hr />
+<h2 id="bekannte-stolperfallen">Bekannte Stolperfallen</h2>
+<p><strong><code>$unit</code> in Structured Text:</strong> Das <code>$</code>-Zeichen ist in TwinCAT eine Escape-Sequenz. Je nach Version muss es escaped werden:
+<div class="highlight"><pre><span></span><code><span class="c1">// statt &#39;$unit&#39; ggf.:</span>
+<span class="s">&#39;$$unit&#39;</span>
+</code></pre></div></p>
+<p><strong>TwinCAT-Neustart beim ersten MQTT-Aktivieren:</strong> Manchmal startet TwinCAT beim Aktivieren der MQTT-Verbindung neu. Strategie: zuerst Verbindung ohne Publish testen, dann schrittweise Nachrichten hinzufügen.</p>
+<p><strong>Retain bei allen Werten:</strong> Setzt Retain = TRUE für alle Topics — dann sehen auch Subscriber, die sich erst nach dem Start verbinden, sofort die aktuellen Werte.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../6_MQTT/" class="btn btn-neutral float-left" title="MQTT"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../6_REST/" class="btn btn-neutral float-right" title="REST">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../6_MQTT/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../6_REST/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/6_Datenverarbeitung_in_der_industriellen_Produktion/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Theorie & MQTT-Grundlagen - IIoT – Industrielles Internet der Dinge</title>
+    <title>6 Datenverarbeitung in der industriellen Produktion - IIoT – Industrial Internet of Things</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Theorie \u0026 MQTT-Grundlagen";
+        var mkdocs_page_name = "6 Datenverarbeitung in der industriellen Produktion";
         var mkdocs_page_input_path = "6_Datenverarbeitung_in_der_industriellen_Produktion.md";
         var mkdocs_page_url = "/MCI-AUT-IIoT/6_Datenverarbeitung_in_der_industriellen_Produktion/";
       </script>
@@ -30,142 +30,29 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> IIoT – Industrielles Internet der Dinge
+          <a href=".." class="icon icon-home"> IIoT – Industrial Internet of Things
         </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Industrial IoT</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Theorie & MQTT-Grundlagen</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#projekt">Projekt</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#leistungsbewertung">Leistungsbewertung</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#industrial-internet-of-things">Industrial Internet of Things</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#httpswwwien-dachdeartikelnetzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40">https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#klassische-automatisierungspyramide">Klassische Automatisierungspyramide</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#httpswwwien-dachdeartikelnetzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40_1">https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#fragenstellungen">Fragenstellungen</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#intelligence-in-der-produktion">Intelligence in der Produktion</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#effizienzsteigerung-durch-automatisierung">Effizienzsteigerung durch Automatisierung</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#steigerung-der-verfugbarkeit">Steigerung der Verfügbarkeit</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#flexibilisierung-der-produktion">Flexibilisierung der Produktion</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#anwendungsfall">Anwendungsfall</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#open-systems-interconnection-model">Open Systems Interconnection Model</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#anwendungsbezogene-schichten-topologie">Anwendungsbezogene Schichten (Topologie)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#anwendungsbezogene-schichten-flexibilitat-vs-standardisierung">Anwendungsbezogene Schichten (Flexibilität vs. Standardisierung)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#folge">Folge</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#mqtt-message-queuing-telemetry-transport">MQTT - Message Queuing Telemetry Transport</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#rest-representational-state-transfer">REST - Representational State Transfer</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#message-broker-fur-publish-subscribe-modell">Message Broker für Publish-Subscribe-Modell</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mqtt-message-queuing-telemetry-transport_1">MQTT - Message Queuing Telemetry Transport</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mqtt-broker">MQTT-Broker</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c_1">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#httpsconsolehivemqcloud">https://console.hivemq.cloud/</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#beispiel-fur-nachrichten">Beispiel für Nachrichten</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#producer-zb-eine-soft-sps">Producer (z.B. eine Soft-SPS)</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#consumer">Consumer</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mqtt-wildcards">MQTT-Wildcards</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#quality-of-service-qos">Quality of Service (QoS)</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#httpswwwtechtargetcomiotagendadefinitionmqtt-mq-telemetry-transport">https://www.techtarget.com/iotagenda/definition/MQTT-MQ-Telemetry-Transport</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#retain-flag">Retain Flag</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#httpsemqxmediumcommqtt-5-0-features-retain-message-104698b070d1">https://emqx.medium.com/mqtt-5-0-features-retain-message-104698b070d1</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#praxisbeispiel-und-ubung">🔧🦾👩‍💻 Praxisbeispiel und Übung</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#iot-library-einbinden">IoT-Library Einbinden</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sps-als-client-konfigurieren">SPS als Client Konfigurieren</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#rest-representational-state-transfer_1">REST - Representational State Transfer</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#client-server-architektur">Client-Server-Architektur</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#hypertext-transfer-protocol-fur-rest-services">Hypertext Transfer Protocol für REST-Services</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#adressierung-uber-uniform-resource-locator-url">Adressierung über Uniform Resource Locator (URL)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#antwort-auf-http-request">Antwort auf HTTP-Request</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#http-mit-python-requests">HTTP mit Python - Requests</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#http-mit-python-server">HTTP mit Python - Server</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#http-methoden">HTTP-Methoden</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#get">GET</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#post">POST</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#stuktur-einer-http-anfrage">Stuktur einer HTTP-Anfrage</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#weiteres">🤓 Weiteres</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ausgewahlte-connectoren-tf6xxx-connectivity">🤓 Ausgewählte Connectoren TF6xxx - Connectivity</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+              <p class="caption"><span class="caption-text">Organisatorisches</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Organisatorisches/">Aufbau der Lehrveranstaltung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Projekt/">Projekt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_IIoT_Grundlagen/">Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_MQTT/">MQTT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_TwinCAT_MQTT/">TwinCAT MQTT-Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_REST/">REST</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
                   </li>
@@ -188,15 +75,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">IIoT – Industrielles Internet der Dinge</a>
+          <a href="..">IIoT – Industrial Internet of Things</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Industrial IoT</li>
-      <li class="breadcrumb-item active">Theorie & MQTT-Grundlagen</li>
+      <li class="breadcrumb-item active">6 Datenverarbeitung in der industriellen Produktion</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -766,9 +652,6 @@ python -m flask run
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../7_Datenspeicherung/" class="btn btn-neutral float-right" title="Datenspeicherung">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -791,8 +674,6 @@ python -m flask run
     
     
     
-      <span><a href="../7_Datenspeicherung/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
   </span>
 </div>
     <script src="../js/jquery-3.6.0.min.js"></script>
@@ -800,7 +681,7 @@ python -m flask run
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
       <script src="../javascripts/mathjax.js"></script>
-      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
     <script>
         jQuery(function () {

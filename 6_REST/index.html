@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/6_REST/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>REST - IIoT – Industrial Internet of Things</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "REST";
+        var mkdocs_page_input_path = "6_REST.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/6_REST/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrial Internet of Things
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Organisatorisches</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Organisatorisches/">Aufbau der Lehrveranstaltung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Projekt/">Projekt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../6_IIoT_Grundlagen/">Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_MQTT/">MQTT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_TwinCAT_MQTT/">TwinCAT MQTT-Client</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">REST</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#client-server-architektur">Client-Server-Architektur</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hypertext-transfer-protocol-http">Hypertext Transfer Protocol (HTTP)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adressierung-uber-uniform-resource-locator-url">Adressierung über Uniform Resource Locator (URL)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#antwort-auf-http-request">Antwort auf HTTP-Request</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#http-mit-python-client-requests">HTTP mit Python – Client (requests)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#http-mit-python-server-flask">HTTP mit Python – Server (flask)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#http-methoden">HTTP-Methoden</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#struktur-einer-http-anfrage">Struktur einer HTTP-Anfrage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#weiterfuhrendes">Weiterführendes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#twincat-connectivity">TwinCAT Connectivity (🤓)</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrial Internet of Things</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Industrial Internet of Things</li>
+      <li class="breadcrumb-item active">REST</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="rest-representational-state-transfer">REST – Representational State Transfer</h1>
+<h2 id="client-server-architektur">Client-Server-Architektur</h2>
+<ul>
+<li><strong>Client</strong> sendet <strong>Anfragen</strong></li>
+<li><strong>Server</strong>: Bearbeitet Anfragen und sendet <strong>Antworten</strong></li>
+</ul>
+<p>Im Gegensatz zu MQTT kommunizieren Client und Server direkt miteinander (<strong>Peer-to-Peer</strong>) — kein Broker dazwischen.</p>
+<hr />
+<h2 id="hypertext-transfer-protocol-http">Hypertext Transfer Protocol (HTTP)</h2>
+<ul>
+<li><strong>HTTP</strong> ist ein Protokoll auf Anwendungsschicht</li>
+<li>Bekannt für die Übertragung von Webseiten, aber auch für alle anderen Daten geeignet (sofern Stateless)</li>
+<li>Unter den meisten Betriebssystemen verfügbar (<code>cURL</code>)</li>
+</ul>
+<p><em>Website über PowerShell:</em>
+<div class="highlight"><pre><span></span><code>curl &quot;www.google.com&quot;
+</code></pre></div></p>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über PowerShell:</em>
+<div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
+</code></pre></div></p>
+<p><em>Allgemeine Syntax:</em>
+<div class="highlight"><pre><span></span><code>curl &quot;&lt;URL&gt;/?&lt;query_parameter&gt;&quot;
+</code></pre></div></p>
+<hr />
+<h2 id="adressierung-uber-uniform-resource-locator-url">Adressierung über Uniform Resource Locator (URL)</h2>
+<ul>
+<li>Identifiziert und lokalisiert eine Ressource über das verwendete Netzwerkprotokoll (z.B. HTTP oder FTP)</li>
+<li><code>host</code> kann auch eine IP-Adresse sein</li>
+</ul>
+<div class="highlight"><pre><span></span><code>      |-------------------- Schema-spezifischer Teil ----------------------|
+      |                                                                    |
+https://maxmuster:geheim@www.example.com:8080/index.html?p1=A&amp;p2=B#ressource
+\___/   \_______/ \____/ \_____________/ \__/\_________/ \_______/ \_______/
+  |         |       |           |         |       |          |         |
+Schema Benutzer Kennwort      Host      Port    Pfad      Query    Fragment
+</code></pre></div>
+<p><a href="https://de.wikipedia.org/wiki/Uniform_Resource_Locator#Schema-spezifischer_Teil_(scheme-specific_part)">Quelle</a></p>
+<hr />
+<h2 id="antwort-auf-http-request">Antwort auf HTTP-Request</h2>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über PowerShell:</em>
+<div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>StatusCode        : 200
+StatusDescription : OK
+Content           : {&quot;latitude&quot;:47.260002,&quot;longitude&quot;:11.4,&quot;generationtime_ms...
+Forms             : {}
+Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Content-Type, application/json; charset=utf-8], [Date...
+</code></pre></div>
+<p>Neben den Daten (<code>Content</code>) enthält die Antwort auch Metadaten (<code>Header</code>, <code>StatusCode</code>, ...).</p>
+<hr />
+<h2 id="http-mit-python-client-requests">HTTP mit Python – Client (<code>requests</code>)</h2>
+<p>Zur Kommunikation mit REST-Services wird das <code>requests</code>-Modul verwendet:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.mci.edu/de/&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>              <span class="c1"># 200 → alles OK</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">])</span>  <span class="c1"># text/html; charset=utf-8</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>                     <span class="c1"># &lt;!doctype html&gt; ...</span>
+</code></pre></div>
+<hr />
+<h2 id="http-mit-python-server-flask">HTTP mit Python – Server (<code>flask</code>)</h2>
+<p>Zum Anbieten eines REST-Services wird das <code>flask</code>-Modul verwendet:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Hello, World!&#39;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/number_of_bottles&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">number_of_bottles</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Number of bottles changed to </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">200</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;42&quot;</span><span class="p">,</span> <span class="mi">200</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Method not allowed&quot;</span><span class="p">,</span> <span class="mi">405</span>
+</code></pre></div>
+<p>Starten:
+<div class="highlight"><pre><span></span><code>$env:FLASK_APP = &quot;hello.py&quot;
+python -m flask run
+# * Running on http://127.0.0.1:5000/
+</code></pre></div></p>
+<hr />
+<h2 id="http-methoden">HTTP-Methoden</h2>
+<h3 id="get">GET</h3>
+<p>Fordert eine Ressource vom Server an — <strong>keine Nebeneffekte</strong>, der Serverzustand wird nicht verändert.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://api.citybik.es/v2/networks/stadtrad-innsbruck&#39;</span><span class="p">)</span>
+<span class="c1"># &gt; {&quot;network&quot;:{&quot;company&quot;:[&quot;Nextbike GmbH&quot;],&quot;href&quot;:&quot;/v2/networks/stadtrad-innsbruck&quot;,...</span>
+</code></pre></div>
+<h3 id="post">POST</h3>
+<p>Fügt eine neue Ressource ein. Als Ergebnis wird der neue Ressourcenlink zurückgegeben.</p>
+<div class="highlight"><pre><span></span><code><span class="n">my_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;{</span>
+<span class="s2">  &quot;contact&quot;: {</span>
+<span class="s2">      &quot;id&quot;: &quot;1&quot;,</span>
+<span class="s2">      &quot;firstName&quot;: &quot;Julian&quot;,</span>
+<span class="s2">      &quot;lastName&quot;: &quot;Huber&quot;</span>
+<span class="s2">  }</span>
+<span class="s2">}&quot;&quot;&quot;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://3d3m9.mocklab.io/v1/contacts&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">my_data</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># &gt; Created a new contact!</span>
+</code></pre></div>
+<hr />
+<h2 id="struktur-einer-http-anfrage">Struktur einer HTTP-Anfrage</h2>
+<ul>
+<li><strong>Request-Line</strong>: Methode, URI und Protokollversion</li>
+<li><strong>Header</strong>: Metadaten zur Anfrage, z.B. Authentifizierung</li>
+<li><strong>Leerzeile</strong>: Trennung von Header und Body</li>
+<li><strong>Body</strong>: Daten der Anfrage</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">POST https://api.openai.com/v1/chat/completions</span>
+<span class="err">Authorization: Bearer {{$dotenv SECRET_TOKEN}}</span>
+<span class="err">Content-Type: application/json</span>
+
+<span class="err">{</span>
+<span class="err">    &quot;model&quot;: &quot;gpt-3.5-turbo&quot;,</span>
+<span class="err">    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Say this is a test!&quot;}],</span>
+<span class="err">    &quot;temperature&quot;: 0.7</span>
+<span class="err">}</span>
+</code></pre></div>
+<hr />
+<h2 id="weiterfuhrendes">Weiterführendes</h2>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client">REST Client</a> Erweiterung für VS Code — einfache Anfragen direkt aus dem Editor:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">GET https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m</span>
+</code></pre></div>
+<ul>
+<li><a href="https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP-Anfragemethoden">HTTP-Anfragemethoden (Wikipedia)</a></li>
+<li><a href="https://de.wikipedia.org/wiki/HTTP-Statuscode">HTTP-Statuscodes (Wikipedia)</a></li>
+<li>OpenAPI-Spezifikationen und Swagger am Beispiel <a href="https://petstore3.swagger.io/">Petstore</a></li>
+</ul>
+<hr />
+<h2 id="twincat-connectivity">TwinCAT Connectivity (🤓)</h2>
+<p>Beckhoff bietet verschiedene <a href="https://infosys.beckhoff.com/index.php?content=../content/1031/tf6760_tc3_iot_https_rest/7611986955.html&amp;id=">TF6xxx-Konnektoren</a> für die Kommunikation aus der SPS:</p>
+<ul>
+<li><code>TF6310 | TCP/IP</code>: Kommunikation über das Internetprotokoll mittels einfacher Socket-Verbindungen</li>
+<li><code>TF6100 | OPC UA Client</code>: Plattformunabhängiger Datenaustausch mit maschinenlesbarer semantischer Beschreibung</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../6_TwinCAT_MQTT/" class="btn btn-neutral float-left" title="TwinCAT MQTT-Client"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../7_Datenspeicherung/" class="btn btn-neutral float-right" title="Datenspeicherung">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../6_TwinCAT_MQTT/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../7_Datenspeicherung/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

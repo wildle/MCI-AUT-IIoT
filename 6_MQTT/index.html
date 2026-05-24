@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/6_MQTT/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>MQTT - IIoT – Industrial Internet of Things</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MQTT";
+        var mkdocs_page_input_path = "6_MQTT.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/6_MQTT/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrial Internet of Things
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Organisatorisches</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Organisatorisches/">Aufbau der Lehrveranstaltung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Projekt/">Projekt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../6_IIoT_Grundlagen/">Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">MQTT</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#was-ist-mqtt">Was ist MQTT?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#message-broker">Message Broker</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kurs-broker">Kurs-Broker</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#topics-und-payload">Topics und Payload</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#producer-publisher">Producer (Publisher)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#consumer-subscriber">Consumer (Subscriber)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mqtt-wildcards">MQTT-Wildcards</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quality-of-service-qos">Quality of Service (QoS)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#retain-flag">Retain Flag</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_TwinCAT_MQTT/">TwinCAT MQTT-Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_REST/">REST</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrial Internet of Things</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Industrial Internet of Things</li>
+      <li class="breadcrumb-item active">MQTT</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mqtt">MQTT</h1>
+<h2 id="was-ist-mqtt">Was ist MQTT?</h2>
+<p><strong>MQTT (Message Queuing Telemetry Transport)</strong> ist ein offenes Netzwerkprotokoll für Machine-to-Machine-Kommunikation:</p>
+<ul>
+<li>Leichtgewichtig, häufig für IoT-Sensoren eingesetzt</li>
+<li>Daten werden als Nachrichten übertragen (beliebige Bitfolgen)</li>
+<li>Nachrichten werden in <strong>Topics</strong> veröffentlicht und abonniert</li>
+<li>Viele Alternativen existieren (Apache Kafka, etc.) — MQTT ist aber der IIoT-Standard</li>
+</ul>
+<hr />
+<h2 id="message-broker">Message Broker</h2>
+<p>Der <strong>Broker</strong> ist eine zentrale Instanz (Server), die Nachrichten verteilt:</p>
+<ul>
+<li>Identifiziert durch IP-Adresse und Port</li>
+<li>Sicherheitseinstellungen: Username/Passwort, TLS-Verschlüsselung</li>
+<li>Bildet Message-Queues für Topics</li>
+<li>Mehrere Clients können sich verbinden</li>
+</ul>
+<p><img alt="" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
+<h3 id="hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</h3>
+<ul>
+<li><strong>Fremd-gehostet in der Cloud</strong>: z.B. <a href="https://console.hivemq.cloud/">HiveMQ</a></li>
+<li><strong>Selbst gehostet</strong>: z.B. mit <a href="https://mosquitto.org/">Mosquitto</a> — auch lokal auf einer Soft-SPS möglich</li>
+</ul>
+<h3 id="kurs-broker">Kurs-Broker</h3>
+<p><strong>Broker:</strong> <code>158.180.44.197:1883</code><br />
+<strong>User:</strong> <code>bobm</code><br />
+<strong>Passwort:</strong> <code>letmein</code></p>
+<hr />
+<h2 id="topics-und-payload">Topics und Payload</h2>
+<p><img alt="" src="../images/MQTT-Explorer.png" /></p>
+<ul>
+<li><code>topic</code>: thematische Zuordnung — Struktur ähnlich einem Dateisystem, Hierarchie-Ebenen mit <code>/</code> getrennt</li>
+<li><code>payload</code>: Inhalt der Nachricht — beliebige Bitfolgen, z.B. UTF-codierte Texte im JSON-Format</li>
+</ul>
+<p><strong>Beispiel-Topics im Kurs:</strong>
+<div class="highlight"><pre><span></span><code>aut/SoSe26/&lt;Gruppe&gt;/$groupsname
+aut/SoSe26/&lt;Gruppe&gt;/names
+aut/SoSe26/&lt;Gruppe&gt;/Fuellstand_rot
+aut/SoSe26/&lt;Gruppe&gt;/Fuellstand_rot/$unit
+</code></pre></div></p>
+<hr />
+<h2 id="producer-publisher">Producer (Publisher)</h2>
+<ul>
+<li>Definieren Verbindung zu einem Broker über URL</li>
+<li>Veröffentlichen (<strong>publishen</strong>) Nachrichten zu einem oder mehreren Topics</li>
+<li><strong>Push-Prinzip</strong>: Producer legen selbst fest, wann sie eine Nachricht veröffentlichen</li>
+</ul>
+<p><strong>Beispiel <code>paho-mqtt 2.x</code> in Python:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">paho.mqtt.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mqtt</span>
+
+<span class="n">broker</span> <span class="o">=</span> <span class="s2">&quot;158.180.44.197&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;aut/SoSe26/test/temperatur&quot;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;23.5&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_publish</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">reasonCode</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nachricht gesendet&quot;</span><span class="p">)</span>
+
+<span class="n">mqttc</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">mqtt</span><span class="o">.</span><span class="n">CallbackAPIVersion</span><span class="o">.</span><span class="n">VERSION2</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">username_pw_set</span><span class="p">(</span><span class="s2">&quot;bobm&quot;</span><span class="p">,</span> <span class="s2">&quot;letmein&quot;</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">on_publish</span> <span class="o">=</span> <span class="n">on_publish</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+
+<span class="n">mqttc</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h2 id="consumer-subscriber">Consumer (Subscriber)</h2>
+<ul>
+<li>Definieren Verbindung zu einem Broker über URL</li>
+<li>Empfangen alle Nachrichten zu den von ihnen abonnierten Topics</li>
+<li>Laufen i.d.R. in einem endlosen Loop, um Nachrichten zu empfangen</li>
+<li>Grundsätzlich werden nur Nachrichten empfangen, die <strong>während der Laufzeit</strong> gesendet werden (Ausnahme: Retain-Flag)</li>
+</ul>
+<p><strong>Beispiel <code>paho-mqtt 2.x</code> in Python:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">paho.mqtt.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mqtt</span>
+
+<span class="n">broker</span> <span class="o">=</span> <span class="s2">&quot;158.180.44.197&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;aut/SoSe26/#&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Payload: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">mqttc</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">mqtt</span><span class="o">.</span><span class="n">CallbackAPIVersion</span><span class="o">.</span><span class="n">VERSION2</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">username_pw_set</span><span class="p">(</span><span class="s2">&quot;bobm&quot;</span><span class="p">,</span> <span class="s2">&quot;letmein&quot;</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">mqttc</span><span class="o">.</span><span class="n">loop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="mqtt-wildcards">MQTT-Wildcards</h2>
+<p>Möchte man mehrere Topics gleichzeitig abonnieren:</p>
+<div class="highlight"><pre><span></span><code>aut/SoSe26/GruppeA/Fuellstand_rot
+aut/SoSe26/GruppeA/Fuellstand_blau
+aut/SoSe26/GruppeB/Fuellstand_rot
+aut/SoSe26/GruppeB/Fuellstand_blau
+</code></pre></div>
+<ul>
+<li><strong>Single Level <code>+</code></strong> — ersetzt genau eine Ebene:
+  <div class="highlight"><pre><span></span><code>aut/SoSe26/+/Fuellstand_rot   → alle Gruppen, nur rot
+</code></pre></div></li>
+<li><strong>Multi Level <code>#</code></strong> — ersetzt alle nachfolgenden Ebenen:
+  <div class="highlight"><pre><span></span><code>aut/SoSe26/#                  → alles im Semester
+aut/SoSe26/GruppeA/#          → alles von GruppeA
+</code></pre></div></li>
+</ul>
+<hr />
+<h2 id="quality-of-service-qos">Quality of Service (QoS)</h2>
+<p>QoS gibt an, wie viel Wert auf die Zustellung gelegt wird:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Name</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QoS 0</td>
+<td>Fire and Forget</td>
+<td>Keine Garantie — schnellste Option</td>
+</tr>
+<tr>
+<td>QoS 1</td>
+<td>At least once</td>
+<td>Mindestens einmal zugestellt (Duplikate möglich)</td>
+</tr>
+<tr>
+<td>QoS 2</td>
+<td>Exactly once</td>
+<td>Genau einmal — sicherste, aber auch langsamste Option</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/MQTT_QoS_mobile.jpg" /></p>
+<hr />
+<h2 id="retain-flag">Retain Flag</h2>
+<ul>
+<li>Einzelne Topics können mit dem <strong>Retain Flag</strong> versehen werden</li>
+<li>Der Broker speichert die <strong>letzte Nachricht</strong> dieses Topics</li>
+<li>Neue Subscriber bekommen sofort die gespeicherte Nachricht — auch wenn diese vor ihrer Verbindung gesendet wurde</li>
+<li>Zum Löschen: leere Message senden</li>
+</ul>
+<p><img alt="" src="../images/1_BGq8wqT3PeBng84v2csOkg.webp" /></p>
+<p><strong>Anwendungsfälle im Kurs:</strong>
+- Gruppenname und Nachnamen → einmalig beim Start, Retain = TRUE
+- SI-Einheiten (<code>$unit</code>) → einmalig beim Start, Retain = TRUE<br />
+- Messwerte → periodisch alle 10s, Retain = TRUE (damit Subscriber immer aktuellen Wert sehen)</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../6_IIoT_Grundlagen/" class="btn btn-neutral float-left" title="Grundlagen"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../6_TwinCAT_MQTT/" class="btn btn-neutral float-right" title="TwinCAT MQTT-Client">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../6_IIoT_Grundlagen/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../6_TwinCAT_MQTT/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

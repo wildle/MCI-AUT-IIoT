@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/6_IIoT_Grundlagen/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Grundlagen - IIoT – Industrial Internet of Things</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Grundlagen";
+        var mkdocs_page_input_path = "6_IIoT_Grundlagen.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/6_IIoT_Grundlagen/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrial Internet of Things
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Organisatorisches</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Organisatorisches/">Aufbau der Lehrveranstaltung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Projekt/">Projekt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Grundlagen</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#klassische-automatisierungspyramide">Klassische Automatisierungspyramide</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fragestellungen-im-iiot">Fragestellungen im IIoT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#intelligence-in-der-produktion">Intelligence in der Produktion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#effizienzsteigerung-durch-automatisierung">Effizienzsteigerung durch Automatisierung</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#steigerung-der-verfugbarkeit">Steigerung der Verfügbarkeit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flexibilisierung-der-produktion">Flexibilisierung der Produktion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#anwendungsfalle">Anwendungsfälle</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kommunikationsarchitektur">Kommunikationsarchitektur</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#osi-schichtenmodell">OSI-Schichtenmodell</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#warum-flexible-protokolle">Warum flexible Protokolle?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mqtt-vs-rest">MQTT vs. REST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#die-learning-factory">Die Learning Factory</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_MQTT/">MQTT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_TwinCAT_MQTT/">TwinCAT MQTT-Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_REST/">REST</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrial Internet of Things</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Industrial Internet of Things</li>
+      <li class="breadcrumb-item active">Grundlagen</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="industrial-internet-of-things-grundlagen">Industrial Internet of Things – Grundlagen</h1>
+<h2 id="klassische-automatisierungspyramide">Klassische Automatisierungspyramide</h2>
+<p><img alt="" src="../images/Automatisierungspyramide.png" /></p>
+<p>Die klassische Automatisierungspyramide beschreibt die Hierarchie industrieller Steuerungssysteme:</p>
+<ul>
+<li><strong>Feldebene</strong>: Sensoren und Aktoren, die über analoge Ein- und Ausgänge an die Steuerung angeschlossen sind</li>
+<li><strong>Steuerungsebene</strong>: SPS, die die Steuerung einzelner Anlagen übernehmen</li>
+<li><strong>Prozessleitebene</strong>: SCADA-Systeme (Supervisory Control and Data Acquisition), die mehrere Anlagen überwachen</li>
+<li><strong>Betriebsleitebene</strong>: MES (Manufacturing Execution Systems), die den gesamten Produktionsprozess steuern</li>
+</ul>
+<p>Die Datenmenge nimmt von unten nach oben ab — nur die <strong>relevantesten</strong> Daten werden weitergegeben. Zugriff und Steuerungsverantwortung sind klar definiert.</p>
+<p>Im IIoT wird diese strenge Hierarchie aufgebrochen: Geräte kommunizieren direkt miteinander und mit der Cloud — über ein vermaschtes Netzwerk statt einer Pyramide.</p>
+<p><img alt="" src="../images/csm_Indu-Sol_Fachpressetage_2017_Bild_2_b15566fced.jpg" /></p>
+<p><em>Quelle: <a href="https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/">ien-dach.de</a></em></p>
+<hr />
+<h2 id="fragestellungen-im-iiot">Fragestellungen im IIoT</h2>
+<ul>
+<li><strong>Intelligence in der Produktion</strong>: Wie wird aus den Daten ein Mehrwert generiert?</li>
+<li><strong>Security und Safety</strong>: Wie wird die Sicherheit und Verfügbarkeit der Systeme gewährleistet?</li>
+<li><strong>Architektur</strong>: Wie werden die zusätzlichen Daten übertragen und gesammelt?</li>
+</ul>
+<hr />
+<h2 id="intelligence-in-der-produktion">Intelligence in der Produktion</h2>
+<h3 id="effizienzsteigerung-durch-automatisierung">Effizienzsteigerung durch Automatisierung</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6LmJmnT4D3c?si=yP5kpU1BGGYhFE7i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h3 id="steigerung-der-verfugbarkeit">Steigerung der Verfügbarkeit</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5ChEy3lIqMQ?si=85b5VqTbfMhnOBeh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h3 id="flexibilisierung-der-produktion">Flexibilisierung der Produktion</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IGlUyDVtT4A?si=XxxCs5NLrlED2IkF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<hr />
+<h2 id="anwendungsfalle">Anwendungsfälle</h2>
+<ul>
+<li>Daten von außerhalb der Automatisierungstechnik müssen integriert werden (z.B. Bilderkennung)</li>
+<li>Daten, die bisher nur innerhalb der AT genutzt wurden, müssen auch außerhalb nutzbar sein (z.B. Schwingungsdaten)</li>
+<li>Daten von verschiedenen Anlagen müssen zusammengeführt werden (z.B. Planungsdaten und Produktionsdaten)</li>
+</ul>
+<hr />
+<h2 id="kommunikationsarchitektur">Kommunikationsarchitektur</h2>
+<h3 id="osi-schichtenmodell">OSI-Schichtenmodell</h3>
+<p>Die Entscheidung für ein geeignetes Protokoll hängt von den Anforderungen ab. In IIoT-Anwendungen werden typischerweise Protokolle auf dem <strong>TCP/IP-Stack</strong> eingesetzt:</p>
+<ul>
+<li>Standard für das Internet, weite Verbreitung</li>
+<li>Unterstützung für kabelgebundene und drahtlose Kommunikation</li>
+<li>Echtzeitfähigkeit in der Regel nicht erforderlich</li>
+</ul>
+<h3 id="warum-flexible-protokolle">Warum flexible Protokolle?</h3>
+<p>Consumer-Produkte erfordern hohe Standardisierung (Plug &amp; Play). Industrielle Anwendungen hingegen erfordern mehr <strong>Flexibilität und Anpassungsfähigkeit</strong> bei den Datenmodellen.</p>
+<p>Daraus folgt: Wir benötigen Protokolle, die</p>
+<ul>
+<li>eine hohe Flexibilität bei den Datenmodellen bieten,</li>
+<li>auf dem TCP/IP-Stack aufbauen.</li>
+</ul>
+<h3 id="mqtt-vs-rest">MQTT vs. REST</h3>
+<table>
+<thead>
+<tr>
+<th>Eigenschaft</th>
+<th>MQTT</th>
+<th>REST (HTTP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kommunikation</td>
+<td>Sternförmig (über Broker)</td>
+<td>Peer-to-Peer</td>
+</tr>
+<tr>
+<td>Muster</td>
+<td>Publish-Subscribe</td>
+<td>Client-Server</td>
+</tr>
+<tr>
+<td>Eignung</td>
+<td>Sensordaten, Echtzeit, IoT</td>
+<td>APIs, Webservices</td>
+</tr>
+<tr>
+<td>Overhead</td>
+<td>Sehr gering</td>
+<td>Mittel</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Für den IIoT-Kurs verwenden wir MQTT</strong> — details auf der nächsten Seite.</p>
+<hr />
+<h2 id="die-learning-factory">Die Learning Factory</h2>
+<p><img alt="" src="../images/Architecture.svg" /></p>
+<p>Die Learning Factory ist unsere Lernanlage. Sie simuliert einen realen Produktionsprozess mit:</p>
+<ul>
+<li>Drei Dispensern (rot, blau, grün) zum Befüllen von Flaschen</li>
+<li>Ultraschallsensoren zur Füllstandsmessung</li>
+<li>Einem Förderband</li>
+<li>Vibrationssensoren zur Erkennung defekter Flaschen</li>
+<li>Einem Wiegesensor für das Endgewicht</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1_Leistungsbewertung/" class="btn btn-neutral float-left" title="Leistungsbewertung"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../6_MQTT/" class="btn btn-neutral float-right" title="MQTT">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1_Leistungsbewertung/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../6_MQTT/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
