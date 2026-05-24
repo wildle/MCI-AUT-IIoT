@@ -1,18 +1,23 @@
-site_name: IIoT – Industrielles Internet der Dinge
+site_name: IIoT – Industrial Internet of Things
 site_url: https://wildle.github.io/MCI-AUT-IIoT/
 site_author: Lenard Wild
 
-# Navigation menu
 nav:
-  - 'Industrial IoT':
-    - 'Theorie & MQTT-Grundlagen' : 6_Datenverarbeitung_in_der_industriellen_Produktion.md
-    - 'Datenspeicherung' : 7_Datenspeicherung.md
+  - 'Organisatorisches':
+    - 'Aufbau der Lehrveranstaltung': 1_Organisatorisches.md
+    - 'Projekt': 1_Projekt.md
+    - 'Leistungsbewertung': 1_Leistungsbewertung.md
+  - 'Industrial Internet of Things':
+    - 'Grundlagen': 6_IIoT_Grundlagen.md
+    - 'MQTT': 6_MQTT.md
+    - 'TwinCAT MQTT-Client': 6_TwinCAT_MQTT.md
+    - 'REST': 6_REST.md
+    - 'Datenspeicherung': 7_Datenspeicherung.md
   - 'Machine Learning':
-    - 'Regressionsmodelle' : 8_Regression.md
-    - 'Regressionsmodelle mit Python' : 8_Regression_Python.ipynb
-    - 'Klassifikationsmodelle' : 9_Klassifizierung.md
-    - 'Klassifikationsmodelle mit Python' : 9_Classification_Python.ipynb
-
+    - 'Regressionsmodelle': 8_Regression.md
+    - 'Lineare Regression mit Python und Scikit-Learn': 8_Regression_Python.ipynb
+    - 'Klassifikationsmodelle': 9_Klassifizierung.md
+    - 'Klassifikation und Feature Engineering mit Python und Scikit-Learn': 9_Classification_Python.ipynb
 
 theme:
   name: readthedocs
@@ -28,7 +33,7 @@ plugins:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML
 
 dev_addr: '127.0.0.1:7000'
