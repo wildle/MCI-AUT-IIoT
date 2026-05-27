@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -116,32 +117,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="mqtt">MQTT</h1>
-<h2 id="was-ist-mqtt">Was ist MQTT?</h2>
-<p><strong>MQTT (Message Queuing Telemetry Transport)</strong> ist ein offenes Netzwerkprotokoll für Machine-to-Machine-Kommunikation:</p>
+                <h1 id="mqtt"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></h1>
+<h2 id="was-ist-mqtt">Was ist <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>?</h2>
+<p><strong><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> (Message Queuing Telemetry Transport)</strong> ist ein offenes Netzwerkprotokoll für Machine-to-Machine-Kommunikation:</p>
 <ul>
 <li>Leichtgewichtig, häufig für IoT-Sensoren eingesetzt</li>
 <li>Daten werden als Nachrichten übertragen (beliebige Bitfolgen)</li>
 <li>Nachrichten werden in <strong>Topics</strong> veröffentlicht und abonniert</li>
-<li>Viele Alternativen existieren (Apache Kafka, etc.) — MQTT ist aber der IIoT-Standard</li>
+<li>Viele Alternativen existieren (Apache Kafka, etc.) — <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> ist aber der <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Standard</li>
 </ul>
 <hr />
-<h2 id="message-broker">Message Broker</h2>
-<p>Der <strong>Broker</strong> ist eine zentrale Instanz (Server), die Nachrichten verteilt:</p>
+<h2 id="message-broker">Message <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr></h2>
+<p>Der <strong><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr></strong> ist eine zentrale Instanz (Server), die Nachrichten verteilt:</p>
 <ul>
 <li>Identifiziert durch IP-Adresse und Port</li>
-<li>Sicherheitseinstellungen: Username/Passwort, TLS-Verschlüsselung</li>
+<li>Sicherheitseinstellungen: Username/Passwort, <abbr title="Transport Layer Security — Verschlüsselungsprotokoll, Nachfolger von SSL">TLS</abbr>-Verschlüsselung</li>
 <li>Bildet Message-Queues für Topics</li>
 <li>Mehrere Clients können sich verbinden</li>
 </ul>
 <p><img alt="" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
-<h3 id="hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</h3>
+<h3 id="hosting-von-mqtt-brokern">Hosting von <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Brokern</h3>
 <ul>
 <li><strong>Fremd-gehostet in der Cloud</strong>: z.B. <a href="https://console.hivemq.cloud/">HiveMQ</a></li>
-<li><strong>Selbst gehostet</strong>: z.B. mit <a href="https://mosquitto.org/">Mosquitto</a> — auch lokal auf einer Soft-SPS möglich</li>
+<li><strong>Selbst gehostet</strong>: z.B. mit <a href="https://mosquitto.org/">Mosquitto</a> — auch lokal auf einer Soft-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> möglich</li>
 </ul>
-<h3 id="kurs-broker">Kurs-Broker</h3>
-<p><strong>Broker:</strong> <code>158.180.44.197:1883</code><br />
+<h3 id="kurs-broker">Kurs-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr></h3>
+<p><strong><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>:</strong> <code>158.180.44.197:1883</code><br />
 <strong>User:</strong> <code>bobm</code><br />
 <strong>Passwort:</strong> <code>letmein</code></p>
 <hr />
@@ -149,7 +150,7 @@
 <p><img alt="" src="../images/MQTT-Explorer.png" /></p>
 <ul>
 <li><code>topic</code>: thematische Zuordnung — Struktur ähnlich einem Dateisystem, Hierarchie-Ebenen mit <code>/</code> getrennt</li>
-<li><code>payload</code>: Inhalt der Nachricht — beliebige Bitfolgen, z.B. UTF-codierte Texte im JSON-Format</li>
+<li><code>payload</code>: Inhalt der Nachricht — beliebige Bitfolgen, z.B. UTF-codierte Texte im <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Format</li>
 </ul>
 <p><strong>Beispiel-Topics im Kurs:</strong>
 <div class="highlight"><pre><span></span><code>aut/SoSe26/&lt;Gruppe&gt;/$groupsname
@@ -160,7 +161,7 @@ aut/SoSe26/&lt;Gruppe&gt;/Fuellstand_rot/$unit
 <hr />
 <h2 id="producer-publisher">Producer (Publisher)</h2>
 <ul>
-<li>Definieren Verbindung zu einem Broker über URL</li>
+<li>Definieren Verbindung zu einem <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> über URL</li>
 <li>Veröffentlichen (<strong>publishen</strong>) Nachrichten zu einem oder mehreren Topics</li>
 <li><strong>Push-Prinzip</strong>: Producer legen selbst fest, wann sie eine Nachricht veröffentlichen</li>
 </ul>
@@ -186,10 +187,10 @@ aut/SoSe26/&lt;Gruppe&gt;/Fuellstand_rot/$unit
 <hr />
 <h2 id="consumer-subscriber">Consumer (Subscriber)</h2>
 <ul>
-<li>Definieren Verbindung zu einem Broker über URL</li>
+<li>Definieren Verbindung zu einem <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> über URL</li>
 <li>Empfangen alle Nachrichten zu den von ihnen abonnierten Topics</li>
 <li>Laufen i.d.R. in einem endlosen Loop, um Nachrichten zu empfangen</li>
-<li>Grundsätzlich werden nur Nachrichten empfangen, die <strong>während der Laufzeit</strong> gesendet werden (Ausnahme: Retain-Flag)</li>
+<li>Grundsätzlich werden nur Nachrichten empfangen, die <strong>während der Laufzeit</strong> gesendet werden (Ausnahme: <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>-Flag)</li>
 </ul>
 <p><strong>Beispiel <code>paho-mqtt 2.x</code> in Python:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">paho.mqtt.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mqtt</span>
@@ -212,7 +213,7 @@ aut/SoSe26/&lt;Gruppe&gt;/Fuellstand_rot/$unit
     <span class="n">mqttc</span><span class="o">.</span><span class="n">loop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 </code></pre></div>
 <hr />
-<h2 id="mqtt-wildcards">MQTT-Wildcards</h2>
+<h2 id="mqtt-wildcards"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Wildcards</h2>
 <p>Möchte man mehrere Topics gleichzeitig abonnieren:</p>
 <div class="highlight"><pre><span></span><code>aut/SoSe26/GruppeA/Fuellstand_rot
 aut/SoSe26/GruppeA/Fuellstand_blau
@@ -229,8 +230,8 @@ aut/SoSe26/GruppeA/#          → alles von GruppeA
 </code></pre></div></li>
 </ul>
 <hr />
-<h2 id="quality-of-service-qos">Quality of Service (QoS)</h2>
-<p>QoS gibt an, wie viel Wert auf die Zustellung gelegt wird:</p>
+<h2 id="quality-of-service-qos">Quality of Service (<abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr>)</h2>
+<p><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> gibt an, wie viel Wert auf die Zustellung gelegt wird:</p>
 <table>
 <thead>
 <tr>
@@ -241,17 +242,17 @@ aut/SoSe26/GruppeA/#          → alles von GruppeA
 </thead>
 <tbody>
 <tr>
-<td>QoS 0</td>
+<td><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 0</td>
 <td>Fire and Forget</td>
 <td>Keine Garantie — schnellste Option</td>
 </tr>
 <tr>
-<td>QoS 1</td>
+<td><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 1</td>
 <td>At least once</td>
 <td>Mindestens einmal zugestellt (Duplikate möglich)</td>
 </tr>
 <tr>
-<td>QoS 2</td>
+<td><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 2</td>
 <td>Exactly once</td>
 <td>Genau einmal — sicherste, aber auch langsamste Option</td>
 </tr>
@@ -259,18 +260,18 @@ aut/SoSe26/GruppeA/#          → alles von GruppeA
 </table>
 <p><img alt="" src="../images/MQTT_QoS_mobile.jpg" /></p>
 <hr />
-<h2 id="retain-flag">Retain Flag</h2>
+<h2 id="retain-flag"><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> Flag</h2>
 <ul>
-<li>Einzelne Topics können mit dem <strong>Retain Flag</strong> versehen werden</li>
-<li>Der Broker speichert die <strong>letzte Nachricht</strong> dieses Topics</li>
+<li>Einzelne Topics können mit dem <strong><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> Flag</strong> versehen werden</li>
+<li>Der <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> speichert die <strong>letzte Nachricht</strong> dieses Topics</li>
 <li>Neue Subscriber bekommen sofort die gespeicherte Nachricht — auch wenn diese vor ihrer Verbindung gesendet wurde</li>
 <li>Zum Löschen: leere Message senden</li>
 </ul>
 <p><img alt="" src="../images/1_BGq8wqT3PeBng84v2csOkg.webp" /></p>
 <p><strong>Anwendungsfälle im Kurs:</strong>
-- Gruppenname und Nachnamen → einmalig beim Start, Retain = TRUE
-- SI-Einheiten (<code>$unit</code>) → einmalig beim Start, Retain = TRUE<br />
-- Messwerte → periodisch alle 10s, Retain = TRUE (damit Subscriber immer aktuellen Wert sehen)</p>
+- Gruppenname und Nachnamen → einmalig beim Start, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE
+- SI-Einheiten (<code>$unit</code>) → einmalig beim Start, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE<br />
+- Messwerte → periodisch alle 10s, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE (damit Subscriber immer aktuellen Wert sehen)</p>
               
             </div>
           </div><footer>

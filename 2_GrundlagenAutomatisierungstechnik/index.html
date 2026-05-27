@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -97,7 +98,7 @@
 <p><strong>SoSe 2024</strong>
 Serafin Kollegger &amp; Julian Huber</p>
 <h1 id="grundlagen-der-automatisierungstechnik">Grundlagen der Automatisierungstechnik</h1>
-<p><strong>SPS &amp; SPS-Norm</strong>
+<p><strong><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> &amp; <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Norm</strong>
 <strong>Digitale E/A-Geräte</strong>
 <strong>Einführung TwinCAT</strong>
 <strong>Prozesszustandsbeschreibung</strong></p>
@@ -126,9 +127,9 @@ Serafin Kollegger &amp; Julian Huber</p>
 <li>Fixe Anzahl an Ein- Ausgänge </li>
 </ul>
 </li>
-<li>Microcontroller und SPS sind flexibel einsetzbar<ul>
+<li>Microcontroller und <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> sind flexibel einsetzbar<ul>
 <li>Microcontroller sind begrenzt erweiterbar</li>
-<li>SPS sind fast unbegrenzt erweiterbar (~1000 E/A Signale)</li>
+<li><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> sind fast unbegrenzt erweiterbar (~1000 E/A Signale)</li>
 </ul>
 </li>
 </ul>
@@ -175,7 +176,7 @@ entwickelt wird.</p>
 <ul>
 <li>Das technische System übernimmt Grundfunktionalitäten für Steuerungs-, Regelungs- und Visualisierungsvorgänge.</li>
 <li>Diese Funktionen werden unter dem Begriff "Automatisierung" zusammengefasst.</li>
-<li>Als Steuerungen haben sich Speicherprogrammierbare Steuerungen (SPS) und Industrie-PCs (IPC) als Standard etabliert.</li>
+<li>Als Steuerungen haben sich Speicherprogrammierbare Steuerungen (<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>) und Industrie-PCs (IPC) als Standard etabliert.</li>
 <li>Diese nutzt vorgefertigte Programme aus internen Speichern des Systems und bestimmen durch logische und mathematische Zusammenhänge neue Stellgrößen.</li>
 <li>Diese Stellgrößen werden durch die Komponenten des technischen Systems in physikalische Größen umgewandelt und greifen so in den technischen Prozess ein. </li>
 </ul>
@@ -226,22 +227,22 @@ unternehmensspezifische Eigenschaften erfolgen muss. Die Ziele sind:</p>
 <h3 id="wann-ist-automatisierung-sinnvoll">Wann ist Automatisierung sinnvoll?</h3>
 <hr />
 <!-- header: Speicherprogrammierbare Steuerung -->
-<h2 id="speicherprogrammierbare-steuerung-sps">Speicherprogrammierbare Steuerung - SPS</h2>
+<h2 id="speicherprogrammierbare-steuerung-sps">Speicherprogrammierbare Steuerung - <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></h2>
 <ul>
-<li>Speicherprogrammierbare Steuerungen (SPS) sind aktuell die weitverbreitetste Hardware für die Automatisierung von Maschinen und Anlagen.</li>
-<li>Es existieren zwei etablierte Varianten: Hard-SPS mit speziell entwickelter Hardware und Soft-SPS mit Standardkomponenten aus PC-Systemen und herkömmlichem Betriebssystem (z.B., Windows).</li>
-<li>Hard-SPS besteht aus Stromversorgung, Steuerungsprozessor CPU, digitalen Ein- und Ausgangsbaugruppen sowie einem internen Bussystem.</li>
-<li>Soft-SPS ermöglicht die Ausführung anderer Software wie C++ Programme auf dem Industrie-PC.</li>
+<li>Speicherprogrammierbare Steuerungen (<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>) sind aktuell die weitverbreitetste Hardware für die Automatisierung von Maschinen und Anlagen.</li>
+<li>Es existieren zwei etablierte Varianten: Hard-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> mit speziell entwickelter Hardware und Soft-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> mit Standardkomponenten aus PC-Systemen und herkömmlichem Betriebssystem (z.B., Windows).</li>
+<li>Hard-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> besteht aus Stromversorgung, Steuerungsprozessor CPU, digitalen Ein- und Ausgangsbaugruppen sowie einem internen Bussystem.</li>
+<li>Soft-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> ermöglicht die Ausführung anderer Software wie C++ Programme auf dem Industrie-PC.</li>
 </ul>
 <hr />
 <p><img alt="w:100%" src="../images/Allgemeines/Beckhoff_SPS.png" /></p>
 <hr />
-<h2 id="sps-norm-din-en-61131-3-iec-61131-3">SPS-Norm DIN EN 61131-3 (IEC 61131-3)</h2>
+<h2 id="sps-norm-din-en-61131-3-iec-61131-3"><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Norm DIN EN 61131-3 (IEC 61131-3)</h2>
 <ul>
 <li>Programmierung von automatisierten Systemen ist üblicherweise anwendungsspezifisch.</li>
-<li>Ziel der SPS-Norm: Rationelleres und herstellerunabhängiges Programmerstellungskonzept.</li>
+<li>Ziel der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Norm: Rationelleres und herstellerunabhängiges Programmerstellungskonzept.</li>
 <li>Die Norm führt vier Grundkonzepte ein, um allgemeine und wiederverwendbare Programmbausteine zu entwickeln.</li>
-<li>In diesen Bausteinen sollten anwendungsspezifische SPS-Operanden, Eingänge, Ausgänge, Zähler und Zeitglieder sowie Merker nicht eingesetzt werden.</li>
+<li>In diesen Bausteinen sollten anwendungsspezifische <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Operanden, Eingänge, Ausgänge, Zähler und Zeitglieder sowie Merker nicht eingesetzt werden.</li>
 <li>Anlagenspezifische Zuweisungen, Zähler und Merker sollen erst bei der Erstellung des übergeordneten Anlagenprogramms berücksichtigt werden.</li>
 <li>Die vier Konzepte sind detaillierter in den nachfolgenden Punkten beschrieben.</li>
 </ul>
@@ -274,7 +275,7 @@ definieren.</p>
 <li>
 <p><strong>Globale Variablen Listen (GVL)</strong></p>
 <p>Der Inhalt von Globalen Variablen Listen ist innerhalb des
-SPS-Projektes für alle POU's zugreifbar. Deswegen
+<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Projektes für alle POU's zugreifbar. Deswegen
 eignen sie sich für die Verwendung von Hardware oder HMI
 Schnittstellen.</p>
 </li>
@@ -283,7 +284,7 @@ Schnittstellen.</p>
 <h2 id="twincat-einfuhrung-i">TwinCAT Einführung I</h2>
 <ul>
 <li>Projekterstellung </li>
-<li>SPS-Instanzierung</li>
+<li><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Instanzierung</li>
 <li>Variablen Deklaration</li>
 <li>Programmausführung &amp; Online-Modus</li>
 <li>Task anlegen und Zykluszeit Parametrierung</li>
@@ -295,22 +296,22 @@ Schnittstellen.</p>
 <h3 id="laufzeitmodi-runtimemode">Laufzeitmodi (Runtimemode)</h3>
 <ul>
 <li>Der oben genannte <em>Run Mode</em> ist einer von drei Modi, die die
-Laufzeit (Runtime) der SPS annehmen kann, die Symbole sind </li>
+Laufzeit (Runtime) der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> annehmen kann, die Symbole sind </li>
 </ul>
 <p><img alt="h:160" src="../images/Betriebsmodi.PNG" /></p>
 <hr />
 <p><strong>Konfig Mode</strong>
-- Grundsätzlich ist beim Entwickeln die Laufzeit im <em>Konfig Mode</em>. Wie der Name schon vermuten lässt, kann in diesem Modus die SPS konfiguriert werden. D.h. die Zykluszeiten und Priorisierung der Tasks kann eingestellt werde, neue Programme und Programmsegmente können erzeugt werden u.v.m..</p>
+- Grundsätzlich ist beim Entwickeln die Laufzeit im <em>Konfig Mode</em>. Wie der Name schon vermuten lässt, kann in diesem Modus die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> konfiguriert werden. D.h. die Zykluszeiten und Priorisierung der Tasks kann eingestellt werde, neue Programme und Programmsegmente können erzeugt werden u.v.m..</p>
 <p><strong>Free Run Mode</strong>
 - Der zweite Modus ist der <em>Free Run Mode</em>. Mit diesem ist es möglich Peripheriegeräte und E/A-Geräte einzulesen und zu parametrisieren. D.h. im <em>Free Run Mode</em> ist eine aufrechte Verbindung über den Feldbus und andere Schnittstellen vorhanden.</p>
 <p><strong>Run Mode</strong>
-- Im <em>Run Mode</em> ist die SPS einsatzbereit und kann gestartet werden. Ab diesem Zeitpunkt sind die Kerne der CPU für die Rechenzeit des Programms blockiert und somit ein echtzeitfähiger Betrieb möglich.</p>
+- Im <em>Run Mode</em> ist die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> einsatzbereit und kann gestartet werden. Ab diesem Zeitpunkt sind die Kerne der CPU für die Rechenzeit des Programms blockiert und somit ein echtzeitfähiger Betrieb möglich.</p>
 <hr />
 <h2 id="ea-gerate">E/A-Geräte</h2>
 <ul>
 <li>Alle Prozesssignale müssen durch E/A-Geräte erfasst bzw. gesetzt werden.</li>
-<li>Zur Reduzierung des Verkabelungsaufwands kommunizieren E/A-Geräte mit der SPS über Feldbussysteme.</li>
-<li>Bei Soft-SPS ist dieses Konzept immer erforderlich, während Hard-SPS in vielen Fällen auf das Feldbussystem verzichten kann, indem die Klemmen direkt an die SPS angeschlossen werden.</li>
+<li>Zur Reduzierung des Verkabelungsaufwands kommunizieren E/A-Geräte mit der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> über Feldbussysteme.</li>
+<li>Bei Soft-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> ist dieses Konzept immer erforderlich, während Hard-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> in vielen Fällen auf das Feldbussystem verzichten kann, indem die Klemmen direkt an die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> angeschlossen werden.</li>
 <li>Der Feldbus wird durch Buskoppler auf einen lokalen Klemmenbus übersetzt und galvanisch getrennt.</li>
 <li>Eingangsgeräte schreiben ihre Werte aus den Prozesssignalen auf den Klemmenbus, während Ausgangsgeräte die Klemmenbussignale lesen und die Prozesssignale setzen.</li>
 <li>Sowohl die Prozesssignale als auch der Klemmenbus sind galvanisch getrennt, was bei Störungen die Unversehrtheit der Bussysteme gewährleistet.</li>
@@ -369,7 +370,7 @@ Laufzeit (Runtime) der SPS annehmen kann, die Symbole sind </li>
 <ul>
 <li>Die Schaltzustände der Sensoren werden häufig mit "normally open" (NO) und "normally closed" (NC) bezeichnet.</li>
 <li>Dies bezieht sich auf das Verhalten der Sensoren im nicht aktiven Zustand.</li>
-<li>Bei NO liegt kein Signal am Eingangsgerät an, und innerhalb der SPS wird der Wert 0 <em>[FALSE]</em> angezeigt.</li>
+<li>Bei NO liegt kein Signal am Eingangsgerät an, und innerhalb der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> wird der Wert 0 <em>[FALSE]</em> angezeigt.</li>
 <li>Bei NC liegt ein Signal an, und der Wert 1 <em>[TRUE]</em> wird angezeigt.</li>
 </ul>
 <hr />
@@ -389,7 +390,7 @@ Laufzeit (Runtime) der SPS annehmen kann, die Symbole sind </li>
 <hr />
 <h3 id="digitale-ausgangsklemmen">Digitale Ausgangsklemmen</h3>
 <ul>
-<li>Digitale Ausgangsklemmen bei SPS dienen dem Senden von digitalen (binären) Signalen an externe Geräte oder Aktoren.</li>
+<li>Digitale Ausgangsklemmen bei <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> dienen dem Senden von digitalen (binären) Signalen an externe Geräte oder Aktoren.</li>
 <li>Sie ermöglichen das Schalten elektrischer Signale zur Steuerung von Prozessen in der realen Welt.</li>
 <li>Die Signalsteuerung kann durch Relais oder Halbleiterschalter realisiert werden.</li>
 <li>Es gibt interne (Typ 2) oder externe (Typ 1) Spannungsversorgungsmöglichkeiten.</li>
@@ -460,7 +461,7 @@ fbTon(  IN := bIn,                  // Programmteil
 <hr />
 <h2 id="einfuhrungsaufgabe-blinklicht">Einführungsaufgabe - Blinklicht</h2>
 <ul>
-<li>Einführungsaufgabe: Entwurf eines Blinklichts als Einstieg in die SPS-Programmierung.</li>
+<li>Einführungsaufgabe: Entwurf eines Blinklichts als Einstieg in die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Programmierung.</li>
 <li>Das Licht wird durch eine steigende Flanke eines Eingangs gestartet und bei erneuter Flanke ausgeschaltet.</li>
 <li>Die Flankenerkennung erfolgt durch einen Trigger-Funktionsbaustein (FB) <em>R_TRIG</em>.</li>
 <li>Die Blinklichtsteuerung wird durch einen TON Timerbaustein erstellt.</li>

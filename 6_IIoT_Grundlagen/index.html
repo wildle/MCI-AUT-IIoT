@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -128,16 +129,16 @@
 <p>Die klassische Automatisierungspyramide beschreibt die Hierarchie industrieller Steuerungssysteme:</p>
 <ul>
 <li><strong>Feldebene</strong>: Sensoren und Aktoren, die über analoge Ein- und Ausgänge an die Steuerung angeschlossen sind</li>
-<li><strong>Steuerungsebene</strong>: SPS, die die Steuerung einzelner Anlagen übernehmen</li>
-<li><strong>Prozessleitebene</strong>: SCADA-Systeme (Supervisory Control and Data Acquisition), die mehrere Anlagen überwachen</li>
-<li><strong>Betriebsleitebene</strong>: MES (Manufacturing Execution Systems), die den gesamten Produktionsprozess steuern</li>
+<li><strong>Steuerungsebene</strong>: <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>, die die Steuerung einzelner Anlagen übernehmen</li>
+<li><strong>Prozessleitebene</strong>: <abbr title="Supervisory Control and Data Acquisition — Prozessleitsystem (Ebene 3 der Automatisierungspyramide)">SCADA</abbr>-Systeme (Supervisory Control and Data Acquisition), die mehrere Anlagen überwachen</li>
+<li><strong>Betriebsleitebene</strong>: <abbr title="Manufacturing Execution System — Betriebsleitsystem (Ebene 4 der Automatisierungspyramide)">MES</abbr> (Manufacturing Execution Systems), die den gesamten Produktionsprozess steuern</li>
 </ul>
 <p>Die Datenmenge nimmt von unten nach oben ab — nur die <strong>relevantesten</strong> Daten werden weitergegeben. Zugriff und Steuerungsverantwortung sind klar definiert.</p>
-<p>Im IIoT wird diese strenge Hierarchie aufgebrochen: Geräte kommunizieren direkt miteinander und mit der Cloud — über ein vermaschtes Netzwerk statt einer Pyramide.</p>
+<p>Im <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr> wird diese strenge Hierarchie aufgebrochen: Geräte kommunizieren direkt miteinander und mit der Cloud — über ein vermaschtes Netzwerk statt einer Pyramide.</p>
 <p><img alt="" src="../images/csm_Indu-Sol_Fachpressetage_2017_Bild_2_b15566fced.jpg" /></p>
 <p><em>Quelle: <a href="https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/">ien-dach.de</a></em></p>
 <hr />
-<h2 id="fragestellungen-im-iiot">Fragestellungen im IIoT</h2>
+<h2 id="fragestellungen-im-iiot">Fragestellungen im <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr></h2>
 <ul>
 <li><strong>Intelligence in der Produktion</strong>: Wie wird aus den Daten ein Mehrwert generiert?</li>
 <li><strong>Security und Safety</strong>: Wie wird die Sicherheit und Verfügbarkeit der Systeme gewährleistet?</li>
@@ -164,7 +165,7 @@
 <hr />
 <h2 id="kommunikationsarchitektur">Kommunikationsarchitektur</h2>
 <h3 id="osi-schichtenmodell">OSI-Schichtenmodell</h3>
-<p>Die Entscheidung für ein geeignetes Protokoll hängt von den Anforderungen ab. In IIoT-Anwendungen werden typischerweise Protokolle auf dem <strong>TCP/IP-Stack</strong> eingesetzt:</p>
+<p>Die Entscheidung für ein geeignetes Protokoll hängt von den Anforderungen ab. In <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Anwendungen werden typischerweise Protokolle auf dem <strong><abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack</strong> eingesetzt:</p>
 <ul>
 <li>Standard für das Internet, weite Verbreitung</li>
 <li>Unterstützung für kabelgebundene und drahtlose Kommunikation</li>
@@ -175,21 +176,21 @@
 <p>Daraus folgt: Wir benötigen Protokolle, die</p>
 <ul>
 <li>eine hohe Flexibilität bei den Datenmodellen bieten,</li>
-<li>auf dem TCP/IP-Stack aufbauen.</li>
+<li>auf dem <abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack aufbauen.</li>
 </ul>
-<h3 id="mqtt-vs-rest">MQTT vs. REST</h3>
+<h3 id="mqtt-vs-rest"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> vs. <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></h3>
 <table>
 <thead>
 <tr>
 <th>Eigenschaft</th>
-<th>MQTT</th>
-<th>REST (HTTP)</th>
+<th><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></th>
+<th><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> (HTTP)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Kommunikation</td>
-<td>Sternförmig (über Broker)</td>
+<td>Sternförmig (über <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>)</td>
 <td>Peer-to-Peer</td>
 </tr>
 <tr>
@@ -209,7 +210,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Für den IIoT-Kurs verwenden wir MQTT</strong> — details auf der nächsten Seite.</p>
+<p><strong>Für den <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Kurs verwenden wir <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></strong> — details auf der nächsten Seite.</p>
 <hr />
 <h2 id="die-learning-factory">Die Learning Factory</h2>
 <p><img alt="" src="../images/Architecture.svg" /></p>

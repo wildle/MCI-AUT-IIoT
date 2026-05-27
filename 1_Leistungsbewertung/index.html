@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -107,20 +108,20 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="leistungsbewertung">Leistungsbewertung</h1>
-<p>Der IIoT-Block wird mit <strong>1/4 der Gesamtnote</strong> gewichtet. Die restlichen 3/4 entfallen auf den Automatisierungstechnik-Teil.</p>
+<p>Der <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Block wird mit <strong>1/4 der Gesamtnote</strong> gewichtet. Die restlichen 3/4 entfallen auf den Automatisierungstechnik-Teil.</p>
 <h2 id="gewichtung-der-aufgaben">Gewichtung der Aufgaben</h2>
 <table>
 <thead>
 <tr>
 <th>Aufgabe</th>
 <th>Inhalt</th>
-<th>Gewichtung (IIoT-Block)</th>
+<th>Gewichtung (<abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Block)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12.1.1</td>
-<td>MQTT-Client SPS</td>
+<td><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></td>
 <td>20%</td>
 </tr>
 <tr>
@@ -141,30 +142,30 @@
 </tbody>
 </table>
 <hr />
-<h2 id="aufgabe-1211-mqtt-client-sps-20">Aufgabe 12.1.1 — MQTT-Client SPS (20%)</h2>
+<h2 id="aufgabe-1211-mqtt-client-sps-20">Aufgabe 12.1.1 — <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> (20%)</h2>
 <p><strong>Mindestanforderung (volle Punktzahl):</strong></p>
 <ul>
-<li>Sensordaten werden alle 10 Sekunden an den Broker gesendet</li>
+<li>Sensordaten werden alle 10 Sekunden an den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> gesendet</li>
 <li>Topic-Schema wird eingehalten (<code>$groupsname</code>, <code>names</code>, Messwert, <code>$unit</code>)</li>
-<li>Retain-Flag korrekt gesetzt</li>
-<li>Werte sind via MQTT-Explorer am Broker sichtbar</li>
+<li><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>-Flag korrekt gesetzt</li>
+<li>Werte sind via <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer am <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sichtbar</li>
 </ul>
 <hr />
 <h2 id="aufgabe-1212-datenspeicherung-visualisierung-40">Aufgabe 12.1.2 — Datenspeicherung &amp; Visualisierung (40%)</h2>
 <p><strong>Mindestanforderung (volle Punktzahl):</strong></p>
 <ul>
-<li>CSV als Datenbank</li>
+<li><abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> als Datenbank</li>
 <li>Alle relevanten Topics vollständig und korrekt gespeichert</li>
 <li>Plot einer Zeitreihe im Report</li>
 <li>Mindestens 15 Minuten Daten gesammelt</li>
 </ul>
 <p><strong>Bonus (Punktzahl erhöhen):</strong></p>
 <ul>
-<li>TinyDB, SQLite oder InfluxDB statt CSV</li>
+<li>TinyDB, SQLite oder InfluxDB statt <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr></li>
 <li>Grafana oder Plotly Dash statt matplotlib</li>
 <li>System über config-Datei konfigurierbar</li>
 <li>Fehlerbehandlung (Verbindungsabbruch)</li>
-<li>REST-API oder SQL-Abfragen zum Datenabruf</li>
+<li><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> oder SQL-Abfragen zum Datenabruf</li>
 </ul>
 <hr />
 <h2 id="aufgabe-123-regressionsmodell-20">Aufgabe 12.3 — Regressionsmodell (20%)</h2>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -106,7 +107,7 @@
               
                 <h1 id="projekt">Projekt</h1>
 <h2 id="aufgabenubersicht">Aufgabenübersicht</h2>
-<p>Im Rahmen des IIoT-Blocks sind vier Aufgaben zu bearbeiten. Die Aufgaben bauen aufeinander auf und ergeben zusammen eine durchgehende Datenpipeline vom Sensor bis zum Machine-Learning-Modell.</p>
+<p>Im Rahmen des <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Blocks sind vier Aufgaben zu bearbeiten. Die Aufgaben bauen aufeinander auf und ergeben zusammen eine durchgehende Datenpipeline vom Sensor bis zum Machine-Learning-Modell.</p>
 <table>
 <thead>
 <tr>
@@ -118,7 +119,7 @@
 <tbody>
 <tr>
 <td>12.1.1</td>
-<td>MQTT-Client in TwinCAT SPS — Sensordaten publizieren</td>
+<td><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client in TwinCAT <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> — Sensordaten publizieren</td>
 <td>20%</td>
 </tr>
 <tr>
@@ -140,15 +141,15 @@
 </table>
 <p><strong>Abgabedatum: 03.07.2026</strong></p>
 <hr />
-<h2 id="aufgabe-1211-mqtt-client-sps">Aufgabe 12.1.1 — MQTT-Client SPS</h2>
-<p>Implementiert einen MQTT-Client in TwinCAT (<code>FB_IotMqttClient</code>), der Sensordaten der Learning Factory alle 10 Sekunden an den Broker sendet.</p>
+<h2 id="aufgabe-1211-mqtt-client-sps">Aufgabe 12.1.1 — <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></h2>
+<p>Implementiert einen <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client in TwinCAT (<code>FB_IotMqttClient</code>), der Sensordaten der Learning Factory alle 10 Sekunden an den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet.</p>
 <p><strong>Topic-Schema:</strong></p>
 <table>
 <thead>
 <tr>
 <th>Topic</th>
 <th>Inhalt</th>
-<th>Retain</th>
+<th><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr></th>
 <th>Wann</th>
 </tr>
 </thead>
@@ -179,13 +180,13 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Broker:</strong> <code>158.180.44.197:1883</code>, User: <code>bobm</code>, Passwort: <code>letmein</code></p>
+<p><strong><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>:</strong> <code>158.180.44.197:1883</code>, User: <code>bobm</code>, Passwort: <code>letmein</code></p>
 <hr />
 <h2 id="aufgabe-1212-datenspeicherung-visualisierung">Aufgabe 12.1.2 — Datenspeicherung &amp; Visualisierung</h2>
-<p>Schreibt einen Python MQTT-Subscriber, der Daten vom Broker empfängt, in einer Datenbank speichert und eine Zeitreihe visualisiert.</p>
+<p>Schreibt einen Python <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Subscriber, der Daten vom <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> empfängt, in einer Datenbank speichert und eine Zeitreihe visualisiert.</p>
 <p><strong>Mindestanforderung:</strong></p>
 <ul>
-<li>CSV als Datenbank</li>
+<li><abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> als Datenbank</li>
 <li>Alle relevanten Topics vollständig gespeichert</li>
 <li>Visualisierung einer beliebigen Zeitreihe (matplotlib)</li>
 <li>Mindestens 15 Minuten Daten gesammelt</li>
@@ -193,10 +194,10 @@
 </ul>
 <p><strong>Bonus:</strong></p>
 <ul>
-<li>TinyDB, SQLite oder InfluxDB statt CSV</li>
+<li>TinyDB, SQLite oder InfluxDB statt <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr></li>
 <li>Grafana oder Plotly Dash statt matplotlib</li>
-<li>Konfigurierbar über config-Datei (Broker, Topic)</li>
-<li>REST-API für Datenabruf</li>
+<li>Konfigurierbar über config-Datei (<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>, Topic)</li>
+<li><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> für Datenabruf</li>
 </ul>
 <hr />
 <h2 id="aufgabe-123-regressionsmodell">Aufgabe 12.3 — Regressionsmodell</h2>

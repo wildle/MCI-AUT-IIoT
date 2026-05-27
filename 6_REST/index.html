@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -120,13 +121,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="rest-representational-state-transfer">REST – Representational State Transfer</h1>
+                <h1 id="rest-representational-state-transfer"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> – Representational State Transfer</h1>
 <h2 id="client-server-architektur">Client-Server-Architektur</h2>
 <ul>
 <li><strong>Client</strong> sendet <strong>Anfragen</strong></li>
 <li><strong>Server</strong>: Bearbeitet Anfragen und sendet <strong>Antworten</strong></li>
 </ul>
-<p>Im Gegensatz zu MQTT kommunizieren Client und Server direkt miteinander (<strong>Peer-to-Peer</strong>) — kein Broker dazwischen.</p>
+<p>Im Gegensatz zu <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> kommunizieren Client und Server direkt miteinander (<strong>Peer-to-Peer</strong>) — kein <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> dazwischen.</p>
 <hr />
 <h2 id="hypertext-transfer-protocol-http">Hypertext Transfer Protocol (HTTP)</h2>
 <ul>
@@ -137,7 +138,7 @@
 <p><em>Website über PowerShell:</em>
 <div class="highlight"><pre><span></span><code>curl &quot;www.google.com&quot;
 </code></pre></div></p>
-<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über PowerShell:</em>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></a> über PowerShell:</em>
 <div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
 </code></pre></div></p>
 <p><em>Allgemeine Syntax:</em>
@@ -159,7 +160,7 @@ Schema Benutzer Kennwort      Host      Port    Pfad      Query    Fragment
 <p><a href="https://de.wikipedia.org/wiki/Uniform_Resource_Locator#Schema-spezifischer_Teil_(scheme-specific_part)">Quelle</a></p>
 <hr />
 <h2 id="antwort-auf-http-request">Antwort auf HTTP-Request</h2>
-<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über PowerShell:</em>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></a> über PowerShell:</em>
 <div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
 </code></pre></div></p>
 <div class="highlight"><pre><span></span><code>StatusCode        : 200
@@ -171,7 +172,7 @@ Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Co
 <p>Neben den Daten (<code>Content</code>) enthält die Antwort auch Metadaten (<code>Header</code>, <code>StatusCode</code>, ...).</p>
 <hr />
 <h2 id="http-mit-python-client-requests">HTTP mit Python – Client (<code>requests</code>)</h2>
-<p>Zur Kommunikation mit REST-Services wird das <code>requests</code>-Modul verwendet:</p>
+<p>Zur Kommunikation mit <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>requests</code>-Modul verwendet:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.mci.edu/de/&#39;</span><span class="p">)</span>
@@ -182,7 +183,7 @@ Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Co
 </code></pre></div>
 <hr />
 <h2 id="http-mit-python-server-flask">HTTP mit Python – Server (<code>flask</code>)</h2>
-<p>Zum Anbieten eines REST-Services wird das <code>flask</code>-Modul verwendet:</p>
+<p>Zum Anbieten eines <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>flask</code>-Modul verwendet:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -251,7 +252,7 @@ python -m flask run
 <hr />
 <h2 id="weiterfuhrendes">Weiterführendes</h2>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client">REST Client</a> Erweiterung für VS Code — einfache Anfragen direkt aus dem Editor:</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> Client</a> Erweiterung für VS Code — einfache Anfragen direkt aus dem Editor:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="err">GET https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m</span>
 </code></pre></div>
@@ -262,7 +263,7 @@ python -m flask run
 </ul>
 <hr />
 <h2 id="twincat-connectivity">TwinCAT Connectivity (🤓)</h2>
-<p>Beckhoff bietet verschiedene <a href="https://infosys.beckhoff.com/index.php?content=../content/1031/tf6760_tc3_iot_https_rest/7611986955.html&amp;id=">TF6xxx-Konnektoren</a> für die Kommunikation aus der SPS:</p>
+<p>Beckhoff bietet verschiedene <a href="https://infosys.beckhoff.com/index.php?content=../content/1031/tf6760_tc3_iot_https_rest/7611986955.html&amp;id=">TF6xxx-Konnektoren</a> für die Kommunikation aus der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>:</p>
 <ul>
 <li><code>TF6310 | TCP/IP</code>: Kommunikation über das Internetprotokoll mittels einfacher Socket-Verbindungen</li>
 <li><code>TF6100 | OPC UA Client</code>: Plattformunabhängiger Datenaustausch mit maschinenlesbarer semantischer Beschreibung</li>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -108,7 +109,7 @@ Serafin Kollegger &amp; Julian Huber</p>
 <p><img alt="bg right:60% h:600" src="../images/EbenenMotorSteuerung.PNG" /></p>
 <hr />
 <ul>
-<li>Die Motorsteuerung für Beckhoff TwinCAT SPS gliedert sich grundsätzlich in drei Ebenen:</li>
+<li>Die Motorsteuerung für Beckhoff TwinCAT <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> gliedert sich grundsätzlich in drei Ebenen:</li>
 <li>Steuerungslogik: Hier wird eine Motorapplikation programmiert, was die Applikationsebene darstellt.</li>
 <li>NC-Achsen: Diese fungieren als virtuelle Abbildungen von Motorachsen und transformieren die Applikationswerte in Motordaten und umgekehrt.</li>
 <li>Hardwareebene: Diese umfasst den Motordriver oder Verstärker, der die Motorsignale basierend auf den Eingabewerten der Motordaten regelt, um sicherzustellen, dass die Istwerte den Sollwerten entsprechen.</li>
@@ -184,11 +185,11 @@ Serafin Kollegger &amp; Julian Huber</p>
 <hr />
 <h2 id="achsen-referenz-axis_ref">Achsen Referenz (Axis_Ref)</h2>
 <ul>
-<li>Der Datentyp AXIS_REF enthält Information zu einer Achse. AXIS_REF ist eine Schnittstelle zwischen der SPS und der NC und wird den MC-Funktionsbausteinen als Referenz auf eine Achse mitgegeben.</li>
+<li>Der Datentyp AXIS_REF enthält Information zu einer Achse. AXIS_REF ist eine Schnittstelle zwischen der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> und der NC und wird den MC-Funktionsbausteinen als Referenz auf eine Achse mitgegeben.</li>
 <li>Jeder Funktionsblock besitzt einen Eingang <em>Axis</em> mit einem zweiseitigen Pfeilsymbol.</li>
 <li>Dieser Eingang ist keine gewöhnliche Variable, sondern eine <em>In_Out</em>-Variable.</li>
 <li>Dadurch werden Daten des Datentyps <em>Axis_Ref</em> empfangen und ausgegeben.</li>
-<li>Dies ermöglicht eine bidirektionale Kommunikation mit der NC-Achse, wie in oben stehender Abbildung des Ebenenmodells zwischen SPS-Task und NC-Task dargestellt.</li>
+<li>Dies ermöglicht eine bidirektionale Kommunikation mit der NC-Achse, wie in oben stehender Abbildung des Ebenenmodells zwischen <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Task und NC-Task dargestellt.</li>
 <li>Jede Achse in der Anlage erhält eine individuelle Achsenreferenz.
 Dadurch kann jede Achse eindeutig durch den Aufruf eines Bewegungsbausteins angesteuert werden</li>
 </ul>

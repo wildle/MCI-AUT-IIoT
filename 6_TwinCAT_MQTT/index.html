@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -128,9 +129,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="twincat-mqtt-client">TwinCAT MQTT-Client</h1>
+                <h1 id="twincat-mqtt-client">TwinCAT <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</h1>
 <h2 id="aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</h2>
-<p>Erweitert euer TwinCAT-Programm um einen MQTT-Client, der Sensordaten der Learning Factory an den Broker sendet:</p>
+<p>Erweitert euer TwinCAT-Programm um einen <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client, der Sensordaten der Learning Factory an den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet:</p>
 <ul>
 <li>Füllstände aller Dispenser alle <strong>10 Sekunden</strong> übertragen</li>
 <li>Falls der Füllstand noch nicht implementiert ist: beliebigen anderen Wert senden</li>
@@ -168,13 +169,13 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Abgabe gilt als bestanden:</strong> Werte kommen am Broker an und werden durch Retain gespeichert — überprüfbar mit <a href="https://mqtt-explorer.com/">MQTT-Explorer</a>.</p>
+<p><strong>Abgabe gilt als bestanden:</strong> Werte kommen am <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> an und werden durch <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> gespeichert — überprüfbar mit <a href="https://mqtt-explorer.com/"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer</a>.</p>
 <hr />
 <h2 id="schritt-1-iot-library-einbinden">Schritt 1: IoT-Library einbinden</h2>
 <p>Die Library <code>TC3_IotBase</code> (TF6701) muss im TwinCAT Library Manager referenziert werden:</p>
 <p><img alt="" src="../images/IoTBaseHinzufuegen.PNG" /></p>
 <hr />
-<h2 id="schritt-2-sps-als-client-konfigurieren">Schritt 2: SPS als Client konfigurieren</h2>
+<h2 id="schritt-2-sps-als-client-konfigurieren">Schritt 2: <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> als Client konfigurieren</h2>
 <h3 id="variablen-deklarieren">Variablen deklarieren</h3>
 <div class="highlight"><pre><span></span><code><span class="k">VAR</span>
 <span class="w">    </span><span class="n">fbMqttClient</span><span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="n">FB_IotMqttClient</span><span class="o">;</span>
@@ -197,7 +198,7 @@
 
 <span class="n">fbMqttClient</span><span class="o">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">bConnect</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">)</span><span class="o">;</span>
 </code></pre></div>
-<h3 id="startwerte-publizieren-retain-true-einmalig">Startwerte publizieren (Retain = TRUE, einmalig)</h3>
+<h3 id="startwerte-publizieren-retain-true-einmalig">Startwerte publizieren (<abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE, einmalig)</h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Nur einmal nach dem Verbinden senden — bStaticPublished-Flag verhindert Wiederholung</span>
 <span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">bStaticPublished</span><span class="w"> </span><span class="k">THEN</span>
 <span class="w">    </span><span class="n">sMessageToPublish</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;&lt;GRUPPENNAME&gt;&#39;</span><span class="o">;</span>
@@ -241,7 +242,7 @@
 <li>Legt einen oder mehrere neue Funktionsbausteine an (z.B. <code>FB_IotMqtt</code>)</li>
 <li>Mögliche Input-Variablen: <code>topic</code>, <code>payload</code></li>
 <li>Überlegt, wie ihr <strong>einmalige Nachrichten</strong> (Gruppenname, Einheiten) von <strong>periodischen Nachrichten</strong> (Messwerte) trennt</li>
-<li>Der MQTT-Client hat ein Attribut <code>sTopicPrefix</code> für den ersten Teil des Topics — <code>Publish()</code> erhält nur den hinteren Teil als <code>sTopic</code></li>
+<li>Der <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client hat ein Attribut <code>sTopicPrefix</code> für den ersten Teil des Topics — <code>Publish()</code> erhält nur den hinteren Teil als <code>sTopic</code></li>
 </ul>
 <hr />
 <h2 id="bekannte-stolperfallen">Bekannte Stolperfallen</h2>
@@ -249,8 +250,8 @@
 <div class="highlight"><pre><span></span><code><span class="c1">// statt &#39;$unit&#39; ggf.:</span>
 <span class="s">&#39;$$unit&#39;</span>
 </code></pre></div></p>
-<p><strong>TwinCAT-Neustart beim ersten MQTT-Aktivieren:</strong> Manchmal startet TwinCAT beim Aktivieren der MQTT-Verbindung neu. Strategie: zuerst Verbindung ohne Publish testen, dann schrittweise Nachrichten hinzufügen.</p>
-<p><strong>Retain bei allen Werten:</strong> Setzt Retain = TRUE für alle Topics — dann sehen auch Subscriber, die sich erst nach dem Start verbinden, sofort die aktuellen Werte.</p>
+<p><strong>TwinCAT-Neustart beim ersten <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Aktivieren:</strong> Manchmal startet TwinCAT beim Aktivieren der <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Verbindung neu. Strategie: zuerst Verbindung ohne Publish testen, dann schrittweise Nachrichten hinzufügen.</p>
+<p><strong><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> bei allen Werten:</strong> Setzt <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE für alle Topics — dann sehen auch Subscriber, die sich erst nach dem Start verbinden, sofort die aktuellen Werte.</p>
 <hr />
 <h2 id="komplette-implementierung">Komplette Implementierung</h2>
 <p>Fertiger Funktionsbaustein — <code>&lt;GRUPPENNAME&gt;</code> und <code>&lt;Nachname1&gt; &lt;Nachname2&gt;</code> ersetzen, dann in MAIN einbinden.</p>

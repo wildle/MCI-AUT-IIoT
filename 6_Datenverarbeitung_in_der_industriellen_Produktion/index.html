@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -111,7 +112,7 @@
 <li>Das Projekt wird in den bestehenden Gruppen bearbeitet</li>
 <li>Der Teil Datenverarbeitung (Lenard Wild) wird mit 1/4 gewichtet, der allgemeine Teil (Serafin Kollegger) mit 3/4 gewichtet</li>
 <li><em>Basisaufgaben für 100%</em></li>
-<li>🏆 Aufgabe 12.1 (20% Punkte): MQTT-Client für SPS</li>
+<li>🏆 Aufgabe 12.1 (20% Punkte): <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client für <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></li>
 <li>🏆 Aufgabe 12.2 (40% Punkte): Datenspeicherung und Visualisierung</li>
 <li>🏆 Aufgabe 12.3 (20% Punkte): Regressionsmodell für Endgewicht</li>
 <li>🏆 Aufgabe 12.4 (20% Punkte): Klassifikationsmodell für defekte Flaschen</li>
@@ -128,9 +129,9 @@
 <h3 id="klassische-automatisierungspyramide">Klassische Automatisierungspyramide</h3>
 <ul>
 <li><strong>Feldebene</strong>: Sensoren und Aktoren, welche über analoge Ein- und Ausgänge an die Steuerung angeschlossen sind</li>
-<li><strong>Steuerungsebenen</strong>: SPS, die die Steuerung einzelner Anlagen </li>
-<li><strong>Prozessleitebene</strong>: Supervisory Control and Data Acquisition (SCADA) Systeme, die die Steuerung mehrerer Anlagen übernehmen</li>
-<li><strong>Betriebsleitebene</strong>: Manufacturing Execution Systems (MES), die den gesamten Produktionsprozess überwachen und steuern</li>
+<li><strong>Steuerungsebenen</strong>: <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>, die die Steuerung einzelner Anlagen </li>
+<li><strong>Prozessleitebene</strong>: Supervisory Control and Data Acquisition (<abbr title="Supervisory Control and Data Acquisition — Prozessleitsystem (Ebene 3 der Automatisierungspyramide)">SCADA</abbr>) Systeme, die die Steuerung mehrerer Anlagen übernehmen</li>
+<li><strong>Betriebsleitebene</strong>: Manufacturing Execution Systems (<abbr title="Manufacturing Execution System — Betriebsleitsystem (Ebene 4 der Automatisierungspyramide)">MES</abbr>), die den gesamten Produktionsprozess überwachen und steuern</li>
 </ul>
 <hr />
 <!-- _class: white -->
@@ -178,7 +179,7 @@
 <ul>
 <li>Entscheidung für ein geeignetes Protokoll für die Vernetzung</li>
 <li>Auf den Netzwerkschichten</li>
-<li>TCP/IP-Protokollfamilie</li>
+<li><abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Protokollfamilie</li>
 <li>Standard für das Internet</li>
 <li>Verfügbarkeit Hardware</li>
 <li>Echtzeitfähigkeit nicht benötigt</li>
@@ -208,26 +209,26 @@
 <h3 id="folge">Folge</h3>
 <ul>
 <li>Wir benötigen Protokolle, die eine <strong>hohe Flexibilität</strong> und <strong>Anpassungsfähigkeit</strong> bieten (z.B. bei der Datenmodelle)</li>
-<li>Diese sollen auf dem TCP/IP-Stack aufbauen</li>
+<li>Diese sollen auf dem <abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack aufbauen</li>
 </ul>
-<h4 id="mqtt-message-queuing-telemetry-transport">MQTT - Message Queuing Telemetry Transport</h4>
+<h4 id="mqtt-message-queuing-telemetry-transport"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> - Message Queuing Telemetry Transport</h4>
 <ul>
-<li>Anwendungsschichtprotokoll kompatibel mit TCP/IP</li>
+<li>Anwendungsschichtprotokoll kompatibel mit <abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP</li>
 <li>Sternförmige Kommunikation</li>
 <li>Publish-Subscribe-Modell</li>
 </ul>
-<h4 id="rest-representational-state-transfer">REST - Representational State Transfer</h4>
+<h4 id="rest-representational-state-transfer"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> - Representational State Transfer</h4>
 <ul>
-<li>Anwendungsschichtprotokoll kompatibel mit TCP/IP</li>
+<li>Anwendungsschichtprotokoll kompatibel mit <abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP</li>
 <li>Peer-2-Peer Kommunikation</li>
 <li>Client-Server-Modell</li>
 </ul>
 <hr />
-<h2 id="message-broker-fur-publish-subscribe-modell">Message Broker für Publish-Subscribe-Modell</h2>
+<h2 id="message-broker-fur-publish-subscribe-modell">Message <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> für Publish-Subscribe-Modell</h2>
 <p><img alt="" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
 <h6 id="httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</h6>
 <hr />
-<h3 id="mqtt-message-queuing-telemetry-transport_1">MQTT - Message Queuing Telemetry Transport</h3>
+<h3 id="mqtt-message-queuing-telemetry-transport_1"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> - Message Queuing Telemetry Transport</h3>
 <ul>
 <li>offenes Netzwerkprotokoll für Machine-to-Machine-Kommunikation </li>
 <li>leichtgewichtig und häufig für-IoT Sensoren</li>
@@ -237,14 +238,14 @@
 </ul>
 <p><img alt="bg right:23% w:300" src="../images/mqtt-logo.png" /></p>
 <hr />
-<h3 id="mqtt-broker">MQTT-Broker</h3>
+<h3 id="mqtt-broker"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr></h3>
 <ul>
 <li>Zentrale Instanz (Server), welche Nachrichten verteilt</li>
 <li>IP-Adresse bzw. URL (Uniform Resource Locator)</li>
 <li>Port</li>
 <li>Sicherheitseinstellungen<ul>
 <li>Username und Passwort</li>
-<li>Verschlüsselung mittels TLS</li>
+<li>Verschlüsselung mittels <abbr title="Transport Layer Security — Verschlüsselungsprotokoll, Nachfolger von SSL">TLS</abbr></li>
 </ul>
 </li>
 <li>Bildet Message-Queues für Topics</li>
@@ -255,11 +256,11 @@
 <p><img alt="bg right:33% w:400" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
 <h6 id="httpsmediumcomjaydevdave93what-is-mqtt-protocol-c6a0cafffa8c_1">https://medium.com/@jaydev.dave93/what-is-mqtt-protocol-c6a0cafffa8c</h6>
 <hr />
-<h3 id="hosting-von-mqtt-brokern">Hosting von MQTT-Brokern</h3>
+<h3 id="hosting-von-mqtt-brokern">Hosting von <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Brokern</h3>
 <ul>
 <li>Web-Service</li>
 <li>Fremd-gehostet in der Could z.B. mit <a href="https://console.hivemq.cloud/">hivemq</a></li>
-<li>Selbst gehostet z.B. mit <a href="https://mosquitto.org/">Mosquitto</a> z.B. auch lokal auf einer Soft-SPS, sofern kein Internetzugriff benötigt wird</li>
+<li>Selbst gehostet z.B. mit <a href="https://mosquitto.org/">Mosquitto</a> z.B. auch lokal auf einer Soft-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>, sofern kein Internetzugriff benötigt wird</li>
 </ul>
 <p><img alt="bg right w:600" src="../images/MQTT_hive.png" /></p>
 <h6 id="httpsconsolehivemqcloud">https://console.hivemq.cloud/</h6>
@@ -268,16 +269,16 @@
 <p><img alt="" src="../images/MQTT-Explorer.png" /></p>
 <ul>
 <li>Beliebige Bitfolgen</li>
-<li>z.B. UTF-codierte Texte im JSON-Format </li>
+<li>z.B. UTF-codierte Texte im <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Format </li>
 <li><code>topic</code>: thematische Zuordnung (Liste der Empfänger)</li>
 <li>Struktur ähnlich Dateisystem</li>
 <li>Hierarchie-Ebenen mit <code>/</code> getrennt</li>
 <li><code>payload</code>: Inhalt der Nachricht (Text einer Email)</li>
 </ul>
 <hr />
-<h4 id="producer-zb-eine-soft-sps">Producer (z.B. eine Soft-SPS)</h4>
+<h4 id="producer-zb-eine-soft-sps">Producer (z.B. eine Soft-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>)</h4>
 <ul>
-<li>Definieren Verbindung zu einem Broker/Server über URL</li>
+<li>Definieren Verbindung zu einem <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>/Server über URL</li>
 <li>veröffentlichen (publishen) Nachrichten zu einem oder mehren Topics</li>
 <li><strong>Push-Prinzip</strong>: Producer legen selbst fest, wann sie eine Nachricht veröffentlichen</li>
 </ul>
@@ -312,10 +313,10 @@
 <hr />
 <h4 id="consumer">Consumer</h4>
 <ul>
-<li>Definieren Verbindung zu einem Broker/Server über URL</li>
+<li>Definieren Verbindung zu einem <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>/Server über URL</li>
 <li>Empfangen alle Nachrichten zu von ihnen definierten Topics</li>
 <li>Laufen i.d.R. ein einem endlosen Loop, um Nachrichten zu empfangen</li>
-<li>Grundsätzlich werden nur die Nachrichten empfangen, die während der Laufzeit des Programms gesendet werden (Ausnahme: Nachrichten mit Retain-Flag)</li>
+<li>Grundsätzlich werden nur die Nachrichten empfangen, die während der Laufzeit des Programms gesendet werden (Ausnahme: Nachrichten mit <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>-Flag)</li>
 </ul>
 <p><img alt="bg right:33% w:400" src="../images/1_vDE8StT8wJQL46yL4LWMww.png" /></p>
 <hr />
@@ -352,7 +353,7 @@
     <span class="n">mqttc</span><span class="o">.</span><span class="n">loop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 </code></pre></div>
 <hr />
-<h3 id="mqtt-wildcards">MQTT-Wildcards</h3>
+<h3 id="mqtt-wildcards"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Wildcards</h3>
 <ul>
 <li>Möchte man mehr als ein Topic erhalten
   <div class="highlight"><pre><span></span><code>building_1/smart_meter/messwerte
@@ -368,20 +369,20 @@ building_2/raum_2/temperatur
   <code>building_1/#</code></li>
 </ul>
 <hr />
-<h3 id="quality-of-service-qos">Quality of Service (QoS)</h3>
+<h3 id="quality-of-service-qos">Quality of Service (<abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr>)</h3>
 <ul>
 <li>Gibt an, wie viel Wert auf die Zustellung der Nachrichten Wert gelegt wird</li>
-<li><strong>QoS 0:</strong> <em>'Fire and Forget'</em></li>
-<li><strong>QoS 1:</strong> Mindestens ein zweites Senden nach Time-out (Duplikate möglich!) </li>
-<li><strong>QoS 2:</strong> Sicherste Möglichkeit, jedoch hoher Overhead</li>
+<li><strong><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 0:</strong> <em>'Fire and Forget'</em></li>
+<li><strong><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 1:</strong> Mindestens ein zweites Senden nach Time-out (Duplikate möglich!) </li>
+<li><strong><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 2:</strong> Sicherste Möglichkeit, jedoch hoher Overhead</li>
 </ul>
 <p><img alt="bg right w:600" src="../images/MQTT_QoS_mobile.jpg" /></p>
-<h6 id="httpswwwtechtargetcomiotagendadefinitionmqtt-mq-telemetry-transport">https://www.techtarget.com/iotagenda/definition/MQTT-MQ-Telemetry-Transport</h6>
+<h6 id="httpswwwtechtargetcomiotagendadefinitionmqtt-mq-telemetry-transport">https://www.techtarget.com/iotagenda/definition/<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-MQ-Telemetry-Transport</h6>
 <hr />
-<h3 id="retain-flag">Retain Flag</h3>
+<h3 id="retain-flag"><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> Flag</h3>
 <ul>
-<li>Einzelne Topics können mit Retain Flag versehen werden</li>
-<li>Der Broker speichert die letzte Nachricht des Topics</li>
+<li>Einzelne Topics können mit <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> Flag versehen werden</li>
+<li>Der <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> speichert die letzte Nachricht des Topics</li>
 <li>zum Überschreiben: leere Message</li>
 </ul>
 <p><img alt="h:200" src="../images/1_BGq8wqT3PeBng84v2csOkg.webp" /></p>
@@ -399,7 +400,7 @@ building_2/raum_2/temperatur
 <hr />
 <h2 id="aufgabe-1211-20-punkte">🏆 Aufgabe 12.1.1 (20% Punkte)</h2>
 <ul>
-<li>Erweitern Sie das Programm um eine Funktionalität, die Daten des Ultraschallsensors aller Dispenser der Learning Factory an den im Beispiel angegeben MQTT-Broker sendet. Die Füllstände sollen alle 10 Sekunden übertragen werden (wenn Sie die Füllhöhen noch nicht implementiert haben, senden Sie einen beliebigen anderen Wert aus ihrem Code).</li>
+<li>Erweitern Sie das Programm um eine Funktionalität, die Daten des Ultraschallsensors aller Dispenser der Learning Factory an den im Beispiel angegeben <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet. Die Füllstände sollen alle 10 Sekunden übertragen werden (wenn Sie die Füllhöhen noch nicht implementiert haben, senden Sie einen beliebigen anderen Wert aus ihrem Code).</li>
 <li>Stellen Sie sicher, dass alle Werte retaiend gesendet wird.</li>
 </ul>
 <hr />
@@ -411,17 +412,17 @@ building_2/raum_2/temperatur
 <li><code>aut/SoSe26/&lt;Name der Gruppe&gt;/&lt;Name der übertragen Größe&gt;/$unit</code> : <code>&lt;STR mit SI-konformer Einheit&gt;</code> - wird nur einmal gesendet</li>
 </ul>
 </li>
-<li>Nutzen Sie z.B. die Software <a href="https://mqtt-explorer.com/">MQTT-Explorer</a> um die Werte zu überprüfen.</li>
-<li><strong>Abgabeformalien:</strong> Die Aufgabe gilt als abgeschlossen, wenn die Werte auf dem Broker ankommen und dort durch das Retain gespeichert werden.</li>
+<li>Nutzen Sie z.B. die Software <a href="https://mqtt-explorer.com/"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer</a> um die Werte zu überprüfen.</li>
+<li><strong>Abgabeformalien:</strong> Die Aufgabe gilt als abgeschlossen, wenn die Werte auf dem <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> ankommen und dort durch das <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> gespeichert werden.</li>
 </ul>
 <hr />
 <h3 id="iot-library-einbinden">IoT-Library Einbinden</h3>
 <ul>
-<li>Für diese Aufgabe muss die IoT-Library <code>TC3_IotBase</code> in der Beckhoff-SPS eingebunden werden</li>
+<li>Für diese Aufgabe muss die IoT-Library <code>TC3_IotBase</code> in der Beckhoff-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> eingebunden werden</li>
 </ul>
 <p><img alt="h:400" src="../images/IoTBaseHinzufuegen.PNG" /></p>
 <hr />
-<h3 id="sps-als-client-konfigurieren">SPS als Client Konfigurieren</h3>
+<h3 id="sps-als-client-konfigurieren"><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> als Client Konfigurieren</h3>
 <div class="highlight"><pre><span></span><code><span class="nf">VAR</span>
     <span class="nf">fbMqttClient:</span> <span class="nv">FB_IotMqttClient</span>; <span class="err">//</span> <span class="nc">MQTT</span> <span class="nf">client</span> <span class="nf">with</span> <span class="nf">initialization</span>
     <span class="nf">sTopicToPublish:</span> <span class="nc">STRING</span>(<span class="m">255</span>) <span class="o">:=</span> <span class="s">&#39;Temperature&#39;</span><span class="p">;</span> <span class="nf">//</span> <span class="nc">MQTT</span> <span class="nf">topic</span> <span class="nf">for</span> <span class="nf">temperature</span>
@@ -468,12 +469,12 @@ building_2/raum_2/temperatur
 <li>legen Sie einen oder mehrere neue Funktionsbausteine an</li>
 <li>Mögliche Input-Variablen sind <code>topic</code>, <code>payload</code></li>
 <li>Überlegen Sie, wie sie die einmaligen Nachrichten (z.B. Gruppenname) von den periodischen Nachrichten trennen</li>
-<li>der MQTT-Client hat ein Attribut <code>sTopicPrefix</code>, welches den ersten Teil des Topics definiert</li>
+<li>der <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client hat ein Attribut <code>sTopicPrefix</code>, welches den ersten Teil des Topics definiert</li>
 <li>Zudem kann der <code>publish</code>-Funktion ein <code>sTopic</code> übergeben werden, welches den zweiten Teil des Topics definiert</li>
-<li>Beachten Sie, dass es bei Zeichenketten sogenannte Escape-Sequenzen gibt, die in der Dokumentation der Beckhoff-SPS zu finden sind. Die können z.B. bei der Definition von<code>"$unit"</code> Probleme machen</li>
+<li>Beachten Sie, dass es bei Zeichenketten sogenannte Escape-Sequenzen gibt, die in der Dokumentation der Beckhoff-<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> zu finden sind. Die können z.B. bei der Definition von<code>"$unit"</code> Probleme machen</li>
 </ul>
 <hr />
-<h2 id="rest-representational-state-transfer_1">REST - Representational State Transfer</h2>
+<h2 id="rest-representational-state-transfer_1"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> - Representational State Transfer</h2>
 <h3 id="client-server-architektur">Client-Server-Architektur</h3>
 <!-- _class: white -->
 
@@ -483,7 +484,7 @@ building_2/raum_2/temperatur
 </ul>
 <p><img alt="bg right width:600" src="../images/ClientServer.svg" /></p>
 <hr />
-<h3 id="hypertext-transfer-protocol-fur-rest-services">Hypertext Transfer Protocol für REST-Services</h3>
+<h3 id="hypertext-transfer-protocol-fur-rest-services">Hypertext Transfer Protocol für <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services</h3>
 <ul>
 <li><strong>HTTP</strong> ist ein Protokoll auf Anwendungsschicht</li>
 <li>Bekannt für die Übertragung von Webseiten</li>
@@ -493,7 +494,7 @@ building_2/raum_2/temperatur
 <p><em>Website über Power Shell</em>
 <div class="highlight"><pre><span></span><code>curl &quot;www.google.com&quot;
 </code></pre></div></p>
-<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über Power Shell</em>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></a> über Power Shell</em>
 <div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
 </code></pre></div></p>
 <p><em>Allgemeine Synthax</em></p>
@@ -517,7 +518,7 @@ Schema Benutzer Kennwort      Host      Port    Pfad      Query    Fragment
 <p><a href="https://de.wikipedia.org/wiki/Uniform_Resource_Locator#Schema-spezifischer_Teil_(scheme-specific_part)">Quelle</a></p>
 <hr />
 <h3 id="antwort-auf-http-request">Antwort auf HTTP-Request</h3>
-<p><em><a href="https://open-meteo.com/en/docs">Wetter-API</a> über Power Shell</em>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></a> über Power Shell</em>
 <div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
 </code></pre></div></p>
 <div class="highlight"><pre><span></span><code>StatusCode        : 200
@@ -537,8 +538,8 @@ RawContentLength  : 321
 <hr />
 <h3 id="http-mit-python-requests">HTTP mit Python - Requests</h3>
 <ul>
-<li>Zur Kommunikation mit REST-Services wird das <code>requests</code>-Modul verwendet</li>
-<li>Zum Anbieten eines REST-Services wird das <code>flask</code>-Modul verwendet</li>
+<li>Zur Kommunikation mit <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>requests</code>-Modul verwendet</li>
+<li>Zum Anbieten eines <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>flask</code>-Modul verwendet</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Paket mit dem Python wie ein Browser agieren kann</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
@@ -572,7 +573,7 @@ python -m flask run
 <ul>
 <li>Fordert die angegebene Ressource vom Server an </li>
 <li>GET weist keine Nebeneffekte auf. Der Zustand am Server wird nicht verändert, weshalb GET als sicher bezeichnet wird.</li>
-<li>Rückgabe kann eine JSON sein</li>
+<li>Rückgabe kann eine <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr> sein</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Paket mit dem Python wie ein Browser agieren kann</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
@@ -632,7 +633,7 @@ python -m flask run
 <hr />
 <h3 id="weiteres">🤓 Weiteres</h3>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client">REST Client</a> Erweiterung für VS Code</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> Client</a> Erweiterung für VS Code</li>
 <li>Einfache Anfragen direkt aus dem Editor heraus</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="err">GET https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m</span>

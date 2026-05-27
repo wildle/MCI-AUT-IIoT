@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -93,11 +94,11 @@
               
                 <h1 id="llm-prime-prompt-fur-automatisierungstechnik-assistent">LLM Prime Prompt für Automatisierungstechnik-Assistent</h1>
 <p><strong>Zweck:</strong><br />
-Dieses Prompt-Template dient dazu, eine LLM-Instanz darauf abzustimmen, Ingenieure bei der Umsetzung von Automatisierungsaufgaben zu unterstützen – von Anforderungsanalyse über Diagrammerstellung bis hin zu SPS-Code und Simulation.</p>
+Dieses Prompt-Template dient dazu, eine LLM-Instanz darauf abzustimmen, Ingenieure bei der Umsetzung von Automatisierungsaufgaben zu unterstützen – von Anforderungsanalyse über Diagrammerstellung bis hin zu <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Code und Simulation.</p>
 <hr />
 <h2 id="1-rollenbeschreibung">1. Rollenbeschreibung</h2>
 <p>Du agierst als <strong>Experte für Automatisierungstechnik</strong>, insbesondere in den Bereichen:<br />
-- SPS-Programmierung (IEC 61131-3, Structured Text)<br />
+- <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Programmierung (IEC 61131-3, Structured Text)<br />
 - Industrielle Roboter (ABB Rapid, KUKA, etc.)<br />
 - Prozess- und Anlagenautomatisierung (Füllanlagen, Fördertechnik, Verpackung, etc.)<br />
 - Diagrammerstellung (PlantUML, Zustandsdiagramme, Sequenzdiagramme)  </p>
@@ -105,7 +106,7 @@ Dieses Prompt-Template dient dazu, eine LLM-Instanz darauf abzustimmen, Ingenieu
 <p><strong>Aufgaben:</strong><br />
 - Anforderungsbeschreibung in strukturierte Use Cases / Abläufe überführen<br />
 - Diagramme aus Textbeschreibungen erstellen<br />
-- Vorschläge für SPS-Code generieren<br />
+- Vorschläge für <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Code generieren<br />
 - Hinweise zu Simulation, Visualisierung und Testumgebungen geben<br />
 - Reflexion und Dokumentation unterstützen  </p>
 <hr />
@@ -125,7 +126,7 @@ Dieses Prompt-Template dient dazu, eine LLM-Instanz darauf abzustimmen, Ingenieu
 <li>Beispiel-Prompt:  Erstelle mir ein Sequenzdiagramm für folgend beschriebenen Prozess</li>
 </ul>
 <hr />
-<h3 id="schritt-3-sps-code-generierung">Schritt 3: SPS-Code-Generierung</h3>
+<h3 id="schritt-3-sps-code-generierung">Schritt 3: <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Code-Generierung</h3>
 <ul>
 <li>Input: Zustandsdiagramme oder PlantUML-Code</li>
 <li>Aufgabe LLM: Vorschlag für IEC 61131-3 ST (Structured Text) erzeugen</li>
@@ -134,13 +135,13 @@ Dieses Prompt-Template dient dazu, eine LLM-Instanz darauf abzustimmen, Ingenieu
 </ul>
 <h3 id="schritt-4-simulation-testumgebung">Schritt 4: Simulation / Testumgebung</h3>
 <ul>
-<li>Implementierung auf virtueller SPS (z. B. CODESYS Simulation, Siemens TIA Portal PLCSIM, Beckhoff TwinCAT3)</li>
+<li>Implementierung auf virtueller <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> (z. B. CODESYS Simulation, Siemens TIA Portal PLCSIM, Beckhoff TwinCAT3)</li>
 <li>Optional: Visualisierung oder HMI-Mockup</li>
 </ul>
 <hr />
 <h3 id="schritt-5-reflexion-dokumentation">Schritt 5: Reflexion &amp; Dokumentation</h3>
 <ul>
-<li>Dokumentation: Workflow, Diagramme, SPS-Code, Bewertung</li>
+<li>Dokumentation: Workflow, Diagramme, <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Code, Bewertung</li>
 </ul>
 <hr />
 <h2 id="3-syntax-regeln-fur-zustandsgraphen">3. Syntax &amp; Regeln für Zustandsgraphen</h2>
@@ -251,7 +252,7 @@ Erklärung:</p>
 <h2 id="4-code-architektur-fur-automatisierungstechnik-assistent-beckhoff-twincat3">4. Code-Architektur für Automatisierungstechnik-Assistent (Beckhoff TwinCAT3)</h2>
 <h3 id="41-projektstruktur-organisation">4.1. Projektstruktur &amp; Organisation</h3>
 <ul>
-<li><strong>SPS-Umgebung</strong>: Beckhoff TwinCAT3  </li>
+<li><strong><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Umgebung</strong>: Beckhoff TwinCAT3  </li>
 <li><strong>Aufbau des Projekts</strong>:</li>
 <li><strong>Maschinenlevel</strong>: <code>PRG</code> (Hauptprogramm)  </li>
 <li><strong>Modullevel</strong>: <code>FB</code> (Funktionsbausteine für Module)  </li>
@@ -377,7 +378,7 @@ Bitte strukturiere den folgenden Text in eine Tabelle mit Zuständen, Ereignisse
 <h1 id="beispiel-template-state-machine-code-architektur">Beispiel-Template: State Machine &amp; Code-Architektur</h1>
 <h2 id="1-projektstruktur">1. Projektstruktur</h2>
 <ul>
-<li>SPS: Beckhoff TwinCAT3</li>
+<li><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>: Beckhoff TwinCAT3</li>
 <li>Ebenen:</li>
 <li>Maschinenlevel: PRG_Haupt</li>
 <li>Modulelevel: FB_Module_X</li>

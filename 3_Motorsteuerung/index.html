@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -140,10 +141,10 @@ Serafin Kollegger &amp; Julian Huber</p>
 <hr />
 <h2 id="achsen-referenz-axis_ref">Achsen Referenz (Axis_Ref)</h2>
 <ul>
-<li>Der Datentyp AXIS_REF enthält Information zu einer Achse. AXIS_REF ist eine Schnittstelle zwischen der SPS und der NC und wird den MC-Funktionsbausteinen als Referenz auf eine Achse mitgegeben.</li>
+<li>Der Datentyp AXIS_REF enthält Information zu einer Achse. AXIS_REF ist eine Schnittstelle zwischen der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> und der NC und wird den MC-Funktionsbausteinen als Referenz auf eine Achse mitgegeben.</li>
 <li>Dieser Eingang ist keine gewöhnliche Variable, sondern eine <em>In_Out</em>-Variable.</li>
 <li>Dadurch werden Daten des Datentyps <em>Axis_Ref</em> empfangen und ausgegeben.</li>
-<li>Dies ermöglicht eine bidirektionale Kommunikation mit der NC-Achse, wie in oben stehender Abbildung des Ebenenmodells zwischen SPS-Task und NC-Task dargestellt.</li>
+<li>Dies ermöglicht eine bidirektionale Kommunikation mit der NC-Achse, wie in oben stehender Abbildung des Ebenenmodells zwischen <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Task und NC-Task dargestellt.</li>
 <li>Jede Achse in der Anlage erhält eine individuelle Achsenreferenz.
 Dadurch kann jede Achse eindeutig durch den Aufruf eines Bewegungsbausteins angesteuert werden</li>
 </ul>
@@ -197,7 +198,7 @@ Dadurch kann jede Achse eindeutig durch den Aufruf eines Bewegungsbausteins ange
 </ul>
 <hr />
 <h3 id="online-betrieb-jogging-mode">Online-Betrieb (Jogging Mode)</h3>
-<p>SPS-Pausiert oder Achsenreferenz nicht vergeben!</p>
+<p><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>-Pausiert oder Achsenreferenz nicht vergeben!</p>
 <p><img alt="bg right:70% h:450" src="../images/Online_Betrieb.PNG" /></p>
 <hr />
 <h2 id="hardware-interface-ebene">Hardware Interface Ebene</h2>

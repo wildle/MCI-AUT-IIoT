@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -132,9 +133,9 @@
 <!-- _class : white -->
 
 <p><img alt="h:200" src="../images/Architecture.svg" /></p>
-<p>Dieses System holt die Daten der SPS vom MQTT-Broker ab und speichert diese in einer Datenbank. Zudem werden die Daten in einem Dashboard visualisiert.</p>
+<p>Dieses System holt die Daten der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> vom <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> ab und speichert diese in einer Datenbank. Zudem werden die Daten in einem Dashboard visualisiert.</p>
 <ul>
-<li><strong>MQTT-Client</strong>: Dieser Teil des Systems ist für das Abholen der Daten von der SPS und das Senden an den MQTT-Broker zuständig.</li>
+<li><strong><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</strong>: Dieser Teil des Systems ist für das Abholen der Daten von der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> und das Senden an den <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> zuständig.</li>
 <li><strong>Datenbank</strong>: Dieser Teil des Systems ist für das Speichern der Daten in einer Datenbank zuständig.</li>
 <li><strong>Visualisierung</strong>: Dieser Teil des Systems ist für die Visualisierung der Daten zuständig.</li>
 </ul>
@@ -168,7 +169,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="extract-transform-load-etl">Extract, Transform, Load (ETL)</h3>
+<h3 id="extract-transform-load-etl">Extract, Transform, Load (<abbr title="Extract, Transform, Load — dreistufiger Datenintegrationsprozess">ETL</abbr>)</h3>
 <!-- _class : white -->
 
 <p><img alt="" src="../images/ELT-Example.svg" /></p>
@@ -180,9 +181,9 @@
 <li>
 <p>Extraktion</p>
 <ul>
-<li>periodisch: z.B. Temperatursensor über REST</li>
-<li>ereignisgesteuert: z.B. Bewegungsmelder über MQTT</li>
-<li>anfragegesteuert: z.B. Kamera über REST</li>
+<li>periodisch: z.B. Temperatursensor über <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></li>
+<li>ereignisgesteuert: z.B. Bewegungsmelder über <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></li>
+<li>anfragegesteuert: z.B. Kamera über <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></li>
 </ul>
 </li>
 <li>Transformation<ul>
@@ -191,7 +192,7 @@
 </ul>
 </li>
 <li>Laden<ul>
-<li>Einbringen in die zentrale Datenstruktur (z.B. Data Warehouse oder Datenbank) z.B. tinyDB oder CSV-Datei</li>
+<li>Einbringen in die zentrale Datenstruktur (z.B. Data Warehouse oder Datenbank) z.B. tinyDB oder <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei</li>
 </ul>
 </li>
 </ul>
@@ -223,7 +224,7 @@
 <li>
 <p>Umfang fürs bestehen der Aufgabe:</p>
 <ul>
-<li>[ ] Einfache Lösung mit CSV-Datei als Datenbank</li>
+<li>[ ] Einfache Lösung mit <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei als Datenbank</li>
 <li>[ ] Daten aller relevanten (siehe unten) Topics werden vollständig und korrekt gespeichert</li>
 <li>[ ] Python-Programm, welches eine beliebige Zeitreihe aus der Datenbank visualisiert</li>
 <li>[ ] Der Report im Markdown enthält einen Plot einer Ausgewählten Zeitreihe für die Sie die Daten gespeichert haben</li>
@@ -233,17 +234,17 @@
 <li>durch folgende Aufgaben kann die Punktzahl erhöht werden<ul>
 <li>[ ] Datenbank wird durch tinyDB, SQLite oder InfluxDB ersetzt</li>
 <li>[ ] Plots werden durch Dashboard mit z.B. mit Grafana oder Plotly ersetzt</li>
-<li>[ ] System ist durch config-Datei konfigurierbar (z.B. MQTT-Server)</li>
-<li>[ ] Sinnvolle Fehlerbehandlung z.B. bei Verbindungsabbruch zum MQTT-Server</li>
-<li>[ ] Daten oder Informationen über die Daten können einfach aus anderen Systemen abgerufen werden (auch während das System läuft), z.B. durch eine REST-API oder SQL-Abfragen</li>
+<li>[ ] System ist durch config-Datei konfigurierbar (z.B. <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server)</li>
+<li>[ ] Sinnvolle Fehlerbehandlung z.B. bei Verbindungsabbruch zum <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server</li>
+<li>[ ] Daten oder Informationen über die Daten können einfach aus anderen Systemen abgerufen werden (auch während das System läuft), z.B. durch eine <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> oder SQL-Abfragen</li>
 </ul>
 </li>
 </ul>
 <hr />
 <h2 id="komponenten">Komponenten</h2>
-<h3 id="1-mqtt-client-extract">1. MQTT-Client (Extract)</h3>
+<h3 id="1-mqtt-client-extract">1. <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client (Extract)</h3>
 <ul>
-<li>Der MQTT-Client ist ein Python-Programm, welches die Daten von der SPS abholt und an den MQTT-Broker sendet.</li>
+<li>Der <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client ist ein Python-Programm, welches die Daten von der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> abholt und an den <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet.</li>
 <li>Hierzu wird z.B. die Bibliothek <code>paho-mqtt</code> verwendet.</li>
 <li>Der Client abonniert das Topic <code>aut/SoSe26/&lt;Gruppe&gt;/#</code> und sendet die Daten an die Datenbank.</li>
 <li>Hinweise:<ul>
