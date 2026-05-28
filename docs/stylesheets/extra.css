@@ -1,0 +1,7 @@
+/* Abbreviation-Tooltips in Überschriften ausblenden */
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+    pointer-events: none;
+}

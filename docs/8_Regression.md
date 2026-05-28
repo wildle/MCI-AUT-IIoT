@@ -1,6 +1,5 @@
 ---
 marp: true
-author: Serafin Kollegger & Julian Huber
 size: 16:9
 footer: Automatisierungstechnik
 class: invert

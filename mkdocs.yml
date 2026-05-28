@@ -27,9 +27,17 @@ markdown_extensions:
       generic: true
   - pymdownx.superfences
   - attr_list
+  - abbr
+  - pymdownx.snippets:
+      base_path: [docs]
+      auto_append:
+        - includes/abbreviations.md
 
 plugins:
   - mkdocs-jupyter
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/mathjax.js

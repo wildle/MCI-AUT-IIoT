@@ -1,6 +1,5 @@
 ---
 marp: true
-author: Serafin Kollegger & Julian Huber
 size: 16:9
 footer: Automatisierungstechnik
 class: invert
@@ -102,7 +101,7 @@ Dieses System holt die Daten der SPS vom MQTT-Broker ab und speichert diese in e
 - **Abgabeformalien:** Dokumentieren Sie ihr Vorgehen sehr kurz als gerne als Markdown-Datei
 - In dieser Aufgabe soll ein System zur Datenspeicherung (Warm oder Cold Storage) und Visualisierung implementiert werden
 - Wir werden die Daten zu einen späteren Zeitpunkt für die Fehleranalyse verwenden
-- In diesem Fall speichern wir die Daten einer anderen Simulation unter dem Topic `iot1/teaching_factory`
+- In diesem Fall speichern wir die Daten einer anderen Simulation unter dem Topic `aut/SoSe26/<Gruppe>/#`
 
 - Umfang fürs bestehen der Aufgabe:
     - [ ] Einfache Lösung mit CSV-Datei als Datenbank
@@ -125,7 +124,7 @@ Dieses System holt die Daten der SPS vom MQTT-Broker ab und speichert diese in e
 
 - Der MQTT-Client ist ein Python-Programm, welches die Daten von der SPS abholt und an den MQTT-Broker sendet.
 - Hierzu wird z.B. die Bibliothek `paho-mqtt` verwendet.
-- Der Client abonniert das Topic `iot1/teaching_factory` und sendet die Daten an die Datenbank.
+- Der Client abonniert das Topic `aut/SoSe26/<Gruppe>/#` und sendet die Daten an die Datenbank.
 - Hinweise:
     - Nutzen Sie das Skript aus den Beispielen und versuchen Sie zunächst ein Topic zu abonnieren und die Daten in der Konsole auszugeben.
     - Überlegen Sie sich dann Funktionen, um die Daten in eine Struktur zu bringen, und diese in dann zu speichern.

@@ -22,7 +22,7 @@ theme: lemon
 
 - [Link Sakai]()
 - [Link Beckhoff Info Sys](https://infosys.beckhoff.com/index.htm)
-- [Link Twincat Files Teaching Factory]()
+- [Link Twincat Files Learning Factory]()
 - [...]()
 
 ---
