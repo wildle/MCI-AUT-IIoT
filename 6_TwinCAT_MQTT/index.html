@@ -44,6 +44,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../0_Glossar/">Glossar</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
               <ul class="current">
@@ -60,6 +62,12 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#schritt-1-iot-library-einbinden">Schritt 1: IoT-Library einbinden</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1a-iot-paket-installieren-twincat-package-manager">1a) IoT-Paket installieren (TwinCAT Package Manager)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1b-library-im-projekt-referenzieren">1b) Library im Projekt referenzieren</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#schritt-2-sps-als-client-konfigurieren">Schritt 2: SPS als Client konfigurieren</a>
         <ul>
@@ -86,6 +94,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#main-integration">MAIN-Integration</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#woher-kommen-die-fullstande">Woher kommen die Füllstände?</a>
     </li>
     </ul>
                   </li>
@@ -172,7 +182,19 @@
 <p><strong>Abgabe gilt als bestanden:</strong> Werte kommen am <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> an und werden durch <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> gespeichert — überprüfbar mit <a href="https://mqtt-explorer.com/"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer</a>.</p>
 <hr />
 <h2 id="schritt-1-iot-library-einbinden">Schritt 1: IoT-Library einbinden</h2>
-<p>Die Library <code>TC3_IotBase</code> (TF6701) muss im TwinCAT Library Manager referenziert werden:</p>
+<h3 id="1a-iot-paket-installieren-twincat-package-manager">1a) IoT-Paket installieren (TwinCAT Package Manager)</h3>
+<p>Die <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Funktionalität steckt im Function-Paket <strong>TF6701 (TwinCAT 3 IoT Communication)</strong>. Dieses Paket muss <strong>einmalig pro Rechner</strong> über den <strong>TwinCAT Package Manager</strong> installiert werden — sonst fehlt die Library <code>Tc3_IotBase</code> im Library Manager und der Funktionsbaustein lässt sich nicht kompilieren.</p>
+<ol>
+<li><strong>TwinCAT Package Manager</strong> öffnen (Windows-Start → „TwinCAT Package Manager")</li>
+<li>Unter <strong>Packages / Browse</strong> nach <code>TF6701</code> bzw. <code>IoT</code> suchen (Paket „TwinCAT 3 IoT Communication")</li>
+<li>Paket <strong>installieren</strong> und den Anweisungen folgen</li>
+<li>Anschließend <strong>Visual Studio / TwinCAT XAE neu starten</strong>, damit die Library erkannt wird</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Häufigste Stolperfalle:</strong> Ohne diesen Schritt erscheint <code>Tc3_IotBase</code> nicht in der Library-Liste und der Build schlägt mit „library not found" fehl. Erst installieren, dann referenzieren.</p>
+</blockquote>
+<h3 id="1b-library-im-projekt-referenzieren">1b) Library im Projekt referenzieren</h3>
+<p>Ist das Paket installiert, wird die Library <code>Tc3_IotBase</code> im <strong>Library Manager</strong> des Projekts referenziert (Rechtsklick auf <strong>References → Add library → <code>Tc3_IotBase</code></strong>):</p>
 <p><img alt="" src="../images/IoTBaseHinzufuegen.PNG" /></p>
 <hr />
 <h2 id="schritt-2-sps-als-client-konfigurieren">Schritt 2: <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> als Client konfigurieren</h2>
@@ -315,6 +337,29 @@
 
 <span class="n">fbiot</span><span class="p">(</span><span class="n">iUSS1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">iIn_USS1</span><span class="o">,</span><span class="w"> </span><span class="n">iUSS2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">iIn_USS2</span><span class="o">,</span><span class="w"> </span><span class="n">iUSS3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">iIn_USS3</span><span class="p">)</span><span class="o">;</span>
 </code></pre></div>
+<hr />
+<h2 id="woher-kommen-die-fullstande">Woher kommen die Füllstände?</h2>
+<p>Der Funktionsbaustein erwartet drei Eingänge <code>iUSS1</code>, <code>iUSS2</code>, <code>iUSS3</code> — die <strong>Füllstände der drei Dispenser</strong> (rot/blau/grün). Gemessen werden sie von den <strong>Ultraschallsensoren</strong> der Learning Factory.</p>
+<p><strong>Gute Nachricht:</strong> Diese Sensorwerte gibt es in eurem Projekt <strong>bereits</strong> — ihr habt sie in den vorherigen Einheiten (Messsteuerkette / Analog-Eingänge) schon eingelesen. Eine an einen physischen Eingang gekoppelte Variable erkennt ihr am <code>AT %I*</code>-Zusatz in der Deklaration, z.B.:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Beispiel aus der Analog-Input-Einheit — eine Eingangsvariable, die im I/O-Baum</span>
+<span class="c1">// mit einer Hardware-Klemme verknüpft ist:</span>
+<span class="n">nPoti</span><span class="w"> </span><span class="n">AT</span><span class="w"> </span><span class="err">%</span><span class="n">I</span><span class="o">*</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">UINT</span><span class="o">;</span>
+</code></pre></div>
+<p>Ihr müsst also <strong>nichts neu verdrahten</strong> — sucht die Variablen, die bei euch die drei Füllstände halten, und übergebt sie beim Aufruf an den FB:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in MAIN — eure eigenen, bereits vorhandenen Füllstand-Variablen einsetzen:</span>
+<span class="n">fbiot</span><span class="p">(</span><span class="n">iUSS1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">iIn_USS1</span><span class="o">,</span><span class="w">   </span><span class="c1">// Füllstand rot  (Ultraschallsensor 1)</span>
+<span class="w">      </span><span class="n">iUSS2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">iIn_USS2</span><span class="o">,</span><span class="w">   </span><span class="c1">// Füllstand blau (Ultraschallsensor 2)</span>
+<span class="w">      </span><span class="n">iUSS3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">iIn_USS3</span><span class="p">)</span><span class="o">;</span><span class="w">  </span><span class="c1">// Füllstand grün (Ultraschallsensor 3)</span>
+</code></pre></div>
+<blockquote>
+<p>💡 Die Namen <code>iIn_USS1/2/3</code> sind nur Platzhalter — setzt die Variablennamen ein, die ihr in eurem Projekt für die Füllstände verwendet.</p>
+</blockquote>
+<p><strong>Falls ein Füllstand bei euch noch nicht eingelesen ist:</strong> Eingangsvariable deklarieren und im I/O-Baum mit der Sensor-Klemme verknüpfen (Rechtsklick auf die Variable → <strong>Change Link</strong> → passenden Kanal des Ultraschallsensors wählen):</p>
+<div class="highlight"><pre><span></span><code><span class="n">iIn_USS1</span><span class="w"> </span><span class="n">AT</span><span class="w"> </span><span class="err">%</span><span class="n">I</span><span class="o">*</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">UINT</span><span class="o">;</span><span class="w">   </span><span class="c1">// danach im I/O-Baum mit dem Ultraschallsensor-Kanal verlinken</span>
+</code></pre></div>
+<blockquote>
+<p>Notfalls genügt für die Abgabe <strong>ein beliebiger Sensorwert</strong> statt der Füllstände (siehe Aufgabenstellung oben) — Hauptsache, Werte kommen periodisch retained am <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> an.</p>
+</blockquote>
               
             </div>
           </div><footer>

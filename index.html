@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Home";
+        var mkdocs_page_name = "Automatisierungstechnik \u2013 Industrial Internet of Things";
         var mkdocs_page_input_path = "index.md";
         var mkdocs_page_url = "/MCI-AUT-IIoT/";
       </script>
@@ -43,6 +43,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="1_Projekt/">Projekt</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="0_Glossar/">Glossar</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
@@ -83,7 +85,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Home</li>
+      <li class="breadcrumb-item active">Automatisierungstechnik – Industrial Internet of Things</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -92,19 +94,98 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <!-- paginate: true -->
-
-<h1 id="automatisierungstechnik">Automatisierungstechnik</h1>
+                <h1 id="automatisierungstechnik-industrial-internet-of-things">Automatisierungstechnik – Industrial Internet of Things</h1>
+<p>Unterlagen zum <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Block im Rahmen der Automatisierungstechnik-Lehrveranstaltung des Bachelorstudiengangs Mechatronik am MCI.</p>
+<p>Bei Fragen gerne an <a href="mailto:lenard.wild@mci.edu">lenard.wild@mci.edu</a> wenden.</p>
 <hr />
 <h2 id="quicklinks">Quicklinks</h2>
 <ul>
-<li><a href="">Link Sakai</a></li>
-<li><a href="https://infosys.beckhoff.com/index.htm">Link Beckhoff Info Sys</a></li>
-<li><a href="">Link Twincat Files Learning Factory</a></li>
-<li><a href="">...</a></li>
+<li><a href="https://infosys.beckhoff.com/index.htm">Beckhoff Infosys</a></li>
+<li><a href="https://mqtt-explorer.com/"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer</a></li>
 </ul>
 <hr />
-<h2 id="0-organisatorisches">0 Organisatorisches</h2>
+<h2 id="inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<h3 id="organisatorisches">Organisatorisches</h3>
+<table>
+<thead>
+<tr>
+<th>Seite</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="1_Organisatorisches/">Aufbau der Lehrveranstaltung</a></td>
+<td>Termine, Ablauf, Gruppen</td>
+</tr>
+<tr>
+<td><a href="1_Projekt/">Projekt</a></td>
+<td>Aufgaben 12.1.1 – 12.4, Abgabeformat</td>
+</tr>
+<tr>
+<td><a href="1_Leistungsbewertung/">Leistungsbewertung</a></td>
+<td>Gewichtung und Bewertungskriterien</td>
+</tr>
+</tbody>
+</table>
+<h3 id="industrial-internet-of-things">Industrial Internet of Things</h3>
+<table>
+<thead>
+<tr>
+<th>Seite</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="6_IIoT_Grundlagen/">Grundlagen</a></td>
+<td>Automatisierungspyramide, <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>, Kommunikationsarchitektur</td>
+</tr>
+<tr>
+<td><a href="6_MQTT/"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></a></td>
+<td><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>, Topics, Publisher/Subscriber, <abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr>, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr></td>
+</tr>
+<tr>
+<td><a href="6_TwinCAT_MQTT/">TwinCAT <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</a></td>
+<td>FB_IotMqttClient, Aufgabe 12.1.1</td>
+</tr>
+<tr>
+<td><a href="6_REST/"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></a></td>
+<td><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-APIs, HTTP-Methoden</td>
+</tr>
+<tr>
+<td><a href="7_Datenspeicherung/">Datenspeicherung</a></td>
+<td><abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>, Python-Subscriber, Aufgabe 12.1.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="machine-learning">Machine Learning</h3>
+<table>
+<thead>
+<tr>
+<th>Seite</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="8_Regression/">Regressionsmodelle</a></td>
+<td>Lineare Regression, MSE, R²</td>
+</tr>
+<tr>
+<td><a href="8_Regression_Python/">Lineare Regression mit Python</a></td>
+<td>Aufgabe 12.3</td>
+</tr>
+<tr>
+<td><a href="9_Klassifizierung/">Klassifikationsmodelle</a></td>
+<td>Klassifikation, Confusion Matrix</td>
+</tr>
+<tr>
+<td><a href="9_Classification_Python/">Klassifikation mit Python</a></td>
+<td>Aufgabe 12.4</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
@@ -150,5 +231,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-05-28 08:21:28.034784+00:00
+Build Date UTC : 2026-05-31 19:12:52.421939+00:00
 -->
