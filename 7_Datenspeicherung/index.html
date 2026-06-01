@@ -59,33 +59,33 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Datenspeicherung</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#persistierung-und-visualisierung-von-daten">Persistierung und Visualisierung von Daten</a>
+    <li class="toctree-l2"><a class="reference internal" href="#lebenszyklus-von-daten">Lebenszyklus von Daten</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#extract-transform-load-etl">Extract, Transform, Load (ETL)</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#lebenszyklus-von-daten">Lebenszyklus von Daten</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#extract-transform-load-etl">Extract, Transform, Load (ETL)</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#speichern">Speichern</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1212-40">🏆 Aufgabe 12.1.2 (40 %)</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datenquelle-der-simulator">Datenquelle: der Simulator</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#erste-schritte-daten-empfangen">Erste Schritte: Daten empfangen</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#komponenten">Komponenten</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#1-mqtt-client-extract">1. MQTT-Client (Extract)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#2-datenbank-transform-load">2. Datenbank (Transform &amp; Load)</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#datenbedarf-fur-die-aufgabe-lineare-regression">Datenbedarf für die Aufgabe Lineare Regression</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#datenbedarf-fur-die-aufgabe-classification">Datenbedarf für die Aufgabe Classification</a>
+    <li class="toctree-l3"><a class="reference internal" href="#datenbedarf-fur-die-aufgabe-lineare-regression">Datenbedarf für die Aufgabe Lineare Regression</a>
     </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#datenbedarf-fur-die-aufgabe-classification">Datenbedarf für die Aufgabe Classification</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#losungvorschlag-fur-projektstruktur">Lösungvorschlag für Projektstruktur</a>
+    <li class="toctree-l2"><a class="reference internal" href="#losungsvorschlag-fur-die-projektstruktur">Lösungsvorschlag für die Projektstruktur</a>
     </li>
     </ul>
                   </li>
@@ -125,152 +125,204 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <!-- paginate: true -->
-
-<h1 id="datenspeicherung">Datenspeicherung</h1>
-<p>Serafin Kollegger &amp; Julian Huber</p>
-<p><img alt="bg right:30%" src="../images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg" /></p>
-<hr />
-<h2 id="persistierung-und-visualisierung-von-daten">Persistierung und Visualisierung von Daten</h2>
-<!-- _class : white -->
-
-<p><img alt="h:200" src="../images/Architecture.svg" /></p>
-<p>Dieses System holt die Daten der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> vom <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> ab und speichert diese in einer Datenbank. Zudem werden die Daten in einem Dashboard visualisiert.</p>
+                <h1 id="datenspeicherung">Datenspeicherung</h1>
+<p>Dieses System holt die Daten der Anlage vom <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> ab, speichert sie in einer Datenbank und visualisiert sie in einem Dashboard.</p>
+<p><img alt="" src="../images/Architecture.svg" /></p>
 <ul>
-<li><strong><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</strong>: Dieser Teil des Systems ist für das Abholen der Daten von der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> und das Senden an den <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> zuständig.</li>
-<li><strong>Datenbank</strong>: Dieser Teil des Systems ist für das Speichern der Daten in einer Datenbank zuständig.</li>
-<li><strong>Visualisierung</strong>: Dieser Teil des Systems ist für die Visualisierung der Daten zuständig.</li>
+<li><strong><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</strong> — holt die Daten vom <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> ab (<em>Extract</em>)</li>
+<li><strong>Datenbank</strong> — speichert die Daten strukturiert (<em>Transform &amp; Load</em>)</li>
+<li><strong>Visualisierung</strong> — stellt die Daten dar</li>
 </ul>
 <hr />
-<h3 id="lebenszyklus-von-daten">Lebenszyklus von Daten</h3>
+<h2 id="lebenszyklus-von-daten">Lebenszyklus von Daten</h2>
 <p><img alt="" src="../images/architecture-dataStorage.webp" /></p>
-<hr />
 <table>
 <thead>
 <tr>
 <th>Storage Type</th>
-<th>Typische Software Tools</th>
+<th>Typische Software-Tools</th>
 <th>Anwendungsfälle</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Hot Storage</td>
-<td>Arbeitsspeicher (BeckhoffH MI, node-red)</td>
+<td>Arbeitsspeicher (Beckhoff HMI, Node-RED)</td>
 <td>Dashboards, Echtzeitverarbeitung (z.B. Mittelwertbildung)</td>
 </tr>
 <tr>
 <td>Warm Storage</td>
-<td>Dokumentenbasierte Datenbaken (z.B. MongoDB, tinyDB), Zeitreihen-Datenbanken (z.B. InfluxDB)</td>
-<td>Persistierung von Daten, die für Dashboards und Analysen benötigt werden</td>
+<td>Dokumentenbasierte Datenbanken (z.B. MongoDB, tinyDB), Zeitreihen-Datenbanken (z.B. InfluxDB)</td>
+<td>Persistierung von Daten für Dashboards und Analysen</td>
 </tr>
 <tr>
 <td>Cold Storage</td>
 <td>Relationale Datenbanken (z.B. SQLite, PostgreSQL), Data Warehouses</td>
-<td>Langfristige Speicherung von Daten, die für Analysen und Berichte benötigt werden</td>
+<td>Langfristige Speicherung für Analysen und Berichte</td>
 </tr>
 </tbody>
 </table>
-<h3 id="extract-transform-load-etl">Extract, Transform, Load (<abbr title="Extract, Transform, Load — dreistufiger Datenintegrationsprozess">ETL</abbr>)</h3>
-<!-- _class : white -->
-
-<p><img alt="" src="../images/ELT-Example.svg" /></p>
 <hr />
+<h2 id="extract-transform-load-etl">Extract, Transform, Load (<abbr title="Extract, Transform, Load — dreistufiger Datenintegrationsprozess">ETL</abbr>)</h2>
+<p><img alt="" src="../images/ELT-Example.svg" /></p>
+<p>Eine <strong>Pipeline</strong> von den Datenquellen bis zum Speicher:</p>
 <ul>
-<li>
-<p>Pipeline von Datenquellen zum Speicher</p>
-</li>
-<li>
-<p>Extraktion</p>
-<ul>
+<li><strong>Extraktion</strong><ul>
 <li>periodisch: z.B. Temperatursensor über <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></li>
 <li>ereignisgesteuert: z.B. Bewegungsmelder über <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></li>
 <li>anfragegesteuert: z.B. Kamera über <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></li>
 </ul>
 </li>
-<li>Transformation<ul>
-<li>Syntaktische Transformationen (Form): z.B. Format der Zeitstempel </li>
-<li>Semantische Transformationen (Inhalt): z.B. Durchschnitt </li>
+<li><strong>Transformation</strong><ul>
+<li>syntaktisch (Form): z.B. Format der Zeitstempel</li>
+<li>semantisch (Inhalt): z.B. Durchschnitt</li>
 </ul>
 </li>
-<li>Laden<ul>
-<li>Einbringen in die zentrale Datenstruktur (z.B. Data Warehouse oder Datenbank) z.B. tinyDB oder <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei</li>
+<li><strong>Laden</strong><ul>
+<li>Einbringen in die zentrale Datenstruktur (z.B. Data Warehouse oder Datenbank), z.B. tinyDB oder <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei</li>
 </ul>
 </li>
 </ul>
-<hr />
 <h3 id="speichern">Speichern</h3>
 <ul>
-<li>Datenbank:<ul>
-<li>Softwaresystem zur Aufbewahrung von Daten</li>
-</ul>
-</li>
-<li>Data Warehouse:<ul>
-<li>Sammlung aufbereiteter Daten in fester Struktur</li>
-</ul>
-</li>
-<li>Data Lake:<ul>
-<li>Unstrukturierte Sammlung von Daten</li>
-</ul>
-</li>
+<li><strong>Datenbank</strong> — Softwaresystem zur Aufbewahrung von Daten</li>
+<li><strong>Data Warehouse</strong> — Sammlung aufbereiteter Daten in fester Struktur</li>
+<li><strong>Data Lake</strong> — unstrukturierte Sammlung von Daten</li>
 </ul>
 <hr />
 <h2 id="aufgabe-1212-40">🏆 Aufgabe 12.1.2 (40 %)</h2>
-<ul>
-<li><strong>Abgabeformalien:</strong> Dokumentieren Sie ihr Vorgehen sehr kurz als gerne als Markdown-Datei</li>
-<li>In dieser Aufgabe soll ein System zur Datenspeicherung (Warm oder Cold Storage) und Visualisierung implementiert werden</li>
-<li>Wir werden die Daten zu einen späteren Zeitpunkt für die Fehleranalyse verwenden</li>
-<li>
-<p>In diesem Fall speichern wir die Daten einer anderen Simulation unter dem Topic <code>aut/SoSe26/&lt;Gruppe&gt;/#</code></p>
-</li>
-<li>
-<p>Umfang fürs bestehen der Aufgabe:</p>
+<p>In dieser Aufgabe implementieren Sie ein System zur <strong>Datenspeicherung</strong> (Warm oder Cold Storage) und <strong>Visualisierung</strong>. Die gespeicherten Daten verwenden wir zu einem späteren Zeitpunkt für die Fehleranalyse (Aufgaben Lineare Regression und Classification).</p>
+<p>Als Datenquelle dient eine laufende Simulation der Learning Factory. Sie veröffentlicht ihre Daten auf dem Kurs-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> unter dem Topic <code>aut/SoSe26/learning_factory_simulation/#</code>.</p>
+<p><strong>Abgabeformalien:</strong> Dokumentieren Sie Ihr Vorgehen kurz als Markdown-Datei.</p>
+<p><strong>Umfang fürs Bestehen der Aufgabe:</strong></p>
 <ul>
 <li>[ ] Einfache Lösung mit <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei als Datenbank</li>
-<li>[ ] Daten aller relevanten (siehe unten) Topics werden vollständig und korrekt gespeichert</li>
-<li>[ ] Python-Programm, welches eine beliebige Zeitreihe aus der Datenbank visualisiert</li>
-<li>[ ] Der Report im Markdown enthält einen Plot einer Ausgewählten Zeitreihe für die Sie die Daten gespeichert haben</li>
+<li>[ ] Daten aller relevanten Topics (siehe unten) werden vollständig und korrekt gespeichert</li>
+<li>[ ] Python-Programm, das eine beliebige Zeitreihe aus der Datenbank visualisiert — der Plot <strong>aktualisiert sich, während Daten hereinkommen</strong> (eine Verzögerung von ~10 Sekunden ist in Ordnung)</li>
+<li>[ ] Der Report (Markdown) enthält einen Plot einer ausgewählten Zeitreihe</li>
 <li>[ ] Mindestens 15 Minuten Daten sind gespeichert</li>
 </ul>
-</li>
-<li>durch folgende Aufgaben kann die Punktzahl erhöht werden<ul>
-<li>[ ] Datenbank wird durch tinyDB, SQLite oder InfluxDB ersetzt</li>
-<li>[ ] Plots werden durch Dashboard mit z.B. mit Grafana oder Plotly ersetzt</li>
-<li>[ ] System ist durch config-Datei konfigurierbar (z.B. <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server)</li>
-<li>[ ] Sinnvolle Fehlerbehandlung z.B. bei Verbindungsabbruch zum <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server</li>
-<li>[ ] Daten oder Informationen über die Daten können einfach aus anderen Systemen abgerufen werden (auch während das System läuft), z.B. durch eine <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> oder SQL-Abfragen</li>
+<p><em>Hinweis zum Speicher:</em> <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> genügt fürs Bestehen. Wer SQL nutzen möchte: <strong>SQLite</strong> ist in der Python-Standardbibliothek (<code>import sqlite3</code>) enthalten — kein Server nötig.</p>
+<p><strong>Durch folgende Erweiterungen kann die Punktzahl erhöht werden:</strong></p>
+<ul>
+<li>[ ] Datenbank durch tinyDB, SQLite oder InfluxDB statt <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr></li>
+<li>[ ] Statt eines einfachen Live-Plots ein echtes Dashboard (z.B. Grafana, Plotly Dash oder Streamlit)</li>
+<li>[ ] Daten werden in Echtzeit angezeigt (max. 1 Sekunde Verzögerung)</li>
+<li>[ ] System über eine config-Datei konfigurierbar (z.B. <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server)</li>
+<li>[ ] Sinnvolle Fehlerbehandlung, z.B. bei Verbindungsabbruch zum <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server</li>
+<li>[ ] Daten oder Informationen über die Daten lassen sich einfach aus anderen Systemen abrufen (auch während das System läuft), z.B. über eine <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> (siehe <a href="../6_REST/"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></a>) oder SQL-Abfragen</li>
 </ul>
-</li>
+<hr />
+<h2 id="datenquelle-der-simulator">Datenquelle: der Simulator</h2>
+<p>Die Simulation veröffentlicht alle Topics unter dem Präfix <code>aut/SoSe26/learning_factory_simulation/</code>. Die Payloads sind UTF-8-codierte <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Strings.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Wann</th>
+<th><abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Felder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>recipe</code></td>
+<td>einmalig beim Start (<abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>)</td>
+<td><code>id</code>, <code>creation_date</code>, <code>color_levels_grams</code></td>
+</tr>
+<tr>
+<td><code>dispenser_red</code> / <code>dispenser_blue</code> / <code>dispenser_green</code></td>
+<td>pro Flasche × Dispenser</td>
+<td><code>dispenser</code>, <code>bottle</code>, <code>time</code>, <code>fill_level_grams</code>, <code>recipe</code>, <code>vibration-index</code></td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>pro Flasche × Dispenser</td>
+<td><code>dispenser</code>, <code>time</code>, <code>temperature_C</code></td>
+</tr>
+<tr>
+<td><code>scale/final_weight</code></td>
+<td>pro Flasche (nach dem Abfüllen)</td>
+<td><code>bottle</code>, <code>time</code>, <code>final_weight</code></td>
+</tr>
+<tr>
+<td><code>drop_oscillation</code></td>
+<td>pro Flasche</td>
+<td><code>bottle</code>, <code>drop_oscillation</code> (Liste mit 500 Werten)</td>
+</tr>
+<tr>
+<td><code>ground_truth</code></td>
+<td>pro Flasche</td>
+<td><code>bottle</code>, <code>is_cracked</code></td>
+</tr>
+</tbody>
+</table>
+<p>Auf ein paar Details lohnt es sich zu achten:</p>
+<ul>
+<li><code>is_cracked</code> ist ein <strong>String</strong> (<code>"0"</code> oder <code>"1"</code>), kein Integer.</li>
+<li><code>bottle</code> ist ebenfalls ein <strong>String</strong> (z.B. <code>"80290512"</code>) — beim Zusammenführen der Topics als Schlüssel behandeln (nicht damit rechnen), und in allen Topics konsistent als String oder konsistent als Zahl verwenden.</li>
+<li><code>drop_oscillation</code> ist eine <strong>Liste mit 500 Werten</strong> — die Zeitreihe einer Schwingung.</li>
+<li>Der Feldname <code>vibration-index</code> enthält einen <strong>Bindestrich</strong> (<code>message["vibration-index"]</code>).</li>
+<li><code>temperature</code> enthält nur <code>dispenser</code> und <code>time</code>, <strong>keine</strong> <code>bottle</code>-ID — die Zuordnung zur Flasche läuft also über den Zeitstempel.</li>
 </ul>
+<hr />
+<h2 id="erste-schritte-daten-empfangen">Erste Schritte: Daten empfangen</h2>
+<p>Beginnen Sie damit, das Topic zu abonnieren und die Nachrichten einfach in der Konsole auszugeben. So sehen Sie, welche Daten in welcher Struktur ankommen, bevor Sie ans Speichern gehen. Das folgende Skript nutzt <code>paho-mqtt</code> (Version 2.x):</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">paho.mqtt.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mqtt</span>
+
+<span class="n">broker</span> <span class="o">=</span> <span class="s2">&quot;158.180.44.197&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;aut/SoSe26/learning_factory_simulation/#&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic:   </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Payload: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">mqttc</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">mqtt</span><span class="o">.</span><span class="n">CallbackAPIVersion</span><span class="o">.</span><span class="n">VERSION2</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">username_pw_set</span><span class="p">(</span><span class="s2">&quot;bobm&quot;</span><span class="p">,</span> <span class="s2">&quot;letmein&quot;</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+<span class="n">mqttc</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warte auf Nachrichten unter: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">mqttc</span><span class="o">.</span><span class="n">loop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<p>Wenn die Nachrichten ankommen, bauen Sie das System Schritt für Schritt aus:</p>
+<ol>
+<li><strong><code>mqtt_client</code></strong> — empfängt die Nachrichten und unterscheidet sie nach Topic. Mit <code>message.topic.split("/")[-1]</code> bekommen Sie den letzten Topic-Teil (Achtung: <code>scale/final_weight</code> hat zwei Ebenen).</li>
+<li><strong><code>transform</code></strong> — wandelt jede Nachricht mit <code>json.loads(...)</code> in ein Dictionary, führt die Werte einer Flasche (<code>bottle</code>) zusammen und passt die Typen an (z.B. <code>is_cracked</code> von String zu Zahl).</li>
+<li><strong><code>database</code></strong> — schreibt <strong>eine Zeile pro Flasche</strong> in die <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> (nicht eine Zeile pro Topic) — denken Sie die Struktur von Anfang an für die späteren Analysen mit.</li>
+<li><strong><code>visualisierung</code></strong> — lädt die <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> (z.B. mit <code>pandas</code>) und plottet eine Zeitreihe mit <code>matplotlib</code>. Der Plot soll sich aktualisieren, während neue Daten hereinkommen — z.B. indem Sie die <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> regelmäßig neu einlesen und neu zeichnen (<code>matplotlib</code>-interaktiver Modus <code>plt.ion()</code> / <code>plt.pause(...)</code>).</li>
+</ol>
+<p><strong>Bewertete Eigenleistung:</strong> Wie Sie die Daten transformieren, in welcher <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Struktur Sie sie ablegen und wie Sie sie visualisieren, ist der bewertete Kern dieser Aufgabe. Das Skript oben dient nur dazu, die Daten erstmals fließen zu sehen.</p>
 <hr />
 <h2 id="komponenten">Komponenten</h2>
 <h3 id="1-mqtt-client-extract">1. <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client (Extract)</h3>
 <ul>
-<li>Der <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client ist ein Python-Programm, welches die Daten von der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> abholt und an den <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet.</li>
-<li>Hierzu wird z.B. die Bibliothek <code>paho-mqtt</code> verwendet.</li>
-<li>Der Client abonniert das Topic <code>aut/SoSe26/&lt;Gruppe&gt;/#</code> und sendet die Daten an die Datenbank.</li>
+<li>Der <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client ist ein Python-Programm, das die Daten vom <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> abholt.</li>
+<li>Verwendet wird z.B. die Bibliothek <code>paho-mqtt</code>.</li>
+<li>Der Client abonniert das Topic <code>aut/SoSe26/learning_factory_simulation/#</code> und gibt die Daten an die Datenbank weiter.</li>
 <li>Hinweise:<ul>
-<li>Nutzen Sie das Skript aus den Beispielen und versuchen Sie zunächst ein Topic zu abonnieren und die Daten in der Konsole auszugeben.</li>
-<li>Überlegen Sie sich dann Funktionen, um die Daten in eine Struktur zu bringen, und diese in dann zu speichern.</li>
-<li>Passen sie dieses Vorgehen dann auch für die anderen Topics an.</li>
+<li>Nutzen Sie das Skript oben und abonnieren Sie zunächst das Topic, um die Daten in der Konsole auszugeben.</li>
+<li>Überlegen Sie sich dann Funktionen, um die Daten in eine Struktur zu bringen und zu speichern.</li>
+<li>Passen Sie dieses Vorgehen anschließend für die übrigen Topics an.</li>
 </ul>
 </li>
 </ul>
-<hr />
 <h3 id="2-datenbank-transform-load">2. Datenbank (Transform &amp; Load)</h3>
 <ul>
-<li>Hier müssen Sie eine Entscheidung treffen, wie die Daten gespeichert werden sollen.<ul>
-<li>Für das Dashboard sollten die Daten so gespeichert werden, dass sie einfach visualisiert werden können.</li>
-<li>Für die späteten Analysen sollten die Daten so gespeichert werden, dass sie möglichst vollständig sind und sinnvoll miteinader verknüpft werden können.</li>
-<li>Sehen Sie sich dazu die Datenstruktur (unten) für die Aufgaben Lineare Regression und Classification an.</li>
+<li>Hier treffen Sie eine Entscheidung, <strong>wie</strong> die Daten gespeichert werden sollen.<ul>
+<li>Für das Dashboard sollten die Daten leicht zu visualisieren sein.</li>
+<li>Für die späteren Analysen sollten die Daten möglichst vollständig und sinnvoll miteinander verknüpft sein.</li>
+<li>Sehen Sie sich dazu den Datenbedarf (unten) für Lineare Regression und Classification an.</li>
 </ul>
 </li>
-<li>Treffen Sie bewusste Entscheidungen, wie die Daten gespeichert werden und ob sie den Aufwand der Umwandlungen beim Speichern oder beim Laden aufbringen wollen.</li>
+<li>Treffen Sie bewusst die Entscheidung, ob Sie den Aufwand der Umwandlung beim <strong>Speichern</strong> oder beim <strong>Laden</strong> aufbringen wollen.</li>
 </ul>
-<hr />
 <p><img alt="" src="../images/Teaching_Factory_2_3d_GesamteAnlage.png" /></p>
 <hr />
-<h4 id="datenbedarf-fur-die-aufgabe-lineare-regression">Datenbedarf für die Aufgabe Lineare Regression</h4>
+<h3 id="datenbedarf-fur-die-aufgabe-lineare-regression">Datenbedarf für die Aufgabe Lineare Regression</h3>
 <p><strong>Idee: Können wir die Waage am Ende des Prozesses einsparen?</strong></p>
 <table>
 <thead>
@@ -324,36 +376,33 @@
 </tbody>
 </table>
 <ul>
-<li>der <code>vibration-index</code> ist eine Metrik, die Vibrationswerte jedem Dispenser beim Abfüllen jeder Flasche zuordnet</li>
-<li>Ebenso müssen die Werte für die anderen beiden Dispenser (rot und blau) gespeichert werden. Für die folgenden Aufgaben muss alles in einer Tabelle gespeichert werden.</li>
+<li>Der <code>vibration-index</code> ist eine Metrik, die jedem Dispenser beim Abfüllen jeder Flasche einen Vibrationswert zuordnet.</li>
+<li>Ebenso müssen die Werte für die anderen beiden Dispenser (blau und grün) gespeichert werden. Für die folgenden Aufgaben muss alles in <strong>einer</strong> Tabelle stehen.</li>
 </ul>
-<hr />
-<h4 id="datenbedarf-fur-die-aufgabe-classification">Datenbedarf für die Aufgabe Classification</h4>
-<p><strong>Idee: Können wir gesprunge Flaschen anhand der Schwingungen beim Aufprall aus der Verzeinzelung identifizieren`?</strong></p>
+<h3 id="datenbedarf-fur-die-aufgabe-classification">Datenbedarf für die Aufgabe Classification</h3>
+<p><strong>Idee: Können wir gesprungene Flaschen anhand der Schwingungen beim Aufprall aus der Vereinzelung identifizieren?</strong></p>
+<p>Für jede Flasche wird gespeichert:</p>
 <ul>
-<li>Für jede Falsche wird gespeichert:<ul>
 <li>ID der Flasche <code>bottle</code></li>
-<li>Ist diese Flasche gesprungen <code>is_cracked</code></li>
-<li>Eine Liste mit 500 Vibrationswerten <code>vibration_values</code>, die als Zeitreihe einer Schwindung betrachtet werden (diese <code>vibration_values</code> haben nicht mit dem <code>vibration-index</code> zu tun, sondern werden an der Verzeinzelung gemessen)</li>
+<li>ob die Flasche gesprungen ist <code>is_cracked</code></li>
+<li>eine Liste mit 500 Vibrationswerten <code>vibration_values</code>, betrachtet als Zeitreihe einer Schwingung (diese <code>vibration_values</code> haben <strong>nichts</strong> mit dem <code>vibration-index</code> zu tun, sondern werden an der Vereinzelung gemessen)</li>
 </ul>
-</li>
-</ul>
-<p><img alt="h:300" src="../images/ZeitreiheSchwingungen.png" /></p>
+<p><img alt="" src="../images/ZeitreiheSchwingungen.png" /></p>
 <hr />
-<h2 id="losungvorschlag-fur-projektstruktur">Lösungvorschlag für Projektstruktur</h2>
-<div class="highlight"><pre><span></span><code>code/1_persitierung/
+<h2 id="losungsvorschlag-fur-die-projektstruktur">Lösungsvorschlag für die Projektstruktur</h2>
+<div class="highlight"><pre><span></span><code>persistierung/
 ├── visualisierung
 │   ├── visualisierung.py
 │   └── __init__.py
 ├── database
 │   ├── database.py
 │   ├── transform.py
-|   ├── data.csv
+│   ├── data.csv
 │   └── __init__.py
 ├── mqtt_client
 │   ├── mqtt_client.py
 │   └── __init__.py
-│── README.md
+├── README.md
 └── requirements.txt
 </code></pre></div>
               

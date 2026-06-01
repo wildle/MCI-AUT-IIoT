@@ -69,6 +69,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#http-mit-python-server-flask">HTTP mit Python – Server (flask)</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rest-als-bonus-zu-aufgabe-1212">REST als Bonus zu Aufgabe 12.1.2</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#http-methoden">HTTP-Methoden</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#get">GET</a>
@@ -207,6 +209,25 @@ Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Co
 python -m flask run
 # * Running on http://127.0.0.1:5000/
 </code></pre></div></p>
+<hr />
+<h2 id="rest-als-bonus-zu-aufgabe-1212"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> als Bonus zu Aufgabe 12.1.2</h2>
+<p>Eine Möglichkeit für Bonuspunkte in <a href="../7_Datenspeicherung/">Aufgabe 12.1.2</a>: Neben dem <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Subscriber lassen Sie einen kleinen Flask-Server laufen, der die <strong>bereits gespeicherten</strong> Flaschendaten auf Anfrage ausliefert — ohne das laufende System anzuhalten.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/bottles/count&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bottle_count</span><span class="p">():</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/bottles/latest&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">latest_bottle</span><span class="p">():</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Ein Dashboard oder ein anderes System kann nun jederzeit <code>GET /bottles/count</code> abfragen, während der Subscriber im Hintergrund weiter Daten sammelt. Damit ist das Bonus-Kriterium <em>„Daten … auch während das System läuft … über eine <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> abrufbar"</em> erfüllt.</p>
 <hr />
 <h2 id="http-methoden">HTTP-Methoden</h2>
 <h3 id="get">GET</h3>
