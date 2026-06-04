@@ -137,7 +137,7 @@ die <strong>Bonus-Stufen</strong> der Aufgabe.</p>
 <p>Auf der vorigen Seite haben wir die Daten in einer <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> abgelegt. Das genügt fürs Bestehen —
 aber sobald <strong>dauerhaft, mit hoher Frequenz und über lange Zeiträume</strong> gespeichert werden
 soll, greift die Industrie zu spezialisierten Werkzeugen. Genau das bauen wir als
-Schaufenster: einen <strong>Edge-Server</strong>, der <code>MQTT → InfluxDB → Grafana</code> rund um die Uhr fährt.</p>
+Referenzaufbau: einen <strong>Edge-Server</strong>, der <code>MQTT → InfluxDB → Grafana</code> rund um die Uhr fährt.</p>
 <p><img alt="Die Learning Factory — die Anlage, deren Daten wir speichern und visualisieren" src="../images/Teaching_Factory_2_3d_GesamteAnlage.png" width="520" /></p>
 <hr />
 <h2 id="warum-zeitreihendaten-besonders-sind">Warum Zeitreihendaten besonders sind</h2>
@@ -232,7 +232,7 @@ String-</em><em>Feld</em><em> abgelegt — Schlüssel, nicht Rechengröße.)</em
 </figure>
 
 <blockquote>
-<p>Hinweis: InfluxDB <strong>3</strong> hebt diese Kardinalitäts-Grenze technisch auf. Im Schaufenster läuft
+<p>Hinweis: InfluxDB <strong>3</strong> hebt diese Kardinalitäts-Grenze technisch auf. Im Referenzaufbau läuft
 aber <strong>InfluxDB 2.x</strong>, wo die Regel klassisch gilt — und das Prinzip „Identifikatoren in
 Felder" ist auch sonst eine gute Angewohnheit.</p>
 </blockquote>
@@ -252,7 +252,7 @@ Felder" ist auch sonst eine gute Angewohnheit.</p>
 <li><strong>InfluxDB:</strong> speichert die Zeitreihen dauerhaft.</li>
 <li><strong>Grafana:</strong> fragt InfluxDB ab und zeigt Live-Dashboards.</li>
 </ul>
-<p>Im Schaufenster laufen Collector, InfluxDB und Grafana als <strong>drei Docker-Container</strong> auf einem
+<p>Im Referenzaufbau laufen Collector, InfluxDB und Grafana als <strong>drei Docker-Container</strong> auf einem
 <strong>Edge-Server</strong>. In einer echten Anlage wäre das ein <strong>Industrie-PC bzw. Edge-Gateway</strong> im
 Schaltschrank oder Serverraum, und die Datenquelle wäre die <strong>Maschine selbst</strong> (<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> + Sensoren).
 Bei uns übernimmt <strong>ein einziger kompakter Rechner beide Rollen</strong> — er simuliert die Anlage
