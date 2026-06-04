@@ -208,6 +208,11 @@ typischer <strong>Warm Storage</strong> — schnell genug für Dashboards, dauer
 <span class="lp-timestamp">■</span> <strong>timestamp</strong> — der Zeitpunkt
 </p>
 
+<blockquote>
+<p>Hinweis: Das InfluxDB-Feld <code>vibration_index</code> (Unterstrich) ist <strong>dasselbe Signal</strong> wie das
+<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Feld <code>vibration-index</code> (Bindestrich, siehe <a href="../7_Datenspeicherung/">Datenspeicherung</a>) —
+beim Schreiben in InfluxDB wird aus dem Bindestrich ein Unterstrich.</p>
+</blockquote>
 <h3 id="die-wichtigste-design-regel-kardinalitat">Die wichtigste Design-Regel: Kardinalität</h3>
 <blockquote>
 <p><strong>Tags sind für niedrig-kardinale Werte, Felder für hoch-kardinale.</strong></p>
@@ -300,7 +305,10 @@ dieser Lehrveranstaltung über <abbr title="Message Queuing Telemetry Transport 
 <ul>
 <li><strong><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> nur auf Status/Config, nicht auf Telemetrie.</strong> Das <code>recipe</code>-Topic ist <em>retained</em>
   (ein neuer Subscriber kennt sofort das aktuelle Rezept); die Messwerte sind es <strong>nicht</strong> —
-  sonst bekäme man einen alten Wert als „aktuell" untergeschoben.</li>
+  sonst bekäme man einen alten Wert als „aktuell" untergeschoben. <em>(In der Kurs-Aufgabe 12.1.1
+  setzen wir <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> bewusst auf </em><em>alle</em><em> Topics — so sind die Werte im <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer auch dann
+  sichtbar, wenn die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> gerade nicht sendet. Das ist eine didaktische Vereinfachung; industriell
+  bliebe hochfrequente Telemetrie un-retained.)</em></li>
 <li><strong><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> passend wählen.</strong> <abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 0 (höchster Durchsatz) für unkritische, hochfrequente Telemetrie;
   <abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 1 (mindestens einmal) für wichtige Ereignisse.</li>
 <li><strong>Kardinalität im Griff behalten:</strong> Identifikatoren (<code>bottle</code>) in <strong>Felder</strong>, niedrig-kardinale

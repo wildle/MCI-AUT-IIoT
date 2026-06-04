@@ -276,6 +276,12 @@ aut/SoSe26/GruppeA/#          → alles von GruppeA
 - Gruppenname und Nachnamen → einmalig beim Start, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE
 - SI-Einheiten (<code>$unit</code>) → einmalig beim Start, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE<br />
 - Messwerte → periodisch alle 10s, <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> = TRUE (damit Subscriber immer aktuellen Wert sehen)</p>
+<blockquote>
+<p><strong>Hinweis (Industrie-Praxis):</strong> Im Kurs setzen wir <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> bewusst auf <strong>alle</strong> Topics, damit die
+Werte im <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer auch dann sichtbar sind, wenn die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> gerade nicht sendet. Industriell wird
+<strong>hochfrequente Telemetrie meist <em>nicht</em> retained</strong> — mehr dazu unter
+<a href="../7_1_Zeitreihen_und_Visualisierung/">Zeitreihen &amp; Visualisierung</a>.</p>
+</blockquote>
               
             </div>
           </div><footer>
