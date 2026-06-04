@@ -8,7 +8,7 @@
 Auf der vorigen Seite haben wir die Daten in einer CSV abgelegt. Das genügt fürs Bestehen —
 aber sobald **dauerhaft, mit hoher Frequenz und über lange Zeiträume** gespeichert werden
 soll, greift die Industrie zu spezialisierten Werkzeugen. Genau das bauen wir als
-Schaufenster: einen **Edge-Server**, der `MQTT → InfluxDB → Grafana` rund um die Uhr fährt.
+Referenzaufbau: einen **Edge-Server**, der `MQTT → InfluxDB → Grafana` rund um die Uhr fährt.
 
 ![Die Learning Factory — die Anlage, deren Daten wir speichern und visualisieren](images/Teaching_Factory_2_3d_GesamteAnlage.png){ width="520" }
 
@@ -93,7 +93,7 @@ String-**Feld** abgelegt — Schlüssel, nicht Rechengröße.)*
 <figcaption>Warum <code>color</code> ein Tag sein darf, <code>bottle</code> aber nicht: Jede Tag-Ausprägung erzeugt eine eigene Zeitreihe.</figcaption>
 </figure>
 
-> Hinweis: InfluxDB **3** hebt diese Kardinalitäts-Grenze technisch auf. Im Schaufenster läuft
+> Hinweis: InfluxDB **3** hebt diese Kardinalitäts-Grenze technisch auf. Im Referenzaufbau läuft
 > aber **InfluxDB 2.x**, wo die Regel klassisch gilt — und das Prinzip „Identifikatoren in
 > Felder" ist auch sonst eine gute Angewohnheit.
 
@@ -116,7 +116,7 @@ Anlage / Simulator ──publish──► MQTT-Broker ──subscribe──► C
 - **InfluxDB:** speichert die Zeitreihen dauerhaft.
 - **Grafana:** fragt InfluxDB ab und zeigt Live-Dashboards.
 
-Im Schaufenster laufen Collector, InfluxDB und Grafana als **drei Docker-Container** auf einem
+Im Referenzaufbau laufen Collector, InfluxDB und Grafana als **drei Docker-Container** auf einem
 **Edge-Server**. In einer echten Anlage wäre das ein **Industrie-PC bzw. Edge-Gateway** im
 Schaltschrank oder Serverraum, und die Datenquelle wäre die **Maschine selbst** (SPS + Sensoren).
 Bei uns übernimmt **ein einziger kompakter Rechner beide Rollen** — er simuliert die Anlage
