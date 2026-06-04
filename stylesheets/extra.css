@@ -63,7 +63,7 @@ figure.diagram figcaption {
     align-items: center;
     justify-content: center;
     gap: 2.4rem;
-    margin: 1.4em 0;
+    margin: 2.8em 0;
 }
 .logo-strip img {
     height: 44px !important;
@@ -72,5 +72,5 @@ figure.diagram figcaption {
     margin: 0;
 }
 .logo-strip.small img {
-    height: 64px !important;
+    height: 110px !important;
 }
