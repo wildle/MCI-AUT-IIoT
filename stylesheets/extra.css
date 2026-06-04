@@ -50,3 +50,24 @@ figure.diagram figcaption {
     line-height: 1.9;
     color: #444;
 }
+
+/* Logo-Strips (Software-/Hersteller-Logos): klein, zentriert, immer nebeneinander.
+   !important schlägt die img-Regel des readthedocs-Themes, die sonst die Inline-Höhe
+   ignoriert und die Logos riesig/gestapelt rendert. */
+.logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2.4rem;
+    margin: 1.4em 0;
+}
+.logo-strip img {
+    height: 44px !important;
+    width: auto !important;
+    max-width: 220px;
+    margin: 0;
+}
+.logo-strip.small img {
+    height: 38px !important;
+}

@@ -222,7 +222,7 @@ perfekt als <strong>Tag</strong>.</p>
 <p><em>(Das passt zur Notiz auf der vorigen Seite, dass <code>bottle</code> ein String ist: hier wird sie als
 String-</em><em>Feld</em><em> abgelegt — Schlüssel, nicht Rechengröße.)</em></p>
 <figure class="diagram">
-<img src="../images/cardinality.svg" alt="Kardinalität: der Tag color erzeugt nur drei Serien (niedrige Kardinalität, gut), der Tag bottle erzeugt tausende Serien (explodierende Kardinalität, besser als Field)">
+<img src="../images/cardinality.svg" alt="Kardinalität: der Tag color erzeugt nur drei Serien (niedrige Kardinalität, gut), der Tag bottle erzeugt tausende Serien (hohe Kardinalität, besser als Field)">
 <figcaption>Warum <code>color</code> ein Tag sein darf, <code>bottle</code> aber nicht: Jede Tag-Ausprägung erzeugt eine eigene Zeitreihe.</figcaption>
 </figure>
 
@@ -254,13 +254,11 @@ Bei uns übernimmt <strong>ein einziger kompakter Rechner beide Rollen</strong> 
 <em>und</em> hostet den Stack. Entscheidend bleibt: der Simulator (die „Anlage") ist mit dem Stack
 <strong>nur über den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr></strong> verbunden — genau wie eine echte Maschine vom Auswertesystem entkoppelt
 ist.</p>
-<p align="center">
-<img src="../images/influxdb.svg" alt="InfluxDB" height="40">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="../images/grafana_text_logo_dark.svg" alt="Grafana" height="40">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="../images/docker-logo-ocean-blue.svg" alt="Docker" height="40">
-</p>
+<div class="logo-strip">
+<img src="../images/docker-logo-ocean-blue.svg" alt="Docker">
+<img src="../images/influxdb.svg" alt="InfluxDB">
+<img src="../images/grafana_text_logo_dark.svg" alt="Grafana">
+</div>
 
 <h3 id="edge-computing-das-gateway-im-kleinen">Edge Computing: das Gateway im Kleinen</h3>
 <p>Der Edge-Server macht vor Ort, was in echten Anlagen ein <strong>Edge-Gateway</strong> tut: lokal <strong>sammeln,
@@ -315,7 +313,10 @@ dieser Lehrveranstaltung über <abbr title="Message Queuing Telemetry Transport 
 <hr />
 <h2 id="bezug-zu-beckhoff-twincat">Bezug zu Beckhoff / TwinCAT</h2>
 <p>Der Weg von der <strong><abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></strong> an den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> ist in der Beckhoff-Welt nativ vorgesehen:</p>
-<p><img src="../images/Allgemeines/TwinCATLogo.png" alt="TwinCAT" height="40">&nbsp;&nbsp;&nbsp;<img src="../images/mqtt-logo.png" alt="MQTT" height="40"></p>
+<div class="logo-strip small">
+<img src="../images/Allgemeines/TwinCATLogo.png" alt="TwinCAT">
+<img src="../images/mqtt-logo.png" alt="MQTT">
+</div>
 
 <ul>
 <li><strong>TF6701 – TwinCAT 3 IoT Communication (<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>):</strong> der Funktionsbaustein
