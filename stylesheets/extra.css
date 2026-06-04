@@ -12,8 +12,11 @@ figure.diagram {
     text-align: center;
 }
 figure.diagram img {
+    display: block;
     max-width: 100%;
     height: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 figure.diagram figcaption {
     margin-top: .6em;
@@ -69,5 +72,5 @@ figure.diagram figcaption {
     margin: 0;
 }
 .logo-strip.small img {
-    height: 38px !important;
+    height: 64px !important;
 }
