@@ -116,6 +116,31 @@ python -m flask run
 
 ---
 
+## REST als Bonus zu Aufgabe 12.1.2
+
+Eine Möglichkeit für Bonuspunkte in [Aufgabe 12.1.2](7_Datenspeicherung.md): Neben dem MQTT-Subscriber lassen Sie einen kleinen Flask-Server laufen, der die **bereits gespeicherten** Flaschendaten auf Anfrage ausliefert — ohne das laufende System anzuhalten.
+
+```python
+from flask import Flask, jsonify
+import pandas as pd
+
+app = Flask(__name__)
+
+@app.route('/bottles/count')
+def bottle_count():
+    df = pd.read_csv('data.csv')
+    return jsonify(count=len(df))
+
+@app.route('/bottles/latest')
+def latest_bottle():
+    df = pd.read_csv('data.csv')
+    return df.tail(1).to_json(orient='records')
+```
+
+Ein Dashboard oder ein anderes System kann nun jederzeit `GET /bottles/count` abfragen, während der Subscriber im Hintergrund weiter Daten sammelt. Damit ist das Bonus-Kriterium *„Daten … auch während das System läuft … über eine REST-API abrufbar"* erfüllt.
+
+---
+
 ## HTTP-Methoden
 
 ### GET

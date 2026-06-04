@@ -1,6 +1,6 @@
 # TwinCAT MQTT-Client
 
-## 🏆 Aufgabe 12.1.1 (20% Punkte)
+## 🏆 Aufgabe 12.1.1 (20%)
 
 Erweitert euer TwinCAT-Programm um einen MQTT-Client, der Sensordaten der Learning Factory an den Broker sendet:
 
@@ -23,7 +23,20 @@ Erweitert euer TwinCAT-Programm um einen MQTT-Client, der Sensordaten der Learni
 
 ## Schritt 1: IoT-Library einbinden
 
-Die Library `TC3_IotBase` (TF6701) muss im TwinCAT Library Manager referenziert werden:
+### 1a) IoT-Paket installieren (TwinCAT Package Manager)
+
+Die MQTT-Funktionalität steckt im Function-Paket **TF6701 (TwinCAT 3 IoT Communication)**. Dieses Paket muss **einmalig pro Rechner** über den **TwinCAT Package Manager** installiert werden — sonst fehlt die Library `Tc3_IotBase` im Library Manager und der Funktionsbaustein lässt sich nicht kompilieren.
+
+1. **TwinCAT Package Manager** öffnen (Windows-Start → „TwinCAT Package Manager")
+2. Unter **Packages / Browse** nach `TF6701` bzw. `IoT` suchen (Paket „TwinCAT 3 IoT Communication")
+3. Paket **installieren** und den Anweisungen folgen
+4. Anschließend **Visual Studio / TwinCAT XAE neu starten**, damit die Library erkannt wird
+
+> ⚠️ **Häufigste Stolperfalle:** Ohne diesen Schritt erscheint `Tc3_IotBase` nicht in der Library-Liste und der Build schlägt mit „library not found" fehl. Erst installieren, dann referenzieren.
+
+### 1b) Library im Projekt referenzieren
+
+Ist das Paket installiert, wird die Library `Tc3_IotBase` im **Library Manager** des Projekts referenziert (Rechtsklick auf **References → Add library → `Tc3_IotBase`**):
 
 ![](images/IoTBaseHinzufuegen.PNG)
 
@@ -200,3 +213,36 @@ END_VAR
 
 fbiot(iUSS1 := iIn_USS1, iUSS2 := iIn_USS2, iUSS3 := iIn_USS3);
 ```
+
+---
+
+## Woher kommen die Füllstände?
+
+Der Funktionsbaustein erwartet drei Eingänge `iUSS1`, `iUSS2`, `iUSS3` — die **Füllstände der drei Dispenser** (rot/blau/grün). Gemessen werden sie von den **Ultraschallsensoren** der Learning Factory.
+
+**Gute Nachricht:** Diese Sensorwerte gibt es in eurem Projekt **bereits** — ihr habt sie in den vorherigen Einheiten (Messsteuerkette / Analog-Eingänge) schon eingelesen. Eine an einen physischen Eingang gekoppelte Variable erkennt ihr am `AT %I*`-Zusatz in der Deklaration, z.B.:
+
+```pascal
+// Beispiel aus der Analog-Input-Einheit — eine Eingangsvariable, die im I/O-Baum
+// mit einer Hardware-Klemme verknüpft ist:
+nPoti AT %I* : UINT;
+```
+
+Ihr müsst also **nichts neu verdrahten** — sucht die Variablen, die bei euch die drei Füllstände halten, und übergebt sie beim Aufruf an den FB:
+
+```pascal
+// in MAIN — eure eigenen, bereits vorhandenen Füllstand-Variablen einsetzen:
+fbiot(iUSS1 := iIn_USS1,   // Füllstand rot  (Ultraschallsensor 1)
+      iUSS2 := iIn_USS2,   // Füllstand blau (Ultraschallsensor 2)
+      iUSS3 := iIn_USS3);  // Füllstand grün (Ultraschallsensor 3)
+```
+
+> 💡 Die Namen `iIn_USS1/2/3` sind nur Platzhalter — setzt die Variablennamen ein, die ihr in eurem Projekt für die Füllstände verwendet.
+
+**Falls ein Füllstand bei euch noch nicht eingelesen ist:** Eingangsvariable deklarieren und im I/O-Baum mit der Sensor-Klemme verknüpfen (Rechtsklick auf die Variable → **Change Link** → passenden Kanal des Ultraschallsensors wählen):
+
+```pascal
+iIn_USS1 AT %I* : UINT;   // danach im I/O-Baum mit dem Ultraschallsensor-Kanal verlinken
+```
+
+> Notfalls genügt für die Abgabe **ein beliebiger Sensorwert** statt der Füllstände (siehe Aufgabenstellung oben) — Hauptsache, Werte kommen periodisch retained am Broker an.

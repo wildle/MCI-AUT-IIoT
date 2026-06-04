@@ -1,0 +1,25 @@
+---
+config:
+  theme: base
+---
+%% Quelle fuer images/cardinality.svg
+%% Export: VS-Code-Mermaid-Extension oder mermaid.live -> SVG nach ../images/
+flowchart TB
+    M["measurement: dispenser"]
+
+    M --> GOOD["Tag: color<br/>3 Werte"]
+    M --> BAD["Tag: bottle<br/>tausende Werte"]
+
+    GOOD --> GS["3 Zeitreihen<br/>red · blue · green"]
+    BAD --> BS["tausende Zeitreihen<br/>je Flasche eine"]
+
+    GS --> GOK["niedrige Kardinalität<br/>geeignet als Tag"]
+    BS --> BNO["hohe Kardinalität<br/>besser als Field"]
+
+    classDef measurement stroke:#6A1B9A,fill:#F1E5F8,color:#3A0A52,stroke-width:2px;
+    classDef good stroke:#2E7D32,fill:#E6F4E6,color:#14401A,stroke-width:2px;
+    classDef bad stroke:#C62828,fill:#FCE4E4,color:#5A0C0C,stroke-width:2px;
+
+    class M measurement;
+    class GOOD,GS,GOK good;
+    class BAD,BS,BNO bad;

@@ -16,3 +16,6 @@
 *[TCP]: Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll
 *[JSON]: JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)
 *[CSV]: Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz
+*[TSDB]: Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)
+*[UNS]: Unified Namespace — zentraler Broker als Single Source of Truth mit semantischem Topic-Baum
+*[TIG]: Telegraf + InfluxDB + Grafana — gängige IIoT-Datenpipeline (sammeln, speichern, visualisieren)

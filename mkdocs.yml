@@ -7,12 +7,14 @@ nav:
     - 'Aufbau der Lehrveranstaltung': 1_Organisatorisches.md
     - 'Projekt': 1_Projekt.md
     - 'Leistungsbewertung': 1_Leistungsbewertung.md
+    - 'Glossar': 0_Glossar.md
   - 'Industrial Internet of Things':
     - 'Grundlagen': 6_IIoT_Grundlagen.md
     - 'MQTT': 6_MQTT.md
     - 'TwinCAT MQTT-Client': 6_TwinCAT_MQTT.md
     - 'REST': 6_REST.md
     - 'Datenspeicherung': 7_Datenspeicherung.md
+    - 'Zeitreihen & Visualisierung': 7_1_Zeitreihen_und_Visualisierung.md
   - 'Machine Learning':
     - 'Regressionsmodelle': 8_Regression.md
     - 'Lineare Regression mit Python und Scikit-Learn': 8_Regression_Python.ipynb
@@ -45,3 +47,23 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML
 
 dev_addr: '127.0.0.1:7000'
+
+# Verwaiste Alt-Seiten (nicht in der Nav) vom Build ausschließen, damit sie nicht
+# per Direkt-URL erreichbar/indexierbar sind. Sichtbare Seiten stehen in nav.
+exclude_docs: |
+  section_*.md
+  section_*.tex
+  2_GrundlagenAutomatisierungstechnik.md
+  2_1_VereinzelungUndStatusLampe.md
+  3_Motorsteuerung.md
+  3_1_FoerderbandUndDispenser.md
+  4_Steuerungsprogramme.md
+  5_Messsteuerkette.md
+  6_Fehlerbehandlung.md
+  6_Datenverarbeitung_in_der_industriellen_Produktion.md
+  6_Datenverarbeitung_in_der_industriellen_Produktion.html
+  7_HMI.md
+  8_Projektierung.md
+  10_LLM_Priming.md
+  10_LLM_Priming_V2.md
+  video.md

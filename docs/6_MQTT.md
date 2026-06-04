@@ -164,3 +164,8 @@ QoS gibt an, wie viel Wert auf die Zustellung gelegt wird:
 - Gruppenname und Nachnamen → einmalig beim Start, Retain = TRUE
 - SI-Einheiten (`$unit`) → einmalig beim Start, Retain = TRUE  
 - Messwerte → periodisch alle 10s, Retain = TRUE (damit Subscriber immer aktuellen Wert sehen)
+
+> **Hinweis (Industrie-Praxis):** Im Kurs setzen wir Retain bewusst auf **alle** Topics, damit die
+> Werte im MQTT-Explorer auch dann sichtbar sind, wenn die SPS gerade nicht sendet. Industriell wird
+> **hochfrequente Telemetrie meist _nicht_ retained** — mehr dazu unter
+> [Zeitreihen & Visualisierung](7_1_Zeitreihen_und_Visualisierung.md).

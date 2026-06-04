@@ -1,0 +1,32 @@
+---
+config:
+  theme: base
+---
+%% Quelle fuer images/architecture_edge_stack.svg
+%% Export: VS-Code-Mermaid-Extension oder mermaid.live -> SVG nach ../images/
+flowchart LR
+    SIM["Simulator / Anlage<br/>(SPS, Sensoren)"]
+    BROKER{{"MQTT-Broker<br/>158.180.44.197<br/>(remote)"}}
+    subgraph PI["Edge-Server — Docker (24/7)"]
+        COL["Collector<br/>mqtt_to_influx"]
+        INFLUX[("InfluxDB<br/>Zeitreihen-DB")]
+        GRAF["Grafana<br/>Dashboard"]
+    end
+    SIM -- publish --> BROKER
+    BROKER -- subscribe --> COL
+    COL -- "write points" --> INFLUX
+    INFLUX -- "Flux query" --> GRAF
+
+    classDef quelle stroke:#607D8B,fill:#ECEFF1,color:#263238,stroke-width:2px;
+    classDef broker stroke:#660066,fill:#F1E0F1,color:#3A003A,stroke-width:2px;
+    classDef collector stroke:#2496ED,fill:#E4F1FD,color:#0B3C66,stroke-width:2px;
+    classDef influx stroke:#22ADF6,fill:#E3F4FD,color:#0B3C53,stroke-width:2px;
+    classDef grafana stroke:#F46800,fill:#FDE8D7,color:#5A2600,stroke-width:2px;
+
+    class SIM quelle;
+    class BROKER broker;
+    class COL collector;
+    class INFLUX influx;
+    class GRAF grafana;
+
+    style PI stroke:#455A64,fill:#ECEFF1,color:#1C313A;

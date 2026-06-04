@@ -18,7 +18,7 @@ theme: lemon
 
 Serafin Kollegger & Julian Huber
 
-![bg right:30%](images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg)
+![](images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg){ width="360" }
 
 ---
 
@@ -45,8 +45,8 @@ $f(\vec{X}) = Y = β_0 + β_1X_1 + β_2X_2 + ... + β_pX_p.$
 
  
 
-![bg right:27% w:350](images/income_table.png)
-![h:400](images/parametricModel.png)
+![](images/income_table.png){ width="350" }
+![](images/parametricModel.png){ height="400" }
 
  
 
@@ -183,7 +183,7 @@ $$
 
 
 
-![bg right:27% w:350](images/income_table.png)
+![](images/income_table.png){ width="350" }
 
 ---
 
@@ -221,7 +221,7 @@ $$Y = X \cdot \beta = \begin{bmatrix}
 
 ### Training Parametrischer Modelle
 
-![bg left:42% h:400](images/parametricModel.png)
+![](images/parametricModel.png){ height="400" }
 
 * $\text{income} ≈ β_0 + β_1 \cdot \text{education}+ β_2 \cdot \text{seniority}$
 * Die Form ist festgelegt, aber wir können drei Parameter anpassen, um die Anpassung zu verbessern ($β_0, β_1, β_2$)
@@ -252,7 +252,7 @@ $$
 
 ### Nicht-parametrische Modelle
 
-![bg right h:400](images/non-parametricModel.png)
+![](images/non-parametricModel.png){ height="400" }
 
 * $Y=f(X)$
 * keine explizite Annahme über die funktionale Form von $f$ (z.B. lineare Funktion)
@@ -265,7 +265,7 @@ $$
 
 ### Overfitting
 
-![bg right h:400](images/overfitting.png)
+![](images/overfitting.png){ height="400" }
 
 * häufiger bei flexiblen, nicht-parametrischen Methoden
 * perfekte Vorhersage für jeden Punkt in den Trainingsdaten
@@ -275,7 +275,7 @@ $$
 
 ### Aufteilung der Stichprobe in Trainings- und Testdaten
 
-![bg right:40% w:400](images/Train-Test-Data-Split_W640.jpg)
+![](images/Train-Test-Data-Split_W640.jpg){ width="400" }
 
 * **Trainingsdaten**: die Daten, die wir zum Aufbau des Modells verwenden (z.B. zum Finden/Anpassen der richtigen Parameter für das Modell)
 * **Testdaten**: Zurückgehaltene Stichprobe, die wir verwenden können, um zu testen, wie gut das Modell mit unbekannten Daten umgeht
@@ -285,7 +285,7 @@ $$
 
 ### Abwägung zwischen Vorhersagegenauigkeit und Modellinterpretierbarkeit
 
-![bg right h:400](images/parametricModel.png)
+![](images/parametricModel.png){ height="400" }
 
 - parametrische Modelle sind in der Regel einfacher zu interpretieren
 
@@ -310,13 +310,13 @@ $$e_i = y_i-\hat{f}(\vec{x}_i)=y_i-\hat{y}$$
 
 $$\text{MSE} = \frac{1}{n}  \sum_{j=1}^ne_i^2 = \frac{1}{n}  \sum_{i=1}^n(y_i-\hat{f}(\vec{x}_i))^2$$
 
-![bg right:35% h:400](images/main-qimg-104b107465543d694b0822ef5843c65d.webp)
+![](images/main-qimg-104b107465543d694b0822ef5843c65d.webp){ height="400" }
 
 ---
 
 #### 🧠 Trainings- vs. Testdatensatz
 
-![bg right:40% w:400](images/Train-Test-Data-Split_W640.jpg)
+![](images/Train-Test-Data-Split_W640.jpg){ width="400" }
 
 * Viele Methoden minimieren den $\text{MSE}$ während des Trainings (Trainings-$\text{MSE}$, In-Sample-$\text{MSE}$)
 * im Allgemeinen interessiert uns nicht wirklich, wie gut die Methode während des Trainings auf den Trainingsdaten funktioniert, 
@@ -338,7 +338,7 @@ $$f_{\text{low}}(x)=\hat{y}(x)=\beta_0$$
 
 
 
-![bg right:45% w:500](images/Simple_Model.png)
+![](images/Simple_Model.png){ width="500" }
 
 ---
 
@@ -354,7 +354,7 @@ $$f_{\text{med}}(x)=\hat{y}(x)=\beta_0 + \beta_1 \cdot x$$
 
 
 
-![bg right:45% w:500](images/middle_model.png)
+![](images/middle_model.png){ width="500" }
 
 
 ---
@@ -370,7 +370,7 @@ $$f_{\text{high}}(x)=\hat{y}(x)=\beta_0 + \beta_1 \cdot x + \beta_2 \cdot x^{2}$
 * blau: Testdaten (schlechte Anpassung)
 
 
-![bg right:45% w:500](images/flexible_model.png)
+![](images/flexible_model.png){ width="500" }
 
 ---
 
@@ -399,17 +399,17 @@ $$f_{\text{high}}(x)=\hat{y}(x)=\beta_0 + \beta_1 \cdot x + \beta_2 \cdot x^{2}$
 
 ## 🏆 Aufgabe 12.3 (20%): Regressionsmodell für Endgewicht
 
-- **Abgabeformalien:** Fügen sie ein Kapitel in ihrer Dokumentation hinzu, in dem Sie die Ergebnisse der Regression dokumentieren und geben Sie die Datei `reg_<Matrikelnummer1-Matrikelnummer2-Matrikelnummer3>.csv` mit ab
+- **Abgabeformalien:** Fügen sie ein Kapitel in ihrer Dokumentation hinzu, in dem Sie die Ergebnisse der Regression dokumentieren und geben Sie die Datei `reg_<Gruppe>.csv` mit ab
 - Erstellen Sie ein Lineares Regressionsmodell zur Vorhersage des Endgewichts anhand aller sinnvollen Daten
 - Erstellen Sie für Ihren Report eine Tabelle, welche die genuzten Spalten (`X`) für die Vorhersage (`y`) enthält und den MSE-Wert für die jeweiligen Spalten
 
  
 
-| Genutzte Spalten | Modell-Typ | MSE-Wert (Training)| MSE-Wert (Test)|
-|------------------|------------|--------------------|----------------|
-| [`Vibration_index_blue`]         | Linear     | 0.5                | 0.6            |
-| [`Vibration_index_blue`,`Vibration_index_blue`]         | Logistic   | 0.7                | 0.8            |
-| Spalte 1, Spalte 2  | SVM        | 0.9                | 1.0            |
+| Genutzte Spalten (`X`) | Modell-Typ | MSE (Training) | MSE (Test) |
+|------------------------|------------|----------------|------------|
+| [`fill_level_grams_red`] | Linear | 0.5 | 0.6 |
+| [`fill_level_grams_red`, `vibration_index_red`] | Linear | 0.4 | 0.5 |
+| [`fill_level_grams_red`, `vibration_index_red`, `temperature_C_red`] | Polynomial | 0.3 | 0.45 |
 
  
 
@@ -419,7 +419,7 @@ $$f_{\text{high}}(x)=\hat{y}(x)=\beta_0 + \beta_1 \cdot x + \beta_2 \cdot x^{2}$
 - Schreiben Sie die Formel für das beste Lineare Regressionsmodell auf in der Form $y = mx + b$ incl. der Parameter
 - Machen Sie eine Prognose für das folgende Datenset [`X.csv`](X.csv) mit Ihrem besten Modell
 - Als Orientierung kann folgendes Notebook dienen <a href="8_Regression_Python.ipynb" download>docs/8_Regression_Python.ipynb</a>, welches auch im nächsten Abschnitt vorgestellt wird
-- Speichern Sie die Prognose in einer CSV-Datei `reg_<Matrikelnummer1-Matrikelnummer2-Matrikelnummer3>.csv` und dokumentieren Sie Ihre Ergebnisse in der Markdown-Datei
+- Speichern Sie die Prognose in einer CSV-Datei `reg_<Gruppe>.csv` und dokumentieren Sie Ihre Ergebnisse in der Markdown-Datei
 
 ```csv
 

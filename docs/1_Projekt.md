@@ -48,8 +48,9 @@ Schreibt einen Python MQTT-Subscriber, der Daten vom Broker empfängt, in einer 
 
 - TinyDB, SQLite oder InfluxDB statt CSV
 - Grafana oder Plotly Dash statt matplotlib
-- Konfigurierbar über config-Datei (Broker, Topic)
-- REST-API für Datenabruf
+- System über config-Datei konfigurierbar (Broker, Topic)
+- Fehlerbehandlung (Verbindungsabbruch)
+- REST-API oder SQL-Abfragen zum Datenabruf
 
 ---
 

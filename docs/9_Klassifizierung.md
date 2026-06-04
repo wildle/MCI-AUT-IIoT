@@ -18,7 +18,7 @@ theme: lemon
 
 Serafin Kollegger & Julian Huber
 
-![bg right:30%](images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg)
+![](images/Ziele_und_Partner_Planung_und_Umsetzung.jpeg){ width="360" }
 
 ---
 
@@ -85,7 +85,7 @@ $\begin{array}{|c|c|c|}
     * Wie viele der tatsächlich positiven Instanzen wurden als positiv vorhergesagt?
 * $\text{F1-Score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}$
 
-![bg right:33% h:720](images/Precisionrecall.svg.png)
+![](images/Precisionrecall.svg.png){ height="720" }
 
 ---
 
@@ -124,7 +124,7 @@ $\begin{array}{|c|c|c|}
 - Wenn die Wahrscheinlichkeit über einem Schwellenwert  $\theta$ liegt, wird die Instanz als positiv vorhergesagt
 - Entsprechen kann man über den Schwellenwert die True Positive Rate und die False Positive Rate variieren und die ROC-Kurve erstellen
 
-![bg left:45% h:450](images/Roc_curve.svg.png)
+![](images/Roc_curve.svg.png){ height="450" }
 
 ---
 
@@ -165,7 +165,7 @@ $\begin{array}{|c|c|c|}
 
  
 
-![h:400](images/1_6RMrFGwU-qH4nHW89xc0Xw.jpeg)
+![](images/1_6RMrFGwU-qH4nHW89xc0Xw.jpeg){ height="400" }
 
  
 
@@ -183,7 +183,7 @@ $\begin{array}{|c|c|c|}
 
  
 
-![h:400](images/LogRegvdLinReg.png)
+![](images/LogRegvdLinReg.png){ height="400" }
 
  
 
@@ -200,7 +200,7 @@ $$f(X) = \frac{1}{1+e^{-\beta_0-\beta_1X_1-\beta_2X_2-\ldots-\beta_nX_n}}$$
 
  
 
-![h:400](images/1_cv2iLcBwCNrHFGHQkk6h1w.webp)
+![](images/1_cv2iLcBwCNrHFGHQkk6h1w.webp){ height="400" }
 
  
 

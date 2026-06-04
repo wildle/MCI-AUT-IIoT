@@ -10,6 +10,7 @@ Die klassische Automatisierungspyramide beschreibt die Hierarchie industrieller 
 - **Steuerungsebene**: SPS, die die Steuerung einzelner Anlagen übernehmen
 - **Prozessleitebene**: SCADA-Systeme (Supervisory Control and Data Acquisition), die mehrere Anlagen überwachen
 - **Betriebsleitebene**: MES (Manufacturing Execution Systems), die den gesamten Produktionsprozess steuern
+- **Unternehmensebene**: ERP-Systeme (Enterprise Resource Planning, z.B. SAP) für die unternehmensweite Planung — Finanzen, Einkauf, Logistik; keine Echtzeitanforderungen
 
 Die Datenmenge nimmt von unten nach oben ab — nur die **relevantesten** Daten werden weitergegeben. Zugriff und Steuerungsverantwortung sind klar definiert.
 
