@@ -54,6 +54,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#rest-web">REST &amp; Web</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datenspeicherung-zeitreihen-visualisierung">Datenspeicherung, Zeitreihen &amp; Visualisierung</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kennzahlen-dashboards-industrie">Kennzahlen &amp; Dashboards (Industrie)</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -68,6 +72,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../6_REST/">REST</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_1_Zeitreihen_und_Visualisierung/">Zeitreihen & Visualisierung</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Machine Learning</span></p>
@@ -145,6 +151,39 @@
 <p><strong><abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></strong> — <em>Application Programming Interface</em>, definierte Schnittstelle, über die Programme miteinander kommunizieren. Häufigste Form im Web ist die <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr>; Antworten meist als <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>.</p>
 <p><strong>Client-Server-Architektur</strong> — Kommunikationsmuster, bei dem ein Client Anfragen stellt und ein Server diese direkt beantwortet — im Gegensatz zu Publish/Subscribe (<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>) gibt es keinen Vermittler.</p>
 <p><strong>HTTP-Methoden</strong> — Definieren die Operation auf einer Ressource: <strong>GET</strong> (abrufen, ohne Nebeneffekt), <strong>POST</strong> (neu erstellen), <strong>PUT</strong> (ersetzen/aktualisieren), <strong>DELETE</strong> (löschen).</p>
+<p><strong>Pull vs. Push</strong> — <em>Pull</em>: der Empfänger fragt aktiv an, wenn er Daten braucht (<abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>/HTTP). <em>Push</em>: der Sender schiebt Daten, sobald sie anfallen (<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>).</p>
+<hr />
+<h2 id="datenspeicherung-zeitreihen-visualisierung">Datenspeicherung, Zeitreihen &amp; Visualisierung</h2>
+<p><strong>Datenbank</strong> — Softwaresystem zur strukturierten, dauerhaften Aufbewahrung von Daten mit definierten Abfrage- und Änderungsmöglichkeiten.</p>
+<p><strong>Data Warehouse</strong> — Sammlung aufbereiteter Daten in fester Struktur, optimiert für Analysen und Berichte.</p>
+<p><strong>Data Lake</strong> — Sammlung von Rohdaten in beliebigem (auch unstrukturiertem) Format; die Struktur wird erst beim Lesen festgelegt.</p>
+<p><strong>Hot / Warm / Cold Storage</strong> — Speicher-Stufen nach Zugriffsgeschwindigkeit und Aktualität: <em>Hot</em> = Arbeitsspeicher/Echtzeit, <em>Warm</em> = persistente DB für Dashboards/Analysen, <em>Cold</em> = Langzeitarchiv.</p>
+<p><strong>Zeitreihen-Datenbank (<abbr title="Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>)</strong> — Datenbank, optimiert für zeit-indizierte Messdaten: schnelles Anhängen (Append) und eingebaute Zeitfenster-Aggregation. Beispiele: InfluxDB, TimescaleDB.</p>
+<p><strong>InfluxDB</strong> — verbreitete Open-Source-Zeitreihen-Datenbank. Datenmodell aus <em>measurement/tag/field/timestamp</em>, Abfragesprache <em>Flux</em> (ab v2). Im Kurs als Industrie-Ausblick (Bonus).</p>
+<p><strong>Measurement / Tag / Field / Timestamp</strong> — das InfluxDB-Datenmodell: <em>measurement</em> = Art der Messung (wie eine Tabelle), <em>tags</em> = indizierte String-Metadaten zum Filtern, <em>fields</em> = die eigentlichen Messwerte (nicht indiziert), <em>timestamp</em> = Zeitpunkt.</p>
+<p><strong>Kardinalität</strong> — Anzahl eindeutiger Serien (Kombinationen aus measurement + Tags). Hoch-kardinale Werte (z.B. IDs) gehören in <em>Felder</em>, nicht in <em>Tags</em> — sonst wächst der Speicherbedarf unbegrenzt.</p>
+<p><strong>Flux</strong> — funktionale Abfragesprache von InfluxDB 2.x; Daten werden als Pipeline (<code>|&gt;</code>) durch Filter- und Aggregationsschritte geschoben.</p>
+<p><strong>Grafana</strong> — De-facto-Standard für Zeitreihen-Dashboards: fragt Datenquellen (z.B. InfluxDB) ab und visualisiert sie live; Dashboards lassen sich als Code versionieren.</p>
+<p><strong>Dashboard</strong> — grafische Live-Übersicht ausgewählter Kennzahlen und Zeitreihen.</p>
+<p><strong>Telegraf</strong> — konfigurierbarer Daten-Collector ohne eigenen Code; sammelt über Plugins (<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>, <abbr title="Open Platform Communications Unified Architecture — industrieller Kommunikationsstandard">OPC-UA</abbr>, Modbus …) und schreibt z.B. nach InfluxDB.</p>
+<p><strong><abbr title="Telegraf + InfluxDB + Grafana — gängige IIoT-Datenpipeline (sammeln, speichern, visualisieren)">TIG</abbr>-Stack</strong> — gängige <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Pipeline aus <strong>T</strong>elegraf + <strong>I</strong>nfluxDB + <strong>G</strong>rafana (sammeln → speichern → visualisieren).</p>
+<p><strong>Edge Computing / Edge Gateway</strong> — Datenverarbeitung nah an der Maschine: ein lokales Gerät (Edge-Server / Industrie-PC) sammelt, speichert und visualisiert vor Ort, statt alle Rohdaten in die Cloud zu schicken.</p>
+<p><strong>Unified Namespace (<abbr title="Unified Namespace — zentraler Broker als Single Source of Truth mit semantischem Topic-Baum">UNS</abbr>)</strong> — Architektur, in der ein zentraler <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> die „Single Source of Truth" ist und alle Daten in einem semantisch geordneten Topic-Baum (Enterprise → Site → Area → Line → Cell, vgl. ISA-95) liegen.</p>
+<p><strong>Sparkplug B</strong> — Spezifikation über <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> mit standardisiertem Topic-Namespace, kompakten Protobuf-Payloads, Geburts-/Todes-Zertifikaten der Geräte und Store-and-Forward; für große, herstellerübergreifende Anlagen.</p>
+<p><strong>Container / Docker</strong> — gekapselte, reproduzierbare Laufzeitumgebung, die eine Anwendung mit allen Abhängigkeiten bündelt und isoliert ausführt.</p>
+<p><strong>Docker Compose</strong> — Werkzeug, das mehrere Container über eine YAML-Datei gemeinsam definiert und startet (z.B. InfluxDB + Grafana + Writer als ein Stack).</p>
+<p><strong>Retention / Downsampling</strong> — <em>Retention Policy</em>: alte Daten automatisch nach Ablauf löschen; <em>Downsampling</em>: Rohdaten zu gröberen Werten verdichten (z.B. Minuten- statt Sekundenmittel) für die Langzeit-Historie.</p>
+<p><strong>SQLite</strong> — serverlose, dateibasierte relationale Datenbank; in der Python-Standardbibliothek enthalten (<code>import sqlite3</code>).</p>
+<hr />
+<h2 id="kennzahlen-dashboards-industrie">Kennzahlen &amp; Dashboards (Industrie)</h2>
+<p><strong>OEE (Overall Equipment Effectiveness)</strong> — zentrale Fertigungskennzahl: <em>Verfügbarkeit × Leistung × Qualität</em>. Im Kurs-Dashboard kommen Qualität (i.O./n.i.O.) und Leistung (Durchsatz) aus den vorhandenen Signalen; Verfügbarkeit bräuchte Stillstandszeiten, die der Simulator nicht liefert.</p>
+<p><strong>i.O. / n.i.O.</strong> — <em>in Ordnung / nicht in Ordnung</em>: Shop-Floor-Begriffe für Gutteil bzw. Ausschuss. Im Dashboard aus <code>is_cracked</code> abgeleitet (0 = i.O., 1 = n.i.O.).</p>
+<p><strong>SPC (Statistical Process Control) / Checkweigher</strong> — Prozessüberwachung: ein Messwert (z.B. Endgewicht) wird mit Mittellinie und Kontrollgrenzen (UCL/LCL = Mittel ± 3σ) dargestellt; Punkte außerhalb deuten auf einen Prozessfehler. Ein <em>Checkweigher</em> (Kontrollwaage) ist die klassische QS-Station einer Abfülllinie.</p>
+<p><strong>Condition Monitoring</strong> — Zustandsüberwachung von Maschinen über Sensorik (z.B. Vibration) mit Alarmschwellen; Grundlage für Predictive Maintenance.</p>
+<p><strong>Durchsatz</strong> — produzierte Einheiten pro Zeit (z.B. Flaschen/min) — die Leistungs-Komponente der Produktion.</p>
+<p><strong>Ausschussquote / First Pass Yield</strong> — Anteil der n.i.O.-Teile an der Gesamtmenge bzw. der Gutanteil — die Qualitäts-Komponente.</p>
+<p><strong>Rückverfolgbarkeit (Traceability)</strong> — jede Flasche ist über ihre eindeutige <code>bottle</code>-ID über alle Messungen (Dispenser, Gewicht, Qualität, Rezept) verknüpfbar; genau das ist die Basis des Joins in Aufgabe 12.1.2.</p>
+<p><strong>Anlagenstatus / Heartbeat</strong> — „läuft/steht"-Anzeige aus dem aktuellen Datenfluss: kommen in den letzten ~60 Sekunden Daten an, gilt die Anlage als laufend. Einfacher Liveness-Indikator ohne zusätzlichen Sensor.</p>
               
             </div>
           </div><footer>

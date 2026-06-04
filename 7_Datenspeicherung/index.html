@@ -87,7 +87,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#losungsvorschlag-fur-die-projektstruktur">Lösungsvorschlag für die Projektstruktur</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wohin-fuhrt-das">Wohin führt das?</a>
+    </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_1_Zeitreihen_und_Visualisierung/">Zeitreihen & Visualisierung</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Machine Learning</span></p>
@@ -212,6 +216,9 @@
 <li>[ ] Sinnvolle Fehlerbehandlung, z.B. bei Verbindungsabbruch zum <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Server</li>
 <li>[ ] Daten oder Informationen über die Daten lassen sich einfach aus anderen Systemen abrufen (auch während das System läuft), z.B. über eine <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> (siehe <a href="../6_REST/"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></a>) oder SQL-Abfragen</li>
 </ul>
+<blockquote>
+<p><strong>Wie weit geht das „oben"?</strong> Wie derselbe Datenstrom mit einer Zeitreihen-Datenbank (InfluxDB) und einem Grafana-Dashboard aussieht — der Industrie-Standard —, zeigt die Seite <a href="../7_1_Zeitreihen_und_Visualisierung/">Zeitreihen &amp; Visualisierung</a>. Für die Aufgabe ist das <strong>optional</strong> (Bonus); Pflicht bleibt <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> + Live-Plot.</p>
+</blockquote>
 <hr />
 <h2 id="datenquelle-der-simulator">Datenquelle: der Simulator</h2>
 <p>Die Simulation veröffentlicht alle Topics unter dem Präfix <code>aut/SoSe26/learning_factory_simulation/</code>. Die Payloads sind UTF-8-codierte <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Strings.</p>
@@ -296,6 +303,11 @@
 <li><strong><code>visualisierung</code></strong> — lädt die <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> (z.B. mit <code>pandas</code>) und plottet eine Zeitreihe mit <code>matplotlib</code>. Der Plot soll sich aktualisieren, während neue Daten hereinkommen — z.B. indem Sie die <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> regelmäßig neu einlesen und neu zeichnen (<code>matplotlib</code>-interaktiver Modus <code>plt.ion()</code> / <code>plt.pause(...)</code>).</li>
 </ol>
 <p><strong>Bewertete Eigenleistung:</strong> Wie Sie die Daten transformieren, in welcher <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Struktur Sie sie ablegen und wie Sie sie visualisieren, ist der bewertete Kern dieser Aufgabe. Das Skript oben dient nur dazu, die Daten erstmals fließen zu sehen.</p>
+<figure class="diagram">
+<img src="../images/transform_bottle.png" alt="Transform: aus vielen topic-förmigen Nachrichten wird über den Schlüssel bottle eine Zeile pro Flasche">
+<figcaption>Jede Flasche löst mehrere MQTT-Nachrichten auf verschiedenen Topics aus. Der Transform verbindet alle Nachrichten mit derselben <code>bottle</code>-ID zu <strong>einer Zeile pro Flasche</strong>.</figcaption>
+</figure>
+
 <hr />
 <h2 id="komponenten">Komponenten</h2>
 <h3 id="1-mqtt-client-extract">1. <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client (Extract)</h3>
@@ -405,12 +417,24 @@
 ├── README.md
 └── requirements.txt
 </code></pre></div>
+<hr />
+<h2 id="wohin-fuhrt-das">Wohin führt das?</h2>
+<p>Diese Aufgabe ist die <strong>Datendrehscheibe</strong> der Lehrveranstaltung: Was Sie hier sauber speichern,
+ist die Grundlage der beiden folgenden Themen.</p>
+<ul>
+<li><strong><a href="../8_Regression/">Regressionsmodelle</a></strong> — „Können wir die Waage einsparen?" nutzt die
+  Tabelle <em>eine Zeile pro Flasche</em> (Füllstände, <code>vibration-index</code>, Temperatur → Endgewicht).</li>
+<li><strong><a href="../9_Klassifizierung/">Klassifikationsmodelle</a></strong> — „Erkennen wir gesprungene Flaschen?"
+  nutzt <code>is_cracked</code> zusammen mit der <code>drop_oscillation</code>-Schwingung.</li>
+</ul>
+<p>Deshalb lohnt es sich, die Struktur (siehe die Datenbedarf-Tabellen oben) <strong>von Anfang an</strong> für
+diese Analysen mitzudenken — nicht nur für das Dashboard von heute.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../6_REST/" class="btn btn-neutral float-left" title="REST"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../8_Regression/" class="btn btn-neutral float-right" title="Regressionsmodelle">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../7_1_Zeitreihen_und_Visualisierung/" class="btn btn-neutral float-right" title="Zeitreihen & Visualisierung">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -436,7 +460,7 @@
       <span><a href="../6_REST/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../8_Regression/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../7_1_Zeitreihen_und_Visualisierung/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

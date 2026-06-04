@@ -5,3 +5,48 @@ h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr {
     border-bottom: none !important;
     pointer-events: none;
 }
+
+/* Diagramm-Figures: zentriert mit Bildunterschrift */
+figure.diagram {
+    margin: 1.6em auto;
+    text-align: center;
+}
+figure.diagram img {
+    max-width: 100%;
+    height: auto;
+}
+figure.diagram figcaption {
+    margin-top: .6em;
+    font-size: .88em;
+    font-style: italic;
+    color: #5a6570;
+    text-align: center;
+}
+
+/* Line-Protocol-Annotation (InfluxDB-Schema farbig) */
+.lineprotocol {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: .7em 1em;
+    margin: 1em 0 .6em;
+    overflow-x: auto;
+}
+.lineprotocol code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: .95em;
+    background: none;
+    padding: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.lp-measurement { color: #6A1B9A; font-weight: 700; }
+.lp-tag         { color: #1565C0; font-weight: 700; }
+.lp-field       { color: #2E7D32; font-weight: 700; }
+.lp-timestamp   { color: #616161; font-weight: 700; }
+.lp-legend {
+    font-size: .85em;
+    margin: 0 0 1.3em;
+    line-height: 1.9;
+    color: #444;
+}
