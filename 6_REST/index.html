@@ -127,13 +127,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="rest-representational-state-transfer"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> – Representational State Transfer</h1>
+                <h1 id="rest-representational-state-transfer"><abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr> – Representational State Transfer</h1>
 <h2 id="client-server-architektur">Client-Server-Architektur</h2>
 <ul>
 <li><strong>Client</strong> sendet <strong>Anfragen</strong></li>
 <li><strong>Server</strong>: Bearbeitet Anfragen und sendet <strong>Antworten</strong></li>
 </ul>
-<p>Im Gegensatz zu <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> kommunizieren Client und Server direkt miteinander (<strong>Peer-to-Peer</strong>) — kein <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> dazwischen.</p>
+<p>Im Gegensatz zu <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> kommunizieren Client und Server direkt miteinander (<strong>Peer-to-Peer</strong>), kein <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> dazwischen.</p>
 <hr />
 <h2 id="hypertext-transfer-protocol-http">Hypertext Transfer Protocol (HTTP)</h2>
 <ul>
@@ -144,7 +144,7 @@
 <p><em>Website über PowerShell:</em>
 <div class="highlight"><pre><span></span><code>curl &quot;www.google.com&quot;
 </code></pre></div></p>
-<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></a> über PowerShell:</em>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface, definierte Schnittstelle zwischen Programmen">API</abbr></a> über PowerShell:</em>
 <div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
 </code></pre></div></p>
 <p><em>Allgemeine Syntax:</em>
@@ -166,7 +166,7 @@ Schema Benutzer Kennwort      Host      Port    Pfad      Query    Fragment
 <p><a href="https://de.wikipedia.org/wiki/Uniform_Resource_Locator#Schema-spezifischer_Teil_(scheme-specific_part)">Quelle</a></p>
 <hr />
 <h2 id="antwort-auf-http-request">Antwort auf HTTP-Request</h2>
-<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr></a> über PowerShell:</em>
+<p><em><a href="https://open-meteo.com/en/docs">Wetter-<abbr title="Application Programming Interface, definierte Schnittstelle zwischen Programmen">API</abbr></a> über PowerShell:</em>
 <div class="highlight"><pre><span></span><code>curl &quot;https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m&quot;
 </code></pre></div></p>
 <div class="highlight"><pre><span></span><code>StatusCode        : 200
@@ -178,7 +178,7 @@ Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Co
 <p>Neben den Daten (<code>Content</code>) enthält die Antwort auch Metadaten (<code>Header</code>, <code>StatusCode</code>, ...).</p>
 <hr />
 <h2 id="http-mit-python-client-requests">HTTP mit Python – Client (<code>requests</code>)</h2>
-<p>Zur Kommunikation mit <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>requests</code>-Modul verwendet:</p>
+<p>Zur Kommunikation mit <abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>requests</code>-Modul verwendet:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.mci.edu/de/&#39;</span><span class="p">)</span>
@@ -189,7 +189,7 @@ Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Co
 </code></pre></div>
 <hr />
 <h2 id="http-mit-python-server-flask">HTTP mit Python – Server (<code>flask</code>)</h2>
-<p>Zum Anbieten eines <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>flask</code>-Modul verwendet:</p>
+<p>Zum Anbieten eines <abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-Services wird das <code>flask</code>-Modul verwendet:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -212,8 +212,8 @@ python -m flask run
 # * Running on http://127.0.0.1:5000/
 </code></pre></div></p>
 <hr />
-<h2 id="rest-als-bonus-zu-aufgabe-1212"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> als Bonus zu Aufgabe 12.1.2</h2>
-<p>Eine Möglichkeit für Bonuspunkte in <a href="../7_Datenspeicherung/">Aufgabe 12.1.2</a>: Neben dem <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Subscriber lassen Sie einen kleinen Flask-Server laufen, der die <strong>bereits gespeicherten</strong> Flaschendaten auf Anfrage ausliefert — ohne das laufende System anzuhalten.</p>
+<h2 id="rest-als-bonus-zu-aufgabe-1212"><abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr> als Bonus zu Aufgabe 12.1.2</h2>
+<p>Eine Möglichkeit für Bonuspunkte in <a href="../7_Datenspeicherung/">Aufgabe 12.1.2</a>: Neben dem <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Subscriber lassen Sie einen kleinen Flask-Server laufen, der die <strong>bereits gespeicherten</strong> Flaschendaten auf Anfrage ausliefert, ohne das laufende System anzuhalten.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -229,11 +229,11 @@ python -m flask run
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>Ein Dashboard oder ein anderes System kann nun jederzeit <code>GET /bottles/count</code> abfragen, während der Subscriber im Hintergrund weiter Daten sammelt. Damit ist das Bonus-Kriterium <em>„Daten … auch während das System läuft … über eine <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> abrufbar"</em> erfüllt.</p>
+<p>Ein Dashboard oder ein anderes System kann nun jederzeit <code>GET /bottles/count</code> abfragen, während der Subscriber im Hintergrund weiter Daten sammelt. Damit ist das Bonus-Kriterium <em>„Daten … auch während das System läuft … über eine <abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface, definierte Schnittstelle zwischen Programmen">API</abbr> abrufbar"</em> erfüllt.</p>
 <hr />
 <h2 id="http-methoden">HTTP-Methoden</h2>
 <h3 id="get">GET</h3>
-<p>Fordert eine Ressource vom Server an — <strong>keine Nebeneffekte</strong>, der Serverzustand wird nicht verändert.</p>
+<p>Fordert eine Ressource vom Server an, <strong>keine Nebeneffekte</strong>, der Serverzustand wird nicht verändert.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://api.citybik.es/v2/networks/stadtrad-innsbruck&#39;</span><span class="p">)</span>
@@ -277,7 +277,7 @@ python -m flask run
 <hr />
 <h2 id="weiterfuhrendes">Weiterführendes</h2>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client"><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> Client</a> Erweiterung für VS Code — einfache Anfragen direkt aus dem Editor:</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client"><abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr> Client</a> Erweiterung für VS Code, einfache Anfragen direkt aus dem Editor:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="err">GET https://api.open-meteo.com/v1/forecast?latitude=47.26&amp;longitude=11.40&amp;current=temperature_2m</span>
 </code></pre></div>

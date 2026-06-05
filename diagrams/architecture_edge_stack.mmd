@@ -7,7 +7,7 @@ config:
 flowchart LR
     SIM["Simulator / Anlage<br/>(SPS, Sensoren)"]
     BROKER{{"MQTT-Broker<br/>158.180.44.197<br/>(remote)"}}
-    subgraph PI["Edge-Server — Docker (24/7)"]
+    subgraph PI["Edge-Server: Docker (24/7)"]
         COL["Collector<br/>mqtt_to_influx"]
         INFLUX[("InfluxDB<br/>Zeitreihen-DB")]
         GRAF["Grafana<br/>Dashboard"]

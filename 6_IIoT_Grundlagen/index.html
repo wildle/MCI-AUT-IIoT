@@ -138,16 +138,16 @@
 <ul>
 <li><strong>Feldebene</strong>: Sensoren und Aktoren, die über analoge Ein- und Ausgänge an die Steuerung angeschlossen sind</li>
 <li><strong>Steuerungsebene</strong>: <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>, die die Steuerung einzelner Anlagen übernehmen</li>
-<li><strong>Prozessleitebene</strong>: <abbr title="Supervisory Control and Data Acquisition — Prozessleitsystem (Ebene 3 der Automatisierungspyramide)">SCADA</abbr>-Systeme (Supervisory Control and Data Acquisition), die mehrere Anlagen überwachen</li>
-<li><strong>Betriebsleitebene</strong>: <abbr title="Manufacturing Execution System — Betriebsleitsystem (Ebene 4 der Automatisierungspyramide)">MES</abbr> (Manufacturing Execution Systems), die den gesamten Produktionsprozess steuern</li>
-<li><strong>Unternehmensebene</strong>: <abbr title="Enterprise Resource Planning — Unternehmensplanung, z.B. SAP (Ebene 5 der Automatisierungspyramide)">ERP</abbr>-Systeme (Enterprise Resource Planning, z.B. SAP) für die unternehmensweite Planung — Finanzen, Einkauf, Logistik; keine Echtzeitanforderungen</li>
+<li><strong>Prozessleitebene</strong>: <abbr title="Supervisory Control and Data Acquisition, Prozessleitsystem (Ebene 3 der Automatisierungspyramide)">SCADA</abbr>-Systeme (Supervisory Control and Data Acquisition), die mehrere Anlagen überwachen</li>
+<li><strong>Betriebsleitebene</strong>: <abbr title="Manufacturing Execution System, Betriebsleitsystem (Ebene 4 der Automatisierungspyramide)">MES</abbr> (Manufacturing Execution Systems), die den gesamten Produktionsprozess steuern</li>
+<li><strong>Unternehmensebene</strong>: <abbr title="Enterprise Resource Planning, Unternehmensplanung, z.B. SAP (Ebene 5 der Automatisierungspyramide)">ERP</abbr>-Systeme (Enterprise Resource Planning, z.B. SAP) für die unternehmensweite Planung: Finanzen, Einkauf, Logistik; keine Echtzeitanforderungen</li>
 </ul>
-<p>Die Datenmenge nimmt von unten nach oben ab — nur die <strong>relevantesten</strong> Daten werden weitergegeben. Zugriff und Steuerungsverantwortung sind klar definiert.</p>
-<p>Im <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr> wird diese strenge Hierarchie aufgebrochen: Geräte kommunizieren direkt miteinander und mit der Cloud — über ein vermaschtes Netzwerk statt einer Pyramide.</p>
+<p>Die Datenmenge nimmt von unten nach oben ab: nur die <strong>relevantesten</strong> Daten werden weitergegeben. Zugriff und Steuerungsverantwortung sind klar definiert.</p>
+<p>Im <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr> wird diese strenge Hierarchie aufgebrochen: Geräte kommunizieren direkt miteinander und mit der Cloud, über ein vermaschtes Netzwerk statt einer Pyramide.</p>
 <p><img alt="" src="../images/csm_Indu-Sol_Fachpressetage_2017_Bild_2_b15566fced.jpg" /></p>
 <p><em>Quelle: <a href="https://www.ien-dach.de/artikel/netzwerke-der-zukunft-ot-security-im-kontext-von-industrie-40/">ien-dach.de</a></em></p>
 <hr />
-<h2 id="fragestellungen-im-iiot">Fragestellungen im <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr></h2>
+<h2 id="fragestellungen-im-iiot">Fragestellungen im <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr></h2>
 <ul>
 <li><strong>Intelligence in der Produktion</strong>: Wie wird aus den Daten ein Mehrwert generiert?</li>
 <li><strong>Security und Safety</strong>: Wie wird die Sicherheit und Verfügbarkeit der Systeme gewährleistet?</li>
@@ -174,16 +174,16 @@
 <h3 id="praxisbeispiele-aus-der-industrie">Praxisbeispiele aus der Industrie</h3>
 <ul>
 <li><strong>Energieeffizienz:</strong> Produktionsparameter (z.B. Heiztemperatur) in Echtzeit überwachen und optimieren → weniger Energieverbrauch bei gleicher Qualität</li>
-<li><strong>Predictive Maintenance:</strong> Schleppkette kontinuierlich überwachen — Qualität der Datenübertragung in Kabeln sinkt → Ausfall vorhergesagt bevor er eintritt</li>
+<li><strong>Predictive Maintenance:</strong> Schleppkette kontinuierlich überwachen: Qualität der Datenübertragung in Kabeln sinkt → Ausfall vorhergesagt, bevor er eintritt</li>
 <li><strong>Zustandsüberwachung Motor:</strong> Motor zieht plötzlich mehr Strom als früher → Lager verschlissen? Intervention bevor Stillstand</li>
 <li><strong>Bottleneck-Erkennung:</strong> Durchlaufzeiten in der Produktion messen → wo verliert der Prozess Zeit?</li>
-<li><strong>Retrofitting:</strong> Ältere Maschinen ohne native <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Unterstützung nachträglich mit smarter Sensorik ausstatten</li>
-<li><strong>Digital Twin:</strong> Digitales Abbild der Anlage als Ziel — Optimierung und Simulation auf Basis realer Sensordaten</li>
+<li><strong>Retrofitting:</strong> Ältere Maschinen ohne native <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Unterstützung nachträglich mit smarter Sensorik ausstatten</li>
+<li><strong>Digital Twin:</strong> Digitales Abbild der Anlage als Ziel, Optimierung und Simulation auf Basis realer Sensordaten</li>
 </ul>
 <hr />
 <h2 id="kommunikationsarchitektur">Kommunikationsarchitektur</h2>
 <h3 id="osi-schichtenmodell">OSI-Schichtenmodell</h3>
-<p>Die Entscheidung für ein geeignetes Protokoll hängt von den Anforderungen ab. In <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Anwendungen werden typischerweise Protokolle auf dem <strong><abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack</strong> eingesetzt:</p>
+<p>Die Entscheidung für ein geeignetes Protokoll hängt von den Anforderungen ab. In <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Anwendungen werden typischerweise Protokolle auf dem <strong><abbr title="Transmission Control Protocol, zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack</strong> eingesetzt:</p>
 <ul>
 <li>Standard für das Internet, weite Verbreitung</li>
 <li>Unterstützung für kabelgebundene und drahtlose Kommunikation</li>
@@ -194,15 +194,15 @@
 <p>Daraus folgt: Wir benötigen Protokolle, die</p>
 <ul>
 <li>eine hohe Flexibilität bei den Datenmodellen bieten,</li>
-<li>auf dem <abbr title="Transmission Control Protocol — zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack aufbauen.</li>
+<li>auf dem <abbr title="Transmission Control Protocol, zuverlässiges, verbindungsorientiertes Transportprotokoll">TCP</abbr>/IP-Stack aufbauen.</li>
 </ul>
-<h3 id="mqtt-vs-rest"><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> vs. <abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr></h3>
+<h3 id="mqtt-vs-rest"><abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> vs. <abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr></h3>
 <table>
 <thead>
 <tr>
 <th>Eigenschaft</th>
-<th><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></th>
-<th><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr> (HTTP)</th>
+<th><abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></th>
+<th><abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr> (HTTP)</th>
 </tr>
 </thead>
 <tbody>
@@ -228,7 +228,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Für den <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Kurs verwenden wir <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></strong> — details auf der nächsten Seite.</p>
+<p><strong>Für den <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Kurs verwenden wir <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr></strong> (Details auf der nächsten Seite).</p>
 <hr />
 <h2 id="die-learning-factory">Die Learning Factory</h2>
 <p><img alt="" src="../images/Architecture.svg" /></p>

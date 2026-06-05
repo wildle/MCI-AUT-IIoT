@@ -44,13 +44,13 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#aufgabenubersicht">Aufgabenübersicht</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1211-mqtt-client-sps">Aufgabe 12.1.1 — MQTT-Client SPS</a>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1211-mqtt-client-sps">Aufgabe 12.1.1: MQTT-Client SPS</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1212-datenspeicherung-visualisierung">Aufgabe 12.1.2 — Datenspeicherung &amp; Visualisierung</a>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-1212-datenspeicherung-visualisierung">Aufgabe 12.1.2: Datenspeicherung &amp; Visualisierung</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-123-regressionsmodell">Aufgabe 12.3 — Regressionsmodell</a>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-123-regressionsmodell">Aufgabe 12.3: Regressionsmodell</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-124-klassifikationsmodell">Aufgabe 12.4 — Klassifikationsmodell</a>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-124-klassifikationsmodell">Aufgabe 12.4: Klassifikationsmodell</a>
     </li>
     </ul>
                   </li>
@@ -111,7 +111,7 @@
               
                 <h1 id="projekt">Projekt</h1>
 <h2 id="aufgabenubersicht">Aufgabenübersicht</h2>
-<p>Im Rahmen des <abbr title="Industrial Internet of Things — Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Blocks sind vier Aufgaben zu bearbeiten. Die Aufgaben bauen aufeinander auf und ergeben zusammen eine durchgehende Datenpipeline vom Sensor bis zum Machine-Learning-Modell.</p>
+<p>Im Rahmen des <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr>-Blocks sind vier Aufgaben zu bearbeiten. Die Aufgaben bauen aufeinander auf und ergeben zusammen eine durchgehende Datenpipeline vom Sensor bis zum Machine-Learning-Modell.</p>
 <table>
 <thead>
 <tr>
@@ -123,7 +123,7 @@
 <tbody>
 <tr>
 <td>12.1.1</td>
-<td><abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client in TwinCAT <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> — Sensordaten publizieren</td>
+<td><abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client in TwinCAT <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr>, Sensordaten publizieren</td>
 <td>20%</td>
 </tr>
 <tr>
@@ -145,15 +145,15 @@
 </table>
 <p><strong>Abgabedatum: 03.07.2026</strong></p>
 <hr />
-<h2 id="aufgabe-1211-mqtt-client-sps">Aufgabe 12.1.1 — <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></h2>
-<p>Implementiert einen <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client in TwinCAT (<code>FB_IotMqttClient</code>), der Sensordaten der Learning Factory alle 10 Sekunden an den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet.</p>
+<h2 id="aufgabe-1211-mqtt-client-sps">Aufgabe 12.1.1: <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr></h2>
+<p>Implementiert einen <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client in TwinCAT (<code>FB_IotMqttClient</code>), der Sensordaten der Learning Factory alle 10 Sekunden an den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> sendet.</p>
 <p><strong>Topic-Schema:</strong></p>
 <table>
 <thead>
 <tr>
 <th>Topic</th>
 <th>Inhalt</th>
-<th><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr></th>
+<th><abbr title="Broker speichert letzte Nachricht, neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr></th>
 <th>Wann</th>
 </tr>
 </thead>
@@ -186,11 +186,11 @@
 </table>
 <p><strong><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>:</strong> <code>158.180.44.197:1883</code>, User: <code>bobm</code>, Passwort: <code>letmein</code></p>
 <hr />
-<h2 id="aufgabe-1212-datenspeicherung-visualisierung">Aufgabe 12.1.2 — Datenspeicherung &amp; Visualisierung</h2>
-<p>Schreibt einen Python <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Subscriber, der Daten vom <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> empfängt, in einer Datenbank speichert und eine Zeitreihe visualisiert.</p>
+<h2 id="aufgabe-1212-datenspeicherung-visualisierung">Aufgabe 12.1.2: Datenspeicherung &amp; Visualisierung</h2>
+<p>Schreibt einen Python <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Subscriber, der Daten vom <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> empfängt, in einer Datenbank speichert und eine Zeitreihe visualisiert.</p>
 <p><strong>Mindestanforderung:</strong></p>
 <ul>
-<li><abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> als Datenbank</li>
+<li><abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> als Datenbank</li>
 <li>Alle relevanten Topics vollständig gespeichert</li>
 <li>Visualisierung einer beliebigen Zeitreihe (matplotlib)</li>
 <li>Mindestens 15 Minuten Daten gesammelt</li>
@@ -198,14 +198,14 @@
 </ul>
 <p><strong>Bonus:</strong></p>
 <ul>
-<li>TinyDB, SQLite oder InfluxDB statt <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr></li>
+<li>Zusätzlich zur <abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> eine richtige Datenbank (TinyDB, SQLite oder InfluxDB)</li>
 <li>Grafana oder Plotly Dash statt matplotlib</li>
 <li>System über config-Datei konfigurierbar (<abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>, Topic)</li>
 <li>Fehlerbehandlung (Verbindungsabbruch)</li>
-<li><abbr title="Representational State Transfer — HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface — definierte Schnittstelle zwischen Programmen">API</abbr> oder SQL-Abfragen zum Datenabruf</li>
+<li><abbr title="Representational State Transfer, HTTP-basierter Architekturstil für Web-APIs">REST</abbr>-<abbr title="Application Programming Interface, definierte Schnittstelle zwischen Programmen">API</abbr> oder SQL-Abfragen zum Datenabruf</li>
 </ul>
 <hr />
-<h2 id="aufgabe-123-regressionsmodell">Aufgabe 12.3 — Regressionsmodell</h2>
+<h2 id="aufgabe-123-regressionsmodell">Aufgabe 12.3: Regressionsmodell</h2>
 <p>Trainiert ein lineares Regressionsmodell (scikit-learn) zur Vorhersage des Endgewichts einer Flasche aus den Sensordaten.</p>
 <p><strong>Report enthält:</strong></p>
 <ul>
@@ -214,7 +214,7 @@
 <li>Datei <code>reg_&lt;Gruppe&gt;.csv</code> mit den Ergebnissen</li>
 </ul>
 <hr />
-<h2 id="aufgabe-124-klassifikationsmodell">Aufgabe 12.4 — Klassifikationsmodell</h2>
+<h2 id="aufgabe-124-klassifikationsmodell">Aufgabe 12.4: Klassifikationsmodell</h2>
 <p>Trainiert ein Klassifikationsmodell zur Erkennung defekter Flaschen (<code>is_cracked</code>) anhand der Vibrationszeitreihe (500 Messpunkte).</p>
 <p><strong>Report enthält:</strong></p>
 <ul>

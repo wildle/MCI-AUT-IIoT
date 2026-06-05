@@ -81,7 +81,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#visualisierung-grafana">Visualisierung: Grafana</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#best-practices-was-wir-hier-bewusst-richtig-machen">Best Practices — was wir hier bewusst richtig machen</a>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices-was-wir-hier-bewusst-richtig-machen">Best Practices: was wir hier bewusst richtig machen</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bezug-zu-beckhoff-twincat">Bezug zu Beckhoff / TwinCAT</a>
     </li>
@@ -129,26 +129,26 @@
               
                 <h1 id="zeitreihen-datenbanken-visualisierung-industrie-ausblick">Zeitreihen-Datenbanken &amp; Visualisierung (Industrie-Ausblick)</h1>
 <blockquote>
-<p><strong>Ausblick / Industrie — kein Pflichtstoff für <a href="../7_Datenspeicherung/">Aufgabe 12.1.2</a>.</strong>
-Die Pflicht bleibt <strong><abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> + Live-Plot</strong>. Diese Seite zeigt, womit <em>dieselben</em> Daten in der
-Industrie gespeichert und visualisiert werden — und warum. InfluxDB und Grafana sind dort
-die <strong>Bonus-Stufen</strong> der Aufgabe.</p>
+<p><strong>Ausblick / Industrie: kein Pflichtstoff für <a href="../7_Datenspeicherung/">Aufgabe 12.1.2</a>.</strong>
+Die Pflicht bleibt <strong><abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> + Live-Plot</strong>. Diese Seite zeigt, womit <em>dieselben</em> Daten in der
+Industrie gespeichert und visualisiert werden. InfluxDB und Grafana sind dort die
+<strong>Bonus-Stufen</strong> der Aufgabe.</p>
 </blockquote>
-<p>Auf der vorigen Seite haben wir die Daten in einer <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> abgelegt. Das genügt fürs Bestehen —
-aber sobald <strong>dauerhaft, mit hoher Frequenz und über lange Zeiträume</strong> gespeichert werden
-soll, greift die Industrie zu spezialisierten Werkzeugen. Genau das bauen wir als
-Referenzaufbau: einen <strong>Edge-Server</strong>, der <code>MQTT → InfluxDB → Grafana</code> rund um die Uhr fährt.</p>
-<p><img alt="Die Learning Factory — die Anlage, deren Daten wir speichern und visualisieren" src="../images/Teaching_Factory_2_3d_GesamteAnlage.png" width="520" /></p>
+<p>Auf der vorigen Seite lag unsere <abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>. Das genügt fürs Bestehen. Sobald aber <strong>dauerhaft, mit
+hoher Frequenz und über lange Zeiträume</strong> gespeichert wird, greift die Industrie zu
+spezialisierten Werkzeugen. Unser Referenzaufbau ist ein <strong>Edge-Server</strong>, der
+<code>MQTT → InfluxDB → Grafana</code> rund um die Uhr fährt.</p>
+<p><img alt="Die Learning Factory: die Anlage, deren Daten wir speichern und visualisieren" src="../images/Teaching_Factory_2_3d_GesamteAnlage.png" width="520" /></p>
 <hr />
 <h2 id="warum-zeitreihendaten-besonders-sind">Warum Zeitreihendaten besonders sind</h2>
 <p>Sensordaten einer Anlage haben einen sehr eigenen Charakter:</p>
 <ul>
 <li><strong>Append-only:</strong> Es kommen ständig <em>neue</em> Punkte hinzu; alte werden so gut wie nie geändert.</li>
-<li><strong>Zeit-indiziert:</strong> Jeder Wert hängt an einem Zeitstempel; fast jede Abfrage ist eine
+<li><strong>Zeit-indiziert:</strong> Jeder Wert hängt an einem Zeitstempel. Fast jede Abfrage ist eine
   <em>Zeitfenster</em>-Frage („Mittelwert der letzten 5 Minuten", „Temperaturverlauf heute").</li>
 <li><strong>Hohe Frequenz &amp; Volumen:</strong> Viele Sensoren × hohe Abtastrate = sehr viele Zeilen.</li>
 </ul>
-<p>Eine <strong>Zeitreihen-Datenbank</strong> (Time Series Database, <abbr title="Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>) ist genau dafür gebaut: schnelles
+<p>Eine <strong>Zeitreihen-Datenbank</strong> (Time Series Database, <abbr title="Time Series Database, Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>) ist genau dafür gebaut: schnelles
 Schreiben (Append), effizientes Komprimieren über die Zeitachse und eingebaute
 Zeitfenster-Aggregationen (Mittelwert, Min/Max, <strong>Downsampling</strong>).</p>
 <hr />
@@ -172,11 +172,11 @@ Zeitfenster-Aggregationen (Mittelwert, Min/Max, <strong>Downsampling</strong>).<
 <tr>
 <td><strong>Dokumentbasiert</strong></td>
 <td>TinyDB, MongoDB</td>
-<td>flexible <abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Dokumente, kein festes Schema</td>
+<td>flexible <abbr title="JavaScript Object Notation, leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Dokumente, kein festes Schema</td>
 <td>heterogene Daten, schnelles Prototyping</td>
 </tr>
 <tr>
-<td><strong>Zeitreihen (<abbr title="Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>)</strong></td>
+<td><strong>Zeitreihen (<abbr title="Time Series Database, Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>)</strong></td>
 <td><strong>InfluxDB</strong>, TimescaleDB</td>
 <td>Append + Zeitfenster-Aggregation + Komprimierung</td>
 <td><strong>Sensor-/Maschinendaten</strong></td>
@@ -184,17 +184,17 @@ Zeitfenster-Aggregationen (Mittelwert, Min/Max, <strong>Downsampling</strong>).<
 </tbody>
 </table>
 <p>Das knüpft an die <strong>Hot/Warm/Cold</strong>-Einteilung der vorigen Seite an: InfluxDB ist ein
-typischer <strong>Warm Storage</strong> — schnell genug für Dashboards, dauerhaft genug für Analysen.</p>
+typischer <strong>Warm Storage</strong>, schnell genug für Dashboards und dauerhaft genug für Analysen.</p>
 <hr />
 <h2 id="das-influxdb-datenmodell">Das InfluxDB-Datenmodell</h2>
 <p>InfluxDB speichert jeden Messpunkt nach demselben Schema:</p>
 <div class="highlight"><pre><span></span><code>measurement,tag1=wert,tag2=wert  field1=wert,field2=wert  timestamp
 </code></pre></div>
 <ul>
-<li><strong>measurement</strong> — <em>was</em> gemessen wird (z.B. <code>dispenser</code>, <code>temperature</code>). Wie eine Tabelle.</li>
-<li><strong>tags</strong> — indizierte <strong>String</strong>-Metadaten zum <strong>Filtern/Gruppieren</strong> (z.B. <code>color=red</code>).</li>
-<li><strong>fields</strong> — die eigentlichen <strong>Messwerte</strong> (Zahlen), <em>nicht</em> indiziert.</li>
-<li><strong>timestamp</strong> — der Zeitpunkt (hier: Unix-Sekunden aus dem <code>time</code>-Feld der Anlage).</li>
+<li><strong>measurement:</strong> <em>was</em> gemessen wird (z.B. <code>dispenser</code>, <code>temperature</code>), wie eine Tabelle.</li>
+<li><strong>tags:</strong> indizierte <strong>String</strong>-Metadaten zum <strong>Filtern/Gruppieren</strong> (z.B. <code>color=red</code>).</li>
+<li><strong>fields:</strong> die eigentlichen <strong>Messwerte</strong> (Zahlen), <em>nicht</em> indiziert.</li>
+<li><strong>timestamp:</strong> der Zeitpunkt (hier: Unix-Sekunden aus dem <code>time</code>-Feld der Anlage).</li>
 </ul>
 <p>Für unsere Learning Factory sieht ein Punkt z.B. so aus:</p>
 <div class="lineprotocol">
@@ -202,30 +202,29 @@ typischer <strong>Warm Storage</strong> — schnell genug für Dashboards, dauer
 </div>
 
 <p class="lp-legend">
-<span class="lp-measurement">■</span> <strong>measurement</strong> — was gemessen wird&nbsp;&nbsp;&nbsp;
-<span class="lp-tag">■</span> <strong>tag</strong> — indiziert, zum Filtern/Gruppieren&nbsp;&nbsp;&nbsp;
-<span class="lp-field">■</span> <strong>field</strong> — die Messwerte (nicht indiziert)&nbsp;&nbsp;&nbsp;
-<span class="lp-timestamp">■</span> <strong>timestamp</strong> — der Zeitpunkt
+<span class="lp-measurement">■</span> <strong>measurement</strong>: was gemessen wird&nbsp;&nbsp;&nbsp;
+<span class="lp-tag">■</span> <strong>tag</strong>: indiziert, zum Filtern/Gruppieren&nbsp;&nbsp;&nbsp;
+<span class="lp-field">■</span> <strong>field</strong>: die Messwerte (nicht indiziert)&nbsp;&nbsp;&nbsp;
+<span class="lp-timestamp">■</span> <strong>timestamp</strong>: der Zeitpunkt
 </p>
 
 <blockquote>
 <p>Hinweis: Das InfluxDB-Feld <code>vibration_index</code> (Unterstrich) ist <strong>dasselbe Signal</strong> wie das
-<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="JavaScript Object Notation — leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Feld <code>vibration-index</code> (Bindestrich, siehe <a href="../7_Datenspeicherung/">Datenspeicherung</a>) —
-beim Schreiben in InfluxDB wird aus dem Bindestrich ein Unterstrich.</p>
+<abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-<abbr title="JavaScript Object Notation, leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr>-Feld <code>vibration-index</code> (Bindestrich, siehe <a href="../7_Datenspeicherung/">Datenspeicherung</a>).
+Beim Schreiben in InfluxDB wird aus dem Bindestrich ein Unterstrich.</p>
 </blockquote>
 <h3 id="die-wichtigste-design-regel-kardinalitat">Die wichtigste Design-Regel: Kardinalität</h3>
 <blockquote>
 <p><strong>Tags sind für niedrig-kardinale Werte, Felder für hoch-kardinale.</strong></p>
 </blockquote>
-<p>Jede <strong>eindeutige Kombination aus measurement + Tags</strong> erzeugt eine eigene <em>Serie</em>. Packt man
-einen Wert mit vielen verschiedenen Ausprägungen in einen <strong>Tag</strong>, explodiert die Anzahl der
-Serien (hohe <strong>Kardinalität</strong>) — und damit der Speicher-/RAM-Bedarf.</p>
-<p>Konkret bei uns: Die <strong><code>bottle</code>-ID</strong> ist für jede Flasche anders (hoch-kardinal). Sie gehört
-deshalb in ein <strong>Feld</strong>, nicht in einen Tag — sonst bekäme jede Flasche eine eigene Serie.
-Die <strong>Dispenser-Farbe</strong> dagegen kennt nur drei Werte (<code>red</code>/<code>blue</code>/<code>green</code>) und eignet sich
-perfekt als <strong>Tag</strong>.</p>
-<p><em>(Das passt zur Notiz auf der vorigen Seite, dass <code>bottle</code> ein String ist: hier wird sie als
-String-</em><em>Feld</em><em> abgelegt — Schlüssel, nicht Rechengröße.)</em></p>
+<p>Jede <strong>eindeutige Kombination aus measurement + Tags</strong> erzeugt eine eigene <em>Serie</em>. Steckt ein
+Wert mit vielen Ausprägungen in einem <strong>Tag</strong>, explodiert die Zahl der Serien (hohe
+<strong>Kardinalität</strong>) und damit der RAM-Bedarf.</p>
+<p>Konkret: Die <strong><code>bottle</code>-ID</strong> ist für jede Flasche anders (hoch-kardinal). Sie gehört in ein
+<strong>Feld</strong>, nicht in einen Tag, sonst bekäme jede Flasche eine eigene Serie. Die
+<strong>Dispenser-Farbe</strong> kennt nur drei Werte (<code>red</code>/<code>blue</code>/<code>green</code>) und eignet sich perfekt als <strong>Tag</strong>.</p>
+<p><em>(Passt zur vorigen Seite, wo <code>bottle</code> ein String ist: hier liegt sie als String-</em><em>Feld</em><em>,
+Schlüssel statt Rechengröße.)</em></p>
 <figure class="diagram">
 <img src="../images/cardinality.svg" alt="Kardinalität: der Tag color erzeugt nur drei Serien (niedrige Kardinalität, gut), der Tag bottle erzeugt tausende Serien (hohe Kardinalität, besser als Field)">
 <figcaption>Warum <code>color</code> ein Tag sein darf, <code>bottle</code> aber nicht: Jede Tag-Ausprägung erzeugt eine eigene Zeitreihe.</figcaption>
@@ -233,32 +232,29 @@ String-</em><em>Feld</em><em> abgelegt — Schlüssel, nicht Rechengröße.)</em
 
 <blockquote>
 <p>Hinweis: InfluxDB <strong>3</strong> hebt diese Kardinalitäts-Grenze technisch auf. Im Referenzaufbau läuft
-aber <strong>InfluxDB 2.x</strong>, wo die Regel klassisch gilt — und das Prinzip „Identifikatoren in
-Felder" ist auch sonst eine gute Angewohnheit.</p>
+aber <strong>InfluxDB 2.x</strong>, wo die Regel klassisch gilt. Das Prinzip „Identifikatoren in Felder" ist
+ohnehin eine gute Angewohnheit.</p>
 </blockquote>
 <hr />
-<h2 id="referenzarchitektur-mqtt-influxdb-grafana">Referenzarchitektur: <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> → InfluxDB → Grafana</h2>
+<h2 id="referenzarchitektur-mqtt-influxdb-grafana">Referenzarchitektur: <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> → InfluxDB → Grafana</h2>
 <figure class="diagram">
 <img src="../images/architecture_edge_stack.svg" alt="Referenzarchitektur: Simulator/Anlage und Studierende publizieren an den remote MQTT-Broker; auf dem Edge-Server laufen Collector, InfluxDB und Grafana als Docker-Container">
-<figcaption>Referenzarchitektur <code>MQTT → Collector → InfluxDB → Grafana</code>. Die Datenquelle ist nur über den Broker angebunden — wie eine echte Maschine vom Auswertesystem entkoppelt.</figcaption>
+<figcaption>Referenzarchitektur <code>MQTT → Collector → InfluxDB → Grafana</code>. Die Datenquelle ist nur über den Broker angebunden, wie eine echte Maschine vom Auswertesystem entkoppelt.</figcaption>
 </figure>
 
 <div class="highlight"><pre><span></span><code>Anlage / Simulator ──publish──► MQTT-Broker ──subscribe──► Collector ──► InfluxDB ──► Grafana
    (SPS, Sensoren)                                       (schreibt Points)  (TSDB)    (Dashboard)
 </code></pre></div>
 <ul>
-<li><strong><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>:</strong> verteilt die Nachrichten (vergisst sie aber — nur der letzte <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>-Wert bleibt).</li>
-<li><strong>Collector:</strong> abonniert die Topics und schreibt jeden Wert als Point in die <abbr title="Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>.</li>
+<li><strong><abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr>:</strong> verteilt die Nachrichten, vergisst sie aber (nur der letzte <abbr title="Broker speichert letzte Nachricht, neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>-Wert bleibt).</li>
+<li><strong>Collector:</strong> abonniert die Topics und schreibt jeden Wert als Point in die <abbr title="Time Series Database, Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr>.</li>
 <li><strong>InfluxDB:</strong> speichert die Zeitreihen dauerhaft.</li>
 <li><strong>Grafana:</strong> fragt InfluxDB ab und zeigt Live-Dashboards.</li>
 </ul>
-<p>Im Referenzaufbau laufen Collector, InfluxDB und Grafana als <strong>drei Docker-Container</strong> auf einem
-<strong>Edge-Server</strong>. In einer echten Anlage wäre das ein <strong>Industrie-PC bzw. Edge-Gateway</strong> im
-Schaltschrank oder Serverraum, und die Datenquelle wäre die <strong>Maschine selbst</strong> (<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> + Sensoren).
-Bei uns übernimmt <strong>ein einziger kompakter Rechner beide Rollen</strong> — er simuliert die Anlage
-<em>und</em> hostet den Stack. Entscheidend bleibt: der Simulator (die „Anlage") ist mit dem Stack
-<strong>nur über den <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr></strong> verbunden — genau wie eine echte Maschine vom Auswertesystem entkoppelt
-ist.</p>
+<p>Collector, InfluxDB und Grafana laufen als <strong>drei Docker-Container</strong> auf einem <strong>Edge-Server</strong>.
+In einer echten Anlage wäre das ein <strong>Industrie-PC bzw. Edge-Gateway</strong>, und die Datenquelle die
+<strong>Maschine selbst</strong> (<abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> + Sensoren). Bei uns übernimmt <strong>ein kompakter Rechner beide Rollen</strong>:
+Er simuliert die Anlage <em>und</em> hostet den Stack.</p>
 <div class="logo-strip">
 <img src="../images/docker-logo-ocean-blue.svg" alt="Docker">
 <img src="../images/influxdb.svg" alt="InfluxDB">
@@ -267,11 +263,11 @@ ist.</p>
 
 <h3 id="edge-computing-das-gateway-im-kleinen">Edge Computing: das Gateway im Kleinen</h3>
 <p>Der Edge-Server macht vor Ort, was in echten Anlagen ein <strong>Edge-Gateway</strong> tut: lokal <strong>sammeln,
-speichern und visualisieren</strong>, nah an der Maschine, 24/7 — ohne dass alle Rohdaten erst in die
+speichern und visualisieren</strong>, nah an der Maschine, 24/7, ohne dass alle Rohdaten erst in die
 Cloud müssen.</p>
 <hr />
 <h2 id="daten-abfragen-flux">Daten abfragen: Flux</h2>
-<p>InfluxDB 2.x wird mit der Abfragesprache <strong>Flux</strong> abgefragt — als Pipeline (<code>|&gt;</code>), ähnlich wie
+<p>InfluxDB 2.x wird mit der Abfragesprache <strong>Flux</strong> abgefragt: eine Pipeline (<code>|&gt;</code>), ähnlich wie
 man Daten in Pandas durch Schritte schiebt. Beispiel „Füllstand der letzten 15 Minuten, in
 30-Sekunden-Fenstern gemittelt":</p>
 <div class="highlight"><pre><span></span><code>from(bucket: &quot;learning_factory&quot;)
@@ -279,38 +275,42 @@ man Daten in Pandas durch Schritte schiebt. Beispiel „Füllstand der letzten 1
   |&gt; filter(fn: (r) =&gt; r._measurement == &quot;dispenser&quot; and r._field == &quot;fill_level_grams&quot;)
   |&gt; aggregateWindow(every: 30s, fn: mean, createEmpty: false)
 </code></pre></div>
-<p>Solche Aggregationen über Zeitfenster sind der Grund, warum eine <abbr title="Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr> hier mehr leistet als
-eine <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>: Man bekommt sie geschenkt, statt sie selbst zu programmieren.</p>
+<p>Solche Aggregationen über Zeitfenster sind der Grund, warum eine <abbr title="Time Series Database, Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr> hier mehr leistet als
+eine <abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>: Man bekommt sie geschenkt, statt sie selbst zu programmieren.</p>
 <hr />
 <h2 id="visualisierung-grafana">Visualisierung: Grafana</h2>
 <p><strong>Grafana</strong> ist der De-facto-Standard für Zeitreihen-Dashboards. Stärken im Industrieeinsatz:</p>
 <ul>
 <li><strong>Provisioning as Code:</strong> Datenquellen und Dashboards liegen als versionierte
-  Konfigurationsdateien im Repository — reproduzierbar statt „im Browser zusammengeklickt".</li>
+  Konfigurationsdateien im Repository, reproduzierbar statt „im Browser zusammengeklickt".</li>
 <li><strong>Template-Variablen:</strong> ein Dashboard für viele Anlagen/Linien, statt eines pro Maschine.</li>
 <li><strong>Alerting:</strong> Schwellwerte und Benachrichtigungen direkt auf den Live-Daten.</li>
 </ul>
-<p>Ein typisches <strong>„Learning Factory"-Dashboard</strong> kombiniert <strong>Status- und Kennzahl-Kacheln</strong>
-(Anlagenstatus, produzierte Flaschen, <strong>i.O./n.i.O.</strong>-Anteil, Ausschussquote, Durchsatz) mit
-<strong>Prozess-Zeitreihen</strong> (Füllstand je Dispenser, Temperatur, Endgewicht mit Kontrollgrenzen,
-Vibration) und einem <strong>Produktionslog</strong> je Flasche — alle live aus demselben Datenstrom, der in
-dieser Lehrveranstaltung über <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> hereinkommt.</p>
+<p>Ein typisches <strong>„Learning Factory"-Dashboard</strong> kombiniert drei Bausteine, alle live aus
+demselben <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Datenstrom:</p>
+<ul>
+<li><strong>Status- &amp; Kennzahl-Kacheln:</strong> Anlagenstatus, produzierte Flaschen, <strong>i.O./n.i.O.</strong>-Anteil,
+  Ausschussquote, Durchsatz.</li>
+<li><strong>Prozess-Zeitreihen:</strong> Füllstand je Dispenser, Temperatur, Endgewicht mit Kontrollgrenzen,
+  Vibration.</li>
+<li><strong>Produktionslog</strong> je Flasche.</li>
+</ul>
 <figure class="diagram">
 <img src="../images/grafana_learning_factory.png" alt="Grafana-Dashboard der Learning Factory auf dem Edge-Server: KPI-Kacheln (Anlagenstatus, produzierte Flaschen, i.O./n.i.O., Ausschussquote, Durchsatz), Füllstände je Dispenser, Temperatur, Endgewicht mit Kontrollgrenzen, Vibrationsüberwachung und ein Produktionslog">
-<figcaption>Das „Learning Factory"-Dashboard live auf dem Edge-Server: Anlagenstatus und Qualitäts-/Leistungskennzahlen (i.O./n.i.O., Ausschussquote, Durchsatz), Prozessgrößen und ein Produktionslog — alle aus <em>demselben</em> MQTT-Datenstrom abgeleitet.</figcaption>
+<figcaption>Das „Learning Factory"-Dashboard live auf dem Edge-Server: Anlagenstatus, Qualitäts- und Leistungskennzahlen (i.O./n.i.O., Ausschussquote, Durchsatz), Prozessgrößen und ein Produktionslog, alle aus <em>demselben</em> MQTT-Datenstrom abgeleitet.</figcaption>
 </figure>
 
 <hr />
-<h2 id="best-practices-was-wir-hier-bewusst-richtig-machen">Best Practices — was wir hier bewusst richtig machen</h2>
+<h2 id="best-practices-was-wir-hier-bewusst-richtig-machen">Best Practices: was wir hier bewusst richtig machen</h2>
 <ul>
-<li><strong><abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> nur auf Status/Config, nicht auf Telemetrie.</strong> Das <code>recipe</code>-Topic ist <em>retained</em>
-  (ein neuer Subscriber kennt sofort das aktuelle Rezept); die Messwerte sind es <strong>nicht</strong> —
-  sonst bekäme man einen alten Wert als „aktuell" untergeschoben. <em>(In der Kurs-Aufgabe 12.1.1
-  setzen wir <abbr title="Broker speichert letzte Nachricht — neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> bewusst auf </em><em>alle</em><em> Topics — so sind die Werte im <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer auch dann
-  sichtbar, wenn die <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> gerade nicht sendet. Das ist eine didaktische Vereinfachung; industriell
-  bliebe hochfrequente Telemetrie un-retained.)</em></li>
-<li><strong><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> passend wählen.</strong> <abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 0 (höchster Durchsatz) für unkritische, hochfrequente Telemetrie;
-  <abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 1 (mindestens einmal) für wichtige Ereignisse.</li>
+<li><strong><abbr title="Broker speichert letzte Nachricht, neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr> nur auf Status/Config, nicht auf Telemetrie.</strong> Das <code>recipe</code>-Topic ist <em>retained</em>
+  (ein neuer Subscriber kennt sofort das aktuelle Rezept), die Messwerte sind es <strong>nicht</strong>, sonst
+  bekäme man einen alten Wert als „aktuell" untergeschoben. <em>(In Aufgabe 12.1.1 setzen wir <abbr title="Broker speichert letzte Nachricht, neue Subscriber erhalten sie sofort nach dem Subscribe">Retain</abbr>
+  bewusst auf </em><em>alle</em><em> Topics, damit die Werte im <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Explorer auch dann sichtbar sind, wenn die
+  <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> gerade nicht sendet. Didaktische Vereinfachung; industriell bliebe hochfrequente Telemetrie
+  un-retained.)</em></li>
+<li><strong><abbr title="Quality of Service, Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> passend wählen.</strong> <abbr title="Quality of Service, Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 0 (höchster Durchsatz) für unkritische, hochfrequente Telemetrie;
+  <abbr title="Quality of Service, Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr> 1 (mindestens einmal) für wichtige Ereignisse.</li>
 <li><strong>Kardinalität im Griff behalten:</strong> Identifikatoren (<code>bottle</code>) in <strong>Felder</strong>, niedrig-kardinale
   Metadaten (<code>color</code>, <code>dispenser</code>) in <strong>Tags</strong>.</li>
 <li><strong>Ein measurement je Entitätstyp</strong> (<code>dispenser</code>, <code>temperature</code>, <code>final_weight</code>,
@@ -327,37 +327,32 @@ dieser Lehrveranstaltung über <abbr title="Message Queuing Telemetry Transport 
 </div>
 
 <ul>
-<li><strong>TF6701 – TwinCAT 3 IoT Communication (<abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>):</strong> der Funktionsbaustein
-  <strong><code>FB_IotMqttClient</code></strong> publiziert Laufzeitvariablen direkt aus der Steuerung per <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> — mit
-  Wahl von <strong><abbr title="Quality of Service — Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr></strong> und Payload und <strong><abbr title="Transport Layer Security — Verschlüsselungsprotokoll, Nachfolger von SSL">TLS</abbr></strong>-Absicherung. Das ist genau die Brücke, die auf der
-  Seite <a href="../6_TwinCAT_MQTT/">TwinCAT <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</a> gezeigt wird.</li>
-<li><strong>Beckhoff empfiehlt selbst InfluxDB + Grafana</strong> zur Archivierung und Visualisierung der so
-  gesendeten Daten — unsere Stack-Wahl ist also kein Zufall, sondern der dort vorgeschlagene Weg.</li>
-<li><strong>Native Alternativen</strong> (falls jemand fragt „warum nicht alles bei Beckhoff?"):
-  <strong>TF6420</strong> (Database Server) und <strong>TwinCAT Analytics</strong> decken Speicherung/Auswertung
-  innerhalb des Beckhoff-Ökosystems ab.</li>
+<li><strong>TF6701 – TwinCAT 3 IoT Communication (<abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>):</strong> der Baustein <strong><code>FB_IotMqttClient</code></strong> publiziert
+  Laufzeitvariablen direkt aus der <abbr title="Speicherprogrammierbare Steuerung (englisch: PLC)">SPS</abbr> per <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> (mit <strong><abbr title="Quality of Service, Zustellungsgarantie (0=AtMostOnce, 1=AtLeastOnce, 2=ExactlyOnce)">QoS</abbr></strong>, Payload und <strong><abbr title="Transport Layer Security, Verschlüsselungsprotokoll, Nachfolger von SSL">TLS</abbr></strong>). Das ist die
+  Brücke von der Seite <a href="../6_TwinCAT_MQTT/">TwinCAT <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Client</a>.</li>
+<li><strong>Beckhoff empfiehlt selbst InfluxDB + Grafana</strong> zur Archivierung und Visualisierung. Unsere
+  Stack-Wahl ist also kein Zufall.</li>
+<li><strong>Native Alternativen:</strong> <strong>TF6420</strong> (Database Server) und <strong>TwinCAT Analytics</strong> decken
+  Speicherung/Auswertung im Beckhoff-Ökosystem ab.</li>
 </ul>
 <hr />
 <h2 id="wo-die-industrie-hingeht">Wo die Industrie hingeht</h2>
 <ul>
-<li><strong><abbr title="Telegraf + InfluxDB + Grafana — gängige IIoT-Datenpipeline (sammeln, speichern, visualisieren)">TIG</abbr>-Stack &amp; Telegraf:</strong> Der verbreitetste Aufbau heißt <strong><abbr title="Telegraf + InfluxDB + Grafana — gängige IIoT-Datenpipeline (sammeln, speichern, visualisieren)">TIG</abbr></strong> = <em>Telegraf + InfluxDB +
-  Grafana</em>. <strong>Telegraf</strong> ist ein <strong>konfigurierbarer Collector ohne eigenen Code</strong> (Plugins für
-  <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>, OPC UA, Modbus …). Unser Python-Writer ist die <em>transparente Lehr-Variante</em>; in
-  Produktion ersetzt oft eine Telegraf-Konfiguration den Code.</li>
-<li><strong>Unified Namespace (<abbr title="Unified Namespace — zentraler Broker als Single Source of Truth mit semantischem Topic-Baum">UNS</abbr>):</strong> ein <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> als „Single Source of Truth" mit semantisch
-  geordnetem Topic-Baum (Enterprise → Site → Area → Line → Cell). Unser
-  <code>aut/SoSe26/learning_factory_simulation/…</code> ist ein <strong>Mini-<abbr title="Unified Namespace — zentraler Broker als Single Source of Truth mit semantischem Topic-Baum">UNS</abbr></strong>.</li>
-<li><strong>Sparkplug B:</strong> eine Spezifikation über <abbr title="Message Queuing Telemetry Transport — leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr> mit standardisiertem Namespace,
-  <strong>Protobuf</strong>-Payloads, Geburts-/Todes-Zertifikaten der Geräte (Zustandsbewusstsein) und
-  Store-and-Forward — für große, herstellerübergreifende Anlagen.</li>
+<li><strong><abbr title="Telegraf + InfluxDB + Grafana, gängige IIoT-Datenpipeline (sammeln, speichern, visualisieren)">TIG</abbr>-Stack &amp; Telegraf:</strong> der verbreitetste Aufbau ist <strong><abbr title="Telegraf + InfluxDB + Grafana, gängige IIoT-Datenpipeline (sammeln, speichern, visualisieren)">TIG</abbr></strong> = <em>Telegraf + InfluxDB +
+  Grafana</em>. <strong>Telegraf</strong> ist ein konfigurierbarer Collector ohne eigenen Code (Plugins für <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>,
+  OPC UA, Modbus). Unser Python-Writer ist die transparente Lehr-Variante.</li>
+<li><strong>Unified Namespace (<abbr title="Unified Namespace, zentraler Broker als Single Source of Truth mit semantischem Topic-Baum">UNS</abbr>):</strong> ein <abbr title="Zentraler MQTT-Server, der Nachrichten zwischen Publishern und Subscribern verteilt">Broker</abbr> als „Single Source of Truth" mit semantischem
+  Topic-Baum (Enterprise → Site → Area → Line → Cell). Unser
+  <code>aut/SoSe26/learning_factory_simulation/…</code> ist ein <strong>Mini-<abbr title="Unified Namespace, zentraler Broker als Single Source of Truth mit semantischem Topic-Baum">UNS</abbr></strong>.</li>
+<li><strong>Sparkplug B:</strong> <abbr title="Message Queuing Telemetry Transport, leichtgewichtiges Publish/Subscribe-Protokoll für IIoT">MQTT</abbr>-Spezifikation mit standardisiertem Namespace, <strong>Protobuf</strong>-Payloads,
+  Geräte-Zustandsbewusstsein und Store-and-Forward, für große herstellerübergreifende Anlagen.</li>
 </ul>
 <hr />
 <h2 id="bezug-zur-aufgabe-1212">Bezug zur Aufgabe 12.1.2</h2>
-<p>InfluxDB ist eine der genannten <strong>Bonus-Datenbanken</strong>, Grafana eine der <strong>Bonus-Dashboard</strong>-
-Optionen. <strong>Für die meisten reicht <abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> + Live-Plot</strong> — dieser Stack ist das „obere Ende /
-was die Industrie real einsetzt". Wer ihn ausprobiert, sieht denselben Datenstrom einmal
-ganz unten (<abbr title="Comma-Separated Values — einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>) und einmal ganz oben (<abbr title="Time Series Database — Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr> + Grafana) — und versteht, <em>warum</em> es die
-spezialisierten Werkzeuge gibt.</p>
+<p>InfluxDB ist eine der <strong>Bonus-Datenbanken</strong>, Grafana eine der <strong>Bonus-Dashboard</strong>-Optionen.
+<strong>Für die meisten reicht <abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr> + Live-Plot.</strong> Dieser Stack ist das obere Ende, das die Industrie
+real einsetzt. Wer ihn ausprobiert, sieht denselben Datenstrom einmal ganz unten (<abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>) und einmal
+ganz oben (<abbr title="Time Series Database, Zeitreihen-Datenbank, optimiert für zeit-indizierte Messdaten (z.B. InfluxDB)">TSDB</abbr> + Grafana) und versteht, <em>warum</em> es die spezialisierten Werkzeuge gibt.</p>
               
             </div>
           </div><footer>
