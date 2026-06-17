@@ -85,6 +85,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#wohin-fuhrt-das">Wohin führt das?</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#containerisierung-mit-docker-kurs-bonus">Containerisierung mit Docker (Kurs-Bonus)</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../7_1_Zeitreihen_und_Visualisierung/">Zeitreihen & Visualisierung</a>
@@ -96,9 +98,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Starter_12_3/">Aufgabe 12.3: Regressionsmodell fuer Endgewicht</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Starter_12_4/">Aufgabe 12.4: Klassifikationsmodell fuer defekte Flaschen</a>
                   </li>
               </ul>
       </div>
@@ -404,6 +410,37 @@ ist die Grundlage der beiden folgenden Themen.</p>
 </ul>
 <p>Deshalb lohnt es sich, die Struktur (siehe die Datenbedarf-Tabellen oben) <strong>von Anfang an</strong> für
 diese Analysen mitzudenken, nicht nur für das Dashboard von heute.</p>
+<hr />
+<h2 id="containerisierung-mit-docker-kurs-bonus">Containerisierung mit Docker (Kurs-Bonus)</h2>
+<p>Wer für den Bonus (InfluxDB + Grafana) auf den Docker-Weg geht, braucht eine Grundidee von Containern.</p>
+<p>Ein <strong>Container</strong> bündelt eine Anwendung mit allem, was sie braucht: Laufzeit, Bibliotheken, Konfiguration. Er bringt kein eigenes Betriebssystem mit, sondern teilt den Kernel des Host-Systems. Auf einem Rechner können mehrere Container parallel laufen, jeder isoliert vom anderen.</p>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Image</strong></td>
+<td>unveränderliche Vorlage, z.B. <code>influxdb:2.7</code></td>
+</tr>
+<tr>
+<td><strong>Container</strong></td>
+<td>laufende Instanz eines Image</td>
+</tr>
+<tr>
+<td><strong>docker compose</strong></td>
+<td>startet mehrere Container gemeinsam, z.B. InfluxDB + Grafana</td>
+</tr>
+</tbody>
+</table>
+<p>Warum im <abbr title="Industrial Internet of Things, Vernetzung industrieller Geräte über das Internet">IIoT</abbr>? Ein Edge-Server soll zuverlässig genau das ausführen, was man lokal entwickelt hat: keine Abhängigkeiten von der System-Python-Version, kein „funktioniert nur auf meinem Rechner". Docker löst dieses Deployment-Problem und ist deshalb auf industriellen Edge-Geräten weit verbreitet.</p>
+<blockquote>
+<p>Einstieg: Julian Hubers Seite zum Thema Cloud und Container unter
+<a href="https://jhumci.github.io/2023_WiSe_IoT2/IoT_7_Cloud/">https://jhumci.github.io/2023_WiSe_IoT2/IoT_7_Cloud/</a></p>
+</blockquote>
               
             </div>
           </div><footer>
