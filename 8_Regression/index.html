@@ -86,13 +86,9 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../Starter_12_3/">Aufgabe 12.3: Regressionsmodell fuer Endgewicht</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../Starter_12_4/">Aufgabe 12.4: Klassifikationsmodell fuer defekte Flaschen</a>
                   </li>
               </ul>
       </div>
@@ -126,11 +122,11 @@
 <ul>
 <li><code>fill_level_grams_red</code>, <code>fill_level_grams_blue</code>, <code>fill_level_grams_green</code></li>
 <li><code>vibration_index_red</code>, <code>vibration_index_blue</code>, <code>vibration_index_green</code></li>
-<li><code>temperature_C_red</code>, <code>temperature_C_blue</code>, <code>temperature_C_green</code></li>
+<li><code>temperature_red</code>, <code>temperature_blue</code>, <code>temperature_green</code></li>
 </ul>
 <p>Die Frage: Koennen wir damit das Endgewicht abschaetzen, bevor die Flasche die Waage erreicht?</p>
 <h2 id="lineare-regression">Lineare Regression</h2>
-<p><strong>Lineare Regression</strong> ist eine Form des supervised Machine Learning: das Modell braucht einen Datensatz, in dem das Ergebnis (<code>final_weight_grams</code>) bereits bekannt ist. Aus diesen gelabelten Daten lernt es eine Formel:</p>
+<p><strong>Lineare Regression</strong> ist eine Form des supervised Machine Learning: das Modell braucht einen Datensatz, in dem das Ergebnis (<code>final_weight</code>) bereits bekannt ist. Aus diesen gelabelten Daten lernt es eine Formel:</p>
 <div class="highlight"><pre><span></span><code>y_hat = w1 * fill_red + w2 * fill_blue + ... + w9 * temp_green + b
 </code></pre></div>
 <p><strong>Welche Features koennen genutzt werden?</strong></p>
@@ -278,8 +274,8 @@ MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer 
 <td>0.5</td>
 </tr>
 <tr>
-<td>[<code>fill_level_grams_red</code>, <code>vibration_index_red</code>, <code>temperature_C_red</code>]</td>
-<td>Polynomial</td>
+<td>[<code>fill_level_grams_red</code>, <code>vibration_index_red</code>, <code>temperature_red</code>]</td>
+<td>Linear</td>
 <td>0.3</td>
 <td>0.45</td>
 </tr>
@@ -287,6 +283,7 @@ MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer 
 </table>
 <ul>
 <li>Schreiben Sie die Formel fuer das beste lineare Regressionsmodell in der Form <span class="arithmatex">\(y = mx + b\)</span> inkl. der Parameter.</li>
+<li>Trainiert wird auf den eigenen in 12.1.2 gesammelten Daten. <code>X.csv</code> ist das gemeinsame Prognose-Datenset ohne <code>final_weight</code>.</li>
 <li>Machen Sie eine Prognose fuer das folgende Datenset <a href="../X.csv"><code>X.csv</code></a> mit Ihrem besten Modell.</li>
 <li>Als Orientierung kann folgendes Notebook dienen <a href="../8_Regression_Python/">8_Regression_Python.ipynb</a>, welches auch im naechsten Abschnitt vorgestellt wird.</li>
 <li>Speichern Sie die Prognose in einer <abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei <code>reg_&lt;Gruppe&gt;.csv</code> und dokumentieren Sie Ihre Ergebnisse in der Markdown-Datei.</li>
