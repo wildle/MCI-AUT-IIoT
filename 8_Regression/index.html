@@ -80,7 +80,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#lineare-regression-in-python">Lineare Regression in Python</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-123-20-regressionsmodell-fuer-endgewicht">Aufgabe 12.3 (20%): Regressionsmodell fuer Endgewicht</a>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-123-20-regressionsmodell-fur-endgewicht">Aufgabe 12.3 (20%): Regressionsmodell für Endgewicht</a>
     </li>
     </ul>
                   </li>
@@ -124,26 +124,26 @@
 <li><code>vibration_index_red</code>, <code>vibration_index_blue</code>, <code>vibration_index_green</code></li>
 <li><code>temperature_red</code>, <code>temperature_blue</code>, <code>temperature_green</code></li>
 </ul>
-<p>Die Frage: Koennen wir damit das Endgewicht abschaetzen, bevor die Flasche die Waage erreicht?</p>
+<p>Die Frage: Können wir damit das Endgewicht abschätzen, bevor die Flasche die Waage erreicht?</p>
 <h2 id="lineare-regression">Lineare Regression</h2>
 <p><strong>Lineare Regression</strong> ist eine Form des supervised Machine Learning: das Modell braucht einen Datensatz, in dem das Ergebnis (<code>final_weight</code>) bereits bekannt ist. Aus diesen gelabelten Daten lernt es eine Formel:</p>
 <div class="highlight"><pre><span></span><code>y_hat = w1 * fill_red + w2 * fill_blue + ... + w9 * temp_green + b
 </code></pre></div>
-<p><strong>Welche Features koennen genutzt werden?</strong></p>
+<p><strong>Welche Features können genutzt werden?</strong></p>
 <ul>
 <li>Alle 9 Sensorspalten sind <strong>kontinuierliche Zahlen</strong> und direkt nutzbar.</li>
-<li>Kategorische Merkmale wie <code>color</code> oder <code>dispenser_id</code> haben <strong>keine natuerliche Zahlenreihenfolge</strong> und koennen nicht direkt genutzt werden.</li>
+<li>Kategorische Merkmale wie <code>color</code> oder <code>dispenser_id</code> haben <strong>keine natürliche Zahlenreihenfolge</strong> und können nicht direkt genutzt werden.</li>
 </ul>
 <p><strong>Was passiert beim Training?</strong>
-Das Modell sucht die Gewichte w1 bis w9 und den Bias b, bei denen die Vorhersagen moeglichst nah am echten Endgewicht liegen. Bei linearer Regression gibt es dafuer eine <strong>exakte mathematische Loesung</strong>, kein iteratives Suchen noetig.</p>
-<p><img alt="Parametrisches Modell: Lernflaeche ueber Eingabedaten" src="../images/parametricModel.png" /></p>
+Das Modell sucht die Gewichte w1 bis w9 und den Bias b, bei denen die Vorhersagen möglichst nah am echten Endgewicht liegen. Bei linearer Regression gibt es dafür eine <strong>exakte mathematische Lösung</strong>, kein iteratives Suchen nötig.</p>
+<p><img alt="Parametrisches Modell: Lernfläche über Eingabedaten" src="../images/parametricModel.png" /></p>
 <p><strong>Wie liest man die Koeffizienten?</strong></p>
 <ul>
-<li><code>w_fill_red = 0.82</code>: 1 g mehr Fuellstand im roten Kanal = 0.82 g mehr Endgewicht. Direkt physikalisch interpretierbar.</li>
-<li><strong>Negative Gewichte</strong> sind moeglich und kein Fehler: Wenn zwei Features stark korrelieren (z.B. Fuellstand rot und blau), kann das Modell einem positives, dem anderen negatives Gewicht geben.</li>
+<li><code>w_fill_red = 0.82</code>: 1 g mehr Füllstand im roten Kanal = 0.82 g mehr Endgewicht. Direkt physikalisch interpretierbar.</li>
+<li><strong>Negative Gewichte</strong> sind möglich und kein Fehler: Wenn zwei Features stark korrelieren (z.B. Füllstand rot und blau), kann das Modell einem positives, dem anderen negatives Gewicht geben.</li>
 </ul>
 <h2 id="training-testing">Training &amp; Testing</h2>
-<p>Wir haben <strong>268 Flaschen</strong> in <code>learning_factory_dataset.csv</code>. Diese werden zufaellig aufgeteilt:</p>
+<p>Wir haben <strong>268 Flaschen</strong> in <code>learning_factory_dataset.csv</code>. Diese werden zufällig aufgeteilt:</p>
 <table>
 <thead>
 <tr>
@@ -168,18 +168,18 @@ Das Modell sucht die Gewichte w1 bis w9 und den Bias b, bei denen die Vorhersage
 <div class="highlight"><pre><span></span><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </code></pre></div>
 <ul>
-<li><strong><code>random_state=42</code></strong>: sorgt fuer Reproduzierbarkeit, jeder bekommt dieselbe Aufteilung.</li>
-<li><strong>Warum der Split?</strong> Das Modell koennte die Trainingsdaten auswendig lernen. Die Testdaten simulieren neue, ungesehene Flaschen.</li>
+<li><strong><code>random_state=42</code></strong>: sorgt für Reproduzierbarkeit, jeder bekommt dieselbe Aufteilung.</li>
+<li><strong>Warum der Split?</strong> Das Modell könnte die Trainingsdaten auswendig lernen. Die Testdaten simulieren neue, ungesehene Flaschen.</li>
 </ul>
 <p><img alt="Aufteilung in Trainings- und Testdaten" src="../images/Train-Test-Data-Split_W640.jpg" /></p>
 <h2 id="mean-square-error-mse">Mean Square Error (MSE)</h2>
-<p>Fuer jede Flasche wird die Differenz zwischen Vorhersage und echtem Wert berechnet, quadriert und ueber alle Flaschen gemittelt.</p>
+<p>Für jede Flasche wird die Differenz zwischen Vorhersage und echtem Wert berechnet, quadriert und über alle Flaschen gemittelt.</p>
 <div class="arithmatex">\[MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2\]</div>
-<p><strong>Warum quadrieren?</strong> Damit sich positive und negative Fehler nicht gegenseitig aufheben. +50 g und -50 g wuerden sich zu 0 mitteln, obwohl das Modell weit daneben liegt.</p>
+<p><strong>Warum quadrieren?</strong> Damit sich positive und negative Fehler nicht gegenseitig aufheben. +50 g und -50 g würden sich zu 0 mitteln, obwohl das Modell weit daneben liegt.</p>
 <p><strong>RMSE:</strong> Wurzel aus dem MSE, um eine intuitive Zahl in Gramm zu erhalten.</p>
 <blockquote>
 <p><strong>Warum MSE und nicht mittlerer absoluter Fehler?</strong>
-MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer Waage am Band, wo 200 g Fehler viel schlimmer ist als zehn mal 20 g Fehler, ist MSE sinnvoller.</p>
+MAE gewichtet alle Fehler gleich. MSE bestraft große Fehler stärker. An einer Waage am Band, wo 200 g Fehler viel schlimmer ist als zehn mal 20 g Fehler, ist MSE sinnvoller.</p>
 </blockquote>
 <h2 id="overfitting">Overfitting</h2>
 <p><strong>Overfitting</strong> bedeutet: das Modell hat die Trainingsdaten auswendig gelernt, kann aber neue Flaschen nicht vorhersagen.</p>
@@ -202,14 +202,14 @@ MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer 
 </tr>
 </tbody>
 </table>
-<p>Auf den Trainingsdaten wirkt es sehr gut. Auf den 54 Testflaschen ist es weit daneben. Das Modell hat sich an Zufaelligkeiten der Trainingsdaten angepasst, die bei neuen Flaschen nicht vorkommen.</p>
+<p>Auf den Trainingsdaten wirkt es sehr gut. Auf den 54 Testflaschen ist es weit daneben. Das Modell hat sich an Zufälligkeiten der Trainingsdaten angepasst, die bei neuen Flaschen nicht vorkommen.</p>
 <p><img alt="Overfitting: Modell passt sich zu stark an Trainingsdaten an" src="../images/overfitting.png" /></p>
 <ul>
 <li>Bei linearer Regression mit wenigen Features ist Overfitting selten ein Problem.</li>
 <li><strong>Kontrolle:</strong> Train-MSE und Test-MSE liegen nah beieinander = Modell hat wirklich etwas gelernt.</li>
 </ul>
 <h2 id="feature-selection">Feature Selection</h2>
-<p>Nicht jeder Sensor erklaert gleich viel. Drei Sets zum Vergleich:</p>
+<p>Nicht jeder Sensor erklärt gleich viel. Drei Sets zum Vergleich:</p>
 <table>
 <thead>
 <tr>
@@ -221,12 +221,12 @@ MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer 
 <tbody>
 <tr>
 <td><strong>A</strong></td>
-<td>Nur Fuellstaende</td>
+<td>Nur Füllstände</td>
 <td>3</td>
 </tr>
 <tr>
 <td><strong>B</strong></td>
-<td>Fuellstaende + Vibrationsindex</td>
+<td>Füllstände + Vibrationsindex</td>
 <td>6</td>
 </tr>
 <tr>
@@ -238,18 +238,18 @@ MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer 
 </table>
 <p>Dasselbe Modell wird auf jedem Set trainiert, dann wird der <strong>Test-MSE verglichen</strong>. Das Ergebnis entscheidet, nicht die Intuition.</p>
 <ul>
-<li><strong>Warum hilft Temperatur vermutlich kaum?</strong> Ueber eine 20-minuetige Aufnahme aendert sie sich kaum. Fast keine Varianz = fast keine Erklaerungskraft.</li>
-<li><strong>Fuellstand</strong> fliesst direkt physikalisch ins Gewicht ein. <strong>Vibration</strong> beschreibt den Befuellprozess und korreliert vermutlich auch.</li>
+<li><strong>Warum hilft Temperatur vermutlich kaum?</strong> Über eine 20-minütige Aufnahme ändert sie sich kaum. Fast keine Varianz = fast keine Erklärungskraft.</li>
+<li><strong>Füllstand</strong> fließt direkt physikalisch ins Gewicht ein. <strong>Vibration</strong> beschreibt den Befüllprozess und korreliert vermutlich auch.</li>
 <li><strong>Mehr Features bedeutet nicht automatisch besseres Modell.</strong> Wenn Set C denselben Test-MSE hat wie Set B, nimmt man Set B, weil es einfacher und interpretierbarer ist.</li>
 </ul>
 <h2 id="lineare-regression-in-python">Lineare Regression in Python</h2>
-<p>Siehe Jupyter Notebook im naechsten Abschnitt. Wir verwenden die Python-Bibliothek <code>scikit-learn</code>.</p>
+<p>Siehe Jupyter Notebook im nächsten Abschnitt. Wir verwenden die Python-Bibliothek <code>scikit-learn</code>.</p>
 <hr />
-<h2 id="aufgabe-123-20-regressionsmodell-fuer-endgewicht">Aufgabe 12.3 (20%): Regressionsmodell fuer Endgewicht</h2>
+<h2 id="aufgabe-123-20-regressionsmodell-fur-endgewicht">Aufgabe 12.3 (20%): Regressionsmodell für Endgewicht</h2>
 <ul>
-<li><strong>Abgabeformalien:</strong> Fuegen Sie ein Kapitel in Ihrer Dokumentation hinzu und geben Sie die Datei <code>reg_&lt;Gruppe&gt;.csv</code> mit ab.</li>
+<li><strong>Abgabeformalien:</strong> Fügen Sie ein Kapitel in Ihrer Dokumentation hinzu und geben Sie die Datei <code>reg_&lt;Gruppe&gt;.csv</code> mit ab.</li>
 <li>Erstellen Sie ein lineares Regressionsmodell zur Vorhersage des Endgewichts anhand aller sinnvollen Daten.</li>
-<li>Erstellen Sie fuer Ihren Report eine Tabelle, welche die genutzten Spalten (<code>X</code>) fuer die Vorhersage (<code>y</code>) enthaelt und den MSE-Wert fuer die jeweiligen Spalten.</li>
+<li>Erstellen Sie für Ihren Report eine Tabelle, welche die genutzten Spalten (<code>X</code>) für die Vorhersage (<code>y</code>) enthält und den MSE-Wert für die jeweiligen Spalten.</li>
 </ul>
 <table>
 <thead>
@@ -282,10 +282,10 @@ MAE gewichtet alle Fehler gleich. MSE bestraft grosse Fehler staerker. An einer 
 </tbody>
 </table>
 <ul>
-<li>Schreiben Sie die Formel fuer das beste lineare Regressionsmodell in der Form <span class="arithmatex">\(y = mx + b\)</span> inkl. der Parameter.</li>
+<li>Schreiben Sie die Formel für das beste lineare Regressionsmodell in der Form <span class="arithmatex">\(y = mx + b\)</span> inkl. der Parameter.</li>
 <li>Trainiert wird auf den eigenen in 12.1.2 gesammelten Daten. <code>X.csv</code> ist das gemeinsame Prognose-Datenset ohne <code>final_weight</code>.</li>
-<li>Machen Sie eine Prognose fuer das folgende Datenset <a href="../X.csv"><code>X.csv</code></a> mit Ihrem besten Modell.</li>
-<li>Als Orientierung kann folgendes Notebook dienen <a href="../8_Regression_Python/">8_Regression_Python.ipynb</a>, welches auch im naechsten Abschnitt vorgestellt wird.</li>
+<li>Machen Sie eine Prognose für das folgende Datenset <a href="../X.csv"><code>X.csv</code></a> mit Ihrem besten Modell.</li>
+<li>Als Orientierung kann folgendes Notebook dienen <a href="../8_Regression_Python/">8_Regression_Python.ipynb</a>, welches auch im nächsten Abschnitt vorgestellt wird.</li>
 <li>Speichern Sie die Prognose in einer <abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>-Datei <code>reg_&lt;Gruppe&gt;.csv</code> und dokumentieren Sie Ihre Ergebnisse in der Markdown-Datei.</li>
 </ul>
 <div class="highlight"><pre><span></span><code>Flaschen ID, y_hat
