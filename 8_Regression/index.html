@@ -71,14 +71,24 @@
     <li class="toctree-l2"><a class="reference internal" href="#regression">Regression</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#lineare-regression">Lineare Regression</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#matrix-darstellung">Matrix-Darstellung</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parametrische-und-nicht-parametrische-modelle">Parametrische und nicht-parametrische Modelle</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#training-testing">Training &amp; Testing</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#mean-square-error-mse">Mean Square Error (MSE)</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modell-flexibilitat-zu-einfach-passend-zu-flexibel">Modell-Flexibilität: zu einfach, passend, zu flexibel</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#overfitting">Overfitting</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#feature-selection">Feature Selection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#alternative-regressionsmodelle">Alternative Regressionsmodelle</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#lineare-regression-in-python">Lineare Regression in Python</a>
     </li>
@@ -144,6 +154,38 @@ Das Modell sucht die Gewichte w1 bis w9 und den Bias b, bei denen die Vorhersage
 <li><code>w_fill_red = 0.82</code>: 1 g mehr Füllstand im roten Kanal = 0.82 g mehr Endgewicht. Direkt physikalisch interpretierbar.</li>
 <li><strong>Negative Gewichte</strong> sind möglich und kein Fehler: Wenn zwei Features stark korrelieren (z.B. Füllstand rot und blau), kann das Modell einem positives, dem anderen negatives Gewicht geben.</li>
 </ul>
+<h3 id="matrix-darstellung">Matrix-Darstellung</h3>
+<p>Die neun Gewichte und den Bias schreibt man kompakt als Vektor <span class="arithmatex">\(\beta\)</span>, die Sensorwerte aller Flaschen als Matrix <span class="arithmatex">\(X\)</span>. Die Vorhersage ist dann ein einziges Matrixprodukt:</p>
+<div class="arithmatex">\[\hat{Y} = X \cdot \beta\]</div>
+<ul>
+<li>Jede <strong>Zeile</strong> von <span class="arithmatex">\(X\)</span> ist eine <strong>Flasche</strong>, jede <strong>Spalte</strong> ein <strong>Feature</strong>.</li>
+<li>Die erste Spalte ist konstant <span class="arithmatex">\(1\)</span>, damit <span class="arithmatex">\(\beta_0\)</span> als <strong>Bias</strong> wirkt.</li>
+<li><span class="arithmatex">\(\beta\)</span> enthält die Gewichte, die das <strong>Training</strong> bestimmt.</li>
+</ul>
+<div class="arithmatex">\[
+X \cdot \beta =
+\begin{bmatrix}
+1 &amp; x_{1,1} &amp; \cdots &amp; x_{1,9} \\
+1 &amp; x_{2,1} &amp; \cdots &amp; x_{2,9} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{n,1} &amp; \cdots &amp; x_{n,9}
+\end{bmatrix}
+\begin{bmatrix}
+\beta_0 \\ \beta_1 \\ \vdots \\ \beta_9
+\end{bmatrix}
+=
+\begin{bmatrix}
+\hat{y}_1 \\ \hat{y}_2 \\ \vdots \\ \hat{y}_n
+\end{bmatrix}
+\]</div>
+<p>So rechnet scikit-learn intern mit allen Flaschen gleichzeitig.</p>
+<h2 id="parametrische-und-nicht-parametrische-modelle">Parametrische und nicht-parametrische Modelle</h2>
+<ul>
+<li><strong>Parametrisch:</strong> die Funktionsform steht fest (hier eine Gerade bzw. Ebene), nur die Parameter <span class="arithmatex">\(\beta\)</span> werden angepasst. Wenige Parameter, <strong>gut interpretierbar</strong>, aber unflexibel.</li>
+<li><strong>Nicht-parametrisch:</strong> keine feste Form, das Modell legt sich frei nah an die Datenpunkte. <strong>Flexibler</strong>, aber schwerer zu interpretieren und anfälliger für Overfitting.</li>
+</ul>
+<p><img alt="Nicht-parametrisches Modell: frei an die Daten angepasst" src="../images/non-parametricModel.png" width="420" /></p>
+<p>Lineare Regression ist <strong>parametrisch</strong> (das Modellbild oben). Dadurch sind die Koeffizienten direkt lesbar, wir tauschen etwas Flexibilität gegen <strong>Interpretierbarkeit</strong>.</p>
 <h2 id="training-testing">Training &amp; Testing</h2>
 <p>Wir haben <strong>268 Flaschen</strong> in <code>learning_factory_dataset.csv</code>. Diese werden zufällig aufgeteilt:</p>
 <table>
@@ -183,6 +225,18 @@ Das Modell sucht die Gewichte w1 bis w9 und den Bias b, bei denen die Vorhersage
 <p><strong>Warum MSE und nicht mittlerer absoluter Fehler?</strong>
 MAE gewichtet alle Fehler gleich. MSE bestraft große Fehler stärker. An einer Waage am Band, wo 200 g Fehler viel schlimmer ist als zehn mal 20 g Fehler, ist MSE sinnvoller.</p>
 </blockquote>
+<h2 id="modell-flexibilitat-zu-einfach-passend-zu-flexibel">Modell-Flexibilität: zu einfach, passend, zu flexibel</h2>
+<p>Wie flexibel ein Modell ist, hängt an der Zahl seiner Parameter. Dasselbe Problem in drei Stufen (schwarz: Vorhersage, rot: Trainingsdaten, blau: Testdaten):</p>
+<p><strong>Zu einfach (Underfitting):</strong> nur ein Parameter, die Vorhersage ist der Mittelwert.</p>
+<div class="arithmatex">\[f_{\text{gering}}(x) = \beta_0\]</div>
+<p><img alt="Modell mit geringer Flexibilität" src="../images/Simple_Model.png" width="440" /></p>
+<p><strong>Passend:</strong> eine Gerade, gute Anpassung auf Trainings- und Testdaten.</p>
+<div class="arithmatex">\[f_{\text{mittel}}(x) = \beta_0 + \beta_1 x\]</div>
+<p><img alt="Modell mit mittlerer Flexibilität" src="../images/middle_model.png" width="440" /></p>
+<p><strong>Zu flexibel (Overfitting):</strong> ein Polynom trifft jeden Trainingspunkt, versagt aber auf den Testdaten.</p>
+<div class="arithmatex">\[f_{\text{hoch}}(x) = \beta_0 + \beta_1 x + \beta_2 x^2\]</div>
+<p><img alt="Modell mit hoher Flexibilität" src="../images/flexible_model.png" width="440" /></p>
+<p>Gesucht ist die <strong>mittlere</strong> Stufe: flexibel genug für den Zusammenhang, aber nicht so flexibel, dass das Modell die Trainingsdaten auswendig lernt.</p>
 <h2 id="overfitting">Overfitting</h2>
 <p><strong>Overfitting</strong> bedeutet: das Modell hat die Trainingsdaten auswendig gelernt, kann aber neue Flaschen nicht vorhersagen.</p>
 <p>Konkretes Beispiel:</p>
@@ -244,6 +298,14 @@ MAE gewichtet alle Fehler gleich. MSE bestraft große Fehler stärker. An einer 
 <li><strong>Füllstand</strong> fließt direkt physikalisch ins Gewicht ein. <strong>Vibration</strong> beschreibt den Befüllprozess und korreliert vermutlich auch.</li>
 <li><strong>Mehr Features bedeutet nicht automatisch besseres Modell.</strong> Wenn Set C denselben Test-MSE hat wie Set B, nimmt man Set B, weil es einfacher und interpretierbarer ist.</li>
 </ul>
+<h2 id="alternative-regressionsmodelle">Alternative Regressionsmodelle</h2>
+<p>Lineare Regression ist der Einstieg. Für komplexere Zusammenhänge gibt es flexiblere Modelle:</p>
+<ul>
+<li><strong>Polynomiale Regression:</strong> erweitert die lineare Regression um Potenzen der Features (<span class="arithmatex">\(x^2, x^3, \dots\)</span>).</li>
+<li><strong>Multi-Layer Perceptron (MLP):</strong> ein neuronales Netz für Regression.</li>
+<li><strong>Gradient Boosting:</strong> kombiniert viele schwache Modelle zu einem starken.</li>
+</ul>
+<p>Welches Verfahren zu welchem Problem passt, zeigt die scikit-learn-Karte auf der <a href="../8_0_Machine_Learning/">Grundlagenseite</a>.</p>
 <h2 id="lineare-regression-in-python">Lineare Regression in Python</h2>
 <p>Siehe Jupyter Notebook im nächsten Abschnitt. Wir verwenden die Python-Bibliothek <code>scikit-learn</code>.</p>
 <hr />
