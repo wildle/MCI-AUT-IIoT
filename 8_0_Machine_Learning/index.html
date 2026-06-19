@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Lenard Wild" /><link rel="canonical" href="https://wildle.github.io/MCI-AUT-IIoT/8_0_Machine_Learning/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Grundlagen - IIoT – Industrial Internet of Things</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Grundlagen";
+        var mkdocs_page_input_path = "8_0_Machine_Learning.md";
+        var mkdocs_page_url = "/MCI-AUT-IIoT/8_0_Machine_Learning/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IIoT – Industrial Internet of Things
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Organisatorisches</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Organisatorisches/">Aufbau der Lehrveranstaltung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Projekt/">Projekt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_Leistungsbewertung/">Leistungsbewertung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../0_Glossar/">Glossar</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Industrial Internet of Things</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_IIoT_Grundlagen/">Grundlagen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_MQTT/">MQTT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_TwinCAT_MQTT/">TwinCAT MQTT-Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_REST/">REST</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_Datenspeicherung/">Datenspeicherung</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_1_Zeitreihen_und_Visualisierung/">Zeitreihen & Visualisierung</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Machine Learning</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Grundlagen</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#was-ist-machine-learning">Was ist Machine Learning?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#arten-von-machine-learning">Arten von Machine Learning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#neuronale-netze-und-deep-learning">Neuronale Netze und Deep Learning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#anwendungsgebiete">Anwendungsgebiete</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#supervised-learning-regression-und-klassifikation">Supervised Learning: Regression und Klassifikation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression/">Regressionsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_Regression_Python/">Lineare Regression mit Python und Scikit-Learn</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Klassifizierung/">Klassifikationsmodelle</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_Classification_Python/">Klassifikation und Feature Engineering mit Python und Scikit-Learn</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IIoT – Industrial Internet of Things</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Machine Learning</li>
+      <li class="breadcrumb-item active">Grundlagen</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="machine-learning-in-der-produktion">Machine Learning in der Produktion</h1>
+<p>An der Learning Factory entstehen aus <strong>Sensoren</strong> und <strong>Prozessschritten</strong> laufend Daten. <strong>Machine Learning</strong> nutzt diese Daten für <strong>Vorhersagen</strong>, die sich mit fester Handprogrammierung kaum erreichen lassen.</p>
+<p>Konkret in den nächsten beiden Abschnitten:</p>
+<ul>
+<li><strong>Regression (12.3):</strong> das <strong>Endgewicht</strong> einer Flasche vorhersagen.</li>
+<li><strong>Klassifikation (12.4):</strong> <strong>defekte Flaschen</strong> erkennen.</li>
+</ul>
+<p>Die Datengrundlage dafür haben Sie in <strong>12.1.2</strong> selbst gesammelt.</p>
+<p><img alt="Learning Factory in Aktion" src="../images/ML/teachingfactory.gif" /></p>
+<h2 id="was-ist-machine-learning">Was ist Machine Learning?</h2>
+<ul>
+<li><strong>Klassische Programmierung:</strong> ein Mensch schreibt <strong>jede Regel von Hand</strong> (wenn Füllstand über X, dann ...).</li>
+<li><strong>Machine Learning:</strong> das Modell bekommt <strong>viele Beispiele</strong> und <strong>leitet die Regel selbst aus den Daten ab</strong>.</li>
+</ul>
+<p>Genau das brauchen wir hier: Wie <strong>Füllstand</strong>, <strong>Vibration</strong> und <strong>Temperatur</strong> zusammen das <strong>Endgewicht</strong> bestimmen, lässt sich kaum in feste Regeln fassen. Ein Modell, das aus <strong>echten Messdaten</strong> lernt, bildet solche Zusammenhänge ab.</p>
+<h2 id="arten-von-machine-learning">Arten von Machine Learning</h2>
+<p>Drei Grundtypen:</p>
+<ul>
+<li><strong>Supervised Learning:</strong> lernt aus <strong>gelabelten Daten</strong> (Eingabe mit bekanntem Ergebnis). Beispiel: aus Sensorwerten das <strong>bekannte Endgewicht</strong> vorhersagen.</li>
+<li><strong>Unsupervised Learning:</strong> findet <strong>Struktur in ungelabelten Daten</strong>. Beispiel: Flaschen <strong>gruppieren</strong> oder <strong>Anomalien</strong> erkennen.</li>
+<li><strong>Reinforcement Learning:</strong> lernt durch <strong>Versuch und Irrtum</strong> mit <strong>Belohnung</strong>. Beispiel: ein Regler, der Prozessparameter selbst optimiert.</li>
+</ul>
+<p>Im Kurs nutzen wir <strong>Supervised Learning</strong>: zu jeder Flasche kennen wir das <strong>gemessene Endgewicht</strong> und ob sie <strong>in Ordnung</strong> war.</p>
+<p><img alt="Übersichtskarte von scikit-learn zur Wahl des passenden Algorithmus" src="../images/ML/ml_map.svg" /></p>
+<p>Die <strong>scikit-learn-Karte</strong> ordnet die Verfahren nach Aufgabe: <strong>Klassifikation</strong>, <strong>Regression</strong>, <strong>Clustering</strong>, <strong>Dimensionsreduktion</strong>. Sie hilft bei der Wahl des passenden Algorithmus.</p>
+<h2 id="neuronale-netze-und-deep-learning">Neuronale Netze und Deep Learning</h2>
+<ul>
+<li><strong>Neuronales Netz:</strong> viele einfache <strong>Neuronen</strong> in <strong>Schichten</strong>. Im Training passt das Netz seine <strong>Gewichte</strong> an.</li>
+<li><strong>Deep Learning:</strong> Netze mit <strong>vielen verborgenen Schichten</strong>. Stark bei <strong>komplexen Daten</strong> (Bilder, Audio, Text, lange Zeitreihen), braucht aber <strong>viele Daten</strong> und <strong>Rechenleistung</strong>.</li>
+</ul>
+<p><img alt="Aufbau eines tiefen neuronalen Netzes mit Eingabe-, verborgenen und Ausgabeschichten" src="../images/ML/deep_neural_network.avif" width="560" /></p>
+<p>Für <strong>tabellarische Sensordaten</strong> wie in 12.3 und 12.4 reichen meist <strong>einfachere Modelle</strong>. Deep Learning lohnt sich bei den anspruchsvollen Anwendungen unten.</p>
+<h2 id="anwendungsgebiete">Anwendungsgebiete</h2>
+<ul>
+<li><strong>Zeitreihenanalyse:</strong> Sensordaten über die Zeit, für <strong>Prognosen</strong> und <strong>Predictive Maintenance</strong>. Anker: die <code>drop_oscillation</code> jeder Flasche ist eine <strong>Zeitreihe</strong> (Grundlage von 12.4).</li>
+<li><strong>Computer Vision:</strong> <strong>Bilder auswerten</strong>, z. B. <strong>optische Qualitätskontrolle</strong> und <strong>Defekterkennung</strong> am Band.</li>
+<li><strong>Sprachverarbeitung und Anomalieerkennung:</strong> weitere Felder, von <strong>Textauswertung</strong> bis zu <strong>ungewöhnlichen Maschinenzuständen</strong>.</li>
+</ul>
+<p><img alt="Aufbau eines Convolutional Neural Network zur schichtweisen Erkennung von Bildmerkmalen" src="../images/ML/convolutional_neural_network.avif" width="640" /></p>
+<p>Für Computer Vision dienen oft <strong>Convolutional Neural Networks</strong>: sie erkennen Bildmerkmale <strong>schichtweise</strong>, von <strong>Kanten</strong> bis zu <strong>ganzen Objekten</strong>.</p>
+<h2 id="supervised-learning-regression-und-klassifikation">Supervised Learning: Regression und Klassifikation</h2>
+<p>Unser <strong>Supervised Learning</strong> teilt sich in zwei Aufgaben:</p>
+<ul>
+<li><strong>Regression:</strong> Ergebnis ist eine <strong>Zahl</strong>.</li>
+<li><strong>Klassifikation:</strong> Ergebnis ist eine <strong>Kategorie</strong>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Regression</th>
+<th>Klassifikation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ausgabe</strong></td>
+<td>eine Zahl</td>
+<td>eine Kategorie</td>
+</tr>
+<tr>
+<td><strong>Beispiel</strong></td>
+<td>Endgewicht in Gramm</td>
+<td>Flasche i.O. / defekt</td>
+</tr>
+<tr>
+<td><strong>Kursaufgabe</strong></td>
+<td>12.3</td>
+<td>12.4</td>
+</tr>
+</tbody>
+</table>
+<p>Als Nächstes im Detail: zuerst die <a href="../8_Regression/">Regressionsmodelle</a>, danach die <a href="../9_Klassifizierung/">Klassifikationsmodelle</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../7_1_Zeitreihen_und_Visualisierung/" class="btn btn-neutral float-left" title="Zeitreihen & Visualisierung"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../8_Regression/" class="btn btn-neutral float-right" title="Regressionsmodelle">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../7_1_Zeitreihen_und_Visualisierung/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../8_Regression/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
