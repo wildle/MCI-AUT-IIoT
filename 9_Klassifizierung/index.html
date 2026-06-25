@@ -73,20 +73,20 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Klassifikationsmodelle</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#klassifizierung">Klassifizierung</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#fehlermae">Fehlermaße</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fehlermae">Fehlermaße</a>
+        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#confusion-matrix">Confusion Matrix</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#precision-recall-f1-score">Precision, Recall, F1-Score</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#unbalanced-classes">Unbalanced Classes</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#beispiel-verschiedene-schwellenwerte">Beispiel verschiedene Schwellenwerte</a>
-    </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#beispiel-verschiedene-schwellenwerte">Beispiel verschiedene Schwellenwerte</a>
     </li>
         </ul>
     </li>
@@ -105,12 +105,6 @@
     <li class="toctree-l3"><a class="reference internal" href="#normalisierung">Normalisierung</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#dummy-und-one-hot-encoding">Dummy und One-Hot-Encoding</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#dummy-encoding">Dummy Encoding</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#one-hot-encoding">One-Hot-Encoding</a>
-    </li>
-        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#features-aus-zeitreihen">Features aus Zeitreihen</a>
     </li>
@@ -118,7 +112,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-124-20-klassifikationsmodell-fur-defekte-flaschen">🏆 Aufgabe 12.4 (20%): Klassifikationsmodell für defekte Flaschen</a>
+    <li class="toctree-l2"><a class="reference internal" href="#aufgabe-124-20-klassifikationsmodell-fur-defekte-flaschen">Aufgabe 12.4 (20%): Klassifikationsmodell für defekte Flaschen</a>
     </li>
     </ul>
                   </li>
@@ -149,29 +143,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <!-- paginate: true -->
-
-<h1 id="machine-learning-in-der-produktion-klassifizierung">Machine Learning in der Produktion - Klassifizierung</h1>
-<hr />
+                <h1 id="machine-learning-in-der-produktion-klassifizierung">Machine Learning in der Produktion: Klassifizierung</h1>
 <h2 id="klassifizierung">Klassifizierung</h2>
-<ul>
-<li>Anstelle von numerischen Werten wird eine Klassifikation durchgeführt</li>
-<li>Meist wird eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse berechnet</li>
-<li>Häufig sind die Klassen binär</li>
-<li>z.B. <span class="arithmatex">\(f(X) = P(y=1|X)=1-P(y=0|X)\)</span><ul>
-<li>Klassenzuordnung erfolgt durch einen Schwellenwert <span class="arithmatex">\(\theta\)</span></li>
-</ul>
-</li>
-</ul>
+<p><strong>Klassifizierung</strong> bedeutet: Das Modell sagt keine Zahl voraus, sondern ordnet eine Beobachtung einer Klasse zu. Häufig ist die Aufgabe binär, also zum Beispiel Klasse <code>0</code> oder Klasse <code>1</code>.</p>
+<p>Viele Klassifikationsmodelle berechnen zuerst eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse. Bei einer binären Klassifikation kann man das als</p>
+<div class="arithmatex">\[f(X) = P(y=1|X)=1-P(y=0|X)\]</div>
+<p>schreiben. Die eigentliche Klassenzuordnung entsteht durch einen Schwellenwert <span class="arithmatex">\(\theta\)</span>. Liegt die berechnete Wahrscheinlichkeit über diesem Schwellenwert, wird die Instanz als Klasse <code>1</code> vorhergesagt, sonst als Klasse <code>0</code>.</p>
 <div class="arithmatex">\[
 \hat{y} = \begin{cases} 1 &amp; \text{wenn } f(X) &gt; \theta \\ 0 &amp; \text{sonst} \end{cases}
 \]</div>
-<hr />
-<h3 id="fehlermae">Fehlermaße</h3>
+<h2 id="fehlermae">Fehlermaße</h2>
+<p>Bei der Regression misst man den Abstand zwischen vorhergesagter und echter Zahl. Bei der Klassifizierung geht es darum, welche Klassen richtig oder falsch vorhergesagt wurden. Dafür nutzt man zuerst die <strong>Confusion Matrix</strong>.</p>
 <p><img alt="" src="../images/CFMeme.png" /></p>
-<hr />
 <h3 id="confusion-matrix">Confusion Matrix</h3>
-<p><span class="arithmatex">\(\begin{array}{|c|c|c|}
+<p>Die Confusion Matrix vergleicht die echte Klasse mit der vorhergesagten Klasse. In einer binären Klassifikation gibt es vier Fälle:</p>
+<div class="arithmatex">\[
+\begin{array}{|c|c|c|}
 \hline
 &amp; \text{Predicted: 0} &amp; \text{Predicted: 1} \\
 \hline
@@ -179,37 +166,57 @@
 \hline
 \text{Actual: 1} &amp; FN &amp; TP \\
 \hline
-\end{array}\)</span></p>
-<ul>
-<li>True Positive (<span class="arithmatex">\(\text{TP}\)</span>): Die Instanz wurde korrekt als positiv (<span class="arithmatex">\(1\)</span>) vorhergesagt</li>
-<li>True Negative (<span class="arithmatex">\(\text{TN}\)</span>): Die Instanz wurde korrekt als negativ (<span class="arithmatex">\(0\)</span>) vorhergesagt</li>
-<li>False Positive (<span class="arithmatex">\(\text{FP}\)</span>): Die Instanz wurde fälschlicherweise als positiv (<span class="arithmatex">\(1\)</span>) vorhergesagt</li>
-<li>False Negative (<span class="arithmatex">\(\text{FN}\)</span>): Die Instanz wurde fälschlicherweise als negativ (<span class="arithmatex">\(0\)</span>) vorhergesagt</li>
-</ul>
-<hr />
+\end{array}
+\]</div>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True Positive (<span class="arithmatex">\(\text{TP}\)</span>)</td>
+<td>Die Instanz wurde korrekt als positiv (<code>1</code>) vorhergesagt.</td>
+</tr>
+<tr>
+<td>True Negative (<span class="arithmatex">\(\text{TN}\)</span>)</td>
+<td>Die Instanz wurde korrekt als negativ (<code>0</code>) vorhergesagt.</td>
+</tr>
+<tr>
+<td>False Positive (<span class="arithmatex">\(\text{FP}\)</span>)</td>
+<td>Die Instanz wurde fälschlicherweise als positiv (<code>1</code>) vorhergesagt.</td>
+</tr>
+<tr>
+<td>False Negative (<span class="arithmatex">\(\text{FN}\)</span>)</td>
+<td>Die Instanz wurde fälschlicherweise als negativ (<code>0</code>) vorhergesagt.</td>
+</tr>
+</tbody>
+</table>
+<p>Die Begriffe sind wichtig, weil verschiedene Fehler in der Praxis unterschiedlich teuer sein können. Ein False Negative kann zum Beispiel bedeuten, dass ein echter Defekt übersehen wird.</p>
 <h3 id="precision-recall-f1-score">Precision, Recall, F1-Score</h3>
-<ul>
-<li><span class="arithmatex">\(\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\)</span><ul>
-<li>Wie viele der vorhergesagten Instanzen sind korrekt?</li>
-</ul>
-</li>
-<li><span class="arithmatex">\(\text{Precision} = \frac{TP}{TP + FP}\)</span><ul>
-<li>Wie viele der als positiv (<span class="arithmatex">\(1\)</span>) vorhergesagten Instanzen sind tatsächlich positiv?</li>
-</ul>
-</li>
-<li><span class="arithmatex">\(\text{Recall} =\frac{TP}{TP + FN}\)</span><ul>
-<li>Wie viele der tatsächlich positiven Instanzen wurden als positiv vorhergesagt?</li>
-</ul>
-</li>
-<li><span class="arithmatex">\(\text{F1-Score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}\)</span></li>
-</ul>
+<p>Aus den vier Feldern der Confusion Matrix lassen sich verschiedene Kennzahlen berechnen. <strong>Accuracy</strong> beschreibt, welcher Anteil aller Instanzen korrekt vorhergesagt wurde.</p>
+<div class="arithmatex">\[
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\]</div>
+<p><strong>Precision</strong> betrachtet nur die positiven Vorhersagen. Sie beantwortet die Frage: Wie viele der als positiv (<code>1</code>) vorhergesagten Instanzen sind tatsächlich positiv?</p>
+<div class="arithmatex">\[
+\text{Precision} = \frac{TP}{TP + FP}
+\]</div>
+<p><strong>Recall</strong> betrachtet die tatsächlich positiven Instanzen. Er beantwortet die Frage: Wie viele der tatsächlich positiven Instanzen wurden auch als positiv vorhergesagt?</p>
+<div class="arithmatex">\[
+\text{Recall} =\frac{TP}{TP + FN}
+\]</div>
+<p>Der <strong>F1-Score</strong> verbindet Precision und Recall zu einer Kennzahl. Er ist besonders nützlich, wenn beide Werte gleichzeitig berücksichtigt werden sollen.</p>
+<div class="arithmatex">\[
+\text{F1-Score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+\]</div>
 <p><img alt="" height="720" src="../images/Precisionrecall.svg.png" /></p>
-<hr />
 <h3 id="unbalanced-classes">Unbalanced Classes</h3>
-<ul>
-<li>Bei ungleich verteilten Klassen kann die <span class="arithmatex">\(\text{Accuracy}\)</span> irreführend sein</li>
-</ul>
-<p><span class="arithmatex">\(\begin{array}{|c|c|c|}
+<p>Bei ungleich verteilten Klassen kann die Accuracy irreführend sein. Das folgende Beispiel zeigt eine Situation, in der sehr viele negative Instanzen vorhanden sind und nur wenige positive.</p>
+<div class="arithmatex">\[
+\begin{array}{|c|c|c|}
 \hline
 &amp; \text{Predicted: 0} &amp; \text{Predicted: 1} \\
 \hline
@@ -217,38 +224,28 @@
 \hline
 \text{Actual: 1} &amp; \text{FN}=10 &amp; \text{TP}=10 \\
 \hline
-\end{array}\)</span></p>
-<ul>
-<li>
-<p>Gegeben das Modell: <span class="arithmatex">\(\hat{y}=0\)</span></p>
-</li>
-<li>
-<p><span class="arithmatex">\(\text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}} = \frac{900 + 10}{900 + 100 + 10 + 10} = 0.91\)</span></p>
-</li>
-<li><span class="arithmatex">\(\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} = \frac{10}{10 + 100} = 0.09\)</span></li>
-<li><span class="arithmatex">\(\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}} = \frac{10}{10 + 10} = 0.5\)</span></li>
-</ul>
-<hr />
-<h3 id="receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</h3>
-<ul>
-<li>Vergleicht die True Positive Rate (Recall) mit der False Positive Rate</li>
-<li>AUC (Area Under the Curve) gibt die Fläche unter der ROC-Kurve an</li>
-<li>Ein AUC von <span class="arithmatex">\(1\)</span> bedeutet ein perfektes Modell, ein AUC von <span class="arithmatex">\(0.5\)</span> bedeutet ein zufälliges Modell</li>
-<li>Die meisten Modelle geben eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse zurück</li>
-<li>Wenn die Wahrscheinlichkeit über einem Schwellenwert  <span class="arithmatex">\(\theta\)</span> liegt, wird die Instanz als positiv vorhergesagt</li>
-<li>Entsprechen kann man über den Schwellenwert die True Positive Rate und die False Positive Rate variieren und die ROC-Kurve erstellen</li>
-</ul>
+\end{array}
+\]</div>
+<p>Die Accuracy wirkt mit <span class="arithmatex">\(0{,}91\)</span> sehr hoch. Precision und Recall zeigen aber, dass die positiven Fälle deutlich schlechter erkannt werden.</p>
+<div class="arithmatex">\[
+\text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}} = \frac{900 + 10}{900 + 100 + 10 + 10} = 0{,}91
+\]</div>
+<div class="arithmatex">\[
+\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} = \frac{10}{10 + 100} = 0{,}09
+\]</div>
+<div class="arithmatex">\[
+\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}} = \frac{10}{10 + 10} = 0{,}5
+\]</div>
+<h2 id="receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</h2>
+<p>Die <strong>ROC-Kurve</strong> vergleicht die True Positive Rate, also den Recall, mit der False Positive Rate. Viele Modelle geben nicht direkt eine Klasse aus, sondern eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse. Wenn diese Wahrscheinlichkeit über dem Schwellenwert <span class="arithmatex">\(\theta\)</span> liegt, wird die Instanz als positiv vorhergesagt.</p>
+<p>Verändert man den Schwellenwert, verändern sich True Positive Rate und False Positive Rate. Aus diesen Punkten entsteht die ROC-Kurve. Die <strong>AUC</strong>, also Area Under the Curve, beschreibt die Fläche unter dieser Kurve. Eine AUC von <span class="arithmatex">\(1\)</span> bedeutet ein perfektes Modell, eine AUC von <span class="arithmatex">\(0{,}5\)</span> entspricht einem zufälligen Modell.</p>
 <p><img alt="" height="450" src="../images/Roc_curve.svg.png" /></p>
-<hr />
-<h4 id="beispiel-verschiedene-schwellenwerte">Beispiel verschiedene Schwellenwerte</h4>
-<ul>
-<li>krank : Positiv</li>
-<li>gesund : Negativ</li>
-</ul>
+<h3 id="beispiel-verschiedene-schwellenwerte">Beispiel verschiedene Schwellenwerte</h3>
+<p>Im folgenden Beispiel bedeutet <code>krank</code> die positive Klasse und <code>gesund</code> die negative Klasse. Dieselben drei Beobachtungen werden einmal mit dem Schwellenwert <span class="arithmatex">\(\theta=0{,}8\)</span> und einmal mit <span class="arithmatex">\(\theta=0{,}5\)</span> bewertet.</p>
 <table>
 <thead>
 <tr>
-<th><span class="arithmatex">\(\hat{f}(X)\)</span> Wahrscheinkeit für krank</th>
+<th><span class="arithmatex">\(\hat{f}(X)\)</span> Wahrscheinlichkeit für krank</th>
 <th><span class="arithmatex">\(\theta\)</span> Schwellenwert</th>
 <th><span class="arithmatex">\(\hat{y}\)</span> Vorhersage</th>
 <th><span class="arithmatex">\(y\)</span> Wahrheit</th>
@@ -282,7 +279,7 @@
 <table>
 <thead>
 <tr>
-<th><span class="arithmatex">\(\hat{f}(X)\)</span> Wahrscheinkeit für krank</th>
+<th><span class="arithmatex">\(\hat{f}(X)\)</span> Wahrscheinlichkeit für krank</th>
 <th><span class="arithmatex">\(\theta\)</span> Schwellenwert</th>
 <th><span class="arithmatex">\(\hat{y}\)</span> Vorhersage</th>
 <th><span class="arithmatex">\(y\)</span> Wahrheit</th>
@@ -313,47 +310,30 @@
 </tr>
 </tbody>
 </table>
-<hr />
+<p>Bei <span class="arithmatex">\(\theta=0{,}8\)</span> wird die dritte Beobachtung als gesund vorhergesagt und ist damit ein False Negative. Bei <span class="arithmatex">\(\theta=0{,}5\)</span> wird sie als krank vorhergesagt und ist damit ein True Positive. Der Schwellenwert beeinflusst also direkt, welche Fehlerarten häufiger auftreten.</p>
 <h2 id="modelle">Modelle</h2>
-<ul>
-<li><strong>Logistische Regression</strong>: Abwandlung der linearen Regression für Klassifikation</li>
-<li><strong>kNearest Neighbors</strong>: Klassifiziert anhand der k nächsten Nachbarn</li>
-<li><strong>Decision Trees</strong>: Organisiert die Daten in einem Baum und trifft Entscheidungen anhand von Regeln</li>
-</ul>
-<hr />
+<p>Für Klassifikationsaufgaben gibt es verschiedene Modelltypen. Die Wahl hängt von den Daten, der gewünschten Interpretierbarkeit und der benötigten Flexibilität ab.</p>
+<p><strong>Logistische Regression</strong> ist eine Abwandlung der linearen Regression für Klassifikation. Sie ist gut interpretierbar und liefert eine Wahrscheinlichkeit für die Klasse.</p>
+<p><strong>kNearest Neighbors</strong> klassifiziert eine neue Beobachtung anhand der <span class="arithmatex">\(k\)</span> nächsten Nachbarn im Merkmalsraum. Das Modell ist anschaulich, reagiert aber empfindlich auf Skalierung und passende Distanzmaße.</p>
+<p><strong>Decision Trees</strong> organisieren die Daten in einem Baum. An jedem Knoten steht eine Entscheidungsregel, am Ende steht eine Klasse.</p>
 <h3 id="entscheidungsbaume-decision-trees">Entscheidungsbäume / Decision Trees</h3>
 <p><img alt="" height="400" src="../images/1_6RMrFGwU-qH4nHW89xc0Xw.jpeg" /></p>
-<ul>
-<li>Jeder Knoten entspricht einer Entscheidung</li>
-<li>Jeder Blattknoten entspricht einer Klasse</li>
-<li>Der Baum wird anhand von Informations-Entropie oder Gini-Index erstellt</li>
-<li>Hyperparameter: Tiefe des Baumes, minimale Anzahl an Instanzen pro Blattknoten</li>
-<li>Erweiterungen: Random Forest, Gradient Boosting</li>
-</ul>
-<hr />
+<p>Ein Decision Tree trifft Entscheidungen schrittweise. Jeder Knoten entspricht einer Regel, jeder Blattknoten entspricht einer Klasse. Der Baum wird anhand von Kriterien wie Informations-Entropie oder Gini-Index erstellt.</p>
+<p>Wichtige Hyperparameter sind die Tiefe des Baumes und die minimale Anzahl an Instanzen pro Blattknoten. Erweiterungen dieses Grundprinzips sind Random Forest und Gradient Boosting.</p>
 <h3 id="logistische-regression">Logistische Regression</h3>
 <p><img alt="" height="400" src="../images/LogRegvdLinReg.png" /></p>
-<div class="arithmatex">\[f(X) = \frac{1}{1+e^{-\beta_0-\beta_1X_1-\beta_2X_2-\ldots-\beta_nX_n}}\]</div>
-<ul>
-<li>Transformation der linearen Regression in den Bereich <span class="arithmatex">\([0,1]\)</span></li>
-<li>mittels der Sigmoid-Funktion</li>
-<li><span class="arithmatex">\(f(X)\)</span> ist die Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse</li>
-</ul>
-<hr />
+<p>Die logistische Regression transformiert den linearen Ausdruck in den Bereich <span class="arithmatex">\([0,1]\)</span>. Dafür nutzt sie die Sigmoid-Funktion.</p>
+<div class="arithmatex">\[
+f(X) = \frac{1}{1+e^{-\beta_0-\beta_1X_1-\beta_2X_2-\ldots-\beta_nX_n}}
+\]</div>
+<p>Der Wert <span class="arithmatex">\(f(X)\)</span> kann als Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse gelesen werden. Die finale Klasse entsteht wieder über einen Schwellenwert.</p>
 <h3 id="knearest-neighbors">kNearest Neighbors</h3>
 <p><img alt="" height="400" src="../images/1_cv2iLcBwCNrHFGHQkk6h1w.webp" /></p>
-<ul>
-<li>Klassifiziert anhand der k nächsten Nachbarn</li>
-<li>Hyperparameter: Anzahl der Nachbarn, Distanzmaß</li>
-</ul>
-<hr />
+<p>kNearest Neighbors vergleicht eine neue Beobachtung mit den vorhandenen Trainingsdaten. Die Klasse wird anhand der <span class="arithmatex">\(k\)</span> nächsten Nachbarn bestimmt. Wichtige Hyperparameter sind die Anzahl der Nachbarn und das Distanzmaß.</p>
 <h2 id="feature-engineering">Feature Engineering</h2>
-<ul>
-<li>Bei vielen Algorithmen ist es wichtig, die Daten entsprechend aufzubereiten</li>
-<li>Dies ermöglicht ein schnelleres Training und bessere Ergebnisse</li>
-</ul>
-<hr />
+<p>Bei vielen Algorithmen ist es wichtig, die Daten vor dem Training passend aufzubereiten. Das kann das Training beschleunigen und die Ergebnisse verbessern. Typische Schritte sind Normalisierung, Standardisierung, Encoding von Kategorien und das Bilden neuer Features aus Zeitreihen.</p>
 <h3 id="normalisierung">Normalisierung</h3>
+<p>Die folgende Tabelle zeigt ein einfaches Beispiel mit Pinguinen. Die numerischen Spalten haben unterschiedliche Skalen. Die Schnabellänge liegt im Bereich von ungefähr 20 bis 42, das Gewicht im Bereich von ungefähr 0,359 bis 0,638.</p>
 <table>
 <thead>
 <tr>
@@ -416,19 +396,22 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<ul>
-<li>Normalisierung einer Variable <span class="arithmatex">\(X\)</span> bedeutet, alles zwischen <span class="arithmatex">\(0\)</span> und <span class="arithmatex">\(1\)</span> zu setzen.</li>
-</ul>
-<div class="arithmatex">\[X_n=\frac{X−X_{\text{min}}}{X_{\text{max}}−X_{\text{min}}}\]</div>
-<ul>
-<li>Standardisierung einer Variable <span class="arithmatex">\(X\)</span> bedeutet, den Mittelwert (<span class="arithmatex">\(\mu\)</span>) zu entfernen und durch die Abweichung (<span class="arithmatex">\(\sigma\)</span>) zu teilen.</li>
-</ul>
-<div class="arithmatex">\[X_s=\frac{X−\mu}{\sigma}\]</div>
-<hr />
-<div class="arithmatex">\[\mu=\frac{1}{n}\sum_{j=1}^n x_j\]</div>
-<div class="arithmatex">\[\sigma=\sqrt{\frac{\sum_{j=1}^n (x_j-\mu)^2}{n-1}}\]</div>
-<hr />
+<p><strong>Normalisierung</strong> einer Variable <span class="arithmatex">\(X\)</span> bedeutet, die Werte auf den Bereich zwischen <span class="arithmatex">\(0\)</span> und <span class="arithmatex">\(1\)</span> zu setzen.</p>
+<div class="arithmatex">\[
+X_n=\frac{X-X_{\text{min}}}{X_{\text{max}}-X_{\text{min}}}
+\]</div>
+<p><strong>Standardisierung</strong> einer Variable <span class="arithmatex">\(X\)</span> bedeutet, den Mittelwert <span class="arithmatex">\(\mu\)</span> zu entfernen und durch die Standardabweichung <span class="arithmatex">\(\sigma\)</span> zu teilen.</p>
+<div class="arithmatex">\[
+X_s=\frac{X-\mu}{\sigma}
+\]</div>
+<p>Der Mittelwert und die Standardabweichung werden so berechnet:</p>
+<div class="arithmatex">\[
+\mu=\frac{1}{n}\sum_{j=1}^n x_j
+\]</div>
+<div class="arithmatex">\[
+\sigma=\sqrt{\frac{\sum_{j=1}^n (x_j-\mu)^2}{n-1}}
+\]</div>
+<p>Nach der Normalisierung liegen alle Werte auf einer vergleichbaren Skala.</p>
 <table>
 <thead>
 <tr>
@@ -491,11 +474,8 @@
 </tr>
 </tbody>
 </table>
-<hr />
 <h3 id="dummy-und-one-hot-encoding">Dummy und One-Hot-Encoding</h3>
-<ul>
-<li>Da nicht alle Modelle mit kategorischen Variablen (z.B. Gender) umgehen können, müssen diese umgewandelt werden</li>
-</ul>
+<p>Nicht alle Modelle können direkt mit kategorischen Variablen arbeiten. Eine Spalte wie <code>Gender</code> enthält Textwerte und keine natürliche Zahlenreihenfolge. Deshalb müssen solche Werte in numerische Spalten umgewandelt werden.</p>
 <table>
 <thead>
 <tr>
@@ -565,8 +545,7 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<h4 id="dummy-encoding">Dummy Encoding</h4>
+<p>Beim <strong>Dummy Encoding</strong> wird eine Kategorie als Referenz weggelassen. Im Beispiel reicht die Spalte <code>Gender_Male</code>, weil <code>0</code> dann für <code>Female</code> steht.</p>
 <table>
 <thead>
 <tr>
@@ -629,8 +608,7 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<h4 id="one-hot-encoding">One-Hot-Encoding</h4>
+<p>Beim <strong>One-Hot-Encoding</strong> bekommt jede Kategorie eine eigene Spalte. Für jede Beobachtung ist genau die passende Kategorie auf <code>1</code> gesetzt.</p>
 <table>
 <thead>
 <tr>
@@ -700,13 +678,8 @@
 </tr>
 </tbody>
 </table>
-<hr />
 <h3 id="features-aus-zeitreihen">Features aus Zeitreihen</h3>
-<ul>
-<li>Zeitreihen können in verschiedene Features umgewandelt werden</li>
-<li>z.B. Lags, Mittelwert, Standardabweichung, Quantile, etc.</li>
-<li>Hierfür gibt es Bibliotheken wie <a href="https://tsfresh.readthedocs.io/en/latest/text/quick_start.html">TS Fresh</a> und <a href="https://facebook.github.io/prophet/">Prophet</a> für Prognosen</li>
-</ul>
+<p>Zeitreihen können in mehrere Features umgewandelt werden. Beispiele sind Lags, Mittelwert, Standardabweichung und Quantile. Dafür gibt es Bibliotheken wie <a href="https://tsfresh.readthedocs.io/en/latest/text/quick_start.html">TS Fresh</a> und <a href="https://facebook.github.io/prophet/">Prophet</a> für Prognosen.</p>
 <table>
 <thead>
 <tr>
@@ -749,17 +722,12 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li>Bei Zeitreihen werden häufig autorergressive Modelle verwendet, welche die Vorhersage aus den vorherigen Werten berechnen, z.B.:</li>
-<li>Auf diese Weise kann die Zahl an Datenpunkten reduziert werden</li>
-</ul>
-<div class="arithmatex">\[\hat{y_t} = f(y_{t-1},\max(y_{t-1},y_{t-2},y_{t-3}))\]</div>
-<hr />
+<p>Bei Zeitreihen werden häufig autoregressive Modelle verwendet. Sie berechnen die Vorhersage aus vorherigen Werten. Auf diese Weise kann die Zahl der Datenpunkte reduziert werden.</p>
+<div class="arithmatex">\[
+\hat{y_t} = f(y_{t-1},\max(y_{t-1},y_{t-2},y_{t-3}))
+\]</div>
 <h3 id="transformation-in-frequenzraum">Transformation in Frequenzraum</h3>
-<ul>
-<li>Bei einer Klassifikation von zeitabhängigen Daten kann es sinnvoll sein, die Daten in den Frequenzraum zu transformieren</li>
-<li>Hierfür gibt es verschiedene Methoden, z.B. die Fourier-Transformation</li>
-</ul>
+<p>Bei einer Klassifikation von zeitabhängigen Daten kann es sinnvoll sein, die Daten in den Frequenzraum zu transformieren. Eine typische Methode dafür ist die Fourier-Transformation. Dadurch kann ein Modell nicht nur einzelne Zeitpunkte betrachten, sondern auch Frequenzanteile der Wellenform.</p>
 <table>
 <thead>
 <tr>
@@ -794,15 +762,32 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="aufgabe-124-20-klassifikationsmodell-fur-defekte-flaschen">🏆 Aufgabe 12.4 (20%): Klassifikationsmodell für defekte Flaschen</h2>
-<ul>
-<li><strong>Abgabeformalien:</strong> Fügen sie ein Kapitel in ihrer Dokumentation hinzu, in dem Sie die Ergebnisse der Klasisfikation mittels Confusion Matrix und unten gezeigter Tabelle dokumentieren</li>
-<li>Erstellen Sie ein Klassifikationsmodell zur Vorhersage von defekten Flaschen anhand der Daten aus der <code>Drop Vibration</code>. Diese repräsentieren eine Zeitreihe der Vibrationen von Flaschen bei der Vereinzelung.</li>
-<li>Erstellen Sie eine Tabelle, welche die genuzten Spalten für die Vorhersage enthält und den F1-Score für die jeweiligen Spalten</li>
-<li>Als Orientierung kann folgendes Notebook dienen <a href="9_Classification_Python.ipynb" download>9_Classification_Python.ipynb</a>, welches auch im nächsten Abschnitt vorgestellt wird</li>
-</ul>
-<p>z.B.: </p>
+<h2 id="aufgabe-124-20-klassifikationsmodell-fur-defekte-flaschen">Aufgabe 12.4 (20%): Klassifikationsmodell für defekte Flaschen</h2>
+<p>Erstellen Sie ein Klassifikationsmodell zur Vorhersage defekter Flaschen anhand der Daten aus der <code>Drop Vibration</code>. Diese Daten repräsentieren eine Zeitreihe der Vibrationen von Flaschen bei der Vereinzelung.</p>
+<p>Für 12.4 gibt es keine Prognose-<abbr title="Comma-Separated Values, einfaches Tabellenformat, eine Zeile pro Datensatz">CSV</abbr>, anders als bei 12.3.</p>
+<p>Der Datensatz enthält für diese Aufgabe vor allem zwei relevante Spalten:</p>
+<table>
+<thead>
+<tr>
+<th>Spalte</th>
+<th>Rolle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>drop_oscillation</code></td>
+<td>Feature-Quelle, 500 Messwerte je Flasche als <abbr title="JavaScript Object Notation, leichtgewichtiges Datenaustauschformat (Schlüssel-Wert-Paare)">JSON</abbr></td>
+</tr>
+<tr>
+<td><code>is_cracked</code></td>
+<td>Zielklasse, <code>0</code> = intakt, <code>1</code> = defekt</td>
+</tr>
+</tbody>
+</table>
+<p>Dokumentieren Sie in Ihrer Abgabe die Ergebnisse der Klassifikation mit einer Confusion Matrix und einer F1-Tabelle. Erstellen Sie dafür eine Tabelle, welche die genutzten Features für die Vorhersage enthält und den F1-Score für die jeweiligen Features ausweist.</p>
+<p>Abgabe bis 03.07.2026 als öffentliches GitHub-Repo pro Gruppe, vollständige Details siehe <a href="../1_Projekt/">1_Projekt.md</a> und <a href="../1_Leistungsbewertung/">1_Leistungsbewertung.md</a>.</p>
+<p>Als generisches scikit-learn-Orientierungsbeispiel kann folgendes Notebook dienen: <a href="9_Classification_Python.ipynb" download>9_Classification_Python.ipynb</a>, welches auch im nächsten Abschnitt vorgestellt wird.</p>
+<p>Beispiel:</p>
 <table>
 <thead>
 <tr>
