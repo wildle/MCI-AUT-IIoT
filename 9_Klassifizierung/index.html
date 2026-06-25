@@ -148,7 +148,7 @@
 <p><strong>Klassifizierung</strong> bedeutet: Das Modell sagt keine Zahl voraus, sondern ordnet eine Beobachtung einer Klasse zu. Häufig ist die Aufgabe binär, also zum Beispiel Klasse <code>0</code> oder Klasse <code>1</code>.</p>
 <p>Viele Klassifikationsmodelle berechnen zuerst eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse. Bei einer binären Klassifikation kann man das als</p>
 <div class="arithmatex">\[f(X) = P(y=1|X)=1-P(y=0|X)\]</div>
-<p>schreiben. Die eigentliche Klassenzuordnung entsteht durch einen Schwellenwert <span class="arithmatex">\(\theta\)</span>. Liegt die berechnete Wahrscheinlichkeit über diesem Schwellenwert, wird die Instanz als Klasse <code>1</code> vorhergesagt, sonst als Klasse <code>0</code>.</p>
+<p>schreiben. Die eigentliche Klassenzuordnung entsteht durch einen <strong>Schwellenwert</strong> <span class="arithmatex">\(\theta\)</span>. Liegt die berechnete Wahrscheinlichkeit über diesem Schwellenwert, wird die Instanz als Klasse <code>1</code> vorhergesagt, sonst als Klasse <code>0</code>.</p>
 <div class="arithmatex">\[
 \hat{y} = \begin{cases} 1 &amp; \text{wenn } f(X) &gt; \theta \\ 0 &amp; \text{sonst} \end{cases}
 \]</div>
@@ -156,7 +156,7 @@
 <p>Bei der Regression misst man den Abstand zwischen vorhergesagter und echter Zahl. Bei der Klassifizierung geht es darum, welche Klassen richtig oder falsch vorhergesagt wurden. Dafür nutzt man zuerst die <strong>Confusion Matrix</strong>.</p>
 <p><img alt="" src="../images/CFMeme.png" /></p>
 <h3 id="confusion-matrix">Confusion Matrix</h3>
-<p>Die Confusion Matrix vergleicht die echte Klasse mit der vorhergesagten Klasse. In einer binären Klassifikation gibt es vier Fälle:</p>
+<p>Die Confusion Matrix vergleicht die echte Klasse mit der vorhergesagten Klasse. In einer binären Klassifikation gibt es vier Fälle: <strong>True Positive</strong>, <strong>True Negative</strong>, <strong>False Positive</strong> und <strong>False Negative</strong>.</p>
 <div class="arithmatex">\[
 \begin{array}{|c|c|c|}
 \hline
@@ -196,19 +196,28 @@
 </table>
 <p>Die Begriffe sind wichtig, weil verschiedene Fehler in der Praxis unterschiedlich teuer sein können. Ein False Negative kann zum Beispiel bedeuten, dass ein echter Defekt übersehen wird.</p>
 <h3 id="precision-recall-f1-score">Precision, Recall, F1-Score</h3>
-<p>Aus den vier Feldern der Confusion Matrix lassen sich verschiedene Kennzahlen berechnen. <strong>Accuracy</strong> beschreibt, welcher Anteil aller Instanzen korrekt vorhergesagt wurde.</p>
+<p>Aus den vier Feldern der Confusion Matrix lassen sich verschiedene Kennzahlen berechnen:</p>
+<ul>
+<li><strong>Accuracy:</strong> Anteil aller Instanzen, die korrekt vorhergesagt wurden.</li>
+</ul>
 <div class="arithmatex">\[
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
 \]</div>
-<p><strong>Precision</strong> betrachtet nur die positiven Vorhersagen. Sie beantwortet die Frage: Wie viele der als positiv (<code>1</code>) vorhergesagten Instanzen sind tatsächlich positiv?</p>
+<ul>
+<li><strong>Precision:</strong> betrachtet nur die positiven Vorhersagen. Die Frage lautet: Wie viele der als positiv (<code>1</code>) vorhergesagten Instanzen sind tatsächlich positiv?</li>
+</ul>
 <div class="arithmatex">\[
 \text{Precision} = \frac{TP}{TP + FP}
 \]</div>
-<p><strong>Recall</strong> betrachtet die tatsächlich positiven Instanzen. Er beantwortet die Frage: Wie viele der tatsächlich positiven Instanzen wurden auch als positiv vorhergesagt?</p>
+<ul>
+<li><strong>Recall:</strong> betrachtet die tatsächlich positiven Instanzen. Die Frage lautet: Wie viele der tatsächlich positiven Instanzen wurden auch als positiv vorhergesagt?</li>
+</ul>
 <div class="arithmatex">\[
 \text{Recall} =\frac{TP}{TP + FN}
 \]</div>
-<p>Der <strong>F1-Score</strong> verbindet Precision und Recall zu einer Kennzahl. Er ist besonders nützlich, wenn beide Werte gleichzeitig berücksichtigt werden sollen.</p>
+<ul>
+<li><strong>F1-Score:</strong> verbindet Precision und Recall zu einer Kennzahl. Er ist besonders nützlich, wenn beide Werte gleichzeitig berücksichtigt werden sollen.</li>
+</ul>
 <div class="arithmatex">\[
 \text{F1-Score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
 \]</div>
@@ -236,6 +245,10 @@
 <div class="arithmatex">\[
 \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}} = \frac{10}{10 + 10} = 0{,}5
 \]</div>
+<div class="arithmatex">\[
+\text{F1-Score} = 2 \cdot \frac{0{,}09 \cdot 0{,}5}{0{,}09 + 0{,}5} \approx 0{,}15
+\]</div>
+<p>Die Accuracy wirkt mit <span class="arithmatex">\(0{,}91\)</span> hoch, während der F1-Score für die positive Klasse mit etwa <span class="arithmatex">\(0{,}15\)</span> zeigt, wie schlecht die seltene Klasse erkannt wird.</p>
 <h2 id="receiver-operating-characteristic-roc-curve">Receiver Operating Characteristic (ROC) Curve</h2>
 <p>Die <strong>ROC-Kurve</strong> vergleicht die True Positive Rate, also den Recall, mit der False Positive Rate. Viele Modelle geben nicht direkt eine Klasse aus, sondern eine Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse. Wenn diese Wahrscheinlichkeit über dem Schwellenwert <span class="arithmatex">\(\theta\)</span> liegt, wird die Instanz als positiv vorhergesagt.</p>
 <p>Verändert man den Schwellenwert, verändern sich True Positive Rate und False Positive Rate. Aus diesen Punkten entsteht die ROC-Kurve. Die <strong>AUC</strong>, also Area Under the Curve, beschreibt die Fläche unter dieser Kurve. Eine AUC von <span class="arithmatex">\(1\)</span> bedeutet ein perfektes Modell, eine AUC von <span class="arithmatex">\(0{,}5\)</span> entspricht einem zufälligen Modell.</p>
@@ -313,25 +326,48 @@
 <p>Bei <span class="arithmatex">\(\theta=0{,}8\)</span> wird die dritte Beobachtung als gesund vorhergesagt und ist damit ein False Negative. Bei <span class="arithmatex">\(\theta=0{,}5\)</span> wird sie als krank vorhergesagt und ist damit ein True Positive. Der Schwellenwert beeinflusst also direkt, welche Fehlerarten häufiger auftreten.</p>
 <h2 id="modelle">Modelle</h2>
 <p>Für Klassifikationsaufgaben gibt es verschiedene Modelltypen. Die Wahl hängt von den Daten, der gewünschten Interpretierbarkeit und der benötigten Flexibilität ab.</p>
-<p><strong>Logistische Regression</strong> ist eine Abwandlung der linearen Regression für Klassifikation. Sie ist gut interpretierbar und liefert eine Wahrscheinlichkeit für die Klasse.</p>
-<p><strong>kNearest Neighbors</strong> klassifiziert eine neue Beobachtung anhand der <span class="arithmatex">\(k\)</span> nächsten Nachbarn im Merkmalsraum. Das Modell ist anschaulich, reagiert aber empfindlich auf Skalierung und passende Distanzmaße.</p>
-<p><strong>Decision Trees</strong> organisieren die Daten in einem Baum. An jedem Knoten steht eine Entscheidungsregel, am Ende steht eine Klasse.</p>
+<ul>
+<li><strong>Logistische Regression:</strong> Abwandlung der linearen Regression für Klassifikation, gut interpretierbar und mit einer Wahrscheinlichkeit für die Klasse als Ergebnis.</li>
+<li><strong>kNearest Neighbors:</strong> klassifiziert eine neue Beobachtung anhand der <span class="arithmatex">\(k\)</span> nächsten Nachbarn im Merkmalsraum, anschaulich, aber empfindlich gegenüber Skalierung und Distanzmaß.</li>
+<li><strong>Decision Trees:</strong> organisieren die Daten in einem Baum. An jedem Knoten steht eine Entscheidungsregel, am Ende steht eine Klasse.</li>
+</ul>
 <h3 id="entscheidungsbaume-decision-trees">Entscheidungsbäume / Decision Trees</h3>
 <p><img alt="" height="400" src="../images/1_6RMrFGwU-qH4nHW89xc0Xw.jpeg" /></p>
-<p>Ein Decision Tree trifft Entscheidungen schrittweise. Jeder Knoten entspricht einer Regel, jeder Blattknoten entspricht einer Klasse. Der Baum wird anhand von Kriterien wie Informations-Entropie oder Gini-Index erstellt.</p>
-<p>Wichtige Hyperparameter sind die Tiefe des Baumes und die minimale Anzahl an Instanzen pro Blattknoten. Erweiterungen dieses Grundprinzips sind Random Forest und Gradient Boosting.</p>
+<p>Ein Decision Tree trifft Entscheidungen schrittweise:</p>
+<ul>
+<li>Jeder Knoten entspricht einer Regel.</li>
+<li>Jeder Blattknoten entspricht einer Klasse.</li>
+<li>Der Baum wird anhand von Kriterien wie Informations-Entropie oder Gini-Index erstellt.</li>
+<li>Wichtige Hyperparameter sind die Tiefe des Baumes und die minimale Anzahl an Instanzen pro Blattknoten.</li>
+<li>Erweiterungen dieses Grundprinzips sind Random Forest und Gradient Boosting.</li>
+</ul>
 <h3 id="logistische-regression">Logistische Regression</h3>
 <p><img alt="" height="400" src="../images/LogRegvdLinReg.png" /></p>
-<p>Die logistische Regression transformiert den linearen Ausdruck in den Bereich <span class="arithmatex">\([0,1]\)</span>. Dafür nutzt sie die Sigmoid-Funktion.</p>
+<p>Die logistische Regression transformiert den linearen Ausdruck in den Bereich <span class="arithmatex">\([0,1]\)</span>:</p>
+<ul>
+<li>Dafür nutzt sie die Sigmoid-Funktion.</li>
+<li>Der Wert <span class="arithmatex">\(f(X)\)</span> kann als Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse gelesen werden.</li>
+<li>Die finale Klasse entsteht wieder über einen Schwellenwert.</li>
+</ul>
 <div class="arithmatex">\[
 f(X) = \frac{1}{1+e^{-\beta_0-\beta_1X_1-\beta_2X_2-\ldots-\beta_nX_n}}
 \]</div>
-<p>Der Wert <span class="arithmatex">\(f(X)\)</span> kann als Wahrscheinlichkeit für die Zugehörigkeit zu einer Klasse gelesen werden. Die finale Klasse entsteht wieder über einen Schwellenwert.</p>
 <h3 id="knearest-neighbors">kNearest Neighbors</h3>
 <p><img alt="" height="400" src="../images/1_cv2iLcBwCNrHFGHQkk6h1w.webp" /></p>
-<p>kNearest Neighbors vergleicht eine neue Beobachtung mit den vorhandenen Trainingsdaten. Die Klasse wird anhand der <span class="arithmatex">\(k\)</span> nächsten Nachbarn bestimmt. Wichtige Hyperparameter sind die Anzahl der Nachbarn und das Distanzmaß.</p>
+<p>kNearest Neighbors vergleicht eine neue Beobachtung mit den vorhandenen Trainingsdaten:</p>
+<ul>
+<li>Die Klasse wird anhand der <span class="arithmatex">\(k\)</span> nächsten Nachbarn bestimmt.</li>
+<li>Wichtige Hyperparameter sind die Anzahl der Nachbarn und das Distanzmaß.</li>
+</ul>
 <h2 id="feature-engineering">Feature Engineering</h2>
-<p>Bei vielen Algorithmen ist es wichtig, die Daten vor dem Training passend aufzubereiten. Das kann das Training beschleunigen und die Ergebnisse verbessern. Typische Schritte sind Normalisierung, Standardisierung, Encoding von Kategorien und das Bilden neuer Features aus Zeitreihen.</p>
+<p>Bei vielen Algorithmen ist <strong>Feature Engineering</strong> wichtig, also die passende Aufbereitung der Daten vor dem Training. Das kann das Training beschleunigen und die Ergebnisse verbessern.</p>
+<p>Typische Schritte sind:</p>
+<ul>
+<li><strong>Normalisierung</strong></li>
+<li><strong>Standardisierung</strong></li>
+<li>Encoding von Kategorien</li>
+<li>das Bilden neuer Features aus Zeitreihen</li>
+</ul>
 <h3 id="normalisierung">Normalisierung</h3>
 <p>Die folgende Tabelle zeigt ein einfaches Beispiel mit Pinguinen. Die numerischen Spalten haben unterschiedliche Skalen. Die Schnabellänge liegt im Bereich von ungefähr 20 bis 42, das Gewicht im Bereich von ungefähr 0,359 bis 0,638.</p>
 <table>
@@ -396,11 +432,16 @@ f(X) = \frac{1}{1+e^{-\beta_0-\beta_1X_1-\beta_2X_2-\ldots-\beta_nX_n}}
 </tr>
 </tbody>
 </table>
-<p><strong>Normalisierung</strong> einer Variable <span class="arithmatex">\(X\)</span> bedeutet, die Werte auf den Bereich zwischen <span class="arithmatex">\(0\)</span> und <span class="arithmatex">\(1\)</span> zu setzen.</p>
+<p>Zwei häufige Skalierungen sind:</p>
+<ul>
+<li><strong>Normalisierung</strong> einer Variable <span class="arithmatex">\(X\)</span> bedeutet, die Werte auf den Bereich zwischen <span class="arithmatex">\(0\)</span> und <span class="arithmatex">\(1\)</span> zu setzen.</li>
+</ul>
 <div class="arithmatex">\[
 X_n=\frac{X-X_{\text{min}}}{X_{\text{max}}-X_{\text{min}}}
 \]</div>
-<p><strong>Standardisierung</strong> einer Variable <span class="arithmatex">\(X\)</span> bedeutet, den Mittelwert <span class="arithmatex">\(\mu\)</span> zu entfernen und durch die Standardabweichung <span class="arithmatex">\(\sigma\)</span> zu teilen.</p>
+<ul>
+<li><strong>Standardisierung</strong> einer Variable <span class="arithmatex">\(X\)</span> bedeutet, den Mittelwert <span class="arithmatex">\(\mu\)</span> zu entfernen und durch die Standardabweichung <span class="arithmatex">\(\sigma\)</span> zu teilen.</li>
+</ul>
 <div class="arithmatex">\[
 X_s=\frac{X-\mu}{\sigma}
 \]</div>
@@ -679,7 +720,14 @@ X_s=\frac{X-\mu}{\sigma}
 </tbody>
 </table>
 <h3 id="features-aus-zeitreihen">Features aus Zeitreihen</h3>
-<p>Zeitreihen können in mehrere Features umgewandelt werden. Beispiele sind Lags, Mittelwert, Standardabweichung und Quantile. Dafür gibt es Bibliotheken wie <a href="https://tsfresh.readthedocs.io/en/latest/text/quick_start.html">TS Fresh</a> und <a href="https://facebook.github.io/prophet/">Prophet</a> für Prognosen.</p>
+<p>Zeitreihen können in mehrere Features umgewandelt werden. Typische Beispiele sind:</p>
+<ul>
+<li>Lags</li>
+<li>Mittelwert</li>
+<li>Standardabweichung</li>
+<li>Quantile</li>
+</ul>
+<p>Dafür gibt es Bibliotheken wie <a href="https://tsfresh.readthedocs.io/en/latest/text/quick_start.html">TS Fresh</a> und <a href="https://facebook.github.io/prophet/">Prophet</a> für Prognosen.</p>
 <table>
 <thead>
 <tr>
@@ -722,12 +770,20 @@ X_s=\frac{X-\mu}{\sigma}
 </tr>
 </tbody>
 </table>
-<p>Bei Zeitreihen werden häufig autoregressive Modelle verwendet. Sie berechnen die Vorhersage aus vorherigen Werten. Auf diese Weise kann die Zahl der Datenpunkte reduziert werden.</p>
+<p>Bei Zeitreihen werden häufig autoregressive Modelle verwendet:</p>
+<ul>
+<li>Sie berechnen die Vorhersage aus vorherigen Werten.</li>
+<li>Auf diese Weise kann die Zahl der Datenpunkte reduziert werden.</li>
+</ul>
 <div class="arithmatex">\[
 \hat{y_t} = f(y_{t-1},\max(y_{t-1},y_{t-2},y_{t-3}))
 \]</div>
 <h3 id="transformation-in-frequenzraum">Transformation in Frequenzraum</h3>
-<p>Bei einer Klassifikation von zeitabhängigen Daten kann es sinnvoll sein, die Daten in den Frequenzraum zu transformieren. Eine typische Methode dafür ist die Fourier-Transformation. Dadurch kann ein Modell nicht nur einzelne Zeitpunkte betrachten, sondern auch Frequenzanteile der Wellenform.</p>
+<p>Bei einer Klassifikation von zeitabhängigen Daten kann es sinnvoll sein, die Daten in den Frequenzraum zu transformieren. Eine typische Methode dafür ist die <strong>Fourier-Transformation</strong>:</p>
+<ul>
+<li>Dadurch kann ein Modell nicht nur einzelne Zeitpunkte betrachten.</li>
+<li>Es kann auch Frequenzanteile der Wellenform nutzen.</li>
+</ul>
 <table>
 <thead>
 <tr>
